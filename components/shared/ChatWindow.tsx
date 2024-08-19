@@ -87,7 +87,7 @@ const ChatWindow: React.FC<ChatWindowProps> = ({
                   <h3 className="font-semibold text-xl text-emerald-100">
                     Hi {senderName}
                   </h3>
-                  <img src="/hello.png" alt="logo" width={26} height={26} />
+                  <Image src="/hello.png" alt="logo" width={26} height={26} />
                 </div>
                 <div className="gap-2 justify-center flex w-full items-center">
                   <h3 className="font-semibold text-3xl text-white">

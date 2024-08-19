@@ -132,8 +132,9 @@ const HelpBox = ({
               <AccordionContent>
                 <p>
                   OfferUp is an online marketplace that allows users to buy and
-                  sell items locally. It's a platform for people to list items
-                  for sale and for buyers to find great deals in their area.
+                  sell items locally. It&apos;s a platform for people to list
+                  items for sale and for buyers to find great deals in their
+                  area.
                 </p>
               </AccordionContent>
             </AccordionItem>
@@ -158,10 +159,11 @@ const HelpBox = ({
               </AccordionTrigger>
               <AccordionContent>
                 <p>
-                  Open the OfferUp app or website and click on the "Post"
-                  button. Follow the prompts to add photos, a description, and a
-                  price for your item. Once you've completed the details, click
-                  "Post" to list your item for sale.
+                  Open the OfferUp app or website and click on the
+                  &quot;Post&quot; button. Follow the prompts to add photos, a
+                  description, and a price for your item. Once you&apos;ve
+                  completed the details, click &quot;Post&quot; to list your
+                  item for sale.
                 </p>
               </AccordionContent>
             </AccordionItem>

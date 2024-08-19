@@ -120,7 +120,7 @@ export default async function Home({ searchParams }: SearchParamProps) {
         </div>
         <div className="flex-center h-screen w-full bg-[#ebf2f7] bg-dotted-pattern bg-cover bg-fixed bg-center">
           <div className="flex gap-1 items-center">
-            <img
+            <Image
               src="/assets/icons/loading.gif"
               alt="edit"
               width={60}

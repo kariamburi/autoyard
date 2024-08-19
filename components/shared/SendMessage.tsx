@@ -13,6 +13,7 @@ import React, { useCallback } from "react";
 import { useEffect, useState } from "react";
 import CloseIcon from "@mui/icons-material/Close";
 import { useToast } from "@/components/ui/use-toast";
+import Image from "next/image";
 type sidebarProps = {
   displayName: string;
   uid: string;
@@ -133,7 +134,7 @@ const SendMessage = ({
                 >
                   <CloseIcon className="m-1" sx={{ fontSize: 24 }} />
                 </button>
-                <img
+                <Image
                   src={URL.createObjectURL(image)}
                   alt="image"
                   width={50}
@@ -177,10 +178,12 @@ const SendMessage = ({
 
         <div className="cursor-pointer relative p-2 ml-5 mr-5">
           <label htmlFor="file">
-            <img
+            <Image
               src="../assets/icons/attach.png"
               alt="Attach"
               className="cursor-pointer"
+              width={16}
+              height={16}
             />
           </label>
           <input
