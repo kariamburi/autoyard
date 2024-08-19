@@ -8,9 +8,10 @@ import {
 } from "@/components/ui/sheet";
 import Image from "next/image";
 import { Separator } from "../ui/separator";
-import NavItems from "./NavItems";
+//import NavItems from "./NavItems";
 import MenuIcon from "@mui/icons-material/Menu";
 import { useState } from "react";
+import NavItems from "./NavItems";
 type MobileProps = {
   userstatus: string;
   userId: string;
