@@ -3,7 +3,7 @@
 import { UpdateUserParams } from "@/types";
 
 import { format, isToday, isYesterday } from "date-fns";
-
+import Image from "next/image";
 interface MessageProps {
   message: {
     uid: string;
@@ -73,10 +73,12 @@ const Message = ({
             <>
               {" "}
               <div className="flex items-center gap-2">
-                <img
+                <Image
                   className="w-8 h-8 rounded-full object-cover"
                   src={photoURL}
                   alt="avatar"
+                  width={16}
+                  height={16}
                 />
                 <div className="text-xs text-black font-medium flex gap-5">
                   {message.name}
@@ -94,10 +96,12 @@ const Message = ({
                   }`}
                 >
                   {message.imageUrl && (
-                    <img
+                    <Image
                       src={message.imageUrl}
                       alt="Image"
                       className="mb-2 object-cover"
+                      width={16}
+                      height={16}
                     />
                   )}
                   <div>{message.text}</div>
@@ -109,10 +113,12 @@ const Message = ({
             <>
               {" "}
               <div className="flex items-center gap-2">
-                <img
+                <Image
                   className="w-8 h-8 rounded-full object-cover"
                   src={message.avatar}
-                  alt="avatar"
+                  alt="Avatar"
+                  width={16}
+                  height={16}
                 />
                 <div className="text-xs text-black font-medium flex gap-3">
                   {recipient.firstName} {recipient.lastName}
@@ -130,10 +136,12 @@ const Message = ({
                   }`}
                 >
                   {message.imageUrl && (
-                    <img
+                    <Image
                       src={message.imageUrl}
                       alt="Image"
                       className="mb-2 object-cover"
+                      width={16}
+                      height={16}
                     />
                   )}
                   <div>{message.text}</div>
