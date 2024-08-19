@@ -63,7 +63,9 @@
   * {
     @apply border-border;
   }
-  body {
-    @apply bg-background text-foreground;
-  }
+ body {
+  font-family: var(--font-poppins);
+  background-color: #ebf2f7;
+  
+}
 }
