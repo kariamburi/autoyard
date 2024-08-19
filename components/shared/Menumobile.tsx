@@ -33,6 +33,7 @@ export default function Menumobile({ categoryList }: MobileProps) {
           categoryList.map(
             (category: { imageUrl: string; name: string; _id: string }) => (
               <div
+                key={category._id} // Added unique key prop
                 onClick={() => handleCategory(category.name)}
                 className="h-[100px] bg-white flex flex-col items-center justify-center cursor-pointer rounded-sm p-1 border-0 border-emerald-300 hover:bg-emerald-100 "
               >
