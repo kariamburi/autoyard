@@ -2,6 +2,7 @@
 import qs from "query-string";
 import { useRouter, useSearchParams } from "next/navigation";
 import { formUrlQuery, removeKeysFromQuery } from "@/lib/utils";
+import Image from "next/image";
 type MobileProps = {
   categoryList: { imageUrl: string; name: string; _id: string }[];
 };
@@ -37,10 +38,12 @@ export default function Menumobile({ categoryList }: MobileProps) {
               >
                 <div className="flex flex-col items-center text-center justify-center">
                   <div className="h-12 w-12 rounded-full bg-white p-2">
-                    <img
+                    <Image
                       className="w-full h-full"
                       src={category.imageUrl}
-                      alt="Menu Image"
+                      alt=""
+                      width={20}
+                      height={20}
                     />
                   </div>
 
