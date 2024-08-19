@@ -2,7 +2,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
-import Termspopup from "./termspopup";
+//import Termspopup from "./termspopup";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -47,17 +47,21 @@ const Footer = () => {
           <p className="mb-3 text-slate-950 font-bold">Our Apps</p>
           <ul className="space-y-4">
             <li>
-              <img
+              <Image
                 src="https://assets.jiji.ng/static/img/single-images/app-store.svg"
                 alt="App Store"
                 className="w-20 md:w-40"
+                width={20}
+                height={40}
               />
             </li>
             <li>
-              <img
+              <Image
                 src="https://assets.jiji.ng/static/img/single-images/google-play.svg"
                 alt="Google Play"
                 className="w-20 md:w-40"
+                width={20}
+                height={40}
               />
             </li>
           </ul>

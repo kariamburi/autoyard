@@ -74,7 +74,7 @@ export default function Navbar({ userstatus, userId }: NavProps) {
             </div>
           )}
           <div className="rounded-full overflow-hidden">
-            <img
+            <Image
               src="/assets/images/logo_white.png"
               alt="logo"
               onClick={() => router.push("/")}
