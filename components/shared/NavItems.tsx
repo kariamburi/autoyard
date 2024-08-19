@@ -4,7 +4,6 @@ import { headerLinks } from "@/constants";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import React from "react";
-import MenuList from "./menu-list";
 import { Separator } from "../ui/separator";
 import PersonOutlinedIcon from "@mui/icons-material/PersonOutlined";
 import SupervisorAccountOutlinedIcon from "@mui/icons-material/SupervisorAccountOutlined";

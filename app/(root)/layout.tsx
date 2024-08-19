@@ -7,6 +7,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { auth } from "@clerk/nextjs/server";
 import { SignedIn } from "@clerk/nextjs";
 import Navbar from "@/components/shared/navbar";
+import Image from "next/image";
 //import ChatWindow from "@/components/shared/ChatWindow";
 
 export default async function RootLayout({
@@ -33,8 +34,15 @@ export default async function RootLayout({
       </div>
       <main className="flex-1">{children}</main>
       <Toaster />
-      <div className="mt-5">
-        <img src="/footer-png-8.png" alt="city logo" className="mx-auto" />
+      <div className="mt-5 w-full">
+        <Image
+          src="/footer-png-8.png"
+          alt=""
+          className="mx-auto"
+          layout="responsive" // Makes the image responsive
+          width={800}
+          height={50}
+        />
       </div>
       <footer className="bg-white">
         <Footer />

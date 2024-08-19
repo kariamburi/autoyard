@@ -5,7 +5,6 @@ import BookmarkIcon from "@mui/icons-material/Bookmark";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import DiamondIcon from "@mui/icons-material/Diamond";
 import ViewListIcon from "@mui/icons-material/ViewList";
-
 import { useRouter, redirect, usePathname } from "next/navigation";
 //import { useSession } from "next-auth/react";
 import { SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
@@ -24,7 +23,6 @@ import {
   HoverCardContent,
   HoverCardTrigger,
 } from "../ui/hover-card";
-import NavItems from "./NavItems";
 import { Separator } from "../ui/separator";
 import { Button } from "../ui/button";
 import { collection, onSnapshot, query, where } from "firebase/firestore";
@@ -33,13 +31,14 @@ import { db } from "@/lib/firebase";
 import Image from "next/image";
 import AddCircleOutlineOutlinedIcon from "@mui/icons-material/AddCircleOutlineOutlined";
 import ArrowBackOutlinedIcon from "@mui/icons-material/ArrowBackOutlined";
-import Unreadmessages from "./Unreadmessages";
+//import Unreadmessages from "./Unreadmessages";
 import {
   Tooltip,
   TooltipContent,
   TooltipProvider,
   TooltipTrigger,
 } from "../ui/tooltip";
+import Unreadmessages from "./Unreadmessages";
 type NavProps = {
   userstatus: string;
   userId: string;
@@ -151,32 +150,37 @@ export default function Navbar({ userstatus, userId }: NavProps) {
           </Tooltip>
         </TooltipProvider>
       </div>
+      <div>
+        <SignedIn>
+          <Link href="/ads/create">
+            <button
+              className={`w-[100px] bg-gradient-to-b from-[#4DCE7A] to-[#30AF5B] hover:bg-[#30AF5B] text-white p-1 rounded-full`}
+            >
+              <AddCircleOutlineOutlinedIcon /> SELL
+            </button>
+          </Link>
+        </SignedIn>
+      </div>
+      <div>
+        <SignedOut>
+          <Link href="/sign-in">
+            <button
+              className={`w-[100px] bg-gradient-to-b from-[#4DCE7A] to-[#30AF5B] hover:bg-[#30AF5B] text-white p-1 rounded-full`}
+            >
+              <AddCircleOutlineOutlinedIcon /> SELL
+            </button>
+          </Link>
+        </SignedOut>
+      </div>
+      <div>
+        <SignedIn>
+          <div className="w-8 h-8 flex items-center justify-center rounded-full bg-white tooltip tooltip-bottom hover:cursor-pointer">
+            <UserButton afterSignOutUrl="/" />
+          </div>
 
-      <SignedIn>
-        <Link href="/ads/create">
-          <button
-            className={`w-[100px] bg-gradient-to-b from-[#4DCE7A] to-[#30AF5B] hover:bg-[#30AF5B] text-white p-1 rounded-full`}
-          >
-            <AddCircleOutlineOutlinedIcon /> SELL
-          </button>
-        </Link>
-      </SignedIn>
-      <SignedOut>
-        <Link href="/sign-in">
-          <button
-            className={`w-[100px] bg-gradient-to-b from-[#4DCE7A] to-[#30AF5B] hover:bg-[#30AF5B] text-white p-1 rounded-full`}
-          >
-            <AddCircleOutlineOutlinedIcon /> SELL
-          </button>
-        </Link>
-      </SignedOut>
-      <SignedIn>
-        <div className="w-8 h-8 flex items-center justify-center rounded-full bg-white tooltip tooltip-bottom hover:cursor-pointer">
-          <UserButton afterSignOutUrl="/" />
-        </div>
-
-        <MobileNav userstatus={userstatus} userId={userId} />
-      </SignedIn>
+          <MobileNav userstatus={userstatus} userId={userId} />
+        </SignedIn>
+      </div>
     </div>
   );
 }
