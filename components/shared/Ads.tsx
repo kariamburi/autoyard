@@ -778,35 +778,35 @@ export default function Ads({ ad, userId }: CardProps) {
 
             <ol>
               <li>
-                <div className="flex gap-2">
+                <div className="flex gap-2 text-xs lg:text-sm">
                   <CheckCircleIcon sx={{ fontSize: 14 }} /> Don&apos;t pay in
                   advance, including for delivery
                 </div>
               </li>
 
               <li>
-                <div className="flex gap-2">
+                <div className="flex gap-2 text-xs lg:text-sm">
                   <CheckCircleIcon sx={{ fontSize: 14 }} /> Meet the seller at a
                   safe public place
                 </div>
               </li>
 
               <li>
-                <div className="flex gap-2">
+                <div className="flex gap-2 text-xs lg:text-sm">
                   <CheckCircleIcon sx={{ fontSize: 14 }} /> Inspect the item and
                   ensure its exactly what you want
                 </div>
               </li>
 
               <li>
-                <div className="flex gap-2">
+                <div className="flex gap-2 text-xs lg:text-sm">
                   <CheckCircleIcon sx={{ fontSize: 14 }} /> On delivery, check
                   that the item delivered is what was inspected
                 </div>
               </li>
 
               <li>
-                <div className="flex gap-2">
+                <div className="flex gap-2 text-xs lg:text-sm">
                   <CheckCircleIcon sx={{ fontSize: 14 }} /> Only pay when youre
                   satisfied
                 </div>

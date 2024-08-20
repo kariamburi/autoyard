@@ -127,7 +127,7 @@ const SellerProfile = ({ userId, loggedId, user }: CollectionProps) => {
         </Link>
         {isActive === false && (
           <Link href={`/shop/${userId}`} className="no-underline font-boldm-1">
-            <p className="p-medium-14 md:p-medium-16 text-emerald-100 :hover:text-white hover:underline">
+            <p className="p-medium-14 md:p-medium-16 text-emerald-100 hover:text-white hover:underline">
               View Seller Shop
             </p>
           </Link>
@@ -178,25 +178,39 @@ const SellerProfile = ({ userId, loggedId, user }: CollectionProps) => {
                     )}
                     <div className="m-3 p-1">
                       <div className="mb-5 md:flex-row">
-                        <div className="font-bold">Business Name</div>
-                        <div className="text-sm">{user.businessname}</div>
+                        <div className="font-bold text-xs lg:text-sm">
+                          Business Name
+                        </div>
+                        <div className="lg:text-xs text-[10px]">
+                          {user.businessname}
+                        </div>
                       </div>
 
                       <div className="mb-5 md:flex-row">
-                        <div className="font-bold">About Business</div>
-                        <div className="text-sm">{user.aboutbusiness}</div>
+                        <div className="font-bold text-xs lg:text-sm">
+                          About Business
+                        </div>
+                        <div className="lg:text-xs text-[10px]">
+                          {user.aboutbusiness}
+                        </div>
                       </div>
 
                       <div className="mb-5 md:flex-row">
-                        <div className="font-bold">Business Address</div>
-                        <div className="text-sm">{user.businessaddress}</div>
+                        <div className="font-bold text-xs lg:text-sm">
+                          Business Address
+                        </div>
+                        <div className="lg:text-xs text-[10px]">
+                          {user.businessaddress}
+                        </div>
                       </div>
                       {user.latitude && user.latitude && (
                         <>
                           <div className="bg-white p-0 text-l rounded-lg overflow-hidden">
                             <div className="">
-                              <p className="mt-0 font-bold">Office Location</p>
-                              <p className="text-gray-400 text- mb-1 text-sm">
+                              <p className="lg:text-xs text-sm font-bold">
+                                Office Location
+                              </p>
+                              <p className="text-gray-400 mb-1 lg:text-xs text-[10px]">
                                 <LocationOnIcon sx={{ fontSize: 20 }} /> GPS
                                 Location
                               </p>
@@ -232,11 +246,11 @@ const SellerProfile = ({ userId, loggedId, user }: CollectionProps) => {
                                 <div className="flex flex-col gap-5 mb-0 md:flex-row">
                                   <div>
                                     <label>
-                                      <p className="font-bold text-xs">
+                                      <p className="font-bold text-xs lg:text-sm">
                                         Office Open Time:
                                       </p>
                                     </label>
-                                    <div className="flex flex-col gap-5 mb-5 md:flex-row">
+                                    <div className="flex flex-col gap-5 mb-5 md:flex-row text-[10px] lg:text-xs">
                                       <select
                                         className="bg-gray-100 p-1 border rounded-sm"
                                         value={
@@ -258,7 +272,7 @@ const SellerProfile = ({ userId, loggedId, user }: CollectionProps) => {
                                         ))}
                                       </select>
                                       <select
-                                        className="bg-gray-100 p-1 border ml-2 mr-2 rounded-sm"
+                                        className="bg-gray-100 p-1 border rounded-sm"
                                         value={
                                           user?.businesshours[0].openMinute ??
                                           ""
@@ -283,11 +297,11 @@ const SellerProfile = ({ userId, loggedId, user }: CollectionProps) => {
                                   <div>
                                     <label>
                                       {" "}
-                                      <p className="font-bold text-xs">
+                                      <p className="font-bold text-xs lg:text-sm">
                                         Office Close Time:
                                       </p>
                                     </label>
-                                    <div className="flex flex-col gap-5 mb-0 md:flex-row">
+                                    <div className="flex flex-col gap-5 mb-0 md:flex-row text-[10px] lg:text-xs">
                                       <select
                                         className="bg-gray-100 p-1 border rounded-sm"
                                         value={
@@ -309,7 +323,7 @@ const SellerProfile = ({ userId, loggedId, user }: CollectionProps) => {
                                         ))}
                                       </select>
                                       <select
-                                        className="bg-gray-100 p-1 border ml-2 rounded-sm"
+                                        className="bg-gray-100 p-1 border rounded-sm"
                                         value={
                                           user?.businesshours[0].closeMinute ??
                                           ""
@@ -341,22 +355,23 @@ const SellerProfile = ({ userId, loggedId, user }: CollectionProps) => {
                       <div className="flex flex-col gap-5 mb-5 md:flex-row">
                         <div>
                           <label>
-                            <p className="font-bold text-xs">
+                            <p className="font-bold text-xs lg:text-sm">
                               Office Working Days:
                             </p>
                           </label>
 
                           <>
-                            <div>
+                            <div className="flex text-[10px] gap-1 w-full items-center lg:text-xs">
                               <input
                                 type="checkbox"
                                 checked={user?.businessworkingdays.includes(
                                   "Sunday"
                                 )}
                               />
+
                               <label>Sunday</label>
                             </div>
-                            <div>
+                            <div className="flex text-[10px] gap-1 w-full items-center lg:text-xs">
                               <input
                                 type="checkbox"
                                 checked={user?.businessworkingdays.includes(
@@ -365,7 +380,7 @@ const SellerProfile = ({ userId, loggedId, user }: CollectionProps) => {
                               />
                               <label>Monday</label>
                             </div>
-                            <div>
+                            <div className="flex text-[10px] gap-1 w-full items-center lg:text-xs">
                               <input
                                 type="checkbox"
                                 checked={user?.businessworkingdays.includes(
@@ -374,7 +389,7 @@ const SellerProfile = ({ userId, loggedId, user }: CollectionProps) => {
                               />
                               <label>Tuesday</label>
                             </div>
-                            <div>
+                            <div className="flex text-[10px] gap-1 w-full items-center lg:text-xs">
                               <input
                                 type="checkbox"
                                 checked={user?.businessworkingdays.includes(
@@ -383,7 +398,7 @@ const SellerProfile = ({ userId, loggedId, user }: CollectionProps) => {
                               />
                               <label>Wednesday</label>
                             </div>
-                            <div>
+                            <div className="flex text-[10px] gap-1 w-full items-center lg:text-xs">
                               <input
                                 type="checkbox"
                                 checked={user?.businessworkingdays.includes(
@@ -392,7 +407,7 @@ const SellerProfile = ({ userId, loggedId, user }: CollectionProps) => {
                               />
                               <label>Thursday</label>
                             </div>
-                            <div>
+                            <div className="flex text-[10px] gap-1 w-full items-center lg:text-xs">
                               <input
                                 type="checkbox"
                                 checked={user?.businessworkingdays.includes(
@@ -401,7 +416,7 @@ const SellerProfile = ({ userId, loggedId, user }: CollectionProps) => {
                               />
                               <label>Friday</label>
                             </div>
-                            <div>
+                            <div className="flex text-[10px] gap-1 w-full items-center lg:text-xs">
                               <input
                                 type="checkbox"
                                 checked={user?.businessworkingdays.includes(
@@ -478,7 +493,7 @@ const SellerProfile = ({ userId, loggedId, user }: CollectionProps) => {
                     </a>
                   </TooltipTrigger>
                   <TooltipContent>
-                    <p>OfferUp Chat</p>
+                    <p>Wheels Chat</p>
                   </TooltipContent>
                 </Tooltip>
               </TooltipProvider>
@@ -497,7 +512,7 @@ const SellerProfile = ({ userId, loggedId, user }: CollectionProps) => {
                     </a>
                   </TooltipTrigger>
                   <TooltipContent>
-                    <p>OfferUp Chat</p>
+                    <p>Wheels Chat</p>
                   </TooltipContent>
                 </Tooltip>
               </TooltipProvider>
