@@ -7,7 +7,7 @@ import { DeleteConfirmation } from "./DeleteConfirmation";
 import { NGnaira } from "@/lib/help";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 import PartyModeOutlinedIcon from "@mui/icons-material/PartyModeOutlined";
-import PhotoCameraFrontIcon from "@mui/icons-material/PhotoCameraFront";
+import LocalSeeOutlinedIcon from "@mui/icons-material/LocalSeeOutlined";
 import VerifiedUserOutlinedIcon from "@mui/icons-material/VerifiedUserOutlined";
 import BookmarkIcon from "@mui/icons-material/Bookmark";
 import {
@@ -68,19 +68,7 @@ const Card = ({ ad, hasOrderLink, hidePrice, userId }: CardProps) => {
         className="flex-center flex-grow bg-gray-50 bg-cover bg-center text-grey-500"
       />
       {/* IS Ad CREATOR ... */}
-      <div className="ml-1 mt-40 gap-1 cursor-pointer absolute bg-[#000000] bg-opacity-70 text-[10px] lg:text-xs text-white right-50 top-100 flex rounded-lg p-1 shadow-sm transition-all">
-        <PhotoCameraFrontIcon sx={{ fontSize: 16, cursor: "pointer" }} />
-        {ad.imageUrls.length}
-      </div>
-      {ad.youtube && (
-        <div className="ml-1 mt-40 gap-1 mr-1 cursor-pointer absolute bg-[#000000] bg-opacity-70 text-[10px] lg:text-xs text-white right-0 top-100 flex rounded-lg p-1 shadow-sm transition-all">
-          <YouTubeIcon
-            sx={{ fontSize: 16, cursor: "pointer" }}
-            style={{ color: "red" }}
-          />{" "}
-          Video
-        </div>
-      )}
+
       {ad.plan.name !== "Free" && (
         <div
           style={{
@@ -116,24 +104,40 @@ const Card = ({ ad, hasOrderLink, hidePrice, userId }: CardProps) => {
         </div>
       )}
 
-      <div
-        className="absolute right-2 bottom-20  w-8 h-8 p-1 shadow-lg flex items-center justify-center rounded-full bg-white text-emerald-500 tooltip tooltip-bottom hover:text-[#2BBF4E] hover:cursor-pointer"
-        data-tip="Bookmark"
-        onClick={() => handle(ad._id)}
-      >
-        <TooltipProvider>
-          <Tooltip>
-            <TooltipTrigger asChild>
-              <BookmarkIcon />
-            </TooltipTrigger>
-            <TooltipContent>
-              <p> Save Ad</p>
-            </TooltipContent>
-          </Tooltip>
-        </TooltipProvider>
-      </div>
-
       <div className="flex min-h-[80px] items-center flex-col">
+        <div className="w-full flex justify-between absolute top-1/2 left-1/2 transform -translate-x-1/2 p-1 rounded-full">
+          <div className="gap-1 cursor-pointer bg-[#000000] bg-opacity-70 text-[10px] lg:text-xs text-white flex rounded-lg p-1 shadow-sm transition-all">
+            <LocalSeeOutlinedIcon sx={{ fontSize: 16, cursor: "pointer" }} />
+            {ad.imageUrls.length}
+          </div>
+          {ad.youtube && (
+            <div className="gap-1 cursor-pointer bg-[#000000] bg-opacity-70 text-[10px] lg:text-xs text-white flex rounded-lg p-1 shadow-sm transition-all">
+              <YouTubeIcon
+                sx={{ fontSize: 16, cursor: "pointer" }}
+                style={{ color: "red" }}
+              />{" "}
+              Video
+            </div>
+          )}
+        </div>
+        <div className="w-full flex justify-end  absolute top-2/3 left-1/2 transform -translate-x-1/2 p-1 rounded-full">
+          <div
+            className="w-8 h-8 p-1 shadow-lg flex items-center justify-center rounded-full bg-white text-emerald-500 tooltip tooltip-bottom hover:text-[#2BBF4E] hover:cursor-pointer"
+            data-tip="Bookmark"
+            onClick={() => handle(ad._id)}
+          >
+            <TooltipProvider>
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <BookmarkIcon />
+                </TooltipTrigger>
+                <TooltipContent>
+                  <p> Save Ad</p>
+                </TooltipContent>
+              </Tooltip>
+            </TooltipProvider>
+          </div>
+        </div>
         {!hidePrice && (
           <div className="flex">
             <Link href={`/ads/${ad._id}`} className="no-underline">
@@ -157,23 +161,27 @@ const Card = ({ ad, hasOrderLink, hidePrice, userId }: CardProps) => {
           </div>
         )}
 
-        <div className="text-gray-500  text-[8px] lg:text-[10px]">
+        <div className="text-gray-500  text-[8px] lg:text-[10px] hidden lg:inline">
           <LocationOnIcon sx={{ fontSize: 16 }} />
           {truncateaddress(ad.address, 40)}
         </div>
+        <div className="text-gray-500  text-[8px] lg:text-[10px] lg:hidden">
+          <LocationOnIcon sx={{ fontSize: 16 }} />
+          {truncateaddress(ad.address, 30)}
+        </div>
         <div className="flex justify-between w-full gap-1 p-1">
           {ad.vehiclecondition && (
-            <div className="flex gap-2 text-[10px] lg:text-xs bg-[#ebf2f7] rounded-lg p-1 justify-center border">
+            <div className="flex gap-2 text-[8px] lg:text-xs bg-[#ebf2f7] rounded-lg p-1 justify-center border">
               {ad.vehiclecondition}
             </div>
           )}
           {ad.vehicleTransmissions && (
-            <div className="flex gap-2 text-[10px] lg:text-xs bg-[#ebf2f7] rounded-lg p-1 justify-center border">
+            <div className="flex gap-2 text-[8px] lg:text-xs bg-[#ebf2f7] rounded-lg p-1 justify-center border">
               {ad.vehicleTransmissions}
             </div>
           )}
           {ad.vehicleEngineSizesCC && (
-            <div className="flex gap-2 text-[10px] lg:text-xs bg-[#ebf2f7] rounded-lg p-1 justify-center border">
+            <div className="flex gap-2 text-[8px] lg:text-xs bg-[#ebf2f7] rounded-lg p-1 justify-center border">
               {ad.vehicleEngineSizesCC}
             </div>
           )}
