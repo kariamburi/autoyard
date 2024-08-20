@@ -615,7 +615,7 @@ export default function Ads({ ad, userId }: CardProps) {
             )}
             <div className="divider"></div>
             <p className="mt-5 font-bold text-emerald-950">Description</p>
-            <p className="my-1 text-text-emerald-950 text-sm">
+            <p className="my-1 text-text-emerald-950 text-sm lg:text-base">
               {ad.description}
             </p>
 
@@ -732,7 +732,7 @@ export default function Ads({ ad, userId }: CardProps) {
           <br />
           <div className="bg-white p-5 text-l rounded-lg overflow-hidden shadow-md">
             <div className="">
-              <p className="mt-5 font-bold">Location Approximate</p>
+              <p className="mt-5 font-bold">Approximate Location</p>
               <p className="text-gray-400 mb-1 text-xs lg:text-sm">
                 <LocationOnIcon sx={{ fontSize: 20 }} /> {ad.address}
               </p>
