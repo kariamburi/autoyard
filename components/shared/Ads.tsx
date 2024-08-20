@@ -62,26 +62,12 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "../ui/carousel";
-//import SellerProfile from "./SellerProfile";
+import SellerProfile from "./SellerProfile";
+
 type CardProps = {
   ad: IAd;
   userId: string;
 };
-const SellerProfile = dynamic(() => import("./SellerProfile"), {
-  ssr: false,
-  loading: () => (
-    <div className="m-1 space-y-0 lg:flex lg:space-x-5">
-      <div className="flex flex-wrap mt-10 gap-1 justify-center">
-        <Skeleton
-          variant="rectangular"
-          animation="wave"
-          height={400}
-          className="rounded-sm w-full md:w-[300px] lg:w-[300px]"
-        />
-      </div>
-    </div>
-  ),
-});
 export default function Ads({ ad, userId }: CardProps) {
   const [videoAdId, setvideoAdId] = React.useState<string | null>(null);
   const [selectedIndex, setSelectedIndex] = React.useState<number | null>(null);
@@ -718,9 +704,9 @@ export default function Ads({ ad, userId }: CardProps) {
             <div className="">
               <div className="flex flex-col">
                 <SellerProfile
-                  user={ad.organizer}
-                  loggedId={userId}
                   userId={ad.organizer._id}
+                  loggedId={userId}
+                  user={ad.organizer}
                 />
               </div>
             </div>
@@ -771,8 +757,15 @@ export default function Ads({ ad, userId }: CardProps) {
           </div>
         </div>
       </div>
-      <FloatingChatIcon onClick={toggleChat} />
-      <ChatWindow isOpen={isChatOpen} onClose={toggleChat} />
+      <FloatingChatIcon onClick={toggleChat} isOpen={false} />
+      <ChatWindow
+        isOpen={isChatOpen}
+        onClose={toggleChat}
+        recipientUid={""}
+        senderId={""}
+        senderName={""}
+        senderImage={""}
+      />
     </>
   );
 }

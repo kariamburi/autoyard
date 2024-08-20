@@ -23,28 +23,37 @@ import {
   faTiktok,
   faChrome,
 } from "@fortawesome/free-brands-svg-icons";
-
 import {
   Tooltip,
   TooltipContent,
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
+import {
+  HoverCard,
+  HoverCardContent,
+  HoverCardTrigger,
+} from "@/components/ui/hover-card";
+import { CreateUserParams } from "@/types";
 import Ratings from "./ratings";
+import Streetmap from "./Streetmap";
 import Link from "next/link";
+import StreetmapOfice from "./StreetmapOffice";
+import VerifiedUserOutlinedIcon from "@mui/icons-material/VerifiedUserOutlined";
+import ShieldOutlinedIcon from "@mui/icons-material/ShieldOutlined";
 import { format, isToday, isYesterday } from "date-fns";
 import { usePathname, useRouter } from "next/navigation";
+import Share from "./Share";
+import { v4 as uuidv4 } from "uuid";
 import { createTransaction } from "@/lib/actions/transactionstatus";
 import { getVerfiesfee } from "@/lib/actions/verifies.actions";
-import { IUser } from "@/lib/database/models/user.model";
-import Share from "./Share";
-import StreetmapOfice from "./StreetmapOffice";
 import Verification from "./Verification";
-import { v4 as uuidv4 } from "uuid";
+import { IUser } from "@/lib/database/models/user.model";
+import Image from "next/image";
 type CollectionProps = {
   userId: string;
   loggedId: string;
-  user: IUser;
+  user: any;
 };
 
 const SellerProfile = ({ userId, loggedId, user }: CollectionProps) => {
@@ -96,50 +105,18 @@ const SellerProfile = ({ userId, loggedId, user }: CollectionProps) => {
   } catch {
     // Handle error when formatting date
   }
-  const handlepay = async (
-    packIdInput: string,
-    packNameInput: string,
-    periodInput: string,
-    priceInput: string
-  ) => {
-    const customerId = uuidv4();
 
-    const trans = {
-      orderTrackingId: customerId,
-      amount: Number(priceInput),
-      plan: packNameInput,
-      planId: packIdInput,
-      period: periodInput,
-      buyerId: userId,
-      merchantId: userId,
-      status: "Pending",
-      createdAt: new Date(),
-    };
-    const response = await createTransaction(trans);
-    if (response.status === "Pending") {
-      router.push(`/pay/${response.orderTrackingId}`);
-    }
-  };
-  const _id = "662b9ab6dd4398a447257e59";
-  useEffect(() => {
-    if (user.verified && user?.verified[0]?.accountverified === true) {
-    } else {
-      const getfee = async () => {
-        const verifies = await getVerfiesfee(_id);
-        setactivationfee(verifies.fee);
-      };
-      getfee();
-    }
-  }, []);
   return (
     <div className="flex flex-col m-0 lg:m-0 items-center min-w-[300px] lg:max-w-[350px]">
       <div className="flex flex-col items-center rounded-t-lg w-full p-1 bg-emerald-900">
         <Link href={`/shop/${userId}`} className="no-underline font-boldm-1">
           <div className="w-16 h-16 p-1 rounded-full bg-white">
-            <img
+            <Image
               className="w-full h-full rounded-full object-cover"
               src={user.photo}
               alt="Profile Image"
+              width={200}
+              height={200}
             />
           </div>
         </Link>
@@ -190,10 +167,12 @@ const SellerProfile = ({ userId, loggedId, user }: CollectionProps) => {
                   <div className="p-0 rounded-[20px] m-2 shadow bg-white">
                     {user.imageUrl && (
                       <div className="flex h-50 w-full flex-1 justify-center">
-                        <img
+                        <Image
                           src={user.imageUrl}
                           alt="image"
                           className="object-center rounded-t-[20px]"
+                          width={900}
+                          height={500}
                         />
                       </div>
                     )}
