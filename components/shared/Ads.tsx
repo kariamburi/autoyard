@@ -158,7 +158,7 @@ export default function Ads({ ad, userId }: CardProps) {
       });
     };
     updateviewed();
-  }, [ad._id, ad.views]);
+  }, []);
 
   const plugin = React.useRef(
     Autoplay({ delay: 3000, stopOnInteraction: true })
@@ -222,7 +222,7 @@ export default function Ads({ ad, userId }: CardProps) {
   return (
     <>
       <div className="m-1 space-y-0 lg:flex lg:space-x-5">
-        <div className="lg:flex-1 border-t-8 border-emerald-950 bg-white rounded-lg">
+        <div className="lg:flex-1 border-t-0 border-emerald-950 bg-white rounded-lg">
           {/* Carousel */}
           <div className="relative">
             <Carousel
@@ -238,17 +238,17 @@ export default function Ads({ ad, userId }: CardProps) {
                     <Image
                       src={image}
                       alt={`Image ${index + 1}`}
-                      className="object-cover cursor-pointer"
+                      className="object-cover cursor-pointer rounded-t-lg"
                       width={800} // Adjust the width as needed
                       height={500} // Adjust the height as needed
                     />
                   </CarouselItem>
                 ))}
               </CarouselContent>
-              <CarouselPrevious className="md:h-10 md:w-10 lg:h-20 lg:w-20 ml-20 font-bold border-0 text-white bg-black bg-opacity-40 p-2 text-3xl" />
-              <CarouselNext className="md:h-10 md:w-10 lg:h-20 lg:w-20 mr-20 font-bold border-0 bg-black bg-opacity-40 text-white p-2 text-3xl" />
+              <CarouselPrevious className="md:h-10 md:w-10 lg:h-20 lg:w-20 ml-20 font-bold border-0 text-white bg-black bg-opacity-50 p-2 text-3xl" />
+              <CarouselNext className="md:h-10 md:w-10 lg:h-20 lg:w-20 mr-20 font-bold border-0 bg-black bg-opacity-50 text-white p-2 text-3xl" />
             </Carousel>
-            <div className="flex gap-1 absolute bottom-0 right-0 items-center text-white text-xs m-1 p-0 focus:outline-none">
+            <div className="flex gap-1 absolute bottom-0 right-0 items-center text-white text-[10px] lg:text-xs m-1 p-0 focus:outline-none">
               <div className="flex pr-2 pl-2 h-10 rounded-sm items-center bg-black bg-opacity-50">
                 Slide {current} of {count}
               </div>
@@ -294,7 +294,7 @@ export default function Ads({ ad, userId }: CardProps) {
                 style={{
                   backgroundColor: ad.plan.color,
                 }}
-                className="absolute shadow-lg top-0 left-0 text-white text-xs py-1 px-3 rounded-br-lg"
+                className="absolute shadow-lg top-0 left-0 text-white text-xs py-1 px-3 rounded-br-lg  rounded-tl-lg"
               >
                 <Link href={`/plan`}>
                   <div className="flex gap-1 cursor-pointer">
@@ -305,7 +305,7 @@ export default function Ads({ ad, userId }: CardProps) {
             )}
             {ad.organizer.verified &&
               ad.organizer.verified[0].accountverified === true && (
-                <div className="absolute bg-emerald-100 top-0 right-0 text-xs py-1 px-3 rounded-bl-lg">
+                <div className="absolute bg-emerald-100 top-0 right-0 text-xs py-1 px-3 rounded-bl-lg rounded-tr-lg">
                   <div className="flex gap-1 cursor-pointer">
                     {" "}
                     <VerifiedUserOutlinedIcon sx={{ fontSize: 16 }} />
@@ -326,30 +326,32 @@ export default function Ads({ ad, userId }: CardProps) {
                 {ad.imageUrls.map((image, index) => (
                   <CarouselItem
                     key={index}
-                    className="rounded-lg basis-1/4 lg:basis-1/6 lg:pl-0 lg:pr-0"
-                    style={{
-                      border:
-                        selectedIndex === index
-                          ? "3px solid black"
-                          : "3px solid transparent",
-                    }}
+                    className="rounded-lg basis-1/3 lg:basis-1/6 pl-5 lg:pr-0"
                   >
-                    <div className="p-0 rounded-lg">
+                    <div
+                      style={{
+                        border:
+                          selectedIndex === index
+                            ? "3px solid black"
+                            : "3px solid transparent",
+                      }}
+                      className="p-0 w-full rounded-lg"
+                    >
                       <span key={index} onClick={() => handleImageClick(index)}>
                         <Image
                           src={image}
                           alt="AdImage"
                           className="bg-slate-900 rounded-sm bg-opacity-40 object-cover cursor-pointer border-2 border-transparent hover:border-emerald-500"
-                          width={144} // Adjust width to match the `w-36` Tailwind class
-                          height={96} // Adjust height to match the `h-24` Tailwind class
+                          width={244} // Adjust width to match the `w-36` Tailwind class
+                          height={196} // Adjust height to match the `h-24` Tailwind class
                         />
                       </span>
                     </div>
                   </CarouselItem>
                 ))}
               </CarouselContent>
-              <CarouselPrevious className="md:h-10 md:w-10 lg:h-10 lg:w-10 ml-10 font-bold text-grey border-2 bg-[#ebf2f7] bg-opacity-90 p-2" />
-              <CarouselNext className="md:h-10 md:w-10 lg:h-10 lg:w-10 mr-10 font-bold bg-[#ebf2f7] border-2 bg-opacity-90 text-grey p-2" />
+              <CarouselPrevious className="md:h-10 md:w-10 lg:h-10 lg:w-10 ml-10 font-bold text-grey border-2 bg-[#ebf2f7] bg-opacity-80 p-2" />
+              <CarouselNext className="md:h-10 md:w-10 lg:h-10 lg:w-10 mr-10 font-bold bg-[#ebf2f7] border-2 bg-opacity-80 text-grey p-2" />
             </Carousel>
           </div>
           {/* Popup for displaying all images */}
@@ -378,7 +380,7 @@ export default function Ads({ ad, userId }: CardProps) {
                     <CarouselPrevious className="md:h-10 md:w-10 lg:h-20 lg:w-20 ml-20 font-bold border-0 text-white bg-white bg-opacity-40 p-2" />
                     <CarouselNext className="md:h-10 md:w-10 lg:h-20 lg:w-20 mr-20 font-bold border-0 bg-white bg-opacity-40 text-white p-2" />
                   </Carousel>
-                  <div className="py-2 text-center text-white text-sm text-muted-foreground z-10 mt">
+                  <div className="p-1 text-center text-white text-sm text-muted-foreground z-10 mt">
                     Slide {currentSlide} of {totalSlides}
                   </div>
                   <button
@@ -398,25 +400,27 @@ export default function Ads({ ad, userId }: CardProps) {
 
           {/* Ad details */}
           <div className="m-5">
-            <p className="text-2xl font-bold text-emerald-950">{ad.title}</p>
+            <p className="text-lg lg:text-2xl font-bold text-emerald-950">
+              {ad.title}
+            </p>
 
             <div className="flex items-center justify-between space-x-2">
               <div className="flex gap-2">
-                <p className="text-gray-500 text-sm">
+                <p className="text-gray-500 text-[10px] lg:text-sm">
                   <AccessTimeIcon sx={{ fontSize: 20 }} />
                   Posted {formattedCreatedAt}
                 </p>
-                <p className="text-gray-500 text-sm">
+                <p className="text-gray-500 text-[10px] lg:text-sm">
                   <LocationOnIcon sx={{ fontSize: 20 }} /> {ad.address}
                 </p>
               </div>
-              <p className="text-gray-500 text-sm">
+              <p className="text-gray-500 text-[10px] lg:text-sm">
                 <VisibilityIcon sx={{ fontSize: 20 }} /> {ad.views} Views
               </p>
             </div>
             {!videoAdId && hideAddVideo && (
               <a href={`/video/`}>
-                <button className="bg-[#000000] mt-2 hover:bg-emerald-700 text-white py-2 px-8 rounded-lg flex items-center">
+                <button className="bg-[#000000] mt-2 hover:bg-emerald-700 text-sm text-white py-2 px-8 rounded-lg flex items-center">
                   <YouTubeIcon style={{ color: "red" }} /> Video Advert
                 </button>
               </a>
@@ -436,108 +440,160 @@ export default function Ads({ ad, userId }: CardProps) {
             <div className="grid grid-cols-3 lg:grid-cols-5 w-full gap-1 mt-2">
               {ad.make && (
                 <div className="mb-2 md:flex-row">
-                  <div className="text-emerald-950">{ad.make}</div>
-                  <div className="text-gray-500 text-xs">MAKE</div>
+                  <div className="text-emerald-950 text-sm">{ad.make}</div>
+                  <div className="text-gray-500 text-[10px] lg:text-xs">
+                    MAKE
+                  </div>
                 </div>
               )}
               {ad.vehiclemodel && (
                 <div className="mb-2 md:flex-row">
-                  <div className="text-emerald-950">{ad.vehiclemodel}</div>
-                  <div className="text-gray-500 text-xs">MODEL</div>
+                  <div className="text-emerald-950 text-sm">
+                    {ad.vehiclemodel}
+                  </div>
+                  <div className="text-gray-500 text-[10px] lg:text-xs">
+                    MODEL
+                  </div>
                 </div>
               )}
               {ad.vehicleyear && (
                 <div className="mb-2 md:flex-row">
-                  <div className="text-emerald-950">{ad.vehicleyear}</div>
-                  <div className="text-gray-500 text-xs">YEAR</div>
+                  <div className="text-emerald-950 text-sm">
+                    {ad.vehicleyear}
+                  </div>
+                  <div className="text-gray-500 text-[10px] lg:text-xs">
+                    YEAR
+                  </div>
                 </div>
               )}
               {ad.vehiclemileage && (
                 <div className="mb-2 md:flex-row">
-                  <div className="text-emerald-950">{ad.vehiclemileage}</div>
-                  <div className="text-gray-500 text-xs">MILAGE</div>
+                  <div className="text-emerald-950 text-sm">
+                    {ad.vehiclemileage}
+                  </div>
+                  <div className="text-gray-500 text-[10px] lg:text-xs">
+                    MILAGE
+                  </div>
                 </div>
               )}
               {ad.vehicleTransmissions && (
                 <div className="mb-2 md:flex-row">
-                  <div className="text-emerald-950">
+                  <div className="text-emerald-950 text-sm">
                     {ad.vehicleTransmissions}
                   </div>
-                  <div className="text-gray-500 text-xs">TRANSMISSION</div>
+                  <div className="text-gray-500 text-[10px] lg:text-xs">
+                    TRANSMISSION
+                  </div>
                 </div>
               )}
               {ad.vehicleEngineSizesCC && (
                 <div className="mb-2 md:flex-row">
-                  <div className="text-emerald-950">
+                  <div className="text-emerald-950 text-sm">
                     {ad.vehicleEngineSizesCC}
                   </div>
-                  <div className="text-gray-500 text-xs">ENGINE SIZE</div>
+                  <div className="text-gray-500 text-[10px] lg:text-xs">
+                    ENGINE SIZE
+                  </div>
                 </div>
               )}
               {ad.vehicleFuelTypes && (
                 <div className="mb-2 md:flex-row">
-                  <div className="text-emerald-950">{ad.vehicleFuelTypes}</div>
-                  <div className="text-gray-500 text-xs">FUEL TYPE</div>
+                  <div className="text-emerald-950 text-sm">
+                    {ad.vehicleFuelTypes}
+                  </div>
+                  <div className="text-gray-500 text-[10px] lg:text-xs">
+                    FUEL TYPE
+                  </div>
                 </div>
               )}
               {ad.vehicleBodyTypes && (
                 <div className="mb-2 md:flex-row">
-                  <div className="text-emerald-950">{ad.vehicleBodyTypes}</div>
-                  <div className="text-gray-500 text-xs">BODY TYPE</div>
+                  <div className="text-emerald-950 text-sm">
+                    {ad.vehicleBodyTypes}
+                  </div>
+                  <div className="text-gray-500 text-[10px] lg:text-xs">
+                    BODY TYPE
+                  </div>
                 </div>
               )}
               {ad.vehiclecolor && (
                 <div className="mb-2 md:flex-row">
-                  <div className="text-emerald-950">{ad.vehiclecolor}</div>
-                  <div className="text-gray-500 text-xs">BODY COLOR</div>
+                  <div className="text-emerald-950 text-sm">
+                    {ad.vehiclecolor}
+                  </div>
+                  <div className="text-gray-500 text-[10px] lg:text-xs">
+                    BODY COLOR
+                  </div>
                 </div>
               )}
               {ad.vehicleinteriorColor && (
                 <div className="mb-2 md:flex-row">
-                  <div className="text-emerald-950">
+                  <div className="text-emerald-950 text-sm">
                     {ad.vehicleinteriorColor}
                   </div>
-                  <div className="text-gray-500 text-xs">INTERIOR COLOR</div>
+                  <div className="text-gray-500 text-[10px] lg:text-xs">
+                    INTERIOR COLOR
+                  </div>
                 </div>
               )}
               {ad.vehicleSeats && (
                 <div className="mb-2 md:flex-row">
-                  <div className="text-emerald-950">{ad.vehicleSeats}</div>
-                  <div className="text-gray-500 text-xs">SEATS</div>
+                  <div className="text-emerald-950 text-sm">
+                    {ad.vehicleSeats}
+                  </div>
+                  <div className="text-gray-500 text-[10px] lg:text-xs">
+                    SEATS
+                  </div>
                 </div>
               )}
               {ad.vehiclecondition && (
                 <div className="mb-2 md:flex-row">
-                  <div className="text-emerald-950">{ad.vehiclecondition}</div>
-                  <div className="text-gray-500 text-xs">CONDITION</div>
+                  <div className="text-emerald-950 text-sm">
+                    {ad.vehiclecondition}
+                  </div>
+                  <div className="text-gray-500 text-[10px] lg:text-xs">
+                    CONDITION
+                  </div>
                 </div>
               )}
               {ad.vehiclesecordCondition && (
                 <div className="mb-2 md:flex-row">
-                  <div className="text-emerald-950">
+                  <div className="text-emerald-950 text-sm">
                     {ad.vehiclesecordCondition}
                   </div>
-                  <div className="text-gray-500 text-xs">SECORD CONDITION</div>
+                  <div className="text-gray-500 text-[10px] lg:text-xs">
+                    SECORD CONDITION
+                  </div>
                 </div>
               )}
               {ad.vehicleregistered && (
                 <div className="mb-2 md:flex-row">
-                  <div className="text-emerald-950">{ad.vehicleregistered}</div>
-                  <div className="text-gray-500 text-xs">REGISTERED</div>
+                  <div className="text-emerald-950 text-sm">
+                    {ad.vehicleregistered}
+                  </div>
+                  <div className="text-gray-500 text-[10px] lg:text-xs">
+                    REGISTERED
+                  </div>
                 </div>
               )}
               {ad.vehicleexchangeposible && (
                 <div className="mb-2 md:flex-row">
-                  <div className="text-emerald-950">
+                  <div className="text-emerald-950 text-sm">
                     {ad.vehicleexchangeposible}
                   </div>
-                  <div className="text-gray-500 text-xs">EXCHANGE POSSIBLE</div>
+                  <div className="text-gray-500 text-[10px] lg:text-xs">
+                    EXCHANGE POSSIBLE
+                  </div>
                 </div>
               )}
               {ad.vehiclechassis && (
                 <div className="mb-2 md:flex-row">
-                  <div className="text-emerald-950">{ad.vehiclechassis}</div>
-                  <div className="text-gray-500 text-xs">VIN CHASSIS NO.</div>
+                  <div className="text-emerald-950 text-sm">
+                    {ad.vehiclechassis}
+                  </div>
+                  <div className="text-gray-500 text-[10px] lg:text-xs">
+                    VIN CHASSIS NO.
+                  </div>
                 </div>
               )}
             </div>
@@ -549,7 +605,7 @@ export default function Ads({ ad, userId }: CardProps) {
                 <div className="grid grid-cols-3 lg:grid-cols-5 w-full gap-1 mt-1">
                   {ad.vehiclekeyfeatures.map((feature) => (
                     <>
-                      <div className="flex flex-col items-center h-10 gap-2 text-xs bg-[#ebf2f7] rounded-sm p-1 justify-center border">
+                      <div className="flex flex-col items-center h-10 gap-2 text-[10px] lg:text-xs bg-[#ebf2f7] rounded-sm p-1 justify-center border">
                         {feature}
                       </div>
                     </>
@@ -559,10 +615,12 @@ export default function Ads({ ad, userId }: CardProps) {
             )}
             <div className="divider"></div>
             <p className="mt-5 font-bold text-emerald-950">Description</p>
-            <p className="my-1 text-text-emerald-950">{ad.description}</p>
+            <p className="my-1 text-text-emerald-950 text-sm">
+              {ad.description}
+            </p>
 
             <div className="divider"></div>
-            <h1 className="mt-5 p-0 font-bold text-emerald-950">
+            <h1 className="mt-5 p-0 font-bold text-emerald-950 text-sm">
               Share this Ad on Social media
             </h1>
             <div className="flex items-center space-x-2">
@@ -675,7 +733,7 @@ export default function Ads({ ad, userId }: CardProps) {
           <div className="bg-white p-5 text-l rounded-lg overflow-hidden shadow-md">
             <div className="">
               <p className="mt-5 font-bold">Location Approximate</p>
-              <p className="text-gray-400 text- mb-1 text-sm">
+              <p className="text-gray-400 mb-1 text-xs lg:text-sm">
                 <LocationOnIcon sx={{ fontSize: 20 }} /> {ad.address}
               </p>
 

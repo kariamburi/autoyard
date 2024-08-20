@@ -161,7 +161,7 @@ const SellerProfile = ({ userId, loggedId, user }: CollectionProps) => {
               <AccordionItem value="item-2">
                 <AccordionTrigger>
                   {" "}
-                  <p className="">Show More...</p>
+                  <p className="text-[10px] lg:text-xs">Show More...</p>
                 </AccordionTrigger>
                 <AccordionContent>
                   <div className="p-0 rounded-[20px] m-2 shadow bg-white">

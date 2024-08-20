@@ -110,31 +110,33 @@ const AdDetails = async ({
                       d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z"
                     ></path>
                   </svg>
-                  <p className="p-medium-1 p-medium-14"> All Ads</p>
+                  <p className="text-[10px] lg:text-sm font-bold"> All Ads</p>
                 </div>
               </Link>
             </div>
             <div className="bg-white p-2 rounded-full mr-2">
               <div className="flex items-center">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  className="w-4 h-4 mr-2 stroke-current"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z"
-                  ></path>
-                </svg>
                 {ad && (
                   <Link
-                    className="hover:text-green-700 no-underline"
+                    className="flex hover:text-green-700 no-underline"
                     href={`/category/?category=${ad.category.name}`}
                   >
-                    <p className="p-medium-1 p-medium-14">{ad.category.name}</p>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      className="w-4 h-4 mr-2 stroke-current"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth="2"
+                        d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z"
+                      ></path>
+                    </svg>
+                    <p className="text-[10px] lg:text-sm font-bold">
+                      {ad.category.name}
+                    </p>
                   </Link>
                 )}
               </div>
@@ -154,26 +156,29 @@ const AdDetails = async ({
                     d="M9 13h6m-3-3v6m5 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
                   ></path>
                 </svg>
-                {ad && <p className="p-medium-1 p-medium-14">{ad.title}</p>}
+                {ad && (
+                  <p className="text-[10px] lg:text-sm font-bold">{ad.title}</p>
+                )}
               </div>
             </div>
           </div>
         </div>
         <Ads ad={ad} userId={userId || ""} />
         <h2 className="font-bold p-2 text-[30px]">Related Ads</h2>
-
-        <Collection
-          data={relatedAds?.data}
-          emptyTitle="No Ads Found"
-          emptyStateSubtext="Come back later"
-          collectionType="All_Ads"
-          limit={20}
-          page={searchParams.page as string}
-          totalPages={relatedAds?.totalPages}
-          userId={userId || ""}
-          userName={userName || ""}
-          userImage={userImage || ""}
-        />
+        <div className="p-1">
+          <Collection
+            data={relatedAds?.data}
+            emptyTitle="No Ads Found"
+            emptyStateSubtext="Come back later"
+            collectionType="All_Ads"
+            limit={20}
+            page={searchParams.page as string}
+            totalPages={relatedAds?.totalPages}
+            userId={userId || ""}
+            userName={userName || ""}
+            userImage={userImage || ""}
+          />
+        </div>
       </div>
     </>
   );
