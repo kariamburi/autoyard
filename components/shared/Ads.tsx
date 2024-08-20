@@ -9,7 +9,7 @@ import CallIcon from "@mui/icons-material/Call";
 import ChatBubbleOutlineOutlinedIcon from "@mui/icons-material/ChatBubbleOutlineOutlined";
 import AssistantDirectionIcon from "@mui/icons-material/AssistantDirection";
 import ChatBubbleIcon from "@mui/icons-material/ChatBubble";
-import "react-responsive-carousel/lib/styles/carousel.min.css";
+//import "react-responsive-carousel/lib/styles/carousel.min.css";
 import CloseIcon from "@mui/icons-material/Close";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
@@ -32,20 +32,12 @@ import {
 import Link from "next/link";
 import { IAd } from "@/lib/database/models/ad.model";
 import Image from "next/image";
+import EmblaCarousel from "embla-carousel";
 import Autoplay from "embla-carousel-autoplay";
-
 import React from "react";
 import { SignedIn, SignedOut } from "@clerk/nextjs";
 import FloatingChatIcon from "./FloatingChatIcon";
 import ChatWindow from "./ChatWindow";
-import {
-  Carousel,
-  CarouselApi,
-  CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
-} from "@/components/ui/carousel";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import YouTubePlayer from "./YouTubePlayer ";
@@ -62,6 +54,14 @@ import PlayCircleFilledWhiteOutlinedIcon from "@mui/icons-material/PlayCircleFil
 import dynamic from "next/dynamic";
 import Skeleton from "@mui/material/Skeleton";
 import { updateview } from "@/lib/actions/ad.actions";
+import {
+  Carousel,
+  CarouselApi,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "../ui/carousel";
 //import SellerProfile from "./SellerProfile";
 type CardProps = {
   ad: IAd;
@@ -177,6 +177,7 @@ export default function Ads({ ad, userId }: CardProps) {
   const plugin = React.useRef(
     Autoplay({ delay: 3000, stopOnInteraction: true })
   );
+
   const [autoplayEnabled, setAutoplayEnabled] = useState(false); // Initially, autoplay is enabled
 
   const handlePlay = () => {
@@ -240,7 +241,7 @@ export default function Ads({ ad, userId }: CardProps) {
           <div className="relative">
             <Carousel
               setApi={setApi}
-              plugins={[plugin.current]}
+              plugins={[plugin.current as any]}
               // onMouseEnter={handleMouseEnter}
               // onMouseLeave={handleMouseLeave}
               className="w-full"
