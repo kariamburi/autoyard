@@ -38,7 +38,13 @@ const Streetmap = ({ id, title, price, imageUrls, lat, lng }: CardProps) => {
       <Marker position={[parseFloat(lat), parseFloat(lng)]} icon={customIcon}>
         <Popup>
           <div className="flex gap-1 p-1 w-[200px]">
-            <img src={imageUrls[0]} alt="" className="w-24 h-12 object-cover" />
+            <Image
+              src={imageUrls[0]}
+              alt=""
+              className="w-24 h-12 object-cover"
+              width={24}
+              height={12}
+            />
             <div className="flex flex-col">
               <div>{title}</div>
               <b>Ksh {price}</b>

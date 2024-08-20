@@ -1,6 +1,7 @@
 import React from "react";
 import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
 import Link from "next/link";
+import Image from "next/image";
 import "leaflet/dist/leaflet.css";
 import L from "leaflet"; // Import Leaflet library
 type CardProps = {
@@ -41,7 +42,13 @@ const StreetmapOfice = ({
       <Marker position={[parseFloat(lat), parseFloat(lng)]} icon={customIcon}>
         <Popup>
           <div className="gap-1 p-1 w-[150px]">
-            <img src={imageUrl} alt="" className="w-full h-12 object-cover" />
+            <Image
+              src={imageUrl}
+              alt=""
+              className="w-full h-12 object-cover"
+              width={24}
+              height={12}
+            />
             <div className="flex flex-col">
               <div>{name}</div>
               <b>{address}</b>

@@ -160,7 +160,7 @@ export default function Ads({ ad, userId }: CardProps) {
         //  console.log("Not a valid YouTube URL.");
       }
     }
-  }, [api]);
+  }, [api, ad._id, ad.description, ad.title, ad.youtube, api2, setvideoAdId]);
   useEffect(() => {
     const updateviewed = async () => {
       const views = (Number(ad.views) + 1).toString();
@@ -172,7 +172,7 @@ export default function Ads({ ad, userId }: CardProps) {
       });
     };
     updateviewed();
-  }, []);
+  }, [ad._id, ad.views]);
 
   const plugin = React.useRef(
     Autoplay({ delay: 3000, stopOnInteraction: true })
@@ -734,7 +734,7 @@ export default function Ads({ ad, userId }: CardProps) {
             <ol>
               <li>
                 <div className="flex gap-2">
-                  <CheckCircleIcon sx={{ fontSize: 14 }} /> Don't pay in
+                  <CheckCircleIcon sx={{ fontSize: 14 }} /> Don&apos;t pay in
                   advance, including for delivery
                 </div>
               </li>
