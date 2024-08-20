@@ -27,7 +27,7 @@ export default function Menumobile({ categoryList }: MobileProps) {
     router.push("/category/" + newUrl, { scroll: false });
   };
   return (
-    <div className="container mx-auto mt-10">
+    <div className="mx-auto mt-10">
       <div className="grid grid-cols-4 md:grid-cols-4 lg:grid-cols-8 m-1 gap-1">
         {categoryList.length > 0 &&
           categoryList.map(

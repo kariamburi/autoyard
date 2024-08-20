@@ -45,8 +45,8 @@ const Collection = ({
   return (
     <div>
       {data.length > 0 ? (
-        <div className="flex flex-col items-center gap-10 p-3">
-          <ul className="grid w-full grid-cols-2 gap-3 sm:grid-cols-2 lg:grid-cols-4 xl:gap-3">
+        <div className="flex flex-col items-center gap-10 p-0">
+          <ul className="grid w-full grid-cols-2 gap-1 sm:grid-cols-2 lg:grid-cols-4 lg:gap-3">
             {data.map((ad) => {
               const hasOrderLink = collectionType === "Ads_Organized";
               const hidePrice = collectionType === "My_Tickets";

@@ -147,9 +147,9 @@ export default async function Home({ searchParams }: SearchParamProps) {
           <div className="p-2 mt-2">
             <div className="flex w-full items-center justify-between gap-5 p-2 md:flex-row">
               <div className="items-center flex">
-                <h2 className="h2-bold p-5">Trending Ads</h2>
+                <h2 className="font-bold p-2 text-[30px]">Trending Ads</h2>
               </div>
-              <div>
+              {/*  <div>
                 <SignedIn>
                   <Link href="/ads/create">
                     <button
@@ -170,7 +170,7 @@ export default async function Home({ searchParams }: SearchParamProps) {
                     </button>
                   </Link>
                 </SignedOut>
-              </div>
+              </div> */}
             </div>
             <Collection
               data={Ads?.data}

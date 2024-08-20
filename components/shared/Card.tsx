@@ -36,6 +36,12 @@ const Card = ({ ad, hasOrderLink, hidePrice, userId }: CardProps) => {
     }
     return title;
   };
+  const truncateaddress = (address: string, maxLength: number) => {
+    if (address.length > maxLength) {
+      return address.substring(0, maxLength) + "...";
+    }
+    return address;
+  };
   const handle = async (id: string) => {
     const newBookmark = await createBookmark({
       bookmark: {
@@ -62,12 +68,12 @@ const Card = ({ ad, hasOrderLink, hidePrice, userId }: CardProps) => {
         className="flex-center flex-grow bg-gray-50 bg-cover bg-center text-grey-500"
       />
       {/* IS Ad CREATOR ... */}
-      <div className="ml-1 mt-40 gap-1 cursor-pointer absolute bg-[#000000] bg-opacity-70 text-xs text-white right-50 top-100 flex rounded-lg p-1 shadow-sm transition-all">
+      <div className="ml-1 mt-40 gap-1 cursor-pointer absolute bg-[#000000] bg-opacity-70 text-[10px] lg:text-xs text-white right-50 top-100 flex rounded-lg p-1 shadow-sm transition-all">
         <PhotoCameraFrontIcon sx={{ fontSize: 16, cursor: "pointer" }} />
         {ad.imageUrls.length}
       </div>
       {ad.youtube && (
-        <div className="ml-1 mt-40 gap-1 mr-1 cursor-pointer absolute bg-[#000000] bg-opacity-70 text-xs text-white right-0 top-100 flex rounded-lg p-1 shadow-sm transition-all">
+        <div className="ml-1 mt-40 gap-1 mr-1 cursor-pointer absolute bg-[#000000] bg-opacity-70 text-[10px] lg:text-xs text-white right-0 top-100 flex rounded-lg p-1 shadow-sm transition-all">
           <YouTubeIcon
             sx={{ fontSize: 16, cursor: "pointer" }}
             style={{ color: "red" }}
@@ -80,7 +86,7 @@ const Card = ({ ad, hasOrderLink, hidePrice, userId }: CardProps) => {
           style={{
             backgroundColor: ad.plan.color,
           }}
-          className="absolute top-0 shadow-lg left-0 text-white text-xs py-1 px-3 rounded-br-lg rounded-tl-lg"
+          className="absolute top-0 shadow-lg left-0 text-white text-[10px] py-1 px-1 lg:text-xs lg:py-1 lg:px-3 rounded-br-lg rounded-tl-lg"
         >
           <Link href={`/plan`}>
             <div className="flex gap-1 cursor-pointer">{ad.plan.name}</div>
@@ -89,9 +95,8 @@ const Card = ({ ad, hasOrderLink, hidePrice, userId }: CardProps) => {
       )}
       {ad.organizer.verified &&
         ad.organizer?.verified[0]?.accountverified === true && (
-          <div className="absolute bg-emerald-100 top-0 right-0 text-xs py-1 px-3 rounded-bl-lg rounded-tr-lg">
+          <div className="absolute bg-emerald-100 top-0 right-0 text-[10px] py-1 px-1 lg:text-xs lg:py-1 lg:px-3 rounded-bl-lg rounded-tr-lg">
             <div className="flex gap-1 cursor-pointer">
-              {" "}
               <VerifiedUserOutlinedIcon sx={{ fontSize: 16 }} />
               Verified
             </div>
@@ -132,40 +137,43 @@ const Card = ({ ad, hasOrderLink, hidePrice, userId }: CardProps) => {
         {!hidePrice && (
           <div className="flex">
             <Link href={`/ads/${ad._id}`} className="no-underline">
-              <span className="p-bold-16 w-min rounded-full px-0 mt-1 text-emerald-950">
+              <span className="text-[12px] lg:text-lg font-bold w-min rounded-full mt-1 text-emerald-950">
                 {NGnaira.format(ad.price)}
               </span>
             </Link>
           </div>
         )}
 
-        <Link href={`/ads/${ad._id}`} className="no-underline text-sm">
+        <Link
+          href={`/ads/${ad._id}`}
+          className="no-underline text-[12px] lg:text-sm"
+        >
           {truncateTitle(ad.title, 30)}
           {/* Change 20 to your desired character limit */}
         </Link>
         {ad.calcDistance && (
-          <div className="text-xs text-gray-100 w-full items-center">
+          <div className="text-[10px] lg:text-xs text-gray-100 w-full items-center">
             {ad.calcDistance} KM Away
           </div>
         )}
 
-        <div className="ml-3 text-gray-500 text-xs">
+        <div className="text-gray-500  text-[8px] lg:text-[10px]">
           <LocationOnIcon sx={{ fontSize: 16 }} />
-          {ad.address}
+          {truncateaddress(ad.address, 40)}
         </div>
         <div className="flex justify-between w-full gap-1 p-1">
           {ad.vehiclecondition && (
-            <div className="flex gap-2 text-xs bg-[#ebf2f7] rounded-sm p-1 justify-center border">
+            <div className="flex gap-2 text-[10px] lg:text-xs bg-[#ebf2f7] rounded-lg p-1 justify-center border">
               {ad.vehiclecondition}
             </div>
           )}
           {ad.vehicleTransmissions && (
-            <div className="flex gap-2 text-xs bg-[#ebf2f7] rounded-sm p-1 justify-center border">
+            <div className="flex gap-2 text-[10px] lg:text-xs bg-[#ebf2f7] rounded-lg p-1 justify-center border">
               {ad.vehicleTransmissions}
             </div>
           )}
           {ad.vehicleEngineSizesCC && (
-            <div className="flex gap-2 text-xs bg-[#ebf2f7] rounded-sm p-1 justify-center border">
+            <div className="flex gap-2 text-[10px] lg:text-xs bg-[#ebf2f7] rounded-lg p-1 justify-center border">
               {ad.vehicleEngineSizesCC}
             </div>
           )}

@@ -21,7 +21,7 @@ export default function Header() {
       {/* Middle */}
       <div className="lg:mb-10 mx-auto md:my-auto py-10 md:py-0 w-[90%] md:w-[40%] text-center">
         <div className="mb-10 text-white">
-          Find AutoMobile for Sale
+          Find anything in{" "}
           <span className="bg-black text-white p-1 rounded-full">
             <LocationOnIcon /> All Kenya
           </span>
