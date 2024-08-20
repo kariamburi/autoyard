@@ -172,7 +172,7 @@ export default function Navbar({ userstatus, userId }: NavProps) {
           </Link>
         </SignedOut>
       </div>
-      <div>
+      <div className="flex gap-1">
         <SignedIn>
           <div className="w-8 h-8 flex items-center justify-center rounded-full bg-white tooltip tooltip-bottom hover:cursor-pointer">
             <UserButton afterSignOutUrl="/" />

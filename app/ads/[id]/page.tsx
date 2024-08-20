@@ -7,13 +7,7 @@ import Image from "next/image";
 import Link from "next/link";
 import Navbar from "@/components/shared/navbar";
 import Skeleton from "@mui/material/Skeleton";
-import { useAuth } from "@clerk/nextjs";
 import { getAdById, getRelatedAdByCategory } from "@/lib/actions/ad.actions";
-import {
-  getUserIDFromCookie,
-  getuserImageFromCookie,
-  getuserNameFromCookie,
-} from "@/components/shared/cookies";
 import Ads from "@/components/shared/Ads";
 import { auth } from "@clerk/nextjs/server";
 import { SearchParamProps } from "@/types";
@@ -77,7 +71,7 @@ const AdDetails = async ({
         </div>
         <div className="max-w-6xl mx-auto mt-20">
           <div className="flex gap-1 items-center">
-            <img
+            <Image
               src="/assets/icons/loading.gif"
               alt="edit"
               width={60}
@@ -166,8 +160,7 @@ const AdDetails = async ({
           </div>
         </div>
         <Ads ad={ad} userId={userId || ""} />
-
-        <h2 className="h2-bold p-5">Related Ads</h2>
+        <h2 className="font-bold p-2 text-[30px]">Related Ads</h2>
 
         <Collection
           data={relatedAds?.data}

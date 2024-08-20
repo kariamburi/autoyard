@@ -62,6 +62,7 @@ import PlayCircleFilledWhiteOutlinedIcon from "@mui/icons-material/PlayCircleFil
 import dynamic from "next/dynamic";
 import Skeleton from "@mui/material/Skeleton";
 import { updateview } from "@/lib/actions/ad.actions";
+//import SellerProfile from "./SellerProfile";
 type CardProps = {
   ad: IAd;
   userId: string;
@@ -247,11 +248,12 @@ export default function Ads({ ad, userId }: CardProps) {
               <CarouselContent>
                 {ad.imageUrls.map((image: string, index: number) => (
                   <CarouselItem key={index}>
-                    <img
+                    <Image
                       src={image}
                       alt={`Image ${index + 1}`}
-                      className="object-cover w-full cursor-pointer"
-                      style={{ width: "100%", height: "500px" }}
+                      className="object-cover cursor-pointer"
+                      width={800} // Adjust the width as needed
+                      height={500} // Adjust the height as needed
                     />
                   </CarouselItem>
                 ))}
@@ -267,8 +269,8 @@ export default function Ads({ ad, userId }: CardProps) {
                 className="p-1 cursor-pointer rounded-sm shadow"
                 onClick={togglePopup}
               >
-                <img
-                  src="../assets/icons/expand.png"
+                <Image
+                  src="/assets/icons/expand.png"
                   alt="logo"
                   className="w-8 ml-5 hover:cursor-pointer"
                   width={36}
@@ -282,16 +284,16 @@ export default function Ads({ ad, userId }: CardProps) {
                 onClick={handlePlay}
               >
                 {autoplayEnabled ? (
-                  <img
-                    src="../assets/icons/pause.png"
+                  <Image
+                    src="/assets/icons/pause.png"
                     alt="logo"
                     className="w-8 ml-5 hover:cursor-pointer"
                     width={36}
                     height={36}
                   />
                 ) : (
-                  <img
-                    src="../assets/icons/play.png"
+                  <Image
+                    src="/assets/icons/play.png"
                     alt="logo"
                     className="w-8 ml-5 hover:cursor-pointer"
                     width={36}
@@ -347,10 +349,12 @@ export default function Ads({ ad, userId }: CardProps) {
                   >
                     <div className="p-0 rounded-lg">
                       <span key={index} onClick={() => handleImageClick(index)}>
-                        <img
+                        <Image
                           src={image}
-                          className="bg-slate-900 rounded-sm bg-opacity-40 w-36 h-24 object-cover cursor-pointer border-2 border-transparent hover:border-emerald-500"
                           alt="AdImage"
+                          className="bg-slate-900 rounded-sm bg-opacity-40 object-cover cursor-pointer border-2 border-transparent hover:border-emerald-500"
+                          width={144} // Adjust width to match the `w-36` Tailwind class
+                          height={96} // Adjust height to match the `h-24` Tailwind class
                         />
                       </span>
                     </div>
@@ -373,15 +377,13 @@ export default function Ads({ ad, userId }: CardProps) {
                           key={index}
                           className="relative flex flex-row flex-wrap justify-center"
                         >
-                          <img
+                          <Image
                             src={image}
                             alt={`Image ${index + 1}`}
-                            className="w-full object-cover"
-                            style={{
-                              maxWidth: "900px",
-                              marginLeft: "0%",
-                              height: "500px",
-                            }}
+                            className="object-cover"
+                            width={900} // Max width of the image
+                            height={500} // Height of the image
+                            style={{ maxWidth: "100%", marginLeft: "0%" }} // Apply additional styles as needed
                           />
                         </CarouselItem>
                       ))}
