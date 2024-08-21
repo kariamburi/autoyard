@@ -32,6 +32,15 @@ import Image from "next/image";
 import AddCircleOutlineOutlinedIcon from "@mui/icons-material/AddCircleOutlineOutlined";
 import ArrowBackOutlinedIcon from "@mui/icons-material/ArrowBackOutlined";
 //import Unreadmessages from "./Unreadmessages";
+
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "../ui/tooltip";
+import Unreadmessages from "./Unreadmessages";
+import dynamic from "next/dynamic";
 const SignedIn = dynamic(
   () => import("@clerk/nextjs").then((mod) => mod.SignedIn),
   { ssr: false }
@@ -45,14 +54,6 @@ const UserButton = dynamic(
   { ssr: false }
 );
 
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipProvider,
-  TooltipTrigger,
-} from "../ui/tooltip";
-import Unreadmessages from "./Unreadmessages";
-import dynamic from "next/dynamic";
 type NavProps = {
   userstatus: string;
   userId: string;
