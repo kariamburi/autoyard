@@ -25,6 +25,7 @@ export function FileUploaderMobile({
     event: React.ChangeEvent<HTMLInputElement>
   ) => {
     const files = event.target.files;
+    alert(files);
     if (!files) return;
 
     const acceptedFiles = Array.from(files).filter((file) => {
@@ -34,6 +35,7 @@ export function FileUploaderMobile({
         setShowAlert(true);
         return false;
       }
+      alert(file.name);
       if (file.size > 5 * 1024 * 1024) {
         setMessage(
           `${file.name} exceeds the 5MB limit and will not be uploaded.`

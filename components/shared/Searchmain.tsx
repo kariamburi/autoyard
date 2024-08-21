@@ -33,7 +33,7 @@ const Search = ({
       }
 
       router.push(newUrl, { scroll: false });
-    }, 300);
+    }, 3000);
 
     return () => clearTimeout(delayDebounceFn);
   }, [query, searchParams, router]);
