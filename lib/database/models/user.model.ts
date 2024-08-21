@@ -25,6 +25,7 @@ export interface IUser extends Document {
   tiktok:string;
   verified:Verified[];
   imageUrl: string;
+
 }
 export interface Businesshours {
   openHour: string;

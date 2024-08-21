@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { FaTwitter } from "react-icons/fa";
+import { FaShareAlt, FaFacebook, FaWhatsapp, FaTwitter } from "react-icons/fa";
 import ShareOutlinedIcon from "@mui/icons-material/ShareOutlined";
 import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined";
 import { FacebookIcon, WhatsappIcon } from "next-share";

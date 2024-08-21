@@ -8,6 +8,7 @@ import { auth } from "@clerk/nextjs/server";
 import { SignedIn } from "@clerk/nextjs";
 import Navbar from "@/components/shared/navbar";
 import Image from "next/image";
+import BottomNavigation from "@/components/shared/BottomNavigation";
 //import ChatWindow from "@/components/shared/ChatWindow";
 
 export default async function RootLayout({
@@ -34,7 +35,7 @@ export default async function RootLayout({
       </div>
       <main className="flex-1">{children}</main>
       <Toaster />
-      <div className="mt-5 w-full">
+      <div className="mt-5 w-full hidden lg:inline">
         <Image
           src="/footer-png-8.png"
           alt=""
@@ -45,7 +46,12 @@ export default async function RootLayout({
         />
       </div>
       <footer className="bg-white">
-        <Footer />
+        <div className="hidden lg:inline">
+          <Footer />
+        </div>
+        <div className="lg:hidden">
+          <BottomNavigation />
+        </div>
       </footer>
     </div>
   );

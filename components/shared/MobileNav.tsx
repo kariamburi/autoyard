@@ -31,7 +31,7 @@ const MobileNav = ({ userstatus, userId }: MobileProps) => {
             setIsSheetOpen(true);
           }}
         >
-          <div className="w-8 h-8 flex items-center justify-center rounded-full bg-white tooltip tooltip-bottom hover:cursor-pointer">
+          <div className="w-8 h-8 flex items-center justify-center rounded-full text-white tooltip tooltip-bottom hover:cursor-pointer">
             <MenuIcon />
           </div>
         </SheetTrigger>
@@ -49,7 +49,7 @@ const MobileNav = ({ userstatus, userId }: MobileProps) => {
                   height={26}
                 />
               </div>
-              <span className="text-emerald-900">MyOffer</span>
+              <span className="text-emerald-900">Wheels</span>
             </div>
           </SheetTitle>
           <Separator className="border border-gray-50" />

@@ -79,76 +79,82 @@ export default function Navbar({ userstatus, userId }: NavProps) {
               alt="logo"
               onClick={() => router.push("/")}
               className="ml-5 hover:cursor-pointer"
-              width={46}
-              height={46}
+              width={36}
+              height={36}
             />
           </div>
           <span
-            className="font-bold text-lg text-white hover:cursor-pointer"
+            className="font-bold text-sm lg:text-lg text-white hover:cursor-pointer"
             onClick={() => router.push("/")}
           >
             Wheels
           </span>
         </div>
       </div>
+      <div className="hidden lg:inline">
+        <div className="flex items-center gap-2">
+          <div
+            className="w-8 h-8 flex items-center justify-center rounded-full bg-white emerald-500 tooltip tooltip-bottom hover:cursor-pointer"
+            data-tip="Messages"
+            onClick={() => router.push(`/bookmark/`)}
+          >
+            <TooltipProvider>
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <BookmarkIcon />
+                </TooltipTrigger>
+                <TooltipContent>
+                  <p>Bookmark</p>
+                </TooltipContent>
+              </Tooltip>
+            </TooltipProvider>
+          </div>
 
-      <div
-        className="w-8 h-8 flex items-center justify-center rounded-full bg-white emerald-500 tooltip tooltip-bottom hover:cursor-pointer"
-        data-tip="Messages"
-        onClick={() => router.push(`/bookmark/`)}
-      >
-        <TooltipProvider>
-          <Tooltip>
-            <TooltipTrigger asChild>
-              <BookmarkIcon />
-            </TooltipTrigger>
-            <TooltipContent>
-              <p>Bookmark</p>
-            </TooltipContent>
-          </Tooltip>
-        </TooltipProvider>
-      </div>
+          <div
+            className="w-8 h-8 flex items-center justify-center rounded-full bg-white tooltip tooltip-bottom hover:cursor-pointer"
+            data-tip="Messages"
+            onClick={() => router.push(`/chat/`)}
+          >
+            <TooltipProvider>
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <div className="relative flex items-center justify-center">
+                    <MessageIcon className="absolute" />
+                    <div className="absolute z-10">
+                      <Unreadmessages userId={userId} />
+                    </div>
+                  </div>
+                </TooltipTrigger>
+                <TooltipContent>
+                  <div
+                    onClick={() => router.push(`/chat/`)}
+                    className="flex gap-1"
+                  >
+                    Chats
+                    <Unreadmessages userId={userId} />
+                  </div>
+                </TooltipContent>
+              </Tooltip>
+            </TooltipProvider>
+          </div>
 
-      <div
-        className="w-8 h-8 flex items-center justify-center rounded-full bg-white tooltip tooltip-bottom hover:cursor-pointer"
-        data-tip="Messages"
-        onClick={() => router.push(`/chat/`)}
-      >
-        <TooltipProvider>
-          <Tooltip>
-            <TooltipTrigger asChild>
-              <div className="relative flex items-center justify-center">
-                <MessageIcon className="absolute" />
-                <div className="absolute z-10">
-                  <Unreadmessages userId={userId} />
-                </div>
-              </div>
-            </TooltipTrigger>
-            <TooltipContent>
-              <div onClick={() => router.push(`/chat/`)} className="flex gap-1">
-                Chats
-                <Unreadmessages userId={userId} />
-              </div>
-            </TooltipContent>
-          </Tooltip>
-        </TooltipProvider>
-      </div>
-
-      <div
-        className="w-8 h-8 flex items-center justify-center rounded-full bg-white tooltip tooltip-bottom hover:cursor-pointer"
-        data-tip="Messages"
-        onClick={() => router.push(`/plan/`)}
-      >
-        <TooltipProvider>
-          <Tooltip>
-            <TooltipTrigger asChild>
-              <DiamondIcon />
-            </TooltipTrigger>
-            <TooltipContent>
-              <p>Premium Services</p>
-            </TooltipContent>
-          </Tooltip>
-        </TooltipProvider>
+          <div
+            className="w-8 h-8 flex items-center justify-center rounded-full bg-white tooltip tooltip-bottom hover:cursor-pointer"
+            data-tip="Messages"
+            onClick={() => router.push(`/plan/`)}
+          >
+            <TooltipProvider>
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <DiamondIcon />
+                </TooltipTrigger>
+                <TooltipContent>
+                  <p>Premium Services</p>
+                </TooltipContent>
+              </Tooltip>
+            </TooltipProvider>
+          </div>
+        </div>
       </div>
       <div>
         <SignedIn>

@@ -99,8 +99,8 @@ export const headerLinks = [
     
   },
   {
-    label: 'My Balance',
-    route: '/balance',
+    label: 'Bookmark',
+    route: '/bookmark',
     
   }, {
     label: 'Plan',

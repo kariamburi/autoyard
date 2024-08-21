@@ -222,7 +222,7 @@ export default function Ads({ ad, userId }: CardProps) {
   return (
     <>
       <div className="m-1 space-y-0 lg:flex lg:space-x-5">
-        <div className="lg:flex-1 border-t-0 border-emerald-950 bg-white rounded-lg">
+        <div className="lg:flex-1 border-t-8 border-emerald-950 bg-white rounded-lg">
           {/* Carousel */}
           <div className="relative">
             <Carousel
@@ -238,7 +238,7 @@ export default function Ads({ ad, userId }: CardProps) {
                     <Image
                       src={image}
                       alt={`Image ${index + 1}`}
-                      className="object-cover cursor-pointer rounded-t-lg"
+                      className="object-cover cursor-pointer"
                       width={800} // Adjust the width as needed
                       height={500} // Adjust the height as needed
                     />
@@ -294,7 +294,7 @@ export default function Ads({ ad, userId }: CardProps) {
                 style={{
                   backgroundColor: ad.plan.color,
                 }}
-                className="absolute shadow-lg top-0 left-0 text-white text-xs py-1 px-3 rounded-br-lg  rounded-tl-lg"
+                className="hidden lg:inline absolute shadow-lg top-0 left-0 text-white text-xs py-1 px-3 rounded-br-lg"
               >
                 <Link href={`/plan`}>
                   <div className="flex gap-1 cursor-pointer">
@@ -305,7 +305,7 @@ export default function Ads({ ad, userId }: CardProps) {
             )}
             {ad.organizer.verified &&
               ad.organizer.verified[0].accountverified === true && (
-                <div className="absolute bg-emerald-100 top-0 right-0 text-xs py-1 px-3 rounded-bl-lg rounded-tr-lg">
+                <div className="hidden lg:inline absolute bg-emerald-100 top-0 right-0 text-xs py-1 px-3 rounded-bl-lg">
                   <div className="flex gap-1 cursor-pointer">
                     {" "}
                     <VerifiedUserOutlinedIcon sx={{ fontSize: 16 }} />

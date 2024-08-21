@@ -144,7 +144,7 @@ export default async function Home({ searchParams }: SearchParamProps) {
           <div className="p-0">
             <Menumobile categoryList={categoryList} />
           </div>
-          <div className="p-2 mt-2">
+          <div className="p-2 mt-2 mb-20 lg:mb-0">
             <div className="flex w-full items-center justify-between gap-5 p-2 md:flex-row">
               <div className="items-center flex">
                 <h2 className="font-bold p-2 text-[30px]">Trending Ads</h2>

@@ -11,6 +11,8 @@ import { getAdById, getRelatedAdByCategory } from "@/lib/actions/ad.actions";
 import Ads from "@/components/shared/Ads";
 import { auth } from "@clerk/nextjs/server";
 import { SearchParamProps } from "@/types";
+import BottomNavigation from "@/components/shared/BottomNavigation";
+import Footersub from "@/components/shared/Footersub";
 
 const Collection = dynamic(() => import("@/components/shared/Collection"), {
   ssr: false,
@@ -87,14 +89,15 @@ const AdDetails = async ({
   return (
     <>
       <div className="bg-gradient-to-r from-emerald-800 to-emerald-950 top-0 z-10 fixed w-full">
-        <div className="p-3">
+        <div className="p-1">
           <Navbar userstatus="User" userId={userId || ""} />
         </div>
       </div>
-      <div className="max-w-6xl mx-auto mt-20">
-        <div className="text-sm breadcrumbs p-2">
+      <div className="max-w-6xl mx-auto">
+        <div className="h-[40px]"></div>
+        <div className="text-sm p-1 hidden lg:inline">
           <div className="flex">
-            <div className="bg-white p-2 rounded-full mr-2">
+            <div className="bg-white p-1 rounded-full mr-2">
               <Link className="hover:text-green-700 no-underline" href={`/`}>
                 <div className="flex cursor-pointer items-center">
                   <svg
@@ -110,11 +113,11 @@ const AdDetails = async ({
                       d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z"
                     ></path>
                   </svg>
-                  <p className="text-[10px] lg:text-sm font-bold"> All Ads</p>
+                  <p className="text-xs lg:text-sm"> All Ads</p>
                 </div>
               </Link>
             </div>
-            <div className="bg-white p-2 rounded-full mr-2">
+            <div className="bg-white p-1 rounded-full mr-2">
               <div className="flex items-center">
                 {ad && (
                   <Link
@@ -134,14 +137,12 @@ const AdDetails = async ({
                         d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z"
                       ></path>
                     </svg>
-                    <p className="text-[10px] lg:text-sm font-bold">
-                      {ad.category.name}
-                    </p>
+                    <p className="text-xs lg:text-sm">{ad.category.name}</p>
                   </Link>
                 )}
               </div>
             </div>
-            <div className="bg-white p-2 rounded-full">
+            <div className="bg-white p-1 rounded-full">
               <div className="flex items-center">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -156,16 +157,14 @@ const AdDetails = async ({
                     d="M9 13h6m-3-3v6m5 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
                   ></path>
                 </svg>
-                {ad && (
-                  <p className="text-[10px] lg:text-sm font-bold">{ad.title}</p>
-                )}
+                {ad && <p className="text-xs lg:text-sm">{ad.title}</p>}
               </div>
             </div>
           </div>
         </div>
         <Ads ad={ad} userId={userId || ""} />
         <h2 className="font-bold p-2 text-[30px]">Related Ads</h2>
-        <div className="p-1">
+        <div className="p-1 mb-20 lg:mb-0">
           <Collection
             data={relatedAds?.data}
             emptyTitle="No Ads Found"
@@ -179,6 +178,15 @@ const AdDetails = async ({
             userImage={userImage || ""}
           />
         </div>
+
+        <footer>
+          <div className="hidden lg:inline">
+            <Footersub />
+          </div>
+          <div className="lg:hidden">
+            <BottomNavigation />
+          </div>
+        </footer>
       </div>
     </>
   );

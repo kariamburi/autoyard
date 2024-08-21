@@ -9,7 +9,7 @@ const Footer = () => {
 
   return (
     <div className="p-5 max-w-6xl mx-auto">
-      <div className="hidden lg:inline">
+      <div className="">
         <div className="flex">
           <div className="flex-1">
             <p className="mb-3 text-slate-950 font-bold">About us</p>

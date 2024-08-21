@@ -17,7 +17,7 @@ import FormatListBulletedOutlinedIcon from "@mui/icons-material/FormatListBullet
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import DiamondIcon from "@mui/icons-material/Diamond";
 import SettingsIcon from "@mui/icons-material/Settings";
-import MonetizationOnOutlinedIcon from "@mui/icons-material/MonetizationOnOutlined";
+import BookmarkIcon from "@mui/icons-material/Bookmark";
 type NavItemsProps = {
   userstatus: string;
   userId: string;
@@ -67,9 +67,9 @@ const NavItems = ({ userstatus, userId }: NavItemsProps) => {
                         <StackedLineChartOutlinedIcon className="w-10 p-1 hover:text-white" />
                       </span>
                     )}
-                    {link.label === "My Balance" && (
+                    {link.label === "Bookmark" && (
                       <span>
-                        <MonetizationOnOutlinedIcon className="w-10 p-1 hover:text-white" />
+                        <BookmarkIcon className="w-10 p-1 hover:text-white" />
                       </span>
                     )}
                     {link.label === "Plan" && (
