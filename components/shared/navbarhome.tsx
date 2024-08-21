@@ -7,7 +7,7 @@ import DiamondIcon from "@mui/icons-material/Diamond";
 import ViewListIcon from "@mui/icons-material/ViewList";
 import { useRouter, redirect, usePathname } from "next/navigation";
 //import { useSession } from "next-auth/react";
-import { SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
+//import { SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
 import Link from "next/link";
 import MobileNav from "./MobileNav";
 import {
@@ -33,6 +33,19 @@ import AddCircleOutlineOutlinedIcon from "@mui/icons-material/AddCircleOutlineOu
 import ArrowBackOutlinedIcon from "@mui/icons-material/ArrowBackOutlined";
 import Header from "@/components/shared/Header";
 //import Unreadmessages from "./Unreadmessages";
+const SignedIn = dynamic(
+  () => import("@clerk/nextjs").then((mod) => mod.SignedIn),
+  { ssr: false }
+);
+const SignedOut = dynamic(
+  () => import("@clerk/nextjs").then((mod) => mod.SignedOut),
+  { ssr: false }
+);
+const UserButton = dynamic(
+  () => import("@clerk/nextjs").then((mod) => mod.UserButton),
+  { ssr: false }
+);
+
 import {
   Tooltip,
   TooltipContent,

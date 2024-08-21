@@ -358,8 +358,8 @@ export default function Ads({ ad, userId }: CardProps) {
           </div>
           {/* Popup for displaying all images */}
           {showPopup && (
-            <div className="fixed top-0 left-0 w-full h-full bg-gray-800 bg-opacity-70 flex justify-center items-center z-50">
-              <div className="bg-black p-4 w-full h-full overflow-y-auto  z-50">
+            <div className="bg-black fixed top-0 left-0 w-full h-screen flex justify-center items-center z-50">
+              <div className="bg-black p-4 w-full items-center justify-center z-50">
                 <div className="relative flex flex-row flex-wrap justify-center">
                   <Carousel setApi={setApi3} className="w-full">
                     <CarouselContent>
@@ -372,9 +372,9 @@ export default function Ads({ ad, userId }: CardProps) {
                             <Image
                               src={image}
                               alt={`Image ${index + 1}`}
-                              className="object-cover h-screen"
+                              className="object-cover"
                               width={900} // Max width of the image
-                              height={500} // Height of the image
+                              height={200} // Height of the image
                               style={{ maxWidth: "100%", marginLeft: "0%" }} // Apply additional styles as needed
                             />
                           </Zoom>
@@ -389,11 +389,11 @@ export default function Ads({ ad, userId }: CardProps) {
                   </div>
                   <button
                     onClick={togglePopup}
-                    className="absolute top-0 right-0 focus:outline-none"
+                    className="bg-opacity-70 rounded-full m-1 bg-black absolute top-0 right-0 focus:outline-none"
                   >
                     <CloseIcon
-                      className="text-white m-5"
-                      sx={{ fontSize: 32 }}
+                      className="text-white m-0"
+                      sx={{ fontSize: 24 }}
                     />
                   </button>
                 </div>

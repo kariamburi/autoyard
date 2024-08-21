@@ -13,7 +13,7 @@ export const AdFormSchema = z.object({
   subcategory: z.string(),
   views: z.string(),
   categoryId: z.string(),
-  price: z.string(), // Ensure that price is a number
+  price: z.number(), // Ensure that price is a number
   negotiable: z.boolean(),
   latitude: z.string(),
   longitude: z.string(),
