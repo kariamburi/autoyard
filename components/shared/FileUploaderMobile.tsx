@@ -51,7 +51,7 @@ export function FileUploaderMobile({
         applyWatermark(file, userName.toUpperCase(), "POSTED ON WHEELS")
       )
     );
-
+    alert(watermarkedFiles);
     setFiles((prevFiles: File[]) => [...prevFiles, ...watermarkedFiles]);
     const urls = watermarkedFiles.map((file: File) => convertFileToUrl(file));
     onFieldChange([...imageUrls, ...urls]);
@@ -182,6 +182,7 @@ const applyWatermark = (
 
     reader.onload = (e) => {
       const result = e.target?.result;
+      alert("result" + result);
       if (typeof result === "string") {
         img.src = result;
       } else {
@@ -245,11 +246,14 @@ const applyWatermark = (
 
       canvas.toBlob((blob) => {
         if (blob) {
+          alert(file.name);
           const watermarkedFile = new File([blob], file.name, {
             type: file.type,
           });
           resolve(watermarkedFile);
+          alert("DONE");
         } else {
+          alert("Failed to create blob");
           reject(new Error("Failed to create blob"));
         }
       }, file.type);

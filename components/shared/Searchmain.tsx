@@ -26,14 +26,15 @@ const Search = ({
           value: query,
         });
       } else {
-        newUrl = removeKeysFromQuery({
-          params: searchParams.toString(),
-          keysToRemove: ["query"],
-        });
+        // alert("Remove");
+        // newUrl = removeKeysFromQuery({
+        //   params: searchParams.toString(),
+        //   keysToRemove: ["query"],
+        // });
       }
 
       router.push(newUrl, { scroll: false });
-    }, 3000);
+    }, 300);
 
     return () => clearTimeout(delayDebounceFn);
   }, [query, searchParams, router]);
