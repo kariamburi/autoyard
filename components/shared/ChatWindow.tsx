@@ -61,7 +61,7 @@ const ChatWindow: React.FC<ChatWindowProps> = ({
       <div className="p-1">
         {activeTab === 0 && (
           <>
-            <div className="bg-gradient-to-b from-emerald-900 to-emerald-900 h-[400px] w-[350px] flex flex-col p-1 mt-0">
+            <div className="bg-gradient-to-b from-emerald-900 to-emerald-900 h-[400px] w-[300px] lg:w-[400px] flex flex-col p-1 mt-0">
               <div className="mt-5 w-full">
                 <div className="flex items-center justify-center w-full gap-1 mt-5 mb-5">
                   <div className="w-16 h-16 border-white border-2 rounded-full">

@@ -52,12 +52,12 @@ export default function Navbar({ userstatus, userId }: NavProps) {
   const isActive = pathname === "/";
 
   return (
-    <div className="flex p-1 space-x-3 mx-auto w-full">
-      <div className="flex-1 my-auto">
+    <div className="flex p-1 w-full">
+      <div className="flex-1">
         <div className="flex items-center">
           {!isActive && (
             <div
-              className="w-5 h-8 flex items-center justify-center rounded-sm text-white tooltip tooltip-bottom hover:cursor-pointer"
+              className="mr-5 w-5 h-8 flex items-center justify-center rounded-sm text-white tooltip tooltip-bottom hover:cursor-pointer"
               data-tip="Back"
               onClick={() => router.back()}
             >
@@ -78,13 +78,13 @@ export default function Navbar({ userstatus, userId }: NavProps) {
               src="/assets/images/logo_white.png"
               alt="logo"
               onClick={() => router.push("/")}
-              className="ml-5 hover:cursor-pointer"
+              className="hover:cursor-pointer"
               width={36}
               height={36}
             />
           </div>
           <span
-            className="font-bold text-sm lg:text-lg text-white hover:cursor-pointer"
+            className="font-bold text-base lg:text-lg text-white hover:cursor-pointer"
             onClick={() => router.push("/")}
           >
             Wheels
@@ -154,30 +154,31 @@ export default function Navbar({ userstatus, userId }: NavProps) {
               </Tooltip>
             </TooltipProvider>
           </div>
+          <div>
+            <SignedIn>
+              <Link href="/ads/create">
+                <button
+                  className={`w-[100px] bg-gradient-to-b from-[#4DCE7A] to-[#30AF5B] hover:bg-[#30AF5B] text-white p-1 rounded-full`}
+                >
+                  <AddCircleOutlineOutlinedIcon /> SELL
+                </button>
+              </Link>
+            </SignedIn>
+          </div>
+          <div>
+            <SignedOut>
+              <Link href="/sign-in">
+                <button
+                  className={`w-[100px] bg-gradient-to-b from-[#4DCE7A] to-[#30AF5B] hover:bg-[#30AF5B] text-white p-1 rounded-full`}
+                >
+                  <AddCircleOutlineOutlinedIcon /> SELL
+                </button>
+              </Link>
+            </SignedOut>
+          </div>
         </div>
       </div>
-      <div>
-        <SignedIn>
-          <Link href="/ads/create">
-            <button
-              className={`w-[100px] bg-gradient-to-b from-[#4DCE7A] to-[#30AF5B] hover:bg-[#30AF5B] text-white p-1 rounded-full`}
-            >
-              <AddCircleOutlineOutlinedIcon /> SELL
-            </button>
-          </Link>
-        </SignedIn>
-      </div>
-      <div>
-        <SignedOut>
-          <Link href="/sign-in">
-            <button
-              className={`w-[100px] bg-gradient-to-b from-[#4DCE7A] to-[#30AF5B] hover:bg-[#30AF5B] text-white p-1 rounded-full`}
-            >
-              <AddCircleOutlineOutlinedIcon /> SELL
-            </button>
-          </Link>
-        </SignedOut>
-      </div>
+
       <div className="flex gap-1">
         <SignedIn>
           <div className="w-8 h-8 flex items-center justify-center rounded-full bg-white tooltip tooltip-bottom hover:cursor-pointer">

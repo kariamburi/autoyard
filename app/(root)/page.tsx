@@ -1,4 +1,3 @@
-import Header from "@/components/shared/Header";
 import dynamic from "next/dynamic";
 import Image from "next/image";
 import Skeleton from "@mui/material/Skeleton";
@@ -115,9 +114,6 @@ export default async function Home({ searchParams }: SearchParamProps) {
   if (!Ads || !categoryList) {
     return (
       <div>
-        <div className="bg-gradient-to-r from-emerald-800 to-emerald-950">
-          <Header />
-        </div>
         <div className="flex-center h-screen w-full bg-[#ebf2f7] bg-dotted-pattern bg-cover bg-fixed bg-center">
           <div className="flex gap-1 items-center">
             <Image
@@ -135,13 +131,9 @@ export default async function Home({ searchParams }: SearchParamProps) {
 
   return (
     <main>
-      <div className="bg-gradient-to-r from-emerald-800 to-emerald-950">
-        <Header />
-      </div>
-
-      <div className="max-w-6xl mx-auto flex mt-2 ">
+      <div className="max-w-6xl mx-auto flex mt-0">
         <div className="flex-1">
-          <div className="p-0">
+          <div className="mt-[190px] lg:mt-0">
             <Menumobile categoryList={categoryList} />
           </div>
           <div className="p-2 mt-2 mb-20 lg:mb-0">

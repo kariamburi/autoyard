@@ -122,7 +122,7 @@ const Card = ({ ad, hasOrderLink, hidePrice, userId }: CardProps) => {
         </div>
         <div className="w-full flex justify-end  absolute top-2/3 left-1/2 transform -translate-x-1/2 p-1 rounded-full">
           <div
-            className="w-8 h-8 p-1 shadow-lg flex items-center justify-center rounded-full bg-white text-emerald-500 tooltip tooltip-bottom hover:text-[#2BBF4E] hover:cursor-pointer"
+            className="w-8 h-8 p-1 mt-[-10px] shadow-lg flex items-center justify-center rounded-full bg-white text-emerald-500 tooltip tooltip-bottom hover:text-[#2BBF4E] hover:cursor-pointer"
             data-tip="Bookmark"
             onClick={() => handle(ad._id)}
           >

@@ -2,6 +2,7 @@
 import qs from "query-string";
 import { useRouter, useSearchParams } from "next/navigation";
 import { formUrlQuery, removeKeysFromQuery } from "@/lib/utils";
+import AddCircleOutlineOutlinedIcon from "@mui/icons-material/AddCircleOutlineOutlined";
 import Image from "next/image";
 type MobileProps = {
   categoryList: { imageUrl: string; name: string; _id: string }[];
@@ -29,6 +30,18 @@ export default function Menumobile({ categoryList }: MobileProps) {
   return (
     <div className="mx-auto mt-10">
       <div className="grid grid-cols-4 md:grid-cols-4 lg:grid-cols-8 m-1 gap-1">
+        <div
+          onClick={() => router.push("/ads/create")}
+          className="lg:hidden h-[100px] bg-emerald-500 text-white flex flex-col items-center justify-center cursor-pointer rounded-sm p-1 border-0 border-emerald-300 hover:bg-emerald-600 "
+        >
+          <div className="flex flex-col items-center text-center justify-center">
+            <div className="h-12 w-12 rounded-full p-2">
+              <AddCircleOutlineOutlinedIcon />
+            </div>
+
+            <h2 className="text-lg font-bold">SELL</h2>
+          </div>
+        </div>
         {categoryList.length > 0 &&
           categoryList.map(
             (category: { imageUrl: string; name: string; _id: string }) => (

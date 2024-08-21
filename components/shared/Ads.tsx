@@ -10,6 +10,8 @@ import ChatBubbleOutlineOutlinedIcon from "@mui/icons-material/ChatBubbleOutline
 import AssistantDirectionIcon from "@mui/icons-material/AssistantDirection";
 import ChatBubbleIcon from "@mui/icons-material/ChatBubble";
 //import "react-responsive-carousel/lib/styles/carousel.min.css";
+import Zoom from "react-medium-image-zoom";
+import "react-medium-image-zoom/dist/styles.css";
 import CloseIcon from "@mui/icons-material/Close";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
@@ -238,7 +240,7 @@ export default function Ads({ ad, userId }: CardProps) {
                     <Image
                       src={image}
                       alt={`Image ${index + 1}`}
-                      className="object-cover cursor-pointer"
+                      className="bg-slate-900 object-cover cursor-pointer"
                       width={800} // Adjust the width as needed
                       height={500} // Adjust the height as needed
                     />
@@ -366,14 +368,16 @@ export default function Ads({ ad, userId }: CardProps) {
                           key={index}
                           className="relative flex flex-row flex-wrap justify-center"
                         >
-                          <Image
-                            src={image}
-                            alt={`Image ${index + 1}`}
-                            className="object-cover"
-                            width={900} // Max width of the image
-                            height={500} // Height of the image
-                            style={{ maxWidth: "100%", marginLeft: "0%" }} // Apply additional styles as needed
-                          />
+                          <Zoom>
+                            <Image
+                              src={image}
+                              alt={`Image ${index + 1}`}
+                              className="object-cover h-screen"
+                              width={900} // Max width of the image
+                              height={500} // Height of the image
+                              style={{ maxWidth: "100%", marginLeft: "0%" }} // Apply additional styles as needed
+                            />
+                          </Zoom>
                         </CarouselItem>
                       ))}
                     </CarouselContent>
