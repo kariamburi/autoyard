@@ -78,6 +78,7 @@ import {
 } from "../ui/hover-card";
 import { ScrollArea } from "../ui/scroll-area";
 import Link from "next/link";
+import { FileUploaderMobile } from "./FileUploaderMobile";
 type Package = {
   imageUrl: string;
   name: string;
@@ -3338,8 +3339,20 @@ const AdForm = ({
                   render={({ field }) => (
                     <FormItem className="w-full">
                       <FormControl className="min-h-[300px]">
-                        <div className="relative w-full">
+                        {/*     <div className="hidden lg:inline relative w-full">
                           <FileUploader
+                            onFieldChange={field.onChange}
+                            imageUrls={field.value}
+                            setFiles={setFiles}
+                            userName={userName}
+                          />
+                          <div className="absolute ml-2 top-1 left-0 text-[#FF0000] text-sm">
+                            {showmessage}
+                          </div>
+                        </div>
+*/}
+                        <div className="relative w-full">
+                          <FileUploaderMobile
                             onFieldChange={field.onChange}
                             imageUrls={field.value}
                             setFiles={setFiles}
