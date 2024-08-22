@@ -4,7 +4,7 @@ import { convertFileToUrl } from "@/lib/utils";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { deleteSingleImage } from "@/lib/actions/ad.actions";
 import { ScrollArea, ScrollBar } from "../ui/scroll-area";
-
+import AddBoxIcon from "@mui/icons-material/AddBox";
 type FileUploaderProps = {
   onFieldChange: (urls: string[]) => void;
   imageUrls: string[];
@@ -87,9 +87,7 @@ export function FileUploaderMobile({
               id="file-input"
             />
             <label htmlFor="file-input">
-              <Button type="button" className="rounded-full">
-                Select from device
-              </Button>
+              <AddBoxIcon className="my-auto hover:cursor-pointer" />
             </label>
             <ScrollArea className="w-[400px] sm:w-[400px] md:w-[500px] lg:w-full bg-white rounded-md border">
               <div className="flex w-full p-4">

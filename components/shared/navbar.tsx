@@ -68,7 +68,7 @@ export default function Navbar({ userstatus, userId }: NavProps) {
 
   return (
     <div className="flex p-1 w-full">
-      <div className="flex-1">
+      <div className="flex">
         <div className="flex items-center">
           {!isActive && (
             <div

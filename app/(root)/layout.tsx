@@ -26,14 +26,14 @@ export default async function RootLayout({
   //console.log(user.status);
   return (
     <div>
-      <div className="lg:hidden fixed top-0 z-10 w-full bg-gradient-to-r from-emerald-800 to-emerald-950 p-3">
+      <div className="sm:hidden fixed top-0 z-10 w-full bg-gradient-to-r from-emerald-800 to-emerald-950 p-3">
         {user ? (
           <Navbarhome userstatus={user.status} userId={userId} />
         ) : (
           <Navbarhome userstatus="User" userId="" />
         )}
       </div>
-      <div className="hidden lg:inline">
+      <div className="hidden sm:inline">
         <div className="w-full bg-gradient-to-r from-emerald-800 to-emerald-950 p-3">
           {user ? (
             <Navbarhome userstatus={user.status} userId={userId} />

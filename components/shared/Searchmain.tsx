@@ -18,7 +18,7 @@ const Search = ({
   useEffect(() => {
     const delayDebounceFn = setTimeout(() => {
       let newUrl = "";
-
+      // alert(query);
       if (query) {
         newUrl = formUrlQuery({
           params: searchParams.toString(),
@@ -26,7 +26,6 @@ const Search = ({
           value: query,
         });
       } else {
-        alert("Remove");
         newUrl = removeKeysFromQuery({
           params: searchParams.toString(),
           keysToRemove: ["query"],
@@ -34,26 +33,57 @@ const Search = ({
       }
 
       router.push(newUrl, { scroll: false });
-    }, 10000);
+    }, 300);
 
     return () => clearTimeout(delayDebounceFn);
-  }, [query, searchParams, router]);
-
+  }, [query]);
+  const handleClear = () => {
+    setQuery("");
+    const newUrl = removeKeysFromQuery({
+      params: searchParams.toString(),
+      keysToRemove: ["query"],
+    });
+    router.push(newUrl, { scroll: false });
+  };
   return (
-    <div className="flex bg-white p-2 rounded-full mx-auto w-full">
-      <Image
-        src="/assets/icons/search.svg"
-        alt="search"
-        width={24}
-        height={24}
-      />
+    <div className="flex items-center bg-white p-2 rounded-full mx-auto w-full max-w-md">
+      <button
+        onClick={() =>
+          router.push(
+            formUrlQuery({
+              params: searchParams.toString(),
+              key: "query",
+              value: query,
+            }),
+            { scroll: false }
+          )
+        }
+        className="p-2"
+      >
+        <Image
+          src="/assets/icons/search.svg"
+          alt="search"
+          width={24}
+          height={24}
+        />
+      </button>
       <Input
         type="text"
+        value={query}
         placeholder={placeholder}
-        //onChange={(e) => setQuery(e.target.value)}
         onInput={(e) => setQuery((e.target as HTMLInputElement).value)}
-        className="p-regular-16 border-0 bg-white outline-offset-0 placeholder:text-grey-500 focus:border-0 focus-visible:ring-0 focus-visible:ring-offset-0"
+        className="flex-grow p-regular-16 border-0 bg-white outline-offset-0 placeholder:text-grey-500 focus:border-0 focus-visible:ring-0 focus-visible:ring-offset-0"
       />
+      {query && (
+        <button onClick={handleClear} className="p-2">
+          <Image
+            src="/assets/icons/close.svg"
+            alt="clear"
+            width={24}
+            height={24}
+          />
+        </button>
+      )}
     </div>
   );
 };

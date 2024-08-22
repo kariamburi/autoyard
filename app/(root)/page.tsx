@@ -133,7 +133,7 @@ export default async function Home({ searchParams }: SearchParamProps) {
     <main>
       <div className="max-w-6xl mx-auto flex mt-0">
         <div className="flex-1">
-          <div className="mt-[190px] lg:mt-0">
+          <div className="mt-[190px] sm:mt-0">
             <Menumobile categoryList={categoryList} />
           </div>
           <div className="p-2 mt-2 mb-20 lg:mb-0">

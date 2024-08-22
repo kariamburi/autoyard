@@ -28,6 +28,7 @@ export default function Header() {
             </span>
           </div>
         </div>
+
         <Searchmain />
       </div>
       {/* Left Side */}

@@ -205,7 +205,7 @@ export default function Navbarhome({ userstatus, userId }: NavProps) {
           </SignedIn>
         </div>
       </div>
-      <div className="">
+      <div>
         <Header />
       </div>
     </div>
