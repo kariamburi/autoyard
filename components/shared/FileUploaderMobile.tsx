@@ -63,7 +63,7 @@ export function FileUploaderMobile({
   };
 
   return (
-    <div className="flex-center bg-dark-3 flex p-3 flex-col overflow-hidden rounded-xl bg-grey-50">
+    <div className="flex-center flex p-3 flex-col overflow-hidden rounded-xl bg-gray-200">
       <div className="text-left text-sm w-full mx-auto">
         <div className="font-semibold">Add Photo</div>
         <div>
@@ -89,34 +89,32 @@ export function FileUploaderMobile({
             <label htmlFor="file-input">
               <AddBoxIcon className="my-auto hover:cursor-pointer" />
             </label>
-            <ScrollArea className="w-[400px] sm:w-[400px] md:w-[500px] lg:w-full bg-white rounded-md border">
-              <div className="flex w-full p-4">
-                {imageUrls.map((url, index) => (
+
+            <div className="grid grid-cols-4 lg:grid-cols-5 w-full p-1">
+              {imageUrls.map((url, index) => (
+                <div
+                  key={index}
+                  className="relative mb-1 rounded-sm shadow-sm p-1 bg-white w-20 h-20 lg:w-40 lg:h-40 flex-shrink-0"
+                >
+                  <img
+                    src={url}
+                    alt={`image-${index}`}
+                    className="w-full h-full object-cover object-center rounded-sm"
+                  />
                   <div
-                    key={index}
-                    className="relative rounded-sm shadow-sm p-1 bg-white w-20 h-20 lg:w-40 lg:h-40 flex-shrink-0"
+                    onClick={() => handleRemoveImage(index)}
+                    className="absolute top-0 right-0 rounded-xl bg-white p-1 shadow-sm"
                   >
                     <img
-                      src={url}
-                      alt={`image-${index}`}
-                      className="w-full h-full object-cover object-center rounded-sm"
+                      src="/assets/icons/delete.svg"
+                      alt="delete"
+                      width={20}
+                      height={20}
                     />
-                    <div
-                      onClick={() => handleRemoveImage(index)}
-                      className="absolute top-0 right-0 rounded-xl bg-white p-1 shadow-sm"
-                    >
-                      <img
-                        src="/assets/icons/delete.svg"
-                        alt="delete"
-                        width={20}
-                        height={20}
-                      />
-                    </div>
                   </div>
-                ))}
-              </div>
-              <ScrollBar orientation="horizontal" />
-            </ScrollArea>
+                </div>
+              ))}
+            </div>
           </div>
         ) : (
           <div className="flex-center flex-col py-5 text-grey-500">
