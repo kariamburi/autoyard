@@ -161,7 +161,7 @@ const Card = ({ ad, hasOrderLink, hidePrice, userId }: CardProps) => {
           </div>
         )}
 
-        <div className="text-gray-500 text-[8px] lg:text-[10px] hidden lg:inline">
+        <div className="text-gray-500 text-[10px] lg:text-[12px] hidden lg:inline">
           <LocationOnIcon sx={{ fontSize: 14 }} />
           {truncateaddress(ad.address, 40)}
         </div>

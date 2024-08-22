@@ -25,17 +25,14 @@ export function FileUploaderMobile({
     event: React.ChangeEvent<HTMLInputElement>
   ) => {
     const files = event.target.files;
-    alert(files);
     if (!files) return;
 
     const acceptedFiles = Array.from(files).filter((file) => {
-      // Check if the file already exists in the list of imageUrls
       if (imageUrls.includes(convertFileToUrl(file))) {
         setMessage(`${file.name} has already been uploaded.`);
         setShowAlert(true);
         return false;
       }
-      alert(file.name);
       if (file.size > 5 * 1024 * 1024) {
         setMessage(
           `${file.name} exceeds the 5MB limit and will not be uploaded.`
@@ -46,14 +43,8 @@ export function FileUploaderMobile({
       return true;
     });
 
-    const watermarkedFiles: File[] = await Promise.all(
-      acceptedFiles.map((file) =>
-        applyWatermark(file, userName.toUpperCase(), "POSTED ON WHEELS")
-      )
-    );
-    alert(watermarkedFiles);
-    setFiles((prevFiles: File[]) => [...prevFiles, ...watermarkedFiles]);
-    const urls = watermarkedFiles.map((file: File) => convertFileToUrl(file));
+    setFiles((prevFiles: File[]) => [...prevFiles, ...acceptedFiles]);
+    const urls = acceptedFiles.map((file: File) => convertFileToUrl(file));
     onFieldChange([...imageUrls, ...urls]);
   };
 
@@ -166,102 +157,3 @@ export function FileUploaderMobile({
     </div>
   );
 }
-
-const applyWatermark = (
-  file: File,
-  headerText: string,
-  contentText: string
-): Promise<File> => {
-  if (typeof window === "undefined") {
-    return Promise.resolve(file);
-  }
-
-  return new Promise((resolve, reject) => {
-    const img = new Image();
-    const reader = new FileReader();
-
-    reader.onload = (e) => {
-      const result = e.target?.result;
-      alert("result" + result);
-      if (typeof result === "string") {
-        img.src = result;
-      } else {
-        reject(new Error("Failed to read file"));
-      }
-    };
-
-    img.onload = () => {
-      const canvas = document.createElement("canvas");
-      const ctx = canvas.getContext("2d");
-
-      if (!ctx) {
-        reject(new Error("Failed to get canvas context"));
-        return;
-      }
-
-      canvas.width = img.width;
-      canvas.height = img.height;
-
-      ctx.drawImage(img, 0, 0);
-
-      // Calculate font sizes based on the smaller dimension of the image
-      const headerFontSize = Math.min(canvas.width, canvas.height) * 0.08; // Adjust multiplier as needed
-      const contentFontSize = Math.min(canvas.width, canvas.height) * 0.05; // Adjust multiplier as needed
-
-      // Set header font
-      ctx.font = `bold ${headerFontSize}px Arial`; // Make header text bold
-      ctx.textAlign = "center";
-
-      // Calculate position for header text
-      const gap = headerFontSize * 0.5; // Adjust multiplier as needed for the gap
-      const headerCenterX = canvas.width / 2;
-      //const headerCenterY = canvas.height / 2 - headerFontSize + 270; // Position header slightly above center
-      const headerCenterY = canvas.height / 2 - gap / 2 + 280; // Position header slightly above center with gap
-
-      // Draw header text border (stroke)
-      ctx.lineWidth = 2;
-      ctx.strokeStyle = "rgba(255, 255, 255, 0.3)"; // White color with 0.8 opacity
-      ctx.strokeText(headerText, headerCenterX, headerCenterY);
-
-      // Fill header text color
-      ctx.fillStyle = "rgba(0, 0, 0, 0.1)"; // Black color with full opacity
-      ctx.fillText(headerText, headerCenterX, headerCenterY);
-
-      // Set content font
-      ctx.font = `bold ${contentFontSize}px Arial`; // Make content text bold
-
-      // Calculate position for content text
-      const contentCenterX = canvas.width / 2;
-      // const contentCenterY = canvas.height / 2 + contentFontSize; // Position content slightly below center
-      const contentCenterY = headerCenterY + gap / 4 + contentFontSize; // Position content below header with gap
-
-      // Draw content text border (stroke)
-      ctx.lineWidth = 2;
-      ctx.strokeStyle = "rgba(255, 255, 255, 0.3)"; // White color with 0.8 opacity
-      ctx.strokeText(contentText, contentCenterX, contentCenterY);
-
-      // Fill content text color
-      ctx.fillStyle = "rgba(0, 0, 0, 0.1)"; // Black color with full opacity
-      ctx.fillText(contentText, contentCenterX, contentCenterY);
-
-      canvas.toBlob((blob) => {
-        if (blob) {
-          alert(file.name);
-          const watermarkedFile = new File([blob], file.name, {
-            type: file.type,
-          });
-          resolve(watermarkedFile);
-          alert("DONE");
-        } else {
-          alert("Failed to create blob");
-          reject(new Error("Failed to create blob"));
-        }
-      }, file.type);
-    };
-
-    img.onerror = (error) => reject(error);
-    reader.onerror = (error) => reject(error);
-
-    reader.readAsDataURL(file);
-  });
-};
