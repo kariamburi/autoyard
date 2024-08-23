@@ -2,32 +2,12 @@
 
 import MessageIcon from "@mui/icons-material/Message";
 import BookmarkIcon from "@mui/icons-material/Bookmark";
-import NotificationsIcon from "@mui/icons-material/Notifications";
 import DiamondIcon from "@mui/icons-material/Diamond";
-import ViewListIcon from "@mui/icons-material/ViewList";
 import { useRouter, redirect, usePathname } from "next/navigation";
 //import { useSession } from "next-auth/react";
 //import { SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
 import Link from "next/link";
 import MobileNav from "./MobileNav";
-import {
-  Sheet,
-  SheetContent,
-  SheetDescription,
-  SheetHeader,
-  SheetTitle,
-  SheetTrigger,
-} from "../ui/sheet";
-import {
-  HoverCard,
-  HoverCardContent,
-  HoverCardTrigger,
-} from "../ui/hover-card";
-import { Separator } from "../ui/separator";
-import { Button } from "../ui/button";
-import { collection, onSnapshot, query, where } from "firebase/firestore";
-import { useEffect, useState } from "react";
-import { db } from "@/lib/firebase";
 import Image from "next/image";
 import AddCircleOutlineOutlinedIcon from "@mui/icons-material/AddCircleOutlineOutlined";
 import ArrowBackOutlinedIcon from "@mui/icons-material/ArrowBackOutlined";

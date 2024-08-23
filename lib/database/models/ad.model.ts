@@ -1,6 +1,7 @@
 import { Document, Schema, model, models } from "mongoose";
 
 export interface IAd extends Document {
+  adId: any;
   _id: string;
   title: string;
   description?: string;

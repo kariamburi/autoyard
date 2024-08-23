@@ -27,6 +27,8 @@ type CardProps = {
 
 const HorizontalCard = ({ userId, ad, isAdCreator }: CardProps) => {
   const pathname = usePathname();
+  const isbookmark = pathname === "/bookmark";
+
   const { toast } = useToast();
   const truncateTitle = (title: string, maxLength: number) => {
     if (title.length > maxLength) {
@@ -55,13 +57,11 @@ const HorizontalCard = ({ userId, ad, isAdCreator }: CardProps) => {
   return (
     <>
       <div className="flex w-full mb-4 rounded-lg bg-white hover:cursor-pointer shadow">
-        <div className="relative w-[180px] h-max-[200px]">
-          <Image
+        <div className="relative w-[180px] h-[190px]">
+          <img
             src={ad.imageUrls[0]}
             alt="ad image"
             className="object-cover rounded-l-lg h-full w-full"
-            width={20}
-            height={20}
           />
           {ad.plan.name !== "Free" && (
             <div
@@ -97,7 +97,7 @@ const HorizontalCard = ({ userId, ad, isAdCreator }: CardProps) => {
               <DeleteConfirmation adId={ad._id} imageUrls={ad.imageUrls} />
             </div>
           )}
-          {!isAdCreator && (
+          {!isAdCreator && !isbookmark && (
             <div
               className="absolute right-2 bottom-20  w-8 h-8 p-1 shadow-lg flex items-center justify-center rounded-full bg-white text-emerald-500 tooltip tooltip-bottom hover:text-[#2BBF4E] hover:cursor-pointer"
               data-tip="Bookmark"
@@ -125,7 +125,7 @@ const HorizontalCard = ({ userId, ad, isAdCreator }: CardProps) => {
               <YouTubeIcon
                 sx={{ fontSize: 16, cursor: "pointer" }}
                 style={{ color: "red" }}
-              />
+              />{" "}
               Video
             </div>
           )}
@@ -153,13 +153,13 @@ const HorizontalCard = ({ userId, ad, isAdCreator }: CardProps) => {
           {isAdCreator ? (
             <div className="flex justify-between items-center w-full p-1">
               <Link href={`/ads/${ad._id}`} className="no-underline">
-                <span className="text-emerald-950 p-bold-16 w-min rounded-full px-4 p-1 text-green-60">
+                <span className="text-emerald-950 text-[12px] lg:text-lg font-bold w-min rounded-full px-4 p-1 text-green-60">
                   {NGnaira.format(ad.price)}
                 </span>
               </Link>
               {ad.adstatus && (
                 <div
-                  className={`flex flex-col text-xs p-1 text-white justify-center items-center w-[70px] rounded-full ${
+                  className={`flex flex-col text-[12px] lg:text-xs p-1 text-white justify-center items-center w-[70px] rounded-full ${
                     ad.adstatus === "Pending"
                       ? "bg-yellow-600"
                       : ad.adstatus === "Failed"
@@ -181,7 +181,7 @@ const HorizontalCard = ({ userId, ad, isAdCreator }: CardProps) => {
             </div>
           )}
 
-          <div className="flex gap-1 mt-1 w-full gap-1 pl-5 pr-5 pb-2">
+          <div className="flex gap-1 mt-1 w-full gap-1 pl-5 pr-5">
             {ad.vehiclecondition && (
               <div className="flex gap-2 text-[12px] lg:text-xs bg-[#ebf2f7] rounded-sm p-1 justify-center border">
                 {ad.vehiclecondition}

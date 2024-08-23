@@ -67,13 +67,13 @@ const Ratings = ({ recipientUid }: Ratingsprop) => {
 
   return (
     <div className="flex flex-col items-center justify-center h-full">
-      <h1 className="mt-2 p-0 font-bold text-emerald-950">
+      <h1 className="mt-2 p-0 text-base font-bold text-emerald-950">
         {" "}
         Ratings: {averangestar}
       </h1>
       <Link
         href={`/reviews/${recipientUid}`}
-        className="text-gray-600 text-xs no-underline font-boldm-1 hover:text-emerald-500 hover:underline"
+        className="text-gray-600 text-sm no-underline font-boldm-1 hover:text-emerald-500 hover:underline"
       >
         <p className="items-center">{messagesCount} reviews</p>
       </Link>

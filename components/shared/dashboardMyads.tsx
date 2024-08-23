@@ -161,8 +161,8 @@ CollectionProps) => {
           </div>
           <div className="rounded-lg border bg-white max-w-6xl mx-auto lg:flex-row mt-3 p-1 justify-center">
             <section className="bg-grey-50 bg-dotted-pattern bg-cover bg-center py-0 md:py-0 rounded-sm">
-              <div className="flex items-center justify-center sm:justify-between">
-                <h3 className="h3-bold text-center sm:text-left p-1">
+              <div className="flex items-center p-1 justify-between">
+                <h3 className="font-bold text-[25px] text-center sm:text-left">
                   Ads List
                 </h3>
 

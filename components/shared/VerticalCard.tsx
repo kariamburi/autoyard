@@ -5,7 +5,6 @@ import React from "react";
 import { DeleteConfirmation } from "./DeleteConfirmation";
 import { NGnaira } from "@/lib/help";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
-import PhotoCameraFrontIcon from "@mui/icons-material/PhotoCameraFront";
 import YouTubeIcon from "@mui/icons-material/YouTube";
 import VerifiedUserOutlinedIcon from "@mui/icons-material/VerifiedUserOutlined";
 import { usePathname } from "next/navigation";
@@ -27,6 +26,8 @@ type CardProps = {
 
 const VerticalCard = ({ userId, ad, isAdCreator }: CardProps) => {
   const pathname = usePathname();
+  const isbookmark = pathname === "/bookmark";
+  //alert(pathname);
   const { toast } = useToast();
   const truncateTitle = (title: string, maxLength: number) => {
     if (title.length > maxLength) {
@@ -118,7 +119,7 @@ const VerticalCard = ({ userId, ad, isAdCreator }: CardProps) => {
           )}
         </div>
 
-        {!isAdCreator && (
+        {!isAdCreator && !isbookmark && (
           <div className="w-full flex justify-end  absolute top-2/3 left-1/2 transform -translate-x-1/2 p-1 rounded-full">
             <div
               className="w-8 h-8 p-1 mt-[-10px] shadow-lg flex items-center justify-center rounded-full bg-white text-emerald-500 tooltip tooltip-bottom hover:text-[#2BBF4E] hover:cursor-pointer"
@@ -142,13 +143,13 @@ const VerticalCard = ({ userId, ad, isAdCreator }: CardProps) => {
         {isAdCreator ? (
           <div className="flex justify-between items-center w-full p-1">
             <Link href={`/ads/${ad._id}`} className="no-underline">
-              <span className="text-emerald-950 text-[12px] lg:text-lg font-bold w-min rounded-full px-4 p-1 text-green-60">
+              <span className="text-emerald-950 text-[12px] lg:text-lg font-bold w-min rounded-full text-green-60">
                 {NGnaira.format(ad.price)}
               </span>
             </Link>
             {ad.adstatus && (
               <div
-                className={`flex flex-col text-xs p-1 text-white justify-center items-center w-[70px] rounded-full ${
+                className={`flex flex-col text-[12px] lg:text-xs p-1 text-white justify-center items-center w-[70px] rounded-full ${
                   ad.adstatus === "Pending"
                     ? "bg-yellow-600"
                     : ad.adstatus === "Failed"
@@ -163,7 +164,7 @@ const VerticalCard = ({ userId, ad, isAdCreator }: CardProps) => {
         ) : (
           <div className="flex items-center p-1">
             <Link href={`/ads/${ad._id}`} className="no-underline">
-              <span className="text-emerald-950 p-bold-16 w-min rounded-full px-4 p-1 text-green-60">
+              <span className="text-emerald-950 text-[12px] lg:text-lg w-min rounded-full text-green-60">
                 {NGnaira.format(ad.price)}
               </span>
             </Link>

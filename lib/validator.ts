@@ -123,9 +123,17 @@ export const packageFormSchema = z.object({
   features: z.array(FeatureSchema),
   price: z.array(PriceSchema),
   imageUrl: z.string(),
-  color: z.string()
-  //priority: z.string(),
-  //list: z.string() 
+  color: z.string(),
+  priority: z.union([z.string(), z.number()])
+  .refine(value => !isNaN(Number(value)), {
+    message: 'Priority must be a valid number',
+  })
+  .transform(value => Number(value)),
+  list: z.union([z.string(), z.number()])
+  .refine(value => !isNaN(Number(value)), {
+    message: 'List must be a valid number',
+  })
+  .transform(value => Number(value))
 });
 export const VerifiesFormSchema = z.object({
   fee: z.string(),
