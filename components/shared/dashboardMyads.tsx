@@ -80,7 +80,7 @@ type CollectionProps = {
   collectionType?: "Ads_Organized" | "My_Tickets" | "All_Ads";
 };
 
-const dashboardMyads = ({
+const DashboardMyads = ({
   userId,
   data,
   packname,
@@ -266,4 +266,4 @@ CollectionProps) => {
   );
 };
 
-export default dashboardMyads;
+export default DashboardMyads;
