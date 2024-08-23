@@ -182,7 +182,7 @@ export const AdDefaultValues = {
   address: '',
   views: '0',
   categoryId: '',
-  price: '',
+  price: 0,
   make:'',
   vehiclemodel:'',
   vehicleyear:'',
