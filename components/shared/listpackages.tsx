@@ -30,7 +30,7 @@ type PackProps = {
   packname: string;
   user: IUser;
 };
-export default function listpackages({
+export default function Listpackages({
   packagesList,
   userId,
   packname,

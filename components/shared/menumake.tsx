@@ -41,8 +41,11 @@ export default function Menumake({ category, subcategory }: CardProps) {
     <div className="mt-2">
       <div className="grid grid-cols-4 lg:grid-cols-8 m-0 gap-1">
         {commonVehicleMakesInKenya.length > 0 &&
-          commonVehicleMakesInKenya.map((vehicle: any) => (
-            <div className="flex h-[80px] bg-white shadow flex-col items-center justify-center cursor-pointer rounded-sm p-1 border-1 border-emerald-300 hover:bg-emerald-100">
+          commonVehicleMakesInKenya.map((vehicle: any, index: number) => (
+            <div
+              key={index}
+              className="flex h-[80px] bg-white shadow flex-col items-center justify-center cursor-pointer rounded-sm p-1 border-1 border-emerald-300 hover:bg-emerald-100"
+            >
               <div
                 className="flex flex-col text-center items-center"
                 onClick={(e) => setQuery(vehicle.make)}

@@ -4,6 +4,7 @@ import Link from "next/link";
 import "leaflet/dist/leaflet.css";
 import L from "leaflet"; // Import Leaflet library
 import { IAd } from "@/lib/database/models/ad.model";
+import Image from "next/image";
 type CardProps = {
   data: IAd[];
 };
@@ -13,13 +14,13 @@ const StreetmapAll = ({ data }: CardProps) => {
   // ? [parseFloat(lat), parseFloat(lng)]
   //   : [52.4797, -1.90269];
   const customIcon = L.icon({
-    iconUrl: "../assets/icons/pin.png",
+    iconUrl: "/assets/icons/pin.png",
     iconSize: [25, 32], // Size of the icon
     iconAnchor: [16, 32], // Point of the icon which will correspond to marker's location
     popupAnchor: [0, -32], // Point from which the popup should open relative to the iconAnchor
   });
   const myIcon = L.icon({
-    iconUrl: "../assets/icons/mypin.png",
+    iconUrl: "/assets/icons/mypin.png",
     iconSize: [32, 32], // Size of the icon
     iconAnchor: [16, 32], // Point of the icon which will correspond to marker's location
     popupAnchor: [0, -32], // Point from which the popup should open relative to the iconAnchor
@@ -54,10 +55,12 @@ const StreetmapAll = ({ data }: CardProps) => {
         <Marker position={[0.01324, 37.2748]} icon={myIcon}>
           <Popup>
             <div className="p-1">
-              <img
+              <Image
                 src="/assets/icons/mypin.png"
                 alt=""
                 className="w-12 h-12 object-cover"
+                width={12}
+                height={12}
               />
 
               <div className="flex flex-col">
@@ -74,17 +77,18 @@ const StreetmapAll = ({ data }: CardProps) => {
             icon={customIcon}
           >
             <Popup>
-              <div className="flex gap-1 p-1 w-[200px]">
+              <div key={ad._id} className="flex gap-1 p-1 w-[200px]">
                 <Link href={`/ads/${ad._id}`} className="flex justify-center">
-                  <img
+                  <Image
                     src={ad.imageUrls[0]}
                     alt=""
                     className="w-24 h-12 object-cover"
+                    width={24}
+                    height={12}
                   />
                 </Link>
                 <div className="flex flex-col">
                   <div>
-                    {" "}
                     <Link
                       href={`/ads/${ad._id}`}
                       className="flex justify-center"
