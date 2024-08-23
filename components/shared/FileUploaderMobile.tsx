@@ -90,7 +90,7 @@ export function FileUploaderMobile({
               <AddBoxIcon className="my-auto hover:cursor-pointer" />
             </label>
 
-            <div className="grid grid-cols-4 lg:grid-cols-5 w-full p-1">
+            <div className="grid grid-cols-3 lg:grid-cols-5 w-full p-1">
               {imageUrls.map((url, index) => (
                 <div
                   key={index}

@@ -154,6 +154,7 @@ const AdForm = ({
   //errors
   const [showmessage, setmessage] = useState("");
   const [errormake, seterrormake] = useState("");
+  const [errorprice, seterrorprice] = useState("");
   const [errormodel, seterrormodel] = useState("");
 
   const [errorvehicleyear, seterrorvehicleyear] = useState("");
@@ -321,6 +322,10 @@ const AdForm = ({
         seterrorvehicleEngineSizesCC("Please! Select Vehicle Engine Size CC");
         return;
       }
+      //  if (form.getValues("price") === "" ) {
+      //    seterrorprice("Please! Enter Price!");
+      //    return;
+      //  }
 
       //if (files.length < 4 && SelectedCategory === "Car" && form.getValues("ima").length < 4 && SelectedCategory === "Car") {
       // setmessage(
@@ -382,7 +387,7 @@ const AdForm = ({
             expirely: ExpirationDate_,
             adstatus: Adstatus_,
             phone: countryCode + removeLeadingZero(phoneNumber),
-            // price: parseFloat(form.getValues("price")),
+            price: Number(form.getValues("price")),
             address: form.getValues("address"),
             vehiclekeyfeatures: selectedfeaturesOptions,
             vehicleEngineSizesCC: (
@@ -444,7 +449,7 @@ const AdForm = ({
           ad: {
             ...values,
             phone: countryCode + removeLeadingZero(phoneNumber),
-            // price: parseFloat(form.getValues("price")),
+            price: Number(form.getValues("price")),
             vehiclekeyfeatures: selectedfeaturesOptions,
             vehicleEngineSizesCC: (
               form.getValues("vehicleEngineSizesCC")?.replace(/\s/g, "") ?? ""
@@ -472,7 +477,6 @@ const AdForm = ({
       console.error("Error submitting form:", error);
     }
   }
-  //const { location, error } = Geolocation(); // Use the Geolocation hook inside a function component
 
   // Your existing state variables and functions here
   const [activePackage, setActivePackage] = useState<Package | null>(
@@ -3379,7 +3383,6 @@ const AdForm = ({
                         <div className="flex item-center w-full gap-1 overflow-hidden rounded-full px-4 py-2">
                           <TextField
                             {...field}
-                            type="number"
                             label="Price"
                             className="w-full"
                             value={field.value ?? 0} // Handle the initial undefined value
@@ -3618,245 +3621,255 @@ const AdForm = ({
               </div>
             </div>
           </div>
-          <div className="p-1 rounded-sm m-1 shadow-lg bg-white">
-            <div className="m-3">
-              <div className="items-center flex">
-                <h2 className="h2-bold p-5">Promote your ad</h2>
-              </div>
+          {type === "Create" && (
+            <>
+              <div className="p-1 rounded-sm m-1 shadow-lg bg-white">
+                <div className="m-3">
+                  <div className="items-center flex">
+                    <h2 className="font-bold text-[25px] p-5">
+                      Promote your ad
+                    </h2>
+                  </div>
 
-              {daysRemaining > 0 && listed > 0 ? (
-                <>
-                  <div className="text-center sm:text-left rounded-lg bg-white p-3 relative">
-                    <div className="flex justify-between">
-                      <div className="flex flex-col">
-                        <div className="font-bold text-lg mt-3">
-                          Plan: {packname}
+                  {daysRemaining > 0 && listed > 0 ? (
+                    <>
+                      <div className="text-center sm:text-left rounded-lg bg-white p-3 relative">
+                        <div className="flex justify-between">
+                          <div className="flex flex-col">
+                            <div className="font-bold text-lg mt-3">
+                              Plan: {packname}
+                            </div>
+                            <div className="text-xs flex gap-5">
+                              <div className="flex gap-1">
+                                Days remaining:
+                                <div className="font-bold">{daysRemaining}</div>
+                              </div>
+                              <div className="flex gap-1">
+                                Ads Remaining:
+                                <div className="font-bold">{listed}</div>
+                              </div>
+                            </div>
+                          </div>
+                          <Link href="/plan">
+                            <p className="p-2 underline bg-grey-50 text-xs cursor-pointer border-2 border-transparent rounded-sm hover:bg-[#000000]  hover:text-white">
+                              Upgrade Plan
+                            </p>
+                          </Link>
                         </div>
-                        <div className="text-xs flex gap-5">
-                          <div className="flex gap-1">
-                            Days remaining:
-                            <div className="font-bold">{daysRemaining}</div>
-                          </div>
-                          <div className="flex gap-1">
-                            Ads Remaining:
-                            <div className="font-bold">{listed}</div>
-                          </div>
+
+                        <div className="absolute top-0 left-0 bg-green-500 text-white text-xs py-1 px-3 rounded-bl-lg rounded-tr-lg">
+                          Active
                         </div>
                       </div>
-                      <Link href="/plan">
-                        <p className="p-2 underline bg-grey-50 text-xs cursor-pointer border-2 border-transparent rounded-sm hover:bg-[#000000]  hover:text-white">
-                          Upgrade Plan
-                        </p>
-                      </Link>
-                    </div>
-
-                    <div className="absolute top-0 left-0 bg-green-500 text-white text-xs py-1 px-3 rounded-bl-lg rounded-tr-lg">
-                      Active
-                    </div>
-                  </div>
-                </>
-              ) : (
-                <>
-                  <div className="text-sm text-grey p-1">
-                    Choose the plan that will work for you
-                  </div>
-                  <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 m-1 gap-1">
-                    {packagesList.length > 0 &&
-                      packagesList.map((pack: any, index: any) => {
-                        // const check = packname == pack.name != "Free";
-                        const issamepackage = packname === pack.name;
-                        return (
-                          <div
-                            key={index}
-                            className={`shadow-md rounded-md p-0 cursor-pointer ${
-                              activePackage === pack
-                                ? "bg-[#F2FFF2] border-[#4DCE7A] border-2"
-                                : ""
-                            }`}
-                            onClick={() =>
-                              (!issamepackage && pack.name === "Free") ||
-                              (issamepackage &&
-                                pack.name === "Free" &&
-                                listed === 0)
-                                ? {}
-                                : handleClick(pack)
-                            }
-                          >
-                            <div
-                              className={`text-lg font-bold rounded-t-md text-white py-2 px-4 mb-4 flex flex-col items-center justify-center`}
-                              style={{
-                                backgroundColor: pack.color,
-                              }}
-                            >
-                              <Image
-                                className="w-8 h-8 object-cover rounded-full"
-                                src={pack.imageUrl}
-                                alt="Menu Image"
-                                width={8}
-                                height={8}
-                              />
-                              {pack.name}
-                            </div>
-                            <div className="p-3">
-                              <ul className="flex flex-col gap-1 p-1">
-                                {pack.features
-                                  .slice(0, 2)
-                                  .map((feature: any, index: number) => (
-                                    <li
-                                      key={index}
-                                      className="flex items-center gap-1"
-                                    >
-                                      <Image
-                                        src={`/assets/icons/${
-                                          feature.checked ? "check" : "cross"
-                                        }.svg`}
-                                        alt={
-                                          feature.checked ? "check" : "cross"
-                                        }
-                                        width={24}
-                                        height={24}
-                                      />
-                                      <p className="text-sm">{feature.title}</p>
-                                    </li>
-                                  ))}
-                              </ul>
-                            </div>
-                            <div className="p-3">
-                              <div className="text-gray-600 mb-1">
-                                <div className="flex gap-2 text-sm">
-                                  {daysRemaining > 0 &&
-                                  pack.name === packname ? (
-                                    <>
-                                      <div className="p-1 flex-block rounded-full bg-emerald-500">
-                                        <p className="text-white text-xs">
-                                          Active
-                                        </p>
-                                      </div>
-                                    </>
-                                  ) : (
-                                    <>
-                                      {(!issamepackage &&
-                                        pack.name === "Free") ||
-                                      (issamepackage &&
-                                        pack.name === "Free" &&
-                                        listed === 0) ? (
-                                        <div>
-                                          <div className="p-1 items-center justify-center flex rounded-full bg-grey-50">
-                                            <p className="text-black font-bold text-xs">
-                                              Disabled
-                                            </p>
-                                          </div>
-                                          <div className="text-xs text-grey-200 p-1">
-                                            You can&apos;t subscribe to Free
-                                            Package
-                                          </div>
-                                        </div>
-                                      ) : (
-                                        issamepackage &&
-                                        pack.name === "Free" &&
-                                        listed > 0 && (
-                                          <div className="p-1 w-full items-center justify-center flex rounded-full bg-emerald-500">
+                    </>
+                  ) : (
+                    <>
+                      <div className="text-sm text-grey p-1">
+                        Choose the plan that will work for you
+                      </div>
+                      <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 m-1 gap-1">
+                        {packagesList.length > 0 &&
+                          packagesList.map((pack: any, index: any) => {
+                            // const check = packname == pack.name != "Free";
+                            const issamepackage = packname === pack.name;
+                            return (
+                              <div
+                                key={index}
+                                className={`shadow-md rounded-md p-0 cursor-pointer ${
+                                  activePackage === pack
+                                    ? "bg-[#F2FFF2] border-[#4DCE7A] border-2"
+                                    : ""
+                                }`}
+                                onClick={() =>
+                                  (!issamepackage && pack.name === "Free") ||
+                                  (issamepackage &&
+                                    pack.name === "Free" &&
+                                    listed === 0)
+                                    ? {}
+                                    : handleClick(pack)
+                                }
+                              >
+                                <div
+                                  className={`text-lg font-bold rounded-t-md text-white py-2 px-4 mb-4 flex flex-col items-center justify-center`}
+                                  style={{
+                                    backgroundColor: pack.color,
+                                  }}
+                                >
+                                  <Image
+                                    className="w-8 h-8 object-cover rounded-full"
+                                    src={pack.imageUrl}
+                                    alt="Menu Image"
+                                    width={8}
+                                    height={8}
+                                  />
+                                  {pack.name}
+                                </div>
+                                <div className="p-3">
+                                  <ul className="flex flex-col gap-1 p-1">
+                                    {pack.features
+                                      .slice(0, 2)
+                                      .map((feature: any, index: number) => (
+                                        <li
+                                          key={index}
+                                          className="flex items-center gap-1"
+                                        >
+                                          <Image
+                                            src={`/assets/icons/${
+                                              feature.checked
+                                                ? "check"
+                                                : "cross"
+                                            }.svg`}
+                                            alt={
+                                              feature.checked
+                                                ? "check"
+                                                : "cross"
+                                            }
+                                            width={24}
+                                            height={24}
+                                          />
+                                          <p className="text-sm">
+                                            {feature.title}
+                                          </p>
+                                        </li>
+                                      ))}
+                                  </ul>
+                                </div>
+                                <div className="p-3">
+                                  <div className="text-gray-600 mb-1">
+                                    <div className="flex gap-2 text-sm">
+                                      {daysRemaining > 0 &&
+                                      pack.name === packname ? (
+                                        <>
+                                          <div className="p-1 flex-block rounded-full bg-emerald-500">
                                             <p className="text-white text-xs">
                                               Active
                                             </p>
                                           </div>
-                                        )
+                                        </>
+                                      ) : (
+                                        <>
+                                          {(!issamepackage &&
+                                            pack.name === "Free") ||
+                                          (issamepackage &&
+                                            pack.name === "Free" &&
+                                            listed === 0) ? (
+                                            <div>
+                                              <div className="p-1 items-center justify-center flex rounded-full bg-grey-50">
+                                                <p className="text-black font-bold text-xs">
+                                                  Disabled
+                                                </p>
+                                              </div>
+                                              <div className="text-xs text-grey-200 p-1">
+                                                You can&apos;t subscribe to Free
+                                                Package
+                                              </div>
+                                            </div>
+                                          ) : (
+                                            issamepackage &&
+                                            pack.name === "Free" &&
+                                            listed > 0 && (
+                                              <div className="p-1 w-full items-center justify-center flex rounded-full bg-emerald-500">
+                                                <p className="text-white text-xs">
+                                                  Active
+                                                </p>
+                                              </div>
+                                            )
+                                          )}
+                                        </>
                                       )}
-                                    </>
-                                  )}
+                                    </div>
+                                  </div>
+                                  <div className="text-center">
+                                    {pack.name === "Free" ? (
+                                      <></>
+                                    ) : (
+                                      <>
+                                        <div className="text-gray-800 font-bold mb-0">
+                                          <ul className="flex flex-col gap-0 py-0">
+                                            {pack.price.map(
+                                              (price: any, index: number) => (
+                                                <li
+                                                  key={index}
+                                                  className={`flex items-center gap-0 ${
+                                                    index !== activeButton
+                                                      ? "hidden"
+                                                      : ""
+                                                  }`}
+                                                >
+                                                  <p className="p-16-regular">
+                                                    Ksh {price.amount}/{" "}
+                                                    {activeButtonTitle}
+                                                  </p>
+                                                </li>
+                                              )
+                                            )}
+                                          </ul>
+                                        </div>
+                                      </>
+                                    )}
+                                  </div>
                                 </div>
                               </div>
-                              <div className="text-center">
-                                {pack.name === "Free" ? (
-                                  <></>
-                                ) : (
-                                  <>
-                                    <div className="text-gray-800 font-bold mb-0">
-                                      <ul className="flex flex-col gap-0 py-0">
-                                        {pack.price.map(
-                                          (price: any, index: number) => (
-                                            <li
-                                              key={index}
-                                              className={`flex items-center gap-0 ${
-                                                index !== activeButton
-                                                  ? "hidden"
-                                                  : ""
-                                              }`}
-                                            >
-                                              <p className="p-16-regular">
-                                                Ksh {price.amount}/{" "}
-                                                {activeButtonTitle}
-                                              </p>
-                                            </li>
-                                          )
-                                        )}
-                                      </ul>
-                                    </div>
-                                  </>
-                                )}
-                              </div>
-                            </div>
-                          </div>
-                        );
-                      })}
-                  </div>
+                            );
+                          })}
+                      </div>
 
-                  <div className="h-auto md:h-24 p-3 flex flex-col md:flex-row justify-between items-center">
-                    {/* Left-aligned buttons */}
-                    <div className="flex flex-wrap justify-center md:justify-start items-center mb-4 md:mb-0">
-                      <button
-                        className={`mr-4 mb-2 md:mb-0 ${
-                          activeButton === 0
-                            ? "bg-gradient-to-b from-[#4DCE7A] to-[#30AF5B] text-white p-2 rounded-full"
-                            : "border border-[#30AF5B] text-[#30AF5B] rounded-full p-2"
-                        }`}
-                        onClick={() => handleButtonClick(0, "1 week")}
-                      >
-                        1 week
-                      </button>
-                      <button
-                        className={`mr-4 mb-2 md:mb-0 ${
-                          activeButton === 1
-                            ? "bg-gradient-to-b from-[#4DCE7A] to-[#30AF5B] text-white p-2 rounded-full"
-                            : "border border-[#30AF5B] text-[#30AF5B] rounded-full p-2"
-                        }`}
-                        onClick={() => handleButtonClick(1, "1 month")}
-                      >
-                        1 month
-                      </button>
-                      <button
-                        className={`mr-4 mb-2 md:mb-0 ${
-                          activeButton === 2
-                            ? "bg-gradient-to-b from-[#4DCE7A] to-[#30AF5B] text-white p-2 rounded-full"
-                            : "border border-[#30AF5B] text-[#30AF5B] rounded-full p-2"
-                        }`}
-                        onClick={() => handleButtonClick(2, "3 months")}
-                      >
-                        3 months
-                      </button>
-                      <button
-                        className={`mr-4 mb-2 md:mb-0 ${
-                          activeButton === 3
-                            ? "bg-gradient-to-b from-[#4DCE7A] to-[#30AF5B] text-white p-2 rounded-full"
-                            : "border border-[#30AF5B] text-[#30AF5B] rounded-full p-2"
-                        }`}
-                        onClick={() => handleButtonClick(3, " 6 months")}
-                      >
-                        6 months
-                      </button>
-                      <button
-                        className={`mr-4 mb-2 md:mb-0 ${
-                          activeButton === 4
-                            ? "bg-gradient-to-b from-[#4DCE7A] to-[#30AF5B] text-white p-2 rounded-full"
-                            : "border border-[#30AF5B] text-[#30AF5B] rounded-full p-2"
-                        }`}
-                        onClick={() => handleButtonClick(4, " 1 year")}
-                      >
-                        1 year
-                      </button>
-                    </div>
+                      <div className="h-auto md:h-24 p-3 flex flex-col md:flex-row justify-between items-center">
+                        {/* Left-aligned buttons */}
+                        <div className="flex flex-wrap justify-center md:justify-start items-center mb-4 md:mb-0">
+                          <button
+                            className={`mr-4 mb-2 md:mb-0 ${
+                              activeButton === 0
+                                ? "bg-gradient-to-b from-[#4DCE7A] to-[#30AF5B] text-white p-2 rounded-full"
+                                : "border border-[#30AF5B] text-[#30AF5B] rounded-full p-2"
+                            }`}
+                            onClick={() => handleButtonClick(0, "1 week")}
+                          >
+                            1 week
+                          </button>
+                          <button
+                            className={`mr-4 mb-2 md:mb-0 ${
+                              activeButton === 1
+                                ? "bg-gradient-to-b from-[#4DCE7A] to-[#30AF5B] text-white p-2 rounded-full"
+                                : "border border-[#30AF5B] text-[#30AF5B] rounded-full p-2"
+                            }`}
+                            onClick={() => handleButtonClick(1, "1 month")}
+                          >
+                            1 month
+                          </button>
+                          <button
+                            className={`mr-4 mb-2 md:mb-0 ${
+                              activeButton === 2
+                                ? "bg-gradient-to-b from-[#4DCE7A] to-[#30AF5B] text-white p-2 rounded-full"
+                                : "border border-[#30AF5B] text-[#30AF5B] rounded-full p-2"
+                            }`}
+                            onClick={() => handleButtonClick(2, "3 months")}
+                          >
+                            3 months
+                          </button>
+                          <button
+                            className={`mr-4 mb-2 md:mb-0 ${
+                              activeButton === 3
+                                ? "bg-gradient-to-b from-[#4DCE7A] to-[#30AF5B] text-white p-2 rounded-full"
+                                : "border border-[#30AF5B] text-[#30AF5B] rounded-full p-2"
+                            }`}
+                            onClick={() => handleButtonClick(3, " 6 months")}
+                          >
+                            6 months
+                          </button>
+                          <button
+                            className={`mr-4 mb-2 md:mb-0 ${
+                              activeButton === 4
+                                ? "bg-gradient-to-b from-[#4DCE7A] to-[#30AF5B] text-white p-2 rounded-full"
+                                : "border border-[#30AF5B] text-[#30AF5B] rounded-full p-2"
+                            }`}
+                            onClick={() => handleButtonClick(4, " 1 year")}
+                          >
+                            1 year
+                          </button>
+                        </div>
 
-                    {/* Right-aligned input field and button 
+                        {/* Right-aligned input field and button 
                     <div className="flex items-center">
                       <label
                         htmlFor="color"
@@ -3869,11 +3882,14 @@ const AdForm = ({
                       />
                     </div>
                     */}
-                  </div>
-                </>
-              )}
-            </div>
-          </div>
+                      </div>
+                    </>
+                  )}
+                </div>
+              </div>
+            </>
+          )}
+
           <Button
             type="submit"
             size="lg"

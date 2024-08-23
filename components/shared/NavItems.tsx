@@ -45,7 +45,7 @@ const NavItems = ({ userstatus, userId }: NavItemsProps) => {
                   "bg-gradient-to-b from-[#4DCE7A] to-[#30AF5B] text-white rounded-full"
                 } p-medium-16 whitespace-nowrap`}
               >
-                <Link href={linki}>
+                <Link href={userId ? linki : "/sign-in"}>
                   <div className="flex hover:bg-slate-100 hover:rounded-full hover:text-emerald-600 p-3 mb-1 hover:cursor-pointer">
                     {link.label === "Sell" && (
                       <span>

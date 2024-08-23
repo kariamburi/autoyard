@@ -190,9 +190,8 @@ export default function Navbarhome({ userstatus, userId }: NavProps) {
             <div className="w-8 h-8 flex items-center justify-center rounded-full bg-white tooltip tooltip-bottom hover:cursor-pointer">
               <UserButton afterSignOutUrl="/" />
             </div>
-
-            <MobileNav userstatus={userstatus} userId={userId} />
           </SignedIn>
+          <MobileNav userstatus={userstatus} userId={userId} />
         </div>
       </div>
       <div>
