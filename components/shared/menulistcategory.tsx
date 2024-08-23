@@ -1,4 +1,3 @@
-
 import { DeleteCategory } from "./DeleteCategory";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import {
@@ -18,7 +17,10 @@ export default function Menulistcategory({ categoryList }: MobileProps) {
       <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols- m-1 gap-1">
         {categoryList.length > 0 &&
           categoryList.map((category: any) => (
-            <div className="bg-white flex flex-col items-center justify-center cursor-pointer rounded-sm p-1 border-0 border-emerald-300 hover:bg-emerald-100 ">
+            <div
+              key={category._id}
+              className="bg-white flex flex-col items-center justify-center cursor-pointer rounded-sm p-1 border-0 border-emerald-300 hover:bg-emerald-100 "
+            >
               <div className="flex flex-col items-center justify-center">
                 <a href={"/" + category.name}>
                   <Image

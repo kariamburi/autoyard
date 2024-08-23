@@ -22,7 +22,7 @@ type CollectionProps = {
   collectionType?: "Ads_Organized" | "My_Tickets" | "All_Ads";
 };
 
-const dashboardBookmark = ({
+const DashboardBookmark = ({
   userId,
   data,
   user,
@@ -114,4 +114,4 @@ CollectionProps) => {
   );
 };
 
-export default dashboardBookmark;
+export default DashboardBookmark;

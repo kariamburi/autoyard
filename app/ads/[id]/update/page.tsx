@@ -1,7 +1,7 @@
 import EventForm from "@/components/shared/EventForm";
 import Dashboard from "@/components/shared/dashboard";
 import Navbar from "@/components/shared/navbar";
-import { getAdById } from "@/lib/actions/ad.actions";
+import Image from "next/image";
 import { getAllPackages } from "@/lib/actions/packages.actions";
 import { getData } from "@/lib/actions/transactionstatus";
 import { auth } from "@clerk/nextjs/server";
@@ -32,7 +32,7 @@ const UpdateAd = async ({ params: { id } }: UpdateAdProps) => {
   // console.log(packagesList);
   try {
     subscription = await getData(userId);
-    console.log(subscription);
+    // console.log(subscription);
     // Step 1: Parse createdAt date string into a Date object
     listed = subscription.ads;
 
@@ -75,7 +75,7 @@ const UpdateAd = async ({ params: { id } }: UpdateAdProps) => {
         </div>
         <div className="max-w-6xl mx-auto mt-20">
           <div className="flex gap-1 items-center">
-            <img
+            <Image
               src="/assets/icons/loading.gif"
               alt="edit"
               width={60}

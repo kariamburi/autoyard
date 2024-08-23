@@ -34,7 +34,7 @@ type packageFormProps = {
   packageId?: string;
 };
 
-const packageForm = ({ type, pack, packageId }: packageFormProps) => {
+const PackageForm = ({ type, pack, packageId }: packageFormProps) => {
   //const initialValues = AdDefaultValues;
 
   const initialValues =
@@ -498,4 +498,4 @@ const packageForm = ({ type, pack, packageId }: packageFormProps) => {
   );
 };
 
-export default packageForm;
+export default PackageForm;

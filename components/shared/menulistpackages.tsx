@@ -1,4 +1,3 @@
-
 import Link from "next/link";
 import { CheckCircleIcon } from "lucide-react";
 import Image from "next/image";
@@ -29,7 +28,10 @@ export default function menulistpackages({ packagesList }: packProps) {
       <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 m-1 gap-1">
         {packagesList.length > 0 &&
           packagesList.map((pack: any) => (
-            <div className="bg-white shadow-md rounded-md p-0 items-center">
+            <div
+              key={pack._id}
+              className="bg-white shadow-md rounded-md p-0 items-center"
+            >
               <div
                 className={`text-lg font-bold rounded-t-md text-white py-2 px-4 mb-4 flex flex-col items-center justify-center`}
                 style={{

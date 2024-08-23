@@ -162,7 +162,7 @@ const DashboardPay = ({ userId, trans }: payProps) => {
                     <div className="flex flex-col border shadow-lg rounded-lg bg-gray-100 p-2 mb-2 w-full h-[400px]">
                       <div className="flex justify-between w-full items-center">
                         <div className="flex gap-1 items-center">
-                          <div className="text-3xl text-grey-900 font-bold p-2">
+                          <div className="font-bold text-[25px] text-grey-900 font-bold p-2">
                             Plan
                           </div>
                         </div>
