@@ -12,6 +12,7 @@ import { usePathname } from "next/navigation";
 import { useToast } from "../ui/use-toast";
 import { createBookmark } from "@/lib/actions/bookmark.actions";
 import BookmarkIcon from "@mui/icons-material/Bookmark";
+import LocalSeeOutlinedIcon from "@mui/icons-material/LocalSeeOutlined";
 import {
   Tooltip,
   TooltipContent,
@@ -32,6 +33,12 @@ const VerticalCard = ({ userId, ad, isAdCreator }: CardProps) => {
       return title.substring(0, maxLength) + "...";
     }
     return title;
+  };
+  const truncateaddress = (address: string, maxLength: number) => {
+    if (address.length > maxLength) {
+      return address.substring(0, maxLength) + "...";
+    }
+    return address;
   };
   const handle = async (id: string) => {
     const newBookmark = await createBookmark({
@@ -59,25 +66,13 @@ const VerticalCard = ({ userId, ad, isAdCreator }: CardProps) => {
         className="flex-center flex-grow bg-gray-50 bg-cover bg-center text-grey-500"
       />
       {/* IS Ad CREATOR ... */}
-      <div className="ml-1 mt-40 gap-1 absolute bg-gray-800 bg-opacity-70 text-xs text-white right-50 top-100 flex rounded-lg p-1 shadow-sm transition-all">
-        <PhotoCameraFrontIcon sx={{ fontSize: 16 }} />
-        {ad.imageUrls.length}
-      </div>
-      {ad.youtube && (
-        <div className="ml-1 mt-40 gap-1 mr-1 cursor-pointer absolute bg-[#000000] bg-opacity-70 text-xs text-white right-0 top-100 flex rounded-lg p-1 shadow-sm transition-all">
-          <YouTubeIcon
-            sx={{ fontSize: 16, cursor: "pointer" }}
-            style={{ color: "red" }}
-          />{" "}
-          Video
-        </div>
-      )}
+
       {ad.plan.name !== "Free" && (
         <div
           style={{
             backgroundColor: ad.plan.color,
           }}
-          className="absolute shadow-lg top-0 left-0 text-white text-xs py-1 px-3 rounded-br-lg rounded-tl-lg"
+          className="absolute top-0 shadow-lg left-0 text-white text-[10px] py-1 px-1 lg:text-xs lg:py-1 lg:px-3 rounded-br-lg rounded-tl-lg"
         >
           <Link href={`/plan`}>
             <div className="flex gap-1 cursor-pointer">{ad.plan.name}</div>
@@ -86,9 +81,8 @@ const VerticalCard = ({ userId, ad, isAdCreator }: CardProps) => {
       )}
       {ad.organizer.verified &&
         ad.organizer?.verified[0]?.accountverified === true && (
-          <div className="absolute bg-emerald-100 top-0 right-0 text-xs py-1 px-3 rounded-bl-lg rounded-tr-lg">
+          <div className="absolute bg-emerald-100 top-0 right-0 text-[10px] py-1 px-1 lg:text-xs lg:py-1 lg:px-3 rounded-bl-lg rounded-tr-lg">
             <div className="flex gap-1 cursor-pointer">
-              {" "}
               <VerifiedUserOutlinedIcon sx={{ fontSize: 16 }} />
               Verified
             </div>
@@ -107,30 +101,48 @@ const VerticalCard = ({ userId, ad, isAdCreator }: CardProps) => {
           <DeleteConfirmation adId={ad._id} imageUrls={ad.imageUrls} />
         </div>
       )}
-      {!isAdCreator && (
-        <div
-          className="absolute right-2 bottom-20  w-8 h-8 p-1 shadow-lg flex items-center justify-center rounded-full bg-white text-emerald-500 tooltip tooltip-bottom hover:text-[#2BBF4E] hover:cursor-pointer"
-          data-tip="Bookmark"
-          onClick={() => handle(ad._id)}
-        >
-          <TooltipProvider>
-            <Tooltip>
-              <TooltipTrigger asChild>
-                <BookmarkIcon />
-              </TooltipTrigger>
-              <TooltipContent>
-                <p> Save Ad</p>
-              </TooltipContent>
-            </Tooltip>
-          </TooltipProvider>
+      <div className="flex min-h-[80px] lg:items-center flex-col p-1">
+        <div className="w-full flex justify-between absolute top-1/2 left-1/2 transform -translate-x-1/2 p-1 rounded-full">
+          <div className="gap-1 cursor-pointer bg-[#000000] bg-opacity-70 text-[10px] lg:text-xs text-white flex rounded-lg p-1 shadow-sm transition-all">
+            <LocalSeeOutlinedIcon sx={{ fontSize: 16, cursor: "pointer" }} />
+            {ad.imageUrls.length}
+          </div>
+          {ad.youtube && (
+            <div className="gap-1 cursor-pointer bg-[#000000] bg-opacity-70 text-[10px] lg:text-xs text-white flex rounded-lg p-1 shadow-sm transition-all">
+              <YouTubeIcon
+                sx={{ fontSize: 16, cursor: "pointer" }}
+                style={{ color: "red" }}
+              />{" "}
+              Video
+            </div>
+          )}
         </div>
-      )}
 
-      <div className="flex min-h-[80px] items-center flex-col">
+        {!isAdCreator && (
+          <div className="w-full flex justify-end  absolute top-2/3 left-1/2 transform -translate-x-1/2 p-1 rounded-full">
+            <div
+              className="w-8 h-8 p-1 mt-[-10px] shadow-lg flex items-center justify-center rounded-full bg-white text-emerald-500 tooltip tooltip-bottom hover:text-[#2BBF4E] hover:cursor-pointer"
+              data-tip="Bookmark"
+              onClick={() => handle(ad._id)}
+            >
+              <TooltipProvider>
+                <Tooltip>
+                  <TooltipTrigger asChild>
+                    <BookmarkIcon />
+                  </TooltipTrigger>
+                  <TooltipContent>
+                    <p> Save Ad</p>
+                  </TooltipContent>
+                </Tooltip>
+              </TooltipProvider>
+            </div>
+          </div>
+        )}
+
         {isAdCreator ? (
           <div className="flex justify-between items-center w-full p-1">
             <Link href={`/ads/${ad._id}`} className="no-underline">
-              <span className="text-emerald-950 p-bold-16 w-min rounded-full px-4 p-1 text-green-60">
+              <span className="text-emerald-950 text-[12px] lg:text-lg font-bold w-min rounded-full px-4 p-1 text-green-60">
                 {NGnaira.format(ad.price)}
               </span>
             </Link>
@@ -157,32 +169,39 @@ const VerticalCard = ({ userId, ad, isAdCreator }: CardProps) => {
             </Link>
           </div>
         )}
-        <Link href={`/ads/${ad._id}`} className="no-underline text-sm">
+        <Link
+          href={`/ads/${ad._id}`}
+          className="no-underline text-[12px] lg:text-sm"
+        >
           {truncateTitle(ad.title, 30)}
           {/* Change 20 to your desired character limit */}
         </Link>
         {ad.calcDistance && (
-          <div className="text-xs text-emerald-500">
+          <div className="text-[10px] lg:text-xs text-emerald-500">
             {Math.round(ad.calcDistance / 100) / 10} KM Away
           </div>
         )}
-        <div className="text-gray-500 text-xs">
-          <LocationOnIcon sx={{ fontSize: 16 }} />
-          {ad.address}
+        <div className="text-gray-500 text-[12px] hidden lg:inline">
+          <LocationOnIcon sx={{ fontSize: 14 }} />
+          {truncateaddress(ad.address, 40)}
+        </div>
+        <div className="text-gray-500 text-[10px] lg:hidden">
+          <LocationOnIcon sx={{ fontSize: 14 }} />
+          {truncateaddress(ad.address, 30)}
         </div>
         <div className="flex justify-between w-full gap-1 p-1">
           {ad.vehiclecondition && (
-            <div className="flex gap-2 text-xs bg-[#ebf2f7] rounded-sm p-1 justify-center border">
+            <div className="flex gap-2 text-[8px] lg:text-xs bg-[#ebf2f7] rounded-sm p-1 justify-center border">
               {ad.vehiclecondition}
             </div>
           )}
           {ad.vehicleTransmissions && (
-            <div className="flex gap-2 text-xs bg-[#ebf2f7] rounded-sm p-1 justify-center border">
+            <div className="flex gap-2 text-[8px] lg:text-xs bg-[#ebf2f7] rounded-sm p-1 justify-center border">
               {ad.vehicleTransmissions}
             </div>
           )}
           {ad.vehicleEngineSizesCC && (
-            <div className="flex gap-2 text-xs bg-[#ebf2f7] rounded-sm p-1 justify-center border">
+            <div className="flex gap-2 text-[8px] lg:text-xs bg-[#ebf2f7] rounded-sm p-1 justify-center border">
               {ad.vehicleEngineSizesCC}
             </div>
           )}

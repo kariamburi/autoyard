@@ -9,6 +9,7 @@ import PhotoCameraFrontIcon from "@mui/icons-material/PhotoCameraFront";
 import YouTubeIcon from "@mui/icons-material/YouTube";
 import VerifiedUserOutlinedIcon from "@mui/icons-material/VerifiedUserOutlined";
 import BookmarkIcon from "@mui/icons-material/Bookmark";
+import LocalSeeOutlinedIcon from "@mui/icons-material/LocalSeeOutlined";
 import {
   Tooltip,
   TooltipContent,
@@ -54,19 +55,20 @@ const HorizontalCard = ({ userId, ad, isAdCreator }: CardProps) => {
   return (
     <>
       <div className="flex w-full mb-4 rounded-lg bg-white hover:cursor-pointer shadow">
-        <div className="relative">
-          <img
+        <div className="relative w-[180px] h-max-[200px]">
+          <Image
             src={ad.imageUrls[0]}
             alt="ad image"
-            className="object-cover rounded-l-lg"
-            style={{ width: "200px", height: "180px" }}
+            className="object-cover rounded-l-lg h-full w-full"
+            width={20}
+            height={20}
           />
           {ad.plan.name !== "Free" && (
             <div
               style={{
                 backgroundColor: ad.plan.color,
               }}
-              className="absolute shadow-lg top-0 left-0 text-white text-xs py-1 px-3 rounded-br-lg rounded-tl-lg"
+              className="absolute top-0 shadow-lg left-0 text-white text-[10px] py-1 px-1 lg:text-xs lg:py-1 lg:px-3 rounded-br-lg rounded-tl-lg"
             >
               <Link href={`/plan`}>
                 <div className="flex gap-1 cursor-pointer">{ad.plan.name}</div>
@@ -74,10 +76,9 @@ const HorizontalCard = ({ userId, ad, isAdCreator }: CardProps) => {
             </div>
           )}
           {ad.organizer.verified &&
-            ad.organizer.verified[0].accountverified === true && (
-              <div className="absolute bg-emerald-100 top-0 right-0 text-xs py-1 px-3 rounded-bl-lg">
+            ad.organizer?.verified[0]?.accountverified === true && (
+              <div className="absolute bg-emerald-100 top-0 right-0 text-[10px] py-1 px-1 lg:text-xs lg:py-1 lg:px-3 rounded-bl-lg rounded-tr-lg">
                 <div className="flex gap-1 cursor-pointer">
-                  {" "}
                   <VerifiedUserOutlinedIcon sx={{ fontSize: 16 }} />
                   Verified
                 </div>
@@ -116,7 +117,7 @@ const HorizontalCard = ({ userId, ad, isAdCreator }: CardProps) => {
           )}
 
           <div className="ml-1 mb-1 z-5 bottom-0 gap-1 absolute bg-gray-800 bg-opacity-70 text-xs text-white right-50 top-100 flex rounded-lg p-1 shadow-sm transition-all">
-            <PhotoCameraFrontIcon sx={{ fontSize: 16 }} />
+            <LocalSeeOutlinedIcon sx={{ fontSize: 16 }} />
             {ad.imageUrls.length}
           </div>
           {ad.youtube && (
@@ -124,7 +125,7 @@ const HorizontalCard = ({ userId, ad, isAdCreator }: CardProps) => {
               <YouTubeIcon
                 sx={{ fontSize: 16, cursor: "pointer" }}
                 style={{ color: "red" }}
-              />{" "}
+              />
               Video
             </div>
           )}
@@ -137,15 +138,15 @@ const HorizontalCard = ({ userId, ad, isAdCreator }: CardProps) => {
           >
             {ad.title}
           </Link>
-          <div className="ml-3 mr-2 text-sm">
+          <div className="ml-3 mr-2 text-[12px] lg:text-sm">
             {ad?.description && truncateTitle(ad?.description, 120)}
           </div>
           {ad.calcDistance && (
-            <div className="ml-3 mt-1 text-xs text-emerald-500">
+            <div className="ml-3 mt-1 text-[10px] lg:text-xs text-emerald-500">
               {Math.round(ad.calcDistance / 100) / 10} KM Away
             </div>
           )}
-          <div className="ml-2 mt-1 text-gray-500 text-xs">
+          <div className="ml-2 mt-1 text-gray-500 text-[10px] lg:text-xs">
             <LocationOnIcon sx={{ fontSize: 16 }} />
             {ad.address}
           </div>
@@ -173,26 +174,26 @@ const HorizontalCard = ({ userId, ad, isAdCreator }: CardProps) => {
           ) : (
             <div className="flex items-center p-1">
               <Link href={`/ads/${ad._id}`} className="no-underline">
-                <span className="text-emerald-950 p-bold-16 w-min rounded-full px-4 p-1 text-green-60">
+                <span className="text-emerald-950 text-[12px] lg:text-lg w-min rounded-full px-4 p-1 text-green-60">
                   {NGnaira.format(ad.price)}
                 </span>
               </Link>
             </div>
           )}
 
-          <div className="flex gap-1 mt-1 w-full gap-1 pl-5 pr-5">
+          <div className="flex gap-1 mt-1 w-full gap-1 pl-5 pr-5 pb-2">
             {ad.vehiclecondition && (
-              <div className="flex gap-2 text-xs bg-[#ebf2f7] rounded-sm p-1 justify-center border">
+              <div className="flex gap-2 text-[12px] lg:text-xs bg-[#ebf2f7] rounded-sm p-1 justify-center border">
                 {ad.vehiclecondition}
               </div>
             )}
             {ad.vehicleTransmissions && (
-              <div className="flex gap-2 text-xs bg-[#ebf2f7] rounded-sm p-1 justify-center border">
+              <div className="flex gap-2 text-[12px] lg:text-xs bg-[#ebf2f7] rounded-sm p-1 justify-center border">
                 {ad.vehicleTransmissions}
               </div>
             )}
             {ad.vehicleEngineSizesCC && (
-              <div className="flex gap-2 text-xs bg-[#ebf2f7] rounded-sm p-1 justify-center border">
+              <div className="flex gap-2 text-[12px] lg:text-xs bg-[#ebf2f7] rounded-sm p-1 justify-center border">
                 {ad.vehicleEngineSizesCC}
               </div>
             )}
