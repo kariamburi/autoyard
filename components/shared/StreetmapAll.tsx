@@ -70,14 +70,15 @@ const StreetmapAll = ({ data }: CardProps) => {
           </Popup>
         </Marker>
       )}
-      {data.map((ad) => {
+      {data.map((ad, index) => {
         return (
           <Marker
+            key={index}
             position={[parseFloat(ad.latitude), parseFloat(ad.longitude)]}
             icon={customIcon}
           >
             <Popup>
-              <div key={ad._id} className="flex gap-1 p-1 w-[200px]">
+              <div className="flex gap-1 p-1 w-[200px]">
                 <Link href={`/ads/${ad._id}`} className="flex justify-center">
                   <Image
                     src={ad.imageUrls[0]}

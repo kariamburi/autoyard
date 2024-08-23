@@ -22,7 +22,7 @@ type packProps = {
   }[];
 };
 
-export default function menulistpackages({ packagesList }: packProps) {
+export default function Menulistpackages({ packagesList }: packProps) {
   return (
     <div className="container mx-auto mt-0 bg-grey-50 p-2 rounded-sm">
       <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 m-1 gap-1">

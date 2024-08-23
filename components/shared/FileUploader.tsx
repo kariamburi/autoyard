@@ -202,6 +202,8 @@ export function FileUploader({
                       src={url}
                       alt={`image-${index}`}
                       className="w-full h-full object-cover object-center rounded-sm"
+                      width={77}
+                      height={77}
                     />
                     <div
                       onClick={() => handleRemoveImage(index)}
