@@ -24,7 +24,7 @@ import { useRouter } from "next/navigation";
 import { ICategory } from "@/lib/database/models/category.model";
 import { FileUploaderCategory } from "./FileuploaderCategory";
 import { createCategory, updateCategory } from "@/lib/actions/category.actions";
-import { useState } from "react";
+import { SetStateAction, useState } from "react";
 
 type CategoryFormProps = {
   type: "Create" | "Update";
@@ -107,11 +107,7 @@ const CategoryForm = ({ type, category, categoryId }: CategoryFormProps) => {
     // console.log(values);
   }
   const [newListingTitle, setNewListingTitle] = useState("");
-  const handleInputChangeTitle = (event: {
-    target: { value: SetStateAction<string> };
-  }) => {
-    setNewListingTitle(event.target.value);
-  };
+
   return (
     <Form {...form}>
       <form
@@ -175,7 +171,8 @@ const CategoryForm = ({ type, category, categoryId }: CategoryFormProps) => {
                         <Input
                           className="ml-2 mr-2"
                           value={newListingTitle}
-                          onChange={handleInputChangeTitle}
+                          //    onChange={handleInputChangeTitle}
+                          onChange={(e) => setNewListingTitle(e.target.value)}
                           placeholder="Name"
                         />
 
