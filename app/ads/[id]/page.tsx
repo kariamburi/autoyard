@@ -17,31 +17,14 @@ import Footersub from "@/components/shared/Footersub";
 const Collection = dynamic(() => import("@/components/shared/Collection"), {
   ssr: false,
   loading: () => (
-    <div className="w-full h-full flex flex-col items-center justify-center">
-      <div className="flex flex-wrap mt-10 gap-1 justify-center">
-        <Skeleton
-          variant="rectangular"
-          animation="wave"
-          height={250}
-          className="rounded-sm w-[200px] md:w-[200px] lg:w-[250px]"
-        />
-        <Skeleton
-          variant="rectangular"
-          animation="wave"
-          height={250}
-          className="rounded-sm w-[200px] md:w-[200px] lg:w-[250px]"
-        />
-        <Skeleton
-          variant="rectangular"
-          animation="wave"
-          height={250}
-          className="rounded-sm w-[200px] md:w-[200px] lg:w-[250px]"
-        />
-        <Skeleton
-          variant="rectangular"
-          animation="wave"
-          height={250}
-          className="rounded-sm w-[200px] md:w-[200px] lg:w-[250px]"
+    <div>
+      <div className="w-full h-[300px] mb-2 bg-white rounded-lg flex flex-col items-center justify-center">
+        <Image
+          src="/assets/icons/loading2.gif"
+          alt="loading"
+          width={40}
+          height={40}
+          unoptimized
         />
       </div>
     </div>

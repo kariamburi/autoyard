@@ -33,7 +33,7 @@ const CollectionSearch = ({
   if (loading) {
     return (
       <div>
-        <div className="w-full mt-10 h-full flex flex-col items-center justify-center">
+        <div className="w-full mt-10 h-[200px] flex flex-col items-center justify-center">
           <Image
             src="/assets/icons/loading2.gif"
             alt="loading"
@@ -136,7 +136,7 @@ const CollectionSearch = ({
         </>
       ) : (
         <div className="flex-center wrapper min-h-[200px] w-full flex-col gap-3 rounded-[14px] bg-grey-50 py-28 text-center">
-          <h3 className="p-bold-20 md:h5-bold">{emptyTitle}</h3>
+          <h3 className="font-bold text-[25px]">{emptyTitle}</h3>
           <p className="p-regular-14">{emptyStateSubtext}</p>
         </div>
       )}

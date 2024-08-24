@@ -57,7 +57,7 @@ const HorizontalCard = ({ userId, ad, isAdCreator }: CardProps) => {
   return (
     <>
       <div className="flex w-full mb-2 rounded-lg bg-white hover:cursor-pointer shadow">
-        <div className="relative w-[160px] h-[180px]">
+        <div className="relative w-[160px] lg:w-[200px] h-[200px]">
           <img
             src={ad.imageUrls[0]}
             alt="ad image"
@@ -68,7 +68,7 @@ const HorizontalCard = ({ userId, ad, isAdCreator }: CardProps) => {
               style={{
                 backgroundColor: ad.plan.color,
               }}
-              className="absolute top-0 shadow-lg left-0 text-white text-[10px] py-1 px-1 lg:text-xs lg:py-1 lg:px-3 rounded-br-lg rounded-tl-lg"
+              className="absolute top-0 shadow-lg left-0 text-white text-[10px] py-1 px-1 lg:text-xs lg:py-1 lg:px-1 rounded-br-lg rounded-tl-lg"
             >
               <Link href={`/plan`}>
                 <div className="flex gap-1 cursor-pointer">{ad.plan.name}</div>
@@ -77,7 +77,7 @@ const HorizontalCard = ({ userId, ad, isAdCreator }: CardProps) => {
           )}
           {ad.organizer.verified &&
             ad.organizer?.verified[0]?.accountverified === true && (
-              <div className="absolute bg-emerald-100 top-0 right-0 text-[10px] py-1 px-1 lg:text-xs lg:py-1 lg:px-3 rounded-bl-lg rounded-tr-lg">
+              <div className="absolute bg-emerald-100 top-0 right-0 text-[10px] py-1 px-1 lg:text-xs lg:py-1 lg:px-1 rounded-bl-lg">
                 <div className="flex gap-1 cursor-pointer">
                   <VerifiedUserOutlinedIcon sx={{ fontSize: 16 }} />
                   Verified

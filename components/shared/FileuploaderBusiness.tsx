@@ -36,8 +36,13 @@ export function FileuploaderBusiness({
 
       {imageUrl ? (
         <div className="flex h-full w-full flex-1 justify-center ">
-          <Image src={imageUrl} alt="image" className="object-center"   width={77}
-            height={77}/>
+          <Image
+            src={imageUrl}
+            alt="image"
+            className="object-center w-full h-full"
+            width={900}
+            height={500}
+          />
         </div>
       ) : (
         <div className="flex-center flex-col py-5 text-grey-500">
