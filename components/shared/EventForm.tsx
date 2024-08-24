@@ -3386,7 +3386,7 @@ const AdForm = ({
                         </div>
 */}
                         <div className="relative p-2 w-full">
-                          <FileUploaderMobile
+                          <FileUploader
                             onFieldChange={field.onChange}
                             imageUrls={field.value}
                             setFiles={setFiles}

@@ -15,7 +15,7 @@ const Settings = async () => {
     return (
       <div className="flex-center h-screen w-full bg-[#ebf2f7] bg-dotted-pattern bg-cover bg-fixed bg-center">
         <div className="bg-gradient-to-r from-emerald-800 to-emerald-950 top-0 z-10 fixed w-full">
-          <div className="p-1">
+          <div className="p-2">
             <Navbar userstatus="User" userId={userId || ""} />
           </div>
         </div>
@@ -37,7 +37,7 @@ const Settings = async () => {
   return (
     <>
       <div className="bg-gradient-to-r from-emerald-800 to-emerald-950 z-10 top-0 fixed w-full">
-        <div className="p-1">
+        <div className="p-2">
           <Navbar userstatus="User" userId={userId} />
         </div>
       </div>

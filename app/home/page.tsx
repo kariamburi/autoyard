@@ -13,7 +13,7 @@ const Home = () => {
   return (
     <>
       <div className="bg-gradient-to-r from-emerald-800 to-emerald-950 fixed z-10 top-0 w-full">
-        <div className="p-3">
+        <div className="p-2">
           <Navbar userstatus="User" userId={userId} />
         </div>
       </div>

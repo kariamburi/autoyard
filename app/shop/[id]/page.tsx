@@ -98,7 +98,7 @@ const myads = async ({ params: { id }, searchParams }: SearchParamProps) => {
   return (
     <>
       <div className="bg-gradient-to-r from-emerald-800 to-emerald-950 z-10 top-0 fixed w-full">
-        <div className="p-3">
+        <div className="p-2">
           <Navbar userstatus="User" userId={myId} />
         </div>
       </div>

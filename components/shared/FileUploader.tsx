@@ -1,5 +1,4 @@
 import { useCallback, Dispatch, SetStateAction, useState } from "react";
-//import type { FileWithPath } from "@uploadthing/react";
 import { useDropzone } from "@uploadthing/react/hooks";
 import { generateClientDropzoneAccept } from "uploadthing/client";
 import AddBoxIcon from "@mui/icons-material/AddBox";
@@ -55,43 +54,32 @@ const applyWatermark = (
       ctx.drawImage(img, 0, 0);
 
       // Calculate font sizes based on the smaller dimension of the image
-      const headerFontSize = Math.min(canvas.width, canvas.height) * 0.08; // Adjust multiplier as needed
-      const contentFontSize = Math.min(canvas.width, canvas.height) * 0.05; // Adjust multiplier as needed
+      const headerFontSize = Math.min(canvas.width, canvas.height) * 0.08;
+      const contentFontSize = Math.min(canvas.width, canvas.height) * 0.05;
 
-      // Set header font
-      ctx.font = `bold ${headerFontSize}px Arial`; // Make header text bold
+      ctx.font = `bold ${headerFontSize}px Arial`;
       ctx.textAlign = "center";
 
-      // Calculate position for header text
-      const gap = headerFontSize * 0.5; // Adjust multiplier as needed for the gap
+      const gap = headerFontSize * 0.5;
       const headerCenterX = canvas.width / 2;
-      //const headerCenterY = canvas.height / 2 - headerFontSize + 270; // Position header slightly above center
-      const headerCenterY = canvas.height / 2 - gap / 2 + 280; // Position header slightly above center with gap
+      const headerCenterY = canvas.height / 2 - gap / 2 + 280;
 
-      // Draw header text border (stroke)
       ctx.lineWidth = 2;
-      ctx.strokeStyle = "rgba(255, 255, 255, 0.3)"; // White color with 0.8 opacity
+      ctx.strokeStyle = "rgba(255, 255, 255, 0.3)";
       ctx.strokeText(headerText, headerCenterX, headerCenterY);
 
-      // Fill header text color
-      ctx.fillStyle = "rgba(0, 0, 0, 0.1)"; // Black color with full opacity
+      ctx.fillStyle = "rgba(0, 0, 0, 0.1)";
       ctx.fillText(headerText, headerCenterX, headerCenterY);
 
-      // Set content font
-      ctx.font = `bold ${contentFontSize}px Arial`; // Make content text bold
-
-      // Calculate position for content text
+      ctx.font = `bold ${contentFontSize}px Arial`;
       const contentCenterX = canvas.width / 2;
-      // const contentCenterY = canvas.height / 2 + contentFontSize; // Position content slightly below center
-      const contentCenterY = headerCenterY + gap / 4 + contentFontSize; // Position content below header with gap
+      const contentCenterY = headerCenterY + gap / 4 + contentFontSize;
 
-      // Draw content text border (stroke)
       ctx.lineWidth = 2;
-      ctx.strokeStyle = "rgba(255, 255, 255, 0.3)"; // White color with 0.8 opacity
+      ctx.strokeStyle = "rgba(255, 255, 255, 0.3)";
       ctx.strokeText(contentText, contentCenterX, contentCenterY);
 
-      // Fill content text color
-      ctx.fillStyle = "rgba(0, 0, 0, 0.1)"; // Black color with full opacity
+      ctx.fillStyle = "rgba(0, 0, 0, 0.1)";
       ctx.fillText(contentText, contentCenterX, contentCenterY);
 
       canvas.toBlob((blob) => {
@@ -122,29 +110,38 @@ export function FileUploader({
   const onDrop = useCallback(
     async (acceptedFiles: File[]) => {
       const filteredFiles = acceptedFiles.filter((file) => {
-        // Check if the file already exists in the list of imageUrls
         if (imageUrls.includes(convertFileToUrl(file))) {
           setmessage(`${file.name} has already been uploaded.`);
-          setShowAlert(true); // Show the custom alert
-          return false; // Exclude the file from the list
+          setShowAlert(true);
+          return false;
         }
         if (file.size > 5 * 1024 * 1024) {
           setmessage(
             `${file.name} exceeds the 5MB limit and will not be uploaded.`
           );
-          setShowAlert(true); // Show the custom alert
-          return false; // Exclude the file from the list
+          setShowAlert(true);
+          return false;
         }
-        return true; // Include the file in the list
+        return true;
       });
-      const watermarkedFiles: File[] = await Promise.all(
-        filteredFiles.map((file) =>
-          applyWatermark(file, userName.toUpperCase(), "POSTED ON OFFERUP")
-        )
+
+      const processedFiles: File[] = await Promise.all(
+        filteredFiles.map(async (file) => {
+          try {
+            return await applyWatermark(
+              file,
+              userName.toUpperCase(),
+              "POSTED ON WHEELS.CO.KE"
+            );
+          } catch (error) {
+            console.error("Watermark failed, proceeding without:", error);
+            return file; // Return the original file if watermarking fails
+          }
+        })
       );
 
-      setFiles((prevFiles: File[]) => [...prevFiles, ...watermarkedFiles]);
-      const urls = watermarkedFiles.map((file: File) => convertFileToUrl(file));
+      setFiles((prevFiles: File[]) => [...prevFiles, ...processedFiles]);
+      const urls = processedFiles.map((file: File) => convertFileToUrl(file));
       onFieldChange([...imageUrls, ...urls]);
     },
     [imageUrls, setFiles, onFieldChange]
@@ -156,6 +153,7 @@ export function FileUploader({
     onDrop,
     accept: generateClientDropzoneAccept(["image/*"]),
   });
+
   const handleRemoveImage = async (index: number) => {
     const url = new URL(imageUrls[index]);
     const deleteImage = url.pathname.split("/").pop();
@@ -173,7 +171,6 @@ export function FileUploader({
   return (
     <div className="flex-center bg-dark-3 flex cursor-pointer p-3 flex-col overflow-hidden rounded-xl bg-grey-50">
       <input {...getInputProps()} className="cursor-pointer" />
-      {/* Image */}
       <div className="text-left text-sm w-full mx-auto">
         <div className="font-semibold">Add Photo</div>
         <div>
@@ -191,36 +188,33 @@ export function FileUploader({
             <div {...getRootProps()}>
               <AddBoxIcon className="my-auto hover:cursor-pointer" />
             </div>
-            <ScrollArea className="w-[400px] sm:w-[400px] md:w-[500px] lg:w-full bg-white rounded-md border">
-              <div className="flex w-full p-4">
-                {imageUrls.map((url, index) => (
+            <div className="grid grid-cols-3 lg:grid-cols-5 w-full p-1">
+              {imageUrls.map((url, index) => (
+                <div
+                  key={index}
+                  className="relative rounded-sm shadow-sm p-1 bg-white w-20 h-20 lg:w-40 lg:h-40 flex-shrink-0"
+                >
+                  <img
+                    src={url}
+                    alt={`image-${index}`}
+                    className="w-full h-full object-cover object-center rounded-sm"
+                    width={77}
+                    height={77}
+                  />
                   <div
-                    key={index}
-                    className="relative rounded-sm shadow-sm p-1 bg-white w-20 h-20 lg:w-40 lg:h-40 flex-shrink-0"
+                    onClick={() => handleRemoveImage(index)}
+                    className="absolute top-0 right-0 rounded-xl bg-white p-1 shadow-sm"
                   >
                     <img
-                      src={url}
-                      alt={`image-${index}`}
-                      className="w-full h-full object-cover object-center rounded-sm"
-                      width={77}
-                      height={77}
+                      src="/assets/icons/delete.svg"
+                      alt="edit"
+                      width={20}
+                      height={20}
                     />
-                    <div
-                      onClick={() => handleRemoveImage(index)}
-                      className="absolute top-0 right-0 rounded-xl bg-white p-1 shadow-sm"
-                    >
-                      <img
-                        src="/assets/icons/delete.svg"
-                        alt="edit"
-                        width={20}
-                        height={20}
-                      />
-                    </div>
                   </div>
-                ))}
-              </div>
-              <ScrollBar orientation="horizontal" />
-            </ScrollArea>
+                </div>
+              ))}
+            </div>
           </div>
         ) : (
           <div
@@ -236,7 +230,7 @@ export function FileUploader({
             <h3 className="mb-2 mt-2">Drag photos here</h3>
             <p className="p-medium-12 mb-4">SVG, PNG, JPG</p>
             <Button type="button" className="rounded-full">
-              Select from computer
+              Tap to upload photos
             </Button>
           </div>
         )}
