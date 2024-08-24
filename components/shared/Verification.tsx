@@ -181,7 +181,7 @@ const Verification = ({ user, userId, isAdCreator }: setingsProp) => {
                       Account unverified
                     </h4>
                     <p className="text-sm">
-                      The seller's account has not been verified.
+                      The seller&apos;s account has not been verified.
                     </p>
                   </div>
                 </div>
