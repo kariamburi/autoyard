@@ -1341,7 +1341,7 @@ const SidebarSearch = ({
               <DialogHeader>
                 <DialogTitle>
                   <div className="text-sm w-full">
-                    <div className="flex text-sm text-gray-500 w-full gap-1 items-center mt-1 mb-1">
+                    <div className="flex text-sm text-gray-950 w-full gap-1 items-center mt-1 mb-1">
                       All Kenya -{category}
                       <div className="text-xs text-emerald-600">
                         | {totalRegion} ads
@@ -1376,7 +1376,7 @@ const SidebarSearch = ({
                                   key={index}
                                   onSelect={() => handleRegionClick(region._id)}
                                   // Attach onClick event handler
-                                  className={`flex bg-white w-full p-1 text-xs border-b justify-between ${
+                                  className={`flex bg-white w-full p-1 text-sm border-b justify-between ${
                                     selectedRegion === region._id
                                       ? "bg-emerald-100"
                                       : "" // Highlight selected item

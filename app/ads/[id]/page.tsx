@@ -180,11 +180,8 @@ const AdDetails = async ({
         </div>
 
         <footer>
-          <div className="hidden lg:inline">
+          <div>
             <Footersub />
-          </div>
-          <div className="lg:hidden">
-            <BottomNavigation />
           </div>
         </footer>
       </div>

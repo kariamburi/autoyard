@@ -138,9 +138,15 @@ const HorizontalCard = ({ userId, ad, isAdCreator }: CardProps) => {
           >
             {ad.title}
           </Link>
-          <div className="text-[12px] lg:text-sm">
+          <div className="text-[12px] lg:text-sm"></div>
+
+          <div className="text-sm hidden lg:inline">
             {ad?.description && truncateTitle(ad?.description, 100)}
           </div>
+          <div className="text-[12px] lg:hidden">
+            {ad?.description && truncateTitle(ad?.description, 50)}
+          </div>
+
           {ad.calcDistance && (
             <div className="text-[10px] lg:text-xs text-emerald-500">
               {Math.round(ad.calcDistance / 100) / 10} KM Away
