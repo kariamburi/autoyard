@@ -5,6 +5,7 @@ import { Toaster } from "@/components/ui/toaster";
 import SettingsOutlinedIcon from "@mui/icons-material/SettingsOutlined";
 import { auth } from "@clerk/nextjs/server";
 import Verification from "@/components/shared/Verification";
+import Image from "next/image";
 const Settings = async () => {
   const { sessionClaims } = auth();
   const userId = sessionClaims?.userId as string;
@@ -20,7 +21,7 @@ const Settings = async () => {
         </div>
         <div className="max-w-6xl mx-auto mt-20">
           <div className="flex gap-1 items-center">
-            <img
+            <Image
               src="/assets/icons/loading.gif"
               alt="edit"
               width={60}

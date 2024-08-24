@@ -3,7 +3,7 @@
 import Navbar from "@/components/shared/navbar";
 import { Toaster } from "@/components/ui/toaster";
 import React from "react";
-import { ScrollArea } from "@/components/ui/scroll-area";
+import Image from "next/image";
 import { auth } from "@clerk/nextjs/server";
 import {
   getallTransaction,
@@ -38,7 +38,7 @@ const Pay = async ({ params: { id } }: payProps) => {
         </div>
         <div className="max-w-6xl mx-auto mt-20">
           <div className="flex gap-1 items-center">
-            <img
+            <Image
               src="/assets/icons/loading.gif"
               alt="edit"
               width={60}

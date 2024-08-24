@@ -13,7 +13,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-
+import Image from "next/image";
 import { useEffect, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { formUrlQuery, removeKeysFromQuery } from "@/lib/utils";
@@ -23,25 +23,14 @@ import { IUser } from "@/lib/database/models/user.model";
 const CollectionMyads = dynamic(() => import("./CollectionMyads"), {
   ssr: false,
   loading: () => (
-    <div className="w-full h-full flex flex-col items-center justify-center">
-      <div className="flex flex-wrap mt-10 gap-1 justify-center">
-        <Skeleton
-          variant="rectangular"
-          animation="wave"
-          // height={250}
-          className="rounded-sm w-[200px] md:w-[200px] lg:w-[250px]"
-        />
-        <Skeleton
-          variant="rectangular"
-          animation="wave"
-          //  height={250}
-          className="rounded-sm w-[200px] md:w-[200px] lg:w-[250px]"
-        />
-        <Skeleton
-          variant="rectangular"
-          animation="wave"
-          // height={250}
-          className="rounded-sm w-[200px] md:w-[200px] lg:w-[250px]"
+    <div>
+      <div className="w-full mt-10 h-full flex flex-col items-center justify-center">
+        <Image
+          src="/assets/icons/loading2.gif"
+          alt="loading"
+          width={40}
+          height={40}
+          unoptimized
         />
       </div>
     </div>
@@ -51,12 +40,14 @@ const CollectionMyads = dynamic(() => import("./CollectionMyads"), {
 const SellerProfile = dynamic(() => import("./SellerProfile"), {
   ssr: false,
   loading: () => (
-    <div className="m-1 space-y-0 lg:flex lg:space-x-5">
-      <div className="flex flex-wrap mt-10 gap-1 justify-center">
-        <Skeleton
-          variant="rectangular"
-          animation="wave"
-          className="rounded-sm w-full md:w-[300px] lg:w-[300px]"
+    <div>
+      <div className="w-[300px] mt-10 h-full flex flex-col items-center justify-center">
+        <Image
+          src="/assets/icons/loading2.gif"
+          alt="loading"
+          width={40}
+          height={40}
+          unoptimized
         />
       </div>
     </div>

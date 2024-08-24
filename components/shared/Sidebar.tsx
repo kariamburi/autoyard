@@ -12,7 +12,7 @@ import {
 } from "firebase/firestore";
 import link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
-import Link from "next/link";
+import Image from "next/image";
 import { db } from "@/lib/firebase";
 import { format, isToday, isYesterday } from "date-fns";
 import UnreadmessagesPeruser from "./UnreadmessagesPeruser";
@@ -157,10 +157,12 @@ const Sidebar = ({ userId }: sidebarProps) => {
               >
                 <div className="flex items-center gap-2">
                   <span className="text-right my-auto">
-                    <img
+                    <Image
                       className="w-8 h-8 rounded-full object-cover"
                       src={messages.avatar}
                       alt="avatar"
+                      width={8}
+                      height={8}
                     />
                   </span>
                   <div className="text-xs">{messages.name}</div>

@@ -6,8 +6,7 @@ import "firebase/firestore";
 import { auth } from "@clerk/nextjs/server";
 import { getUserById } from "@/lib/actions/user.actions";
 import Navbar from "@/components/shared/navbar";
-//import SendReview from "@/components/shared/SendReview";
-//import ReviewsBox from "@/components/shared/ReviewsBox";
+import Image from "next/image";
 import NavbarReviews from "@/components/shared/NavbarReviews";
 //import SellerProfile from "@/components/shared/Seller//Profile";
 import { Toaster } from "@/components/ui/toaster";
@@ -67,7 +66,7 @@ const pagechat = async ({ params: { id } }: chatProps) => {
         </div>
         <div className="max-w-6xl mx-auto mt-20">
           <div className="flex gap-1 items-center">
-            <img
+            <Image
               src="/assets/icons/loading.gif"
               alt="edit"
               width={60}

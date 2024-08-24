@@ -1,19 +1,6 @@
 "use client";
-import { requeststkpush } from "@/lib/actions/requeststkpush";
-import TextField from "@mui/material/TextField";
 import React, { useEffect, useState } from "react";
 import { ScrollArea } from "../ui/scroll-area";
-import { format, isToday, isYesterday } from "date-fns";
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "../ui/accordion";
-import { Requestcheckpayment } from "@/lib/actions/checkpayment";
-import { useToast } from "../ui/use-toast";
-import { getpayTransaction } from "@/lib/actions/transactionstatus";
-import { useRouter } from "next/navigation";
 
 type payProps = {
   userId: string;
@@ -38,7 +25,7 @@ const DashboardHistory = ({ userId, alltrans }: payProps) => {
                 <div className="">
                   <div className="flex flex-col items-center">
                     <div className="flex flex-col border shadow-lg rounded-lg bg-gray-100 p-2 mb-2 w-full">
-                      History
+                     <p className="font-bold text-[25px] text-center ">History</p> 
                       <div className="grid grid-cols-6 text-gray-600 text-xs bg-grey-500 rounded-t-lg p-1 text-white">
                         <div className="justify-center items-center flex flex-col">
                           Status

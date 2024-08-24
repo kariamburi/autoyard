@@ -8,9 +8,8 @@ import {
   serverTimestamp,
   where,
 } from "firebase/firestore";
-import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import React from "react";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import StarIcon from "@mui/icons-material/Star";
 import { useToast } from "@/components/ui/use-toast";
 type sidebarProps = {

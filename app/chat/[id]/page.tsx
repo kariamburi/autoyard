@@ -3,12 +3,7 @@ import { useEffect, useState } from "react";
 import firebase from "firebase/app";
 import "firebase/auth";
 import "firebase/firestore";
-//import { auth } from "@clerk/nextjs";
-
-//import Sidebar from "@/components/shared/Sidebar";
-//import ChatBox from "@/components/shared/ChatBox";
-//import SendMessage from "@/components/shared/SendMessage";
-
+import Image from "next/image";
 import NavbarChats from "@/components/shared/NavbarChats";
 import { getUserById } from "@/lib/actions/user.actions";
 import Navbar from "@/components/shared/navbar";
@@ -86,7 +81,7 @@ const pagechat = async ({ params: { id } }: chatProps) => {
         </div>
         <div className="max-w-6xl mx-auto mt-20">
           <div className="flex gap-1 items-center">
-            <img
+            <Image
               src="/assets/icons/loading.gif"
               alt="edit"
               width={60}

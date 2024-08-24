@@ -3,6 +3,7 @@ import { IAd } from "@/lib/database/models/ad.model";
 import ViewListIcon from "@mui/icons-material/ViewList";
 import ViewModuleIcon from "@mui/icons-material/ViewModule";
 import SwapVertIcon from "@mui/icons-material/SwapVert";
+import Image from "next/image";
 import {
   Select,
   SelectContent,
@@ -41,7 +42,17 @@ import Skeleton from "@mui/material/Skeleton";
 const CollectionSearch = dynamic(() => import("./CollectionSearch"), {
   ssr: false,
   loading: () => (
-    <div className="w-full h-full flex flex-col items-center justify-center">
+    <div>
+      <div className="w-full mt-10 h-full flex flex-col items-center justify-center">
+        <Image
+          src="/assets/icons/loading2.gif"
+          alt="loading"
+          width={40}
+          height={40}
+          unoptimized
+        />
+      </div>
+      {/* <div className="w-full h-full flex flex-col items-center justify-center">
       <div className="flex flex-wrap mt-10 gap-1 justify-center">
         <Skeleton
           variant="rectangular"
@@ -62,13 +73,26 @@ const CollectionSearch = dynamic(() => import("./CollectionSearch"), {
           className="rounded-sm w-[200px] md:w-[200px] lg:w-[250px]"
         />
       </div>
+        
+    </div>
+    */}
     </div>
   ),
 });
 const SidebarSearch = dynamic(() => import("./SidebarSearch"), {
   ssr: false,
   loading: () => (
-    <div className="m-1 space-y-0 lg:flex lg:space-x-5">
+    <div>
+      <div className="w-full mt-10 h-full flex flex-col items-center justify-center">
+        <Image
+          src="/assets/icons/loading2.gif"
+          alt="loading"
+          width={40}
+          height={40}
+          unoptimized
+        />
+      </div>
+      {/*  <div className="m-1 space-y-0 lg:flex lg:space-x-5">
       <div className="flex flex-wrap mt-10 gap-1 justify-center">
         <Skeleton
           variant="rectangular"
@@ -76,7 +100,7 @@ const SidebarSearch = dynamic(() => import("./SidebarSearch"), {
           //height={400}
           className="rounded-sm w-full md:w-[300px] lg:w-[300px]"
         />
-      </div>
+      </div>*/}
     </div>
   ),
 });

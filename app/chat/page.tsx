@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import firebase from "firebase/app";
 import "firebase/auth";
 import "firebase/firestore";
-//import { auth } from "@clerk/nextjs";
+import Image from "next/image";
 import { getUserById } from "@/lib/actions/user.actions";
 import Navbar from "@/components/shared/navbar";
 import { Toaster } from "@/components/ui/toaster";
@@ -48,7 +48,7 @@ const pagechat = async () => {
         </div>
         <div className="max-w-6xl mx-auto mt-20">
           <div className="flex gap-1 items-center">
-            <img
+            <Image
               src="/assets/icons/loading.gif"
               alt="edit"
               width={60}

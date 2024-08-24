@@ -1,5 +1,5 @@
 import { getAllPackages } from "@/lib/actions/packages.actions";
-//import { auth } from "@clerk/nextjs";
+import Image from "next/image";
 import { getData } from "@/lib/actions/transactionstatus";
 import { getUserById } from "@/lib/actions/user.actions";
 import Navbar from "@/components/shared/navbar";
@@ -44,7 +44,7 @@ const Packages = async () => {
         </div>
         <div className="max-w-6xl mx-auto mt-20">
           <div className="flex gap-1 items-center">
-            <img
+            <Image
               src="/assets/icons/loading.gif"
               alt="edit"
               width={60}

@@ -1,36 +1,35 @@
 "use client";
 import React from "react";
 import { UpdateUserParams } from "@/types";
-import Navbar from "./navbar";
-
 import HomeIcon from "@mui/icons-material/Home";
 import BookmarkIcon from "@mui/icons-material/Bookmark";
-import NotificationsIcon from "@mui/icons-material/Notifications";
 import DiamondIcon from "@mui/icons-material/Diamond";
 import ViewListIcon from "@mui/icons-material/ViewList";
-
 import { useRouter, redirect, usePathname } from "next/navigation";
-//import { useSession } from "next-auth/react";
-import { SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
 import AddCircleOutlineOutlinedIcon from "@mui/icons-material/AddCircleOutlineOutlined";
 import Link from "next/link";
-import {
-  HoverCard,
-  HoverCardContent,
-  HoverCardTrigger,
-} from "../ui/hover-card";
-import NavItems from "./NavItems";
-import { Separator } from "../ui/separator";
-import { Button } from "../ui/button";
 import MobileNav from "./MobileNav";
 import ArrowBackOutlinedIcon from "@mui/icons-material/ArrowBackOutlined";
-import Ratings from "./ratings";
 import {
   Tooltip,
   TooltipContent,
   TooltipProvider,
   TooltipTrigger,
 } from "../ui/tooltip";
+import dynamic from "next/dynamic";
+const SignedIn = dynamic(
+  () => import("@clerk/nextjs").then((mod) => mod.SignedIn),
+  { ssr: false }
+);
+const SignedOut = dynamic(
+  () => import("@clerk/nextjs").then((mod) => mod.SignedOut),
+  { ssr: false }
+);
+const UserButton = dynamic(
+  () => import("@clerk/nextjs").then((mod) => mod.UserButton),
+  { ssr: false }
+);
+
 type sidebarProps = {
   recipient: UpdateUserParams;
   userId: string;

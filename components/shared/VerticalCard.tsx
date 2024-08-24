@@ -149,7 +149,7 @@ const VerticalCard = ({ userId, ad, isAdCreator }: CardProps) => {
             </Link>
             {ad.adstatus && (
               <div
-                className={`flex flex-col text-[12px] lg:text-xs p-1 text-white justify-center items-center w-[70px] rounded-full ${
+                className={`flex flex-col text-[8px] lg:text-[10px] p-1 text-white justify-center items-center rounded-full ${
                   ad.adstatus === "Pending"
                     ? "bg-yellow-600"
                     : ad.adstatus === "Failed"

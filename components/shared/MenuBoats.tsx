@@ -11,6 +11,7 @@ import {
 } from "@/constants";
 import { formUrlQuery, removeKeysFromQuery } from "@/lib/utils";
 import { useRouter, useSearchParams } from "next/navigation";
+import Image from "next/image";
 type CardProps = {
   category: string;
   subcategory: string;
@@ -58,10 +59,12 @@ export default function MenuBoats({ category, subcategory }: CardProps) {
                 onClick={(e) => setQuery(vehicle.type)}
               >
                 <div className="h-12 w-12 rounded-full bg-white p-2">
-                  <img
+                  <Image
                     className="w-full h-full"
                     src={vehicle.iconPath}
                     alt="Menu Image"
+                    width={20}
+                    height={20}
                   />
                 </div>
 

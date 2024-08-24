@@ -79,6 +79,25 @@ import {
 import { ScrollArea } from "../ui/scroll-area";
 import Link from "next/link";
 import { FileUploaderMobile } from "./FileUploaderMobile";
+import dynamic from "next/dynamic";
+// Dynamically import ReactQuill to avoid SSR issues
+import "react-quill/dist/quill.snow.css"; // Import the styles
+const ReactQuill = dynamic(() => import("react-quill"), {
+  ssr: false,
+  loading: () => (
+    <div>
+      <div className="w-full mt-10 h-full flex flex-col items-center justify-center">
+        <Image
+          src="/assets/icons/loading2.gif"
+          alt="loading"
+          width={40}
+          height={40}
+          unoptimized
+        />
+      </div>
+    </div>
+  ),
+});
 type Package = {
   imageUrl: string;
   name: string;
@@ -149,7 +168,19 @@ const AdForm = ({
   const [SelectedCategory, SetselectedCategory] = useState(
     ad?.subcategory ?? ""
   );
-
+  // Define custom toolbar options
+  const modules = {
+    toolbar: [
+      [{ header: "1" }, { header: "2" }, { font: [] }],
+      [{ size: ["small", false, "large", "huge"] }], // Font size options
+      [{ list: "ordered" }, { list: "bullet" }],
+      ["bold", "italic", "underline", "strike", "blockquote"],
+      [{ color: [] }, { background: [] }], // Color options
+      [{ align: [] }],
+      ["link", "image"],
+      ["clean"],
+    ],
+  };
   const [categories, setCategories] = useState<ICategory[]>([]);
   //errors
   const [showmessage, setmessage] = useState("");
@@ -718,7 +749,7 @@ const AdForm = ({
           className="flex flex-col gap-1 mr-0 ml-0 lg:mr-20 lg:ml-20"
         >
           <div className="p-0 rounded-sm m-1 shadow-lg bg-white">
-            <div className="m-0">
+            <div className="flex flex-col">
               <section className="bg-grey-50 bg-dotted-pattern bg-cover bg-center py-0 md:py-0 rounded-sm">
                 <div className="wrapper flex items-center justify-center sm:justify-between">
                   <div className="lg:flex-1 p-1 ml-2 mr-5 mb-0 lg:mb-0">
@@ -3312,21 +3343,20 @@ const AdForm = ({
                   )}
                 />
               </div>
-              <div className="flex flex-col gap-5 md:flex-row">
+              <div className="flex flex-col gap-5">
                 <FormField
                   control={form.control}
                   name="description"
                   render={({ field }) => (
                     <FormItem className="w-full">
-                      <FormControl>
-                        <div className="w-full overflow-hidden px-4 py-2">
-                          <div className="grid w-full gap-1.5">
-                            <TextField
+                      <FormControl className="">
+                        <div className="w-full">
+                          <div className="grid w-full px-3">
+                            <ReactQuill
                               {...field}
-                              multiline
-                              rows={5} // You can adjust this number based on your preference
-                              label="Description*"
-                              className="w-full"
+                              placeholder="Description..."
+                              className="bg-white h-[250px]text-base rounded-sm p-1 w-full h-full text-black"
+                              modules={modules} // Pass the custom toolbar modules
                             />
                           </div>
                         </div>
@@ -3336,7 +3366,7 @@ const AdForm = ({
                   )}
                 />
               </div>
-              <div className="flex flex-col gap-5 mr-2 ml-2 md:flex-row">
+              <div className="flex flex-col gap-5 mt-20 mr-2 ml-2 md:flex-row">
                 <FormField
                   control={form.control}
                   name="imageUrls"
@@ -3355,7 +3385,7 @@ const AdForm = ({
                           </div>
                         </div>
 */}
-                        <div className="relative w-full">
+                        <div className="relative p-2 w-full">
                           <FileUploaderMobile
                             onFieldChange={field.onChange}
                             imageUrls={field.value}

@@ -1,7 +1,4 @@
-import NavItems from "@/components/shared/NavItems";
-
-import EventForm from "@/components/shared/EventForm";
-import { Separator } from "@radix-ui/react-separator";
+import Image from "next/image";
 import Dashboard from "@/components/shared/dashboard";
 import { getData } from "@/lib/actions/transactionstatus";
 import { auth } from "@clerk/nextjs/server";
@@ -72,7 +69,7 @@ const create = async () => {
         </div>
         <div className="max-w-6xl mx-auto mt-20">
           <div className="flex gap-1 items-center">
-            <img
+            <Image
               src="/assets/icons/loading.gif"
               alt="edit"
               width={60}

@@ -1,6 +1,10 @@
 import { Document, Schema, model, models } from "mongoose";
 
 export interface ICategory extends Document {
+  find(arg0: (cat: any) => boolean): unknown;
+  find(arg0: (cat: any) => boolean): unknown;
+  find(arg0: (cat: any) => boolean): unknown;
+  find(arg0: (cat: any) => boolean): unknown;
   
   adCount: number;
   _id: string;

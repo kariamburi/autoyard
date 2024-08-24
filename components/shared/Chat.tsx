@@ -3,13 +3,10 @@ import React, { useEffect, useState } from "react";
 import { format, isToday, isYesterday } from "date-fns";
 import UnreadmessagesPeruser from "./UnreadmessagesPeruser";
 import { collection, getDocs, orderBy, query } from "firebase/firestore";
-
 import { usePathname } from "next/navigation";
-
 import ChatBox from "./ChatBox";
 import SendMessage from "./SendMessage";
 import { db } from "@/lib/firebase";
-
 type sidebarProps = {
   senderName: string;
   senderId: string;

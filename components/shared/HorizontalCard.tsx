@@ -56,8 +56,8 @@ const HorizontalCard = ({ userId, ad, isAdCreator }: CardProps) => {
   // console.log(ad.imageUrls);
   return (
     <>
-      <div className="flex w-full mb-4 rounded-lg bg-white hover:cursor-pointer shadow">
-        <div className="relative w-[180px] h-[190px]">
+      <div className="flex w-full mb-2 rounded-lg bg-white hover:cursor-pointer shadow">
+        <div className="relative w-[160px] h-[180px]">
           <img
             src={ad.imageUrls[0]}
             alt="ad image"
@@ -159,7 +159,7 @@ const HorizontalCard = ({ userId, ad, isAdCreator }: CardProps) => {
               </Link>
               {ad.adstatus && (
                 <div
-                  className={`flex flex-col text-[12px] lg:text-xs p-1 text-white justify-center items-center w-[70px] rounded-full ${
+                  className={`flex flex-col text-[8px] lg:text-[10px] p-1 text-white justify-center items-center rounded-full ${
                     ad.adstatus === "Pending"
                       ? "bg-yellow-600"
                       : ad.adstatus === "Failed"

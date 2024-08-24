@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import { convertFileToUrl } from "@/lib/utils";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { deleteSingleImage } from "@/lib/actions/ad.actions";
-import { ScrollArea, ScrollBar } from "../ui/scroll-area";
+import Image from "next/image";
 import AddBoxIcon from "@mui/icons-material/AddBox";
 type FileUploaderProps = {
   onFieldChange: (urls: string[]) => void;
@@ -96,10 +96,12 @@ export function FileUploaderMobile({
                   key={index}
                   className="relative mb-1 rounded-sm shadow-sm p-1 bg-white w-20 h-20 lg:w-40 lg:h-40 flex-shrink-0"
                 >
-                  <img
+                  <Image
                     src={url}
                     alt={`image-${index}`}
                     className="w-full h-full object-cover object-center rounded-sm"
+                    width={77}
+                    height={77}
                   />
                   <div
                     onClick={() => handleRemoveImage(index)}

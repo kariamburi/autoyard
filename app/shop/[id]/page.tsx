@@ -8,8 +8,7 @@ import { getData } from "@/lib/actions/transactionstatus";
 import Navbar from "@/components/shared/navbar";
 import { getUserById } from "@/lib/actions/user.actions";
 import { auth } from "@clerk/nextjs/server";
-import dynamic from "next/dynamic";
-import Skeleton from "@mui/material/Skeleton";
+import Image from "next/image";
 import DashboardMyads from "@/components/shared/dashboardMyads";
 
 const myads = async ({ params: { id }, searchParams }: SearchParamProps) => {
@@ -83,7 +82,7 @@ const myads = async ({ params: { id }, searchParams }: SearchParamProps) => {
     return (
       <div className="flex-center h-screen w-full bg-[#ebf2f7] bg-dotted-pattern bg-cover bg-fixed bg-center">
         <div className="flex gap-1 items-center">
-          <img
+          <Image
             src="/assets/icons/loading.gif"
             alt="edit"
             width={60}

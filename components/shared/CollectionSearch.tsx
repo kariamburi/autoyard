@@ -3,9 +3,9 @@ import React from "react";
 import Pagination from "./Pagination";
 import VerticalCard from "./VerticalCard";
 import HorizontalCard from "./HorizontalCard";
-import StreetmapAll from "./StreetmapAll";
 import Skeleton from "@mui/material/Skeleton";
-
+import StreetmapAll from "./StreetmapAll";
+import Image from "next/image";
 type CollectionProps = {
   userId: string;
   data: IAd[];
@@ -32,7 +32,18 @@ const CollectionSearch = ({
 }: CollectionProps) => {
   if (loading) {
     return (
-      <div className="w-full h-full flex flex-col items-center justify-center">
+      <div>
+        <div className="w-full mt-10 h-full flex flex-col items-center justify-center">
+          <Image
+            src="/assets/icons/loading2.gif"
+            alt="loading"
+            width={40}
+            height={40}
+            unoptimized
+          />
+        </div>
+
+        {/*  <div className="w-full h-full flex flex-col items-center justify-center">
         <div className="flex flex-wrap mt-10 gap-1 justify-center">
           <Skeleton
             variant="rectangular"
@@ -53,6 +64,7 @@ const CollectionSearch = ({
             className="rounded-sm w-[200px] md:w-[200px] lg:w-[250px]"
           />
         </div>
+      </div>*/}
       </div>
     );
   }
@@ -62,8 +74,8 @@ const CollectionSearch = ({
         <>
           {activeButton === 0 && (
             <>
-              <div className="flex flex-col items-center gap-10 p-2 bg-gray-50 rounded-lg">
-                <ul className="grid w-full grid-cols-2 gap-3 sm:grid-cols-2 lg:grid-cols-3 xl:gap-3">
+              <div className="flex flex-col items-center gap-10 p-1 bg-[#ebf2f7] rounded-lg p-1">
+                <ul className="grid w-full grid-cols-2 gap-1 lg:gap-3 sm:grid-cols-2 lg:grid-cols-3 xl:gap-3">
                   {data.map((ad) => {
                     const isAdCreator = userId === ad.organizer._id.toString();
                     return (
@@ -90,8 +102,7 @@ const CollectionSearch = ({
           )}
           {activeButton === 1 && (
             <>
-              {" "}
-              <div className="flex p-1 bg-gray-50 rounded-lg">
+              <div className="flex p-1 bg-[#ebf2f7] rounded-lg">
                 <ul className="w-full">
                   {data.map((ad) => {
                     const isAdCreator = userId === ad.organizer._id.toString();

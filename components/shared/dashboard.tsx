@@ -1,8 +1,6 @@
 "use client";
 import EventForm from "@/components/shared/EventForm";
 import { IAd } from "@/lib/database/models/ad.model";
-import { Button } from "../ui/button";
-import Link from "next/link";
 type Package = {
   imageUrl: string;
   name: string;

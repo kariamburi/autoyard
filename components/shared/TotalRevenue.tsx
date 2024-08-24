@@ -5,9 +5,7 @@ import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Stack from "@mui/material/Stack";
 import ArrowCircleUpRounded from "@mui/icons-material/ArrowCircleUpRounded";
-import { TotalRevenueSeries, TotalRevenueOptions } from "./chart.config";
-
-//import { TotalRevenueOptions, TotalRevenueSeries } from "./chart.config";
+import { TotalRevenueOptions, TotalRevenueSeries } from "./chart.config";
 
 const TotalRevenue = () => {
   return (

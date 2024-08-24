@@ -42,7 +42,19 @@ import {
 } from "../ui/tooltip";
 import Unreadmessages from "./Unreadmessages";
 import dynamic from "next/dynamic";
-import { SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
+const SignedIn = dynamic(
+  () => import("@clerk/nextjs").then((mod) => mod.SignedIn),
+  { ssr: false }
+);
+const SignedOut = dynamic(
+  () => import("@clerk/nextjs").then((mod) => mod.SignedOut),
+  { ssr: false }
+);
+const UserButton = dynamic(
+  () => import("@clerk/nextjs").then((mod) => mod.UserButton),
+  { ssr: false }
+);
+
 
 type NavProps = {
   userstatus: string;
