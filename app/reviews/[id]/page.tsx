@@ -12,17 +12,38 @@ import NavbarReviews from "@/components/shared/NavbarReviews";
 import { Toaster } from "@/components/ui/toaster";
 import dynamic from "next/dynamic";
 import Skeleton from "@mui/material/Skeleton";
-import SellerProfile from "@/components/shared/SellerProfile";
+
+const SellerProfile = dynamic(
+  () => import("@/components/shared/SellerProfile"),
+  {
+    ssr: false,
+    loading: () => (
+      <div>
+        <div className="w-full lg:w-[300px] h-full flex flex-col items-center justify-center">
+          <Image
+            src="/assets/icons/loading2.gif"
+            alt="loading"
+            width={40}
+            height={40}
+            unoptimized
+          />
+        </div>
+      </div>
+    ),
+  }
+);
 
 const ReviewsBox = dynamic(() => import("@/components/shared/ReviewsBox"), {
   ssr: false,
   loading: () => (
-    <div className="w-full">
-      <div className="flex w-full flex-wrap mt-10 gap-1 justify-center">
-        <Skeleton
-          variant="rectangular"
-          animation="wave"
-          className="rounded-sm w-full"
+    <div>
+      <div className="w-full h-[300px] mb-2 bg-white rounded-lg flex flex-col items-center justify-center">
+        <Image
+          src="/assets/icons/loading2.gif"
+          alt="loading"
+          width={40}
+          height={40}
+          unoptimized
         />
       </div>
     </div>
@@ -31,12 +52,14 @@ const ReviewsBox = dynamic(() => import("@/components/shared/ReviewsBox"), {
 const SendReview = dynamic(() => import("@/components/shared/SendReview"), {
   ssr: false,
   loading: () => (
-    <div className="w-full">
-      <div className="flex w-full flex-wrap mt-10 gap-1 justify-center">
-        <Skeleton
-          variant="rectangular"
-          animation="wave"
-          className="rounded-sm w-full"
+    <div>
+      <div className="w-full h-[50px] mt-2 flex bg-white rounded-lg flex-col items-center justify-center">
+        <Image
+          src="/assets/icons/loading2.gif"
+          alt="loading"
+          width={40}
+          height={40}
+          unoptimized
         />
       </div>
     </div>
@@ -80,8 +103,12 @@ const pagechat = async ({ params: { id } }: chatProps) => {
   }
   return (
     <div>
-      <NavbarReviews recipient={user} userId={recipientUid} />
-      <div className="mx-auto flex mt-0 p-1">
+      <div className="bg-gradient-to-r from-emerald-800 to-emerald-950 z-10 top-0 fixed w-full">
+        <div className="p-2">
+          <NavbarReviews recipient={user} userId={recipientUid} />
+        </div>
+      </div>
+      <div className="mx-auto flex mt-20 p-1">
         <div className="hidden lg:inline w-[350px] sidebar left-0 top-0 bg-[#ebf2f7] p-4">
           <div className="bg-white w-full rounded-lg p-1">
             <SellerProfile
@@ -103,7 +130,10 @@ const pagechat = async ({ params: { id } }: chatProps) => {
             </div>
           </div>
 
-          <div className="p-0 rounded-lg bg-white max-w-6xl mx-auto flex flex-col lg:flex-row">
+          <div className="p-0 rounded-lg bg-white items-center max-w-6xl mx-auto flex flex-col">
+            <span className="logo font-bold text-[25px] text-emerald-950">
+              Customer feedback
+            </span>
             <ReviewsBox
               displayName={senderName}
               uid={senderId}

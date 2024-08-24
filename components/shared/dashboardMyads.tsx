@@ -41,7 +41,7 @@ const SellerProfile = dynamic(() => import("./SellerProfile"), {
   ssr: false,
   loading: () => (
     <div>
-      <div className="w-[300px] mt-10 h-full flex flex-col items-center justify-center">
+      <div className="w-full lg:w-[300px] h-full flex flex-col items-center justify-center">
         <Image
           src="/assets/icons/loading2.gif"
           alt="loading"
@@ -139,7 +139,7 @@ CollectionProps) => {
     <>
       <div className="max-w-6xl mx-auto flex mt-3 p-1">
         <div className="hidden lg:inline mr-5">
-          <div className="bg-white w-full rounded-lg p-1">
+          <div className="w-full bg-white rounded-lg p-1">
             <div className="flex justify-center items-center w-full h-full">
               <SellerProfile user={user} loggedId={loggedId} userId={userId} />
             </div>
@@ -147,7 +147,7 @@ CollectionProps) => {
         </div>
 
         <div className="flex-1">
-          <div className="bg-white border rounded-lg lg:hidden">
+          <div className="border bg-white rounded-lg lg:hidden">
             <SellerProfile user={user} loggedId={loggedId} userId={userId} />
           </div>
           <div className="rounded-lg border bg-white max-w-6xl mx-auto lg:flex-row mt-3 p-1 justify-center">

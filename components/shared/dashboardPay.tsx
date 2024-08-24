@@ -162,23 +162,21 @@ const DashboardPay = ({ userId, trans }: payProps) => {
                     <div className="flex flex-col border shadow-lg rounded-lg bg-gray-100 p-2 mb-2 w-full h-[400px]">
                       <div className="flex justify-between w-full items-center">
                         <div className="flex gap-1 items-center">
-                          <div className="font-bold text-[25px] text-grey-900 font-bold p-2">
+                          <div className="font-bold text-grey-900 font-bold p-2">
                             Plan
                           </div>
                         </div>
                         <div className="flex items-center">
-                          <div className="text-3xl text-green-600 font-bold p-2">
-                            {trans[0].plan}
-                          </div>
+                          <div className="font-bold p-2">{trans[0].plan}</div>
                         </div>
                       </div>
 
                       <div className="p-1">
                         <div className="flex justify-between w-full items-center">
-                          <div className="flex gap-1 items-center">
+                          <div className="flex gap-1 text-xs items-center">
                             Order Tracking Id:
                           </div>
-                          <div className="flex font-bold items-center">
+                          <div className="flex text-xs font-bold items-center">
                             {trans[0].orderTrackingId}
                           </div>
                         </div>
@@ -188,25 +186,27 @@ const DashboardPay = ({ userId, trans }: payProps) => {
                         ) : (
                           <>
                             <div className="flex justify-between w-full items-center">
-                              <div className="flex gap-1 items-center">
+                              <div className="flex gap-1 text-xs items-center">
                                 Period:
                               </div>
-                              <div className="flex font-bold items-center">
+                              <div className="flex text-xs font-bold items-center">
                                 {trans[0].period}
                               </div>
                             </div>
                             <div className="flex justify-between w-full items-center">
-                              <div className="flex gap-1 items-center">
+                              <div className="flex text-xs gap-1 items-center">
                                 Allawable Ads:
                               </div>
-                              <div className="flex font-bold items-center">
+                              <div className="flex text-xs font-bold items-center">
                                 {trans[0].planId.list}
                               </div>
                             </div>
                           </>
                         )}
                         <div className="flex justify-between w-full items-center">
-                          <div className="flex gap-1 items-center">Status:</div>
+                          <div className="flex gap-1 text-xs items-center">
+                            Status:
+                          </div>
                           <div className="flex items-center">
                             <div
                               className={`flex flex-col text-xs p-1 text-white justify-center items-center w-[70px] rounded-full ${
@@ -227,12 +227,12 @@ const DashboardPay = ({ userId, trans }: payProps) => {
                         <>
                           <div className="flex justify-between w-full items-center">
                             <div className="flex gap-1 items-center">
-                              <div className="text-3xl text-grey-900 font-bold p-2">
+                              <div className="text-grey-900 font-bold p-2">
                                 Amount
                               </div>
                             </div>
                             <div className="flex items-center">
-                              <div className="text-3xl text-green-600 font-bold p-2">
+                              <div className="text-green-600 font-bold p-2">
                                 KES {trans[0].amount.toFixed(2)}
                               </div>
                             </div>

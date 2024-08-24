@@ -179,7 +179,7 @@ const SendMessage = ({
         <div className="cursor-pointer relative p-2 ml-5 mr-5">
           <label htmlFor="file">
             <Image
-              src="../assets/icons/attach.png"
+              src="/assets/icons/attach.png"
               alt="Attach"
               className="cursor-pointer"
               width={16}

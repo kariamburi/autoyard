@@ -10,6 +10,8 @@ import AddCircleOutlineOutlinedIcon from "@mui/icons-material/AddCircleOutlineOu
 import Link from "next/link";
 import MobileNav from "./MobileNav";
 import ArrowBackOutlinedIcon from "@mui/icons-material/ArrowBackOutlined";
+import Image from "next/image";
+import MessageIcon from "@mui/icons-material/Message";
 import {
   Tooltip,
   TooltipContent,
@@ -17,6 +19,7 @@ import {
   TooltipTrigger,
 } from "../ui/tooltip";
 import dynamic from "next/dynamic";
+import Unreadmessages from "./Unreadmessages";
 const SignedIn = dynamic(
   () => import("@clerk/nextjs").then((mod) => mod.SignedIn),
   { ssr: false }
@@ -36,111 +39,136 @@ type sidebarProps = {
 };
 const NavbarReviews = ({ recipient, userId }: sidebarProps) => {
   const router = useRouter();
+  const pathname = usePathname();
+  const isActive = pathname === "/";
+
   return (
-    <div className="navbar flex items-center w-full gap-5 bg-gradient-to-r from-emerald-800 to-emerald-950 p-4 justify-between">
-      <div className="flex items-center gap-1">
-        <div
-          className="w-5 h-8 flex items-center justify-center rounded-sm text-white tooltip tooltip-bottom hover:cursor-pointer"
-          data-tip="Back"
-          onClick={() => router.back()}
-        >
-          <TooltipProvider>
-            <Tooltip>
-              <TooltipTrigger asChild>
-                <ArrowBackOutlinedIcon />
-              </TooltipTrigger>
-              <TooltipContent>
-                <p>Back</p>
-              </TooltipContent>
-            </Tooltip>
-          </TooltipProvider>
+    <div className="flex p-1 gap-1 w-full">
+      <div className="flex-1">
+        <div className="flex items-center">
+          {!isActive && (
+            <div
+              className="mr-5 w-5 h-8 flex items-center justify-center rounded-sm text-white tooltip tooltip-bottom hover:cursor-pointer"
+              data-tip="Back"
+              onClick={() => router.back()}
+            >
+              <TooltipProvider>
+                <Tooltip>
+                  <TooltipTrigger asChild>
+                    <ArrowBackOutlinedIcon />
+                  </TooltipTrigger>
+                  <TooltipContent>
+                    <p>Back</p>
+                  </TooltipContent>
+                </Tooltip>
+              </TooltipProvider>
+            </div>
+          )}
+          <div className="rounded-full overflow-hidden">
+            <Image
+              src="/assets/images/logo_white.png"
+              alt="logo"
+              onClick={() => router.push("/")}
+              className="hover:cursor-pointer"
+              width={36}
+              height={36}
+            />
+          </div>
+          <span className="logo font-bold text-white">Reviews</span>
         </div>
-        <span className="logo font-bold text-white">Seller Reviews</span>
       </div>
-      <div className="flex py-1 space-x-3 h-10 justify-end">
-        <div
-          className="w-8 h-8 flex items-center justify-center rounded-full bg-white tooltip tooltip-bottom hover:cursor-pointer"
-          data-tip="Messages"
-          onClick={() => router.push(`/`)}
-        >
-          <HomeIcon />
-        </div>
-
-        <div
-          className="w-8 h-8 flex items-center justify-center rounded-full bg-white tooltip tooltip-bottom hover:cursor-pointer"
-          data-tip="Bookmark"
-          onClick={() => router.push(`/bookmark/`)}
-        >
-          <TooltipProvider>
-            <Tooltip>
-              <TooltipTrigger asChild>
-                <BookmarkIcon />
-              </TooltipTrigger>
-              <TooltipContent>
-                <p> Saved Ads</p>
-              </TooltipContent>
-            </Tooltip>
-          </TooltipProvider>
-        </div>
-
-        <div
-          className="w-8 h-8 flex items-center justify-center rounded-full bg-white tooltip tooltip-bottom hover:cursor-pointer"
-          data-tip="Plan"
-          onClick={() => router.push(`/plan/`)}
-        >
-          <TooltipProvider>
-            <Tooltip>
-              <TooltipTrigger asChild>
-                <DiamondIcon />
-              </TooltipTrigger>
-              <TooltipContent>
-                <p>Premium Services</p>
-              </TooltipContent>
-            </Tooltip>
-          </TooltipProvider>
-        </div>
-        <div
-          className="w-8 h-8 flex items-center justify-center rounded-full bg-white tooltip tooltip-bottom hover:cursor-pointer"
-          data-tip="My Adverts"
-          onClick={() => router.push(`/shop/${userId}`)}
-        >
-          <TooltipProvider>
-            <Tooltip>
-              <TooltipTrigger asChild>
-                <ViewListIcon />
-              </TooltipTrigger>
-              <TooltipContent>
-                <p>My Adverts</p>
-              </TooltipContent>
-            </Tooltip>
-          </TooltipProvider>
-        </div>
-        <SignedIn>
-          <Link href="/ads/create">
-            <button
-              className={`w-[100px] bg-gradient-to-b from-[#4DCE7A] to-[#30AF5B] hover:bg-[#30AF5B] text-white p-1 rounded-full`}
-            >
-              <AddCircleOutlineOutlinedIcon /> SELL
-            </button>
-          </Link>
-        </SignedIn>
-        <SignedOut>
-          <Link href="/sign-in">
-            <button
-              className={`w-[100px] bg-gradient-to-b from-[#4DCE7A] to-[#30AF5B] hover:bg-[#30AF5B] text-white p-1 rounded-full`}
-            >
-              <AddCircleOutlineOutlinedIcon /> SELL
-            </button>
-          </Link>
-        </SignedOut>
-        <SignedIn>
-          <div className="w-8 h-8 flex items-center justify-center rounded-full bg-white tooltip tooltip-bottom hover:cursor-pointer">
-            <UserButton afterSignOutUrl="/" />
+      <div className="hidden lg:inline">
+        <div className="flex items-center gap-2">
+          <div
+            className="w-8 h-8 flex items-center justify-center rounded-full bg-white emerald-500 tooltip tooltip-bottom hover:cursor-pointer"
+            data-tip="Messages"
+            onClick={() => router.push(`/bookmark/`)}
+          >
+            <TooltipProvider>
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <BookmarkIcon />
+                </TooltipTrigger>
+                <TooltipContent>
+                  <p>Bookmark</p>
+                </TooltipContent>
+              </Tooltip>
+            </TooltipProvider>
           </div>
 
-          <MobileNav userstatus={"User"} userId={userId} />
-        </SignedIn>
+          <div
+            className="w-8 h-8 flex items-center justify-center rounded-full bg-white tooltip tooltip-bottom hover:cursor-pointer"
+            data-tip="Messages"
+            onClick={() => router.push(`/chat/`)}
+          >
+            <TooltipProvider>
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <div className="relative flex items-center justify-center">
+                    <MessageIcon className="absolute" />
+                    <div className="absolute z-10">
+                      <Unreadmessages userId={userId} />
+                    </div>
+                  </div>
+                </TooltipTrigger>
+                <TooltipContent>
+                  <div
+                    onClick={() => router.push(`/chat/`)}
+                    className="flex gap-1"
+                  >
+                    Chats
+                    <Unreadmessages userId={userId} />
+                  </div>
+                </TooltipContent>
+              </Tooltip>
+            </TooltipProvider>
+          </div>
+
+          <div
+            className="w-8 h-8 flex items-center justify-center rounded-full bg-white tooltip tooltip-bottom hover:cursor-pointer"
+            data-tip="Messages"
+            onClick={() => router.push(`/plan/`)}
+          >
+            <TooltipProvider>
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <DiamondIcon />
+                </TooltipTrigger>
+                <TooltipContent>
+                  <p>Premium Services</p>
+                </TooltipContent>
+              </Tooltip>
+            </TooltipProvider>
+          </div>
+          <div className="flex gap-1">
+            <SignedIn>
+              <Link href="/ads/create">
+                <button
+                  className={`w-[100px] bg-gradient-to-b from-[#4DCE7A] to-[#30AF5B] hover:bg-[#30AF5B] text-white p-1 rounded-full`}
+                >
+                  <AddCircleOutlineOutlinedIcon /> SELL
+                </button>
+              </Link>
+            </SignedIn>
+
+            <SignedOut>
+              <Link href="/sign-in">
+                <button
+                  className={`w-[100px] bg-gradient-to-b from-[#4DCE7A] to-[#30AF5B] hover:bg-[#30AF5B] text-white p-1 rounded-full`}
+                >
+                  <AddCircleOutlineOutlinedIcon /> SELL
+                </button>
+              </Link>
+            </SignedOut>
+          </div>
+        </div>
       </div>
+      <SignedIn>
+        <div className="w-8 h-8 flex items-center justify-center rounded-full bg-white tooltip tooltip-bottom hover:cursor-pointer">
+          <UserButton afterSignOutUrl="/" />
+        </div>
+      </SignedIn>
+      <MobileNav userstatus={"User"} userId={userId} />
     </div>
   );
 };

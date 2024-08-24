@@ -105,7 +105,7 @@ const SellerProfile = ({ userId, loggedId, user }: CollectionProps) => {
   }
 
   return (
-    <div className="flex flex-col m-1 lg:m-0 items-center min-w-[300px] lg:max-w-[350px]">
+    <div className="flex bg-white flex-col m-1 lg:m-0 items-center min-w-[300px] lg:max-w-[350px]">
       <div className="flex flex-col items-center rounded-t-lg w-full p-1 bg-emerald-700">
         <Link href={`/shop/${userId}`} className="no-underline font-bold m-1">
           <div className="w-16 h-16 p-1 rounded-full bg-white">

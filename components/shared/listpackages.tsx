@@ -262,7 +262,7 @@ export default function Listpackages({
         </div>
 
         {/* Right-aligned input field and button */}
-        <div className="flex items-center">
+        <div className="flex gap-1 items-center">
           <label
             htmlFor="color"
             className="whitespace-nowrap p-3 font-bold leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
@@ -272,7 +272,7 @@ export default function Listpackages({
           <input
             type="text"
             value={priceInput}
-            className="px-4 py-2 border border-gray-300 font-bold rounded-md mr-4"
+            className="border p-1 border-gray-300 font-bold rounded-md "
           />
           <SignedIn>
             {/* <Checkout

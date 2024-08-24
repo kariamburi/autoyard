@@ -3349,8 +3349,19 @@ const AdForm = ({
                   name="description"
                   render={({ field }) => (
                     <FormItem className="w-full">
-                      <FormControl className="">
-                        <div className="w-full">
+                      <FormControl>
+                        <div className="w-full overflow-hidden px-4 py-2">
+                          <div className="grid w-full gap-1.5">
+                            <TextField
+                              {...field}
+                              multiline
+                              rows={5} // You can adjust this number based on your preference
+                              label="Description*"
+                              className="w-full"
+                            />
+                          </div>
+                        </div>
+                        {/*  <div className="w-full">
                           <div className="grid w-full px-3">
                             <ReactQuill
                               {...field}
@@ -3359,14 +3370,14 @@ const AdForm = ({
                               modules={modules} // Pass the custom toolbar modules
                             />
                           </div>
-                        </div>
+                        </div>*/}
                       </FormControl>
                       <FormMessage />
                     </FormItem>
                   )}
                 />
               </div>
-              <div className="flex flex-col gap-5 mt-20 mr-2 ml-2 md:flex-row">
+              <div className="flex flex-col gap-5 mt-2 mr-2 ml-2 md:flex-row">
                 <FormField
                   control={form.control}
                   name="imageUrls"

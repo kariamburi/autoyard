@@ -13,21 +13,8 @@ import SellerProfile from "@/components/shared/SellerProfile";
 import { auth } from "@clerk/nextjs/server";
 import dynamic from "next/dynamic";
 import Skeleton from "@mui/material/Skeleton";
-const Sidebar = dynamic(() => import("@/components/shared/Sidebar"), {
-  ssr: false,
-  loading: () => (
-    <div className="w-full">
-      <div className="flex w-full flex-wrap mt-10 gap-1 justify-center">
-        <Skeleton
-          variant="rectangular"
-          animation="wave"
-          height={30}
-          className="rounded-sm w-full"
-        />
-      </div>
-    </div>
-  ),
-});
+import Sidebar from "@/components/shared/Sidebar";
+import PeopleOutlinedIcon from "@mui/icons-material/PeopleOutlined";
 const pagechat = async () => {
   const { sessionClaims } = auth();
   const senderId = sessionClaims?.userId as string;
@@ -90,10 +77,13 @@ const pagechat = async () => {
             <div className="lg:flex-1 p-0 ml-0 mr-0">
               <ScrollArea className="max-h-[400px] w-full bg-white rounded-md border p-4">
                 <div className="w-full items-center justify-center">
-                  <span className="logo h3-bold text-emerald-950">
-                    Messages
+                  <span className="logo font-bold text-[25px] text-emerald-950">
+                    Wheels messanger
                   </span>
-                  <p className=" text-center sm:text-left">Latest chats</p>
+                  <div className="flex gap-1 items-center font-bold">
+                    <PeopleOutlinedIcon />
+                    Latest Chats
+                  </div>
                 </div>
                 <Sidebar userId={senderId} />
               </ScrollArea>

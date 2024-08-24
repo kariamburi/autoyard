@@ -131,29 +131,29 @@ const HorizontalCard = ({ userId, ad, isAdCreator }: CardProps) => {
           )}
         </div>
 
-        <div className="flex-1 mt-2">
+        <div className="flex-1 mt-2 p-2">
           <Link
             href={`/ads/${ad._id}`}
-            className="text-emerald-950 ml-3 mr-2 font-bold line-clamp-2 hover:no-underline"
+            className="text-emerald-950 font-bold text-sm lg:text-basefont-bold line-clamp-2 hover:no-underline"
           >
             {ad.title}
           </Link>
-          <div className="ml-3 mr-2 text-[12px] lg:text-sm">
-            {ad?.description && truncateTitle(ad?.description, 120)}
+          <div className="text-[12px] lg:text-sm">
+            {ad?.description && truncateTitle(ad?.description, 100)}
           </div>
           {ad.calcDistance && (
-            <div className="ml-3 mt-1 text-[10px] lg:text-xs text-emerald-500">
+            <div className="text-[10px] lg:text-xs text-emerald-500">
               {Math.round(ad.calcDistance / 100) / 10} KM Away
             </div>
           )}
-          <div className="ml-2 mt-1 text-gray-500 text-[10px] lg:text-xs">
+          <div className="text-gray-500 text-[10px] lg:text-xs">
             <LocationOnIcon sx={{ fontSize: 16 }} />
             {ad.address}
           </div>
           {isAdCreator ? (
-            <div className="flex justify-between items-center w-full p-1">
+            <div className="flex justify-between items-center w-full">
               <Link href={`/ads/${ad._id}`} className="no-underline">
-                <span className="text-emerald-950 text-[12px] lg:text-lg font-bold w-min rounded-full px-4 p-1 text-green-60">
+                <span className="text-emerald-950 font-bold text-[12px] lg:text-lg w-min rounded-full text-green-60">
                   {NGnaira.format(ad.price)}
                 </span>
               </Link>
@@ -172,28 +172,28 @@ const HorizontalCard = ({ userId, ad, isAdCreator }: CardProps) => {
               )}
             </div>
           ) : (
-            <div className="flex items-center p-1">
+            <div className="flex items-center">
               <Link href={`/ads/${ad._id}`} className="no-underline">
-                <span className="text-emerald-950 text-[12px] lg:text-lg w-min rounded-full px-4 p-1 text-green-60">
+                <span className="text-emerald-950 text-[12px] font-bold lg:text-lg w-min rounded-full text-green-60">
                   {NGnaira.format(ad.price)}
                 </span>
               </Link>
             </div>
           )}
 
-          <div className="flex gap-1 mt-1 w-full gap-1 pl-5 pr-5">
+          <div className="flex gap-1 mt-1 w-full">
             {ad.vehiclecondition && (
-              <div className="flex gap-2 text-[12px] lg:text-xs bg-[#ebf2f7] rounded-sm p-1 justify-center border">
+              <div className="flex gap-2 text-[8px] lg:text-xs bg-[#ebf2f7] rounded-sm p-1 justify-center border">
                 {ad.vehiclecondition}
               </div>
             )}
             {ad.vehicleTransmissions && (
-              <div className="flex gap-2 text-[12px] lg:text-xs bg-[#ebf2f7] rounded-sm p-1 justify-center border">
+              <div className="flex gap-2 text-[8px] lg:text-xs bg-[#ebf2f7] rounded-sm p-1 justify-center border">
                 {ad.vehicleTransmissions}
               </div>
             )}
             {ad.vehicleEngineSizesCC && (
-              <div className="flex gap-2 text-[12px] lg:text-xs bg-[#ebf2f7] rounded-sm p-1 justify-center border">
+              <div className="flex gap-2 text-[8px] lg:text-xs bg-[#ebf2f7] rounded-sm p-1 justify-center border">
                 {ad.vehicleEngineSizesCC}
               </div>
             )}

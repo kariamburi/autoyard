@@ -148,7 +148,7 @@ const Sidebar = ({ userId }: sidebarProps) => {
               key={"/chat/" + messages.uid}
               className={`${
                 isActive &&
-                "bg-gradient-to-b from-emerald-900 to-emerald-950 text-white rounded-sm"
+                "bg-gradient-to-b from-emerald-500 to-emerald-600 text-white rounded-sm"
               } p-medium-16 whitespace-nowrap bg-emerald-50 rounded-sm`}
             >
               <div
