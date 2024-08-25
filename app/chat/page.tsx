@@ -15,6 +15,8 @@ import dynamic from "next/dynamic";
 import Skeleton from "@mui/material/Skeleton";
 import Sidebar from "@/components/shared/Sidebar";
 import PeopleOutlinedIcon from "@mui/icons-material/PeopleOutlined";
+import Footersub from "@/components/shared/Footersub";
+import BottomNavigation from "@/components/shared/BottomNavigation";
 const pagechat = async () => {
   const { sessionClaims } = auth();
   const senderId = sessionClaims?.userId as string;
@@ -66,13 +68,13 @@ const pagechat = async () => {
         </div>
 
         <div className="flex-1">
-          <div className="bg-white p-1 rounded-lg lg:hidden">
+          {/*   <div className="bg-white p-1 rounded-lg lg:hidden">
             <SellerProfile
               user={user}
               loggedId={senderId}
               userId={recipientUid}
             />
-          </div>
+          </div>*/}
           <div className="rounded-lg max-w-6xl mx-auto flex flex-col p-0 mt-0">
             <div className="lg:flex-1 p-0 ml-0 mr-0">
               <ScrollArea className="max-h-[400px] w-full bg-white rounded-md border p-4">
@@ -92,6 +94,14 @@ const pagechat = async () => {
           </div>
         </div>
       </div>
+      <footer>
+        <div className="hidden lg:inline">
+          <Footersub />
+        </div>
+        <div className="lg:hidden">
+          <BottomNavigation userId={senderId} />
+        </div>
+      </footer>
     </>
   );
 };

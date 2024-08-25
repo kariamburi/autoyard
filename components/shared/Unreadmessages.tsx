@@ -50,7 +50,7 @@ const Unreadmessages = ({ userId }: unreadprop) => {
   return (
     <div>
       {unreadCount !== 0 && (
-        <div className="bg-rose-600 rounded-full pl-1 pr-1 text-xs justify-center text-white">
+        <div className="bg-rose-600 shadow rounded-full pl-1 pr-1 text-xs justify-center text-white">
           {unreadCount}
         </div>
       )}

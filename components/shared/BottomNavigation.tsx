@@ -5,7 +5,12 @@ import HomeIcon from "@mui/icons-material/Home";
 import SettingsIcon from "@mui/icons-material/Settings";
 import AddCircleOutlineOutlinedIcon from "@mui/icons-material/AddCircleOutlineOutlined";
 import CommentOutlinedIcon from "@mui/icons-material/CommentOutlined";
-const BottomNavigation = () => {
+import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
+import Unreadmessages from "./Unreadmessages";
+type navprop = {
+  userId: string;
+};
+const BottomNavigation = ({ userId }: navprop) => {
   const router = useRouter();
   const pathname = usePathname();
 
@@ -26,6 +31,18 @@ const BottomNavigation = () => {
             <span className="text-xs">Home</span>
           </div>
         </Link>
+        <Link href="/category?category=Vehicle" passHref>
+          <div
+            className={`flex flex-col items-center hover:text-emerald-400 ${
+              isActive("/category") ? "text-emerald-600" : "text-gray-600"
+            }`}
+          >
+            <span>
+              <SearchOutlinedIcon />
+            </span>
+            <span className="text-xs">Search</span>
+          </div>
+        </Link>
         <Link href="/ads/create" passHref>
           <div
             className={`flex flex-col items-center hover:text-emerald-400 ${
@@ -38,14 +55,15 @@ const BottomNavigation = () => {
             <span className="text-xs">Sell</span>
           </div>
         </Link>
-        <Link href="/chats" passHref>
+        <Link href="/chat" passHref>
           <div
             className={`flex flex-col items-center hover:text-emerald-400 ${
-              isActive("/chats") ? "text-emerald-600" : "text-gray-600"
+              isActive("/chat") ? "text-emerald-600" : "text-gray-600"
             }`}
           >
-            <span>
+            <span className="flex">
               <CommentOutlinedIcon />
+              <Unreadmessages userId={userId} />
             </span>
             <span className="text-xs">Chat</span>
           </div>

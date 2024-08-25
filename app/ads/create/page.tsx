@@ -4,6 +4,9 @@ import { getData } from "@/lib/actions/transactionstatus";
 import { auth } from "@clerk/nextjs/server";
 import Navbar from "@/components/shared/navbar";
 import { getAllPackages } from "@/lib/actions/packages.actions";
+import BottomNavigation from "@/components/shared/BottomNavigation";
+import Footer from "@/components/shared/Footer";
+import Footersub from "@/components/shared/Footersub";
 const create = async () => {
   const { sessionClaims } = auth();
   const userId = sessionClaims?.userId as string;
@@ -26,7 +29,7 @@ const create = async () => {
   // console.log(packagesList);
   try {
     subscription = await getData(userId);
-    console.log(subscription);
+    // console.log(subscription);
     // Step 1: Parse createdAt date string into a Date object
     listed = subscription.ads;
 
@@ -103,6 +106,14 @@ const create = async () => {
           adstatus={adstatus}
         />
       </div>
+      <footer>
+        <div className="hidden lg:inline">
+          <Footersub />
+        </div>
+        <div className="lg:hidden">
+          <BottomNavigation userId={userId} />
+        </div>
+      </footer>
     </>
   );
 };

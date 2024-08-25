@@ -12,7 +12,7 @@ const Footersub = () => {
       <div className="border-t border-gray-300 p-2 mt-3"></div>
       <div className="flex flex-col items-center justify-center">
         <p className="text-xs font-bold">
-          {currentYear} Wheels. All Rights reserved.
+          {currentYear} Wheels.co.ke. All Rights reserved.
         </p>
         <p className="text-[8px] lg:text-xs">
           Developed by{" "}

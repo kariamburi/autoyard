@@ -10,6 +10,7 @@ import { getUserById } from "@/lib/actions/user.actions";
 import { auth } from "@clerk/nextjs/server";
 import Image from "next/image";
 import DashboardMyads from "@/components/shared/dashboardMyads";
+import Footersub from "@/components/shared/Footersub";
 
 const myads = async ({ params: { id }, searchParams }: SearchParamProps) => {
   const { sessionClaims } = auth();
@@ -102,7 +103,7 @@ const myads = async ({ params: { id }, searchParams }: SearchParamProps) => {
           <Navbar userstatus="User" userId={myId} />
         </div>
       </div>
-      <div className="mt-20">
+      <div className="mt-[70px]">
         <DashboardMyads
           userId={userId}
           loggedId={myId}
@@ -121,6 +122,9 @@ const myads = async ({ params: { id }, searchParams }: SearchParamProps) => {
           totalPages={organizedAds?.totalPages}
         />
       </div>
+      <footer>
+        <Footersub />
+      </footer>
     </>
   );
 };

@@ -240,7 +240,7 @@ export default function Ads({ ad, userId }: CardProps) {
                     <Image
                       src={image}
                       alt={`Image ${index + 1}`}
-                      className="bg-slate-900 object-cover cursor-pointer"
+                      className="object-cover cursor-pointer h-[500px]"
                       width={800} // Adjust the width as needed
                       height={500} // Adjust the height as needed
                     />
@@ -343,7 +343,7 @@ export default function Ads({ ad, userId }: CardProps) {
                         <Image
                           src={image}
                           alt="AdImage"
-                          className="bg-slate-900 rounded-sm bg-opacity-40 object-cover cursor-pointer border-2 border-transparent hover:border-emerald-500"
+                          className="h-[100px] rounded-sm bg-opacity-40 object-cover cursor-pointer border-2 border-transparent hover:border-emerald-500"
                           width={244} // Adjust width to match the `w-36` Tailwind class
                           height={196} // Adjust height to match the `h-24` Tailwind class
                         />
@@ -359,7 +359,13 @@ export default function Ads({ ad, userId }: CardProps) {
           {/* Popup for displaying all images */}
           {showPopup && (
             <div className="bg-black fixed top-0 left-0 w-full h-screen flex justify-center items-center z-50">
-              <div className="bg-black p-4 w-full items-center justify-center z-50">
+              <div className="bg-black p-4 w-full flex flex-col items-center justify-center z-50">
+                <button
+                  onClick={togglePopup}
+                  className="bg-opacity-70 rounded-full m-1 bg-black absolute top-0 right-0 focus:outline-none"
+                >
+                  <CloseIcon className="text-white m-0" />
+                </button>
                 <div className="relative flex flex-row flex-wrap justify-center">
                   <Carousel setApi={setApi3} className="w-full">
                     <CarouselContent>
@@ -387,15 +393,6 @@ export default function Ads({ ad, userId }: CardProps) {
                   <div className="p-1 text-center text-white text-sm text-muted-foreground z-10 mt">
                     Slide {currentSlide} of {totalSlides}
                   </div>
-                  <button
-                    onClick={togglePopup}
-                    className="bg-opacity-70 rounded-full m-1 bg-black absolute top-0 right-0 focus:outline-none"
-                  >
-                    <CloseIcon
-                      className="text-white m-0"
-                      sx={{ fontSize: 24 }}
-                    />
-                  </button>
                 </div>
                 {/* Close button with CloseIcon */}
               </div>
@@ -424,8 +421,9 @@ export default function Ads({ ad, userId }: CardProps) {
             </div>
             {!videoAdId && hideAddVideo && (
               <a href={`/video/`}>
-                <button className="bg-[#000000] mt-2 hover:bg-emerald-700 text-sm text-white py-2 px-8 rounded-lg flex items-center">
-                  <YouTubeIcon style={{ color: "red" }} /> Video Advert
+                <button className="bg-[#000000] mt-2 hover:bg-emerald-600 text-sm text-white py-1 px-4 rounded-full flex items-center">
+                  <YouTubeIcon style={{ color: "red" }} />
+                  Link to youtube video
                 </button>
               </a>
             )}
@@ -445,9 +443,7 @@ export default function Ads({ ad, userId }: CardProps) {
               {ad.make && (
                 <div className="mb-2 md:flex-row">
                   <div className="text-emerald-950 text-sm">{ad.make}</div>
-                  <div className="text-gray-500 text-[10px] lg:text-xs">
-                    MAKE
-                  </div>
+                  <div className="text-gray-500 text-xs">MAKE</div>
                 </div>
               )}
               {ad.vehiclemodel && (
@@ -455,9 +451,7 @@ export default function Ads({ ad, userId }: CardProps) {
                   <div className="text-emerald-950 text-sm">
                     {ad.vehiclemodel}
                   </div>
-                  <div className="text-gray-500 text-[10px] lg:text-xs">
-                    MODEL
-                  </div>
+                  <div className="text-gray-500 text-xs">MODEL</div>
                 </div>
               )}
               {ad.vehicleyear && (
@@ -465,9 +459,7 @@ export default function Ads({ ad, userId }: CardProps) {
                   <div className="text-emerald-950 text-sm">
                     {ad.vehicleyear}
                   </div>
-                  <div className="text-gray-500 text-[10px] lg:text-xs">
-                    YEAR
-                  </div>
+                  <div className="text-gray-500 text-xs">YEAR</div>
                 </div>
               )}
               {ad.vehiclemileage && (
@@ -475,9 +467,7 @@ export default function Ads({ ad, userId }: CardProps) {
                   <div className="text-emerald-950 text-sm">
                     {ad.vehiclemileage}
                   </div>
-                  <div className="text-gray-500 text-[10px] lg:text-xs">
-                    MILAGE
-                  </div>
+                  <div className="text-gray-500 text-xs">MILAGE</div>
                 </div>
               )}
               {ad.vehicleTransmissions && (
@@ -485,9 +475,7 @@ export default function Ads({ ad, userId }: CardProps) {
                   <div className="text-emerald-950 text-sm">
                     {ad.vehicleTransmissions}
                   </div>
-                  <div className="text-gray-500 text-[10px] lg:text-xs">
-                    TRANSMISSION
-                  </div>
+                  <div className="text-gray-500 text-xs">TRANSMISSION</div>
                 </div>
               )}
               {ad.vehicleEngineSizesCC && (
@@ -495,9 +483,7 @@ export default function Ads({ ad, userId }: CardProps) {
                   <div className="text-emerald-950 text-sm">
                     {ad.vehicleEngineSizesCC}
                   </div>
-                  <div className="text-gray-500 text-[10px] lg:text-xs">
-                    ENGINE SIZE
-                  </div>
+                  <div className="text-gray-500 text-xs">ENGINE SIZE</div>
                 </div>
               )}
               {ad.vehicleFuelTypes && (
@@ -505,9 +491,7 @@ export default function Ads({ ad, userId }: CardProps) {
                   <div className="text-emerald-950 text-sm">
                     {ad.vehicleFuelTypes}
                   </div>
-                  <div className="text-gray-500 text-[10px] lg:text-xs">
-                    FUEL TYPE
-                  </div>
+                  <div className="text-gray-500 text-xs">FUEL TYPE</div>
                 </div>
               )}
               {ad.vehicleBodyTypes && (
@@ -515,9 +499,7 @@ export default function Ads({ ad, userId }: CardProps) {
                   <div className="text-emerald-950 text-sm">
                     {ad.vehicleBodyTypes}
                   </div>
-                  <div className="text-gray-500 text-[10px] lg:text-xs">
-                    BODY TYPE
-                  </div>
+                  <div className="text-gray-500 text-xs">BODY TYPE</div>
                 </div>
               )}
               {ad.vehiclecolor && (
@@ -525,9 +507,7 @@ export default function Ads({ ad, userId }: CardProps) {
                   <div className="text-emerald-950 text-sm">
                     {ad.vehiclecolor}
                   </div>
-                  <div className="text-gray-500 text-[10px] lg:text-xs">
-                    BODY COLOR
-                  </div>
+                  <div className="text-gray-500 text-xs">BODY COLOR</div>
                 </div>
               )}
               {ad.vehicleinteriorColor && (
@@ -535,9 +515,7 @@ export default function Ads({ ad, userId }: CardProps) {
                   <div className="text-emerald-950 text-sm">
                     {ad.vehicleinteriorColor}
                   </div>
-                  <div className="text-gray-500 text-[10px] lg:text-xs">
-                    INTERIOR COLOR
-                  </div>
+                  <div className="text-gray-500 text-xs">INTERIOR COLOR</div>
                 </div>
               )}
               {ad.vehicleSeats && (
@@ -545,9 +523,7 @@ export default function Ads({ ad, userId }: CardProps) {
                   <div className="text-emerald-950 text-sm">
                     {ad.vehicleSeats}
                   </div>
-                  <div className="text-gray-500 text-[10px] lg:text-xs">
-                    SEATS
-                  </div>
+                  <div className="text-gray-500 text-xs">SEATS</div>
                 </div>
               )}
               {ad.vehiclecondition && (
@@ -555,9 +531,7 @@ export default function Ads({ ad, userId }: CardProps) {
                   <div className="text-emerald-950 text-sm">
                     {ad.vehiclecondition}
                   </div>
-                  <div className="text-gray-500 text-[10px] lg:text-xs">
-                    CONDITION
-                  </div>
+                  <div className="text-gray-500 text-xs">CONDITION</div>
                 </div>
               )}
               {ad.vehiclesecordCondition && (
@@ -565,9 +539,7 @@ export default function Ads({ ad, userId }: CardProps) {
                   <div className="text-emerald-950 text-sm">
                     {ad.vehiclesecordCondition}
                   </div>
-                  <div className="text-gray-500 text-[10px] lg:text-xs">
-                    SECORD CONDITION
-                  </div>
+                  <div className="text-gray-500 text-xs">SECORD CONDITION</div>
                 </div>
               )}
               {ad.vehicleregistered && (
@@ -575,9 +547,7 @@ export default function Ads({ ad, userId }: CardProps) {
                   <div className="text-emerald-950 text-sm">
                     {ad.vehicleregistered}
                   </div>
-                  <div className="text-gray-500 text-[10px] lg:text-xs">
-                    REGISTERED
-                  </div>
+                  <div className="text-gray-500 text-xs">REGISTERED</div>
                 </div>
               )}
               {ad.vehicleexchangeposible && (
@@ -585,9 +555,7 @@ export default function Ads({ ad, userId }: CardProps) {
                   <div className="text-emerald-950 text-sm">
                     {ad.vehicleexchangeposible}
                   </div>
-                  <div className="text-gray-500 text-[10px] lg:text-xs">
-                    EXCHANGE POSSIBLE
-                  </div>
+                  <div className="text-gray-500 text-xs">EXCHANGE POSSIBLE</div>
                 </div>
               )}
               {ad.vehiclechassis && (
@@ -595,9 +563,7 @@ export default function Ads({ ad, userId }: CardProps) {
                   <div className="text-emerald-950 text-sm">
                     {ad.vehiclechassis}
                   </div>
-                  <div className="text-gray-500 text-[10px] lg:text-xs">
-                    VIN CHASSIS NO.
-                  </div>
+                  <div className="text-gray-500 text-xs">VIN CHASSIS NO.</div>
                 </div>
               )}
             </div>

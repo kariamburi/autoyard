@@ -1,9 +1,6 @@
-
 import { SearchParamProps } from "@/types";
 import { auth } from "@clerk/nextjs/server";
-import {
-  getAllCategories,
-} from "@/lib/actions/category.actions";
+import { getAllCategories } from "@/lib/actions/category.actions";
 import Link from "next/link";
 import dynamic from "next/dynamic";
 
@@ -42,6 +39,8 @@ import {
   getAdsCountPerarea,
 } from "@/lib/actions/ad.actions";
 import Navbar from "@/components/shared/navbar";
+import Footersub from "@/components/shared/Footersub";
+import BottomNavigation from "@/components/shared/BottomNavigation";
 // Dynamic imports for components that are not critical for the initial render
 //const Navbar = dynamic(() => import("@/components/shared/navbar"), {
 // ssr: false,
@@ -53,7 +52,7 @@ const DashboardCategory = dynamic(
     ssr: false,
     loading: () => (
       <div className="flex-center h-screen w-full bg-[#ebf2f7] bg-dotted-pattern bg-cover bg-fixed bg-center">
-        <div className="flex gap-1 items-center">
+        <div className="flex gap-1 items-center justify-center w-full h-full">
           <img
             src="/assets/icons/loading.gif"
             alt="edit"
@@ -459,7 +458,7 @@ const Storeads = async ({ params: { id }, searchParams }: SearchParamProps) => {
       limit: 20,
     });
   }
-  //console.log("--------------------------------------" + Ads);
+  console.log("--------------------------------------" + Ads?.data);
   return (
     <>
       <div className="bg-gradient-to-r from-emerald-800 to-emerald-950 z-10 top-0 fixed w-full">
@@ -467,8 +466,8 @@ const Storeads = async ({ params: { id }, searchParams }: SearchParamProps) => {
           <Navbar userstatus="User" userId={userId ?? ""} />
         </div>
       </div>
-      <div className="max-w-6xl mx-auto mt-20">
-        <div className="text-sm breadcrumbs p-2">
+      <div className="max-w-6xl mx-auto mt-[70px]">
+        <div className="text-sm breadcrumbs p-0 hidden lg:inline">
           <div className="flex">
             <div className="bg-white p-2 rounded-full mr-2">
               <a href="/" className="hover:text-green-700 no-underline">
@@ -536,7 +535,7 @@ const Storeads = async ({ params: { id }, searchParams }: SearchParamProps) => {
           </div>
         </div>
       </div>
-      <div className="mt-1">
+      <div className="mt-1 mb-20">
         <DashboardCategory
           loading={false} // Initially false because this is SSR
           userId={userId}
@@ -580,6 +579,14 @@ const Storeads = async ({ params: { id }, searchParams }: SearchParamProps) => {
           AdsCountPerpropertysecurity={AdsCountPerpropertysecurity}
         />
       </div>
+      <footer>
+        <div className="hidden lg:inline">
+          <Footersub />
+        </div>
+        <div className="lg:hidden">
+          <BottomNavigation userId={userId} />
+        </div>
+      </footer>
     </>
   );
 };

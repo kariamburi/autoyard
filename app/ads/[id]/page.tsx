@@ -54,7 +54,7 @@ const AdDetails = async ({
             <Navbar userstatus="User" userId={userId || ""} />
           </div>
         </div>
-        <div className="max-w-6xl mx-auto mt-20">
+        <div className="max-w-6xl mx-auto mt-[70px]">
           <div className="flex gap-1 items-center">
             <Image
               src="/assets/icons/loading.gif"

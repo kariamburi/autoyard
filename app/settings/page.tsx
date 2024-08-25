@@ -6,6 +6,8 @@ import SettingsOutlinedIcon from "@mui/icons-material/SettingsOutlined";
 import { auth } from "@clerk/nextjs/server";
 import Verification from "@/components/shared/Verification";
 import Image from "next/image";
+import BottomNavigation from "@/components/shared/BottomNavigation";
+import Footersub from "@/components/shared/Footersub";
 const Settings = async () => {
   const { sessionClaims } = auth();
   const userId = sessionClaims?.userId as string;
@@ -69,6 +71,14 @@ const Settings = async () => {
           </div>
         </div>
       </div>
+      <footer>
+        <div className="hidden lg:inline">
+          <Footersub />
+        </div>
+        <div className="lg:hidden">
+          <BottomNavigation userId={userId} />
+        </div>
+      </footer>
     </>
   );
 };

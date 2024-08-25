@@ -59,7 +59,7 @@ export default async function RootLayout({
           <Footer />
         </div>
         <div className="lg:hidden">
-          <BottomNavigation />
+          <BottomNavigation userId={userId} />
         </div>
       </footer>
     </div>

@@ -31,6 +31,12 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "../ui/tooltip";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
 import Menumake from "./menumake";
 import MenumakeBus from "./MenumakeBus";
 import MenumakeMotobikes from "./MenumakeMotobikes";
@@ -38,7 +44,12 @@ import MenuequipType from "./MenuequipType";
 import MenuBoats from "./MenuBoats";
 import dynamic from "next/dynamic";
 import Skeleton from "@mui/material/Skeleton";
-
+import Searchmain from "./Searchmain";
+import MakeFilter from "./MakeFilter";
+import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
+import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined";
+import SortOutlinedIcon from "@mui/icons-material/SortOutlined";
+import SubCategoryFilterSearch from "./SubCategoryFilterSearch";
 const CollectionSearch = dynamic(() => import("./CollectionSearch"), {
   ssr: false,
   loading: () => (
@@ -229,7 +240,7 @@ CollectionProps) => {
   };
 
   const handlePrice = (index: number, min: string, max: string) => {
-    setactiverange(index);
+    //setactiverange(index);
     let newUrl = "";
     if (min) {
       newUrl = formUrlQuery({
@@ -304,7 +315,17 @@ CollectionProps) => {
 
     // Simulated delay
   }, [data]);
-
+  const handleClear = () => {
+    let newUrl = "";
+    newUrl = formUrlQuerymultiple({
+      params: "",
+      updates: {
+        category: category.toString(),
+        subcategory: subcategory.toString(),
+      },
+    });
+    router.push(newUrl, { scroll: false });
+  };
   return (
     <>
       <div className="max-w-6xl mx-auto flex mt-3 p-1">
@@ -350,7 +371,7 @@ CollectionProps) => {
         </div>
 
         <div className="flex-1">
-          <div className="border rounded-lg lg:hidden">
+          <div className="rounded-lg hidden">
             <SidebarSearch
               categoryList={categoryList}
               category={category}
@@ -393,11 +414,40 @@ CollectionProps) => {
               </div>
             </section>
 
+            <div className="flex items-center gap-1 justify-between">
+              <SubCategoryFilterSearch
+                category={category}
+                AdsCountPerSubcategory={AdsCountPerSubcategory}
+              />
+            </div>
             <section className="my-0">
-              <div className="flex items-center gap-1 justify-between">
-                <Search />
-              </div>
-              <div className=" bg-gray-50 rounded-lg mt-2 p-1 mb-2">
+              {/* This is a comment inside a JSX expression   */}
+              <Accordion type="single" collapsible className="w-full">
+                <AccordionItem value="item-2">
+                  <AccordionTrigger>
+                    <p className="">
+                      <SortOutlinedIcon />
+                      Advanced Filter
+                    </p>
+                  </AccordionTrigger>
+                  <AccordionContent>
+                    <div className="grid grid-cols-2 lg:grid-cols-4">
+                      <MakeFilter />
+                    </div>
+                  </AccordionContent>
+                </AccordionItem>
+              </Accordion>
+
+              <div className="bg-gray-50 rounded-lg mt-2 p-1 mb-2">
+                <div className="flex items-center gap-1 m-1 justify-end">
+                  <button
+                    onClick={handleClear}
+                    className="p-1 text-xs bg-white rounded-lg flex hover:text-[#30AF5B] items-center gap-1 hover:cursor-pointer"
+                  >
+                    <CloseOutlinedIcon sx={{ fontSize: 16 }} />
+                    Reset Filter
+                  </button>
+                </div>
                 <div className="w-full">
                   {subcategory === "Car" && (
                     <>
@@ -405,7 +455,7 @@ CollectionProps) => {
                         <div
                           onClick={() => handlePrice(1, "0", "500000")}
                           className={`text-sm rounded-sm p-2 justify-center cursor-pointer ${
-                            activerange === 1
+                            "0-500000" === searchParams.get("Price")
                               ? "bg-[#30AF5B] text-white"
                               : "bg-[#ebf2f7] hover:bg-emerald-100"
                           }`}
@@ -416,7 +466,7 @@ CollectionProps) => {
                         <div
                           onClick={() => handlePrice(2, "500000", "1000000")}
                           className={`text-sm rounded-sm p-2 justify-center cursor-pointer ${
-                            activerange === 2
+                            "500000-1000000" === searchParams.get("Price")
                               ? "bg-[#30AF5B] text-white"
                               : "bg-[#ebf2f7] hover:bg-emerald-100"
                           }`}
@@ -427,7 +477,7 @@ CollectionProps) => {
                         <div
                           onClick={() => handlePrice(3, "1000000", "2000000")}
                           className={`text-sm rounded-sm p-2 justify-center cursor-pointer ${
-                            activerange === 3
+                            "1000000-2000000" === searchParams.get("Price")
                               ? "bg-[#30AF5B] text-white"
                               : "bg-[#ebf2f7] hover:bg-emerald-100"
                           }`}
@@ -437,7 +487,7 @@ CollectionProps) => {
                         <div
                           onClick={() => handlePrice(4, "2000000", "3000000")}
                           className={`text-sm rounded-sm p-2 justify-center cursor-pointer ${
-                            activerange === 4
+                            "2000000-3000000" === searchParams.get("Price")
                               ? "bg-[#30AF5B] text-white"
                               : "bg-[#ebf2f7] hover:bg-emerald-100"
                           }`}
@@ -447,7 +497,7 @@ CollectionProps) => {
                         <div
                           onClick={() => handlePrice(5, "3000000", "5000000")}
                           className={`text-sm rounded-sm p-2 justify-center cursor-pointer ${
-                            activerange === 5
+                            "3000000-5000000" === searchParams.get("Price")
                               ? "bg-[#30AF5B] text-white"
                               : "bg-[#ebf2f7] hover:bg-emerald-100"
                           }`}
@@ -457,7 +507,7 @@ CollectionProps) => {
                         <div
                           onClick={() => handlePrice(6, "5000000", "10000000")}
                           className={`text-sm rounded-sm p-2 justify-center cursor-pointer ${
-                            activerange === 6
+                            "5000000-10000000" === searchParams.get("Price")
                               ? "bg-[#30AF5B] text-white"
                               : "bg-[#ebf2f7] hover:bg-emerald-100"
                           }`}
@@ -469,7 +519,7 @@ CollectionProps) => {
                             handlePrice(7, "10000000", "9999999999")
                           }
                           className={`text-sm rounded-sm p-2 justify-center cursor-pointer ${
-                            activerange === 7
+                            "10000000-9999999999" === searchParams.get("Price")
                               ? "bg-[#30AF5B] text-white"
                               : "bg-[#ebf2f7] hover:bg-emerald-100"
                           }`}
@@ -478,22 +528,6 @@ CollectionProps) => {
                         </div>
                       </div>
                       <Menumake category={category} subcategory={subcategory} />
-                      {/* This is a comment inside a JSX expression
-                      <Accordion type="single" collapsible className="w-full">
-                        <AccordionItem value="item-2">
-                          <AccordionTrigger>
-                            <p className="">
-                              <SearchOutlinedIcon /> Quick search
-                            </p>
-                          </AccordionTrigger>
-                          <AccordionContent>
-                            <div className="grid grid-cols-2 lg:grid-cols-4">
-                              <MakeFilter />
-                            </div>
-                          </AccordionContent>
-                        </AccordionItem>
-                      </Accordion>
-                       */}
                     </>
                   )}
                   {subcategory === "Buses & Microbuses" && (
@@ -534,6 +568,9 @@ CollectionProps) => {
                     </>
                   )}
                 </div>
+              </div>
+              <div className="flex items-center gap-1 justify-between">
+                <Searchmain />
               </div>
               <div className="flex w-full justify-between">
                 <div className="flex gap-1 flex-wrap justify-center md:justify-start items-center mb-4 md:mb-0">

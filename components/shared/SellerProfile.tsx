@@ -158,8 +158,7 @@ const SellerProfile = ({ userId, loggedId, user }: CollectionProps) => {
             <Accordion type="single" collapsible className="w-full">
               <AccordionItem value="item-2">
                 <AccordionTrigger>
-                  {" "}
-                  <p className="text-[10px] lg:text-xs">Show More...</p>
+                  <p className="text-xs lg:text-sm">Show More...</p>
                 </AccordionTrigger>
                 <AccordionContent>
                   <div className="p-0 rounded-[20px] m-2 shadow bg-white">
@@ -205,10 +204,10 @@ const SellerProfile = ({ userId, loggedId, user }: CollectionProps) => {
                         <>
                           <div className="bg-white p-0 text-l rounded-lg overflow-hidden">
                             <div className="">
-                              <p className="lg:text-xs text-sm font-bold">
+                              <p className="text-xs lg:text-sm font-bold">
                                 Office Location
                               </p>
-                              <p className="text-gray-400 mb-1 lg:text-xs text-[10px]">
+                              <p className="mb-1 lg:text-xs text-[10px]">
                                 <LocationOnIcon sx={{ fontSize: 20 }} /> GPS
                                 Location
                               </p>

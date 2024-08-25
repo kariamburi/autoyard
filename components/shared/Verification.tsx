@@ -1,10 +1,6 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import {
-  HoverCard,
-  HoverCardContent,
-  HoverCardTrigger,
-} from "@/components/ui/hover-card";
+import ShowPopup from "./ShowPopup"; // Adjust the import path accordingly
 import { v4 as uuidv4 } from "uuid";
 import { createTransaction } from "@/lib/actions/transactionstatus";
 import VerifiedUserOutlinedIcon from "@mui/icons-material/VerifiedUserOutlined";
@@ -15,18 +11,22 @@ import { IUser } from "@/lib/database/models/user.model";
 import { getVerfiesfee } from "@/lib/actions/verifies.actions";
 import { useRouter } from "next/navigation";
 
-type setingsProp = {
+interface SettingsProp {
   user: IUser;
   userId: string;
   isAdCreator: boolean;
-};
+}
 
-const Verification = ({ user, userId, isAdCreator }: setingsProp) => {
+const Verification: React.FC<SettingsProp> = ({
+  user,
+  userId,
+  isAdCreator,
+}) => {
   const _id = "662b9ab6dd4398a447257e59";
   const router = useRouter();
-  const [activationfee, setactivationfee] = useState(500);
+  const [activationfee, setActivationFee] = useState(500);
 
-  const handlepay = async (
+  const handlePay = async (
     packIdInput: string,
     packNameInput: string,
     periodInput: string,
@@ -54,8 +54,6 @@ const Verification = ({ user, userId, isAdCreator }: setingsProp) => {
   let formattedCreatedAt = "";
   try {
     const createdAtDate = new Date(user?.verified[0]?.verifieddate);
-    const today = new Date();
-
     if (isToday(createdAtDate)) {
       formattedCreatedAt = "Today " + format(createdAtDate, "HH:mm");
     } else if (isYesterday(createdAtDate)) {
@@ -69,124 +67,109 @@ const Verification = ({ user, userId, isAdCreator }: setingsProp) => {
   }
 
   useEffect(() => {
-    if (user.verified && user?.verified[0]?.accountverified === true) {
-    } else {
-      const getfee = async () => {
+    if (!(user.verified && user?.verified[0]?.accountverified === true)) {
+      const getFee = async () => {
         const verifies = await getVerfiesfee(_id);
-        setactivationfee(verifies.fee);
+        setActivationFee(verifies.fee);
       };
-      getfee();
+      getFee();
     }
-  }, []);
+  }, [user]);
+
+  const verifiedContent = (
+    <div className="flex justify-between space-x-4">
+      <VerifiedUserOutlinedIcon
+        sx={{ fontSize: 24 }}
+        className="text-emerald-600"
+      />
+      <div className="space-y-1">
+        <h4 className="text-sm font-semibold">Account Verified</h4>
+        <p className="text-sm">
+          This account has been fully verified and is genuine.
+        </p>
+        <div className="flex items-center pt-2">
+          <span className="text-xs text-muted-foreground">
+            Verified since {formattedCreatedAt}
+          </span>
+        </div>
+      </div>
+    </div>
+  );
+
+  const unverifiedContentAdCreator = (
+    <div className="flex justify-between space-x-4">
+      <ShieldOutlinedIcon sx={{ fontSize: 24 }} className="text-[#ff0000]" />
+      <div className="space-y-1">
+        <h4 className="text-sm font-semibold text-[#ff0000]">
+          Account unverified
+        </h4>
+        <p className="text-sm">
+          This account is currently unverified. Request verification to enhance
+          client confidence and attract more clients.
+        </p>
+        <div className="flex items-center pt-2">
+          <button
+            onClick={() =>
+              handlePay(_id, "Verification", "0", activationfee.toString())
+            }
+            className="hover:text-gray-500 bg-[#30AF5B] text-white text-xs hover:bg-white mt-2 p-2 rounded-lg shadow"
+          >
+            <CheckCircleIcon sx={{ marginRight: "5px" }} />
+            Request Verification
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+
+  const unverifiedContent = (
+    <div className="flex justify-between space-x-4">
+      <ShieldOutlinedIcon sx={{ fontSize: 24 }} className="text-[#ff0000]" />
+      <div className="space-y-1">
+        <h4 className="text-sm font-semibold text-[#ff0000]">
+          Account unverified
+        </h4>
+        <p className="text-sm">
+          The seller&apos;s account has not been verified.
+        </p>
+      </div>
+    </div>
+  );
 
   return (
-    <div className="p-2">
+    <div className="p-2 items-center justify-center">
       {user.verified && user?.verified[0]?.accountverified === true ? (
-        <HoverCard>
-          <HoverCardTrigger
-            asChild
-            onTouchStart={(e) => e.currentTarget.focus()} // Trigger focus on touch for mobile
-          >
-            <p className="text-[#30AF5B] text-xs cursor-pointer hover:underline">
+        <ShowPopup
+          trigger={
+            <p className="text-[#30AF5B] p-1 bg-white rounded-full text-xs cursor-pointer hover:underline">
               <VerifiedUserOutlinedIcon sx={{ fontSize: 16 }} />
               Account Verified
             </p>
-          </HoverCardTrigger>
-          <HoverCardContent className="w-80 ml-2 mr-2">
-            <div className="flex justify-between space-x-4">
-              <VerifiedUserOutlinedIcon
-                sx={{ fontSize: 24 }}
-                className="text-emerald-600"
-              />
-              <div className="space-y-1">
-                <h4 className="text-sm font-semibold">Account Verified</h4>
-                <p className="text-sm">
-                  This account has been fully verified and is genuine.
-                </p>
-                <div className="flex items-center pt-2">
-                  <span className="text-xs text-muted-foreground">
-                    Verified since {formattedCreatedAt}
-                  </span>
-                </div>
-              </div>
-            </div>
-          </HoverCardContent>
-        </HoverCard>
+          }
+          content={verifiedContent}
+        />
       ) : (
         <>
           {isAdCreator ? (
-            <HoverCard>
-              <HoverCardTrigger
-                asChild
-                onTouchStart={(e) => e.currentTarget.focus()} // Trigger focus on touch for mobile
-              >
-                <p className="text-gray-50 text-xs cursor-pointer hover:underline">
+            <ShowPopup
+              trigger={
+                <p className="text-gray-50 p-1 bg-white rounded-full text-xs cursor-pointer hover:underline">
                   <ShieldOutlinedIcon sx={{ fontSize: 16 }} />
                   Account unverified
                 </p>
-              </HoverCardTrigger>
-              <HoverCardContent className="w-80 ml-2 mr-2">
-                <div className="flex justify-between space-x-4">
-                  <ShieldOutlinedIcon
-                    sx={{ fontSize: 24 }}
-                    className="text-[#ff0000]"
-                  />
-                  <div className="space-y-1">
-                    <h4 className="text-sm font-semibold text-[#ff0000]">
-                      Account unverified
-                    </h4>
-                    <p className="text-sm">
-                      This account is currently unverified. Request verification
-                      to enhance client confidence and attract more clients.
-                    </p>
-                    <div className="flex items-center pt-2">
-                      <button
-                        onClick={() =>
-                          handlepay(
-                            _id,
-                            "Verification",
-                            "0",
-                            activationfee.toString()
-                          )
-                        }
-                        className="bg-[#30AF5B] text-white text-xs hover:bg-[#000000] mt-2 p-2 rounded-lg shadow"
-                      >
-                        <CheckCircleIcon sx={{ marginRight: "5px" }} />
-                        Request Verification
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              </HoverCardContent>
-            </HoverCard>
+              }
+              content={unverifiedContentAdCreator}
+            />
           ) : (
-            <HoverCard>
-              <HoverCardTrigger
-                asChild
-                onTouchStart={(e) => e.currentTarget.focus()} // Trigger focus on touch for mobile
-              >
-                <p className="text-gray-50 text-xs cursor-pointer hover:underline">
+            <ShowPopup
+              trigger={
+                <p className="text-gray-50 p-1 bg-white rounded-full text-xs cursor-pointer hover:underline">
                   <ShieldOutlinedIcon sx={{ fontSize: 16 }} />
                   Account unverified
                 </p>
-              </HoverCardTrigger>
-              <HoverCardContent className="w-80 ml-2 mr-2">
-                <div className="flex justify-between space-x-4">
-                  <ShieldOutlinedIcon
-                    sx={{ fontSize: 24 }}
-                    className="text-[#ff0000]"
-                  />
-                  <div className="space-y-1">
-                    <h4 className="text-sm font-semibold text-[#ff0000]">
-                      Account unverified
-                    </h4>
-                    <p className="text-sm">
-                      The seller&apos;s account has not been verified.
-                    </p>
-                  </div>
-                </div>
-              </HoverCardContent>
-            </HoverCard>
+              }
+              content={unverifiedContent}
+            />
           )}
         </>
       )}

@@ -46,7 +46,7 @@ const Search = ({
     router.push(newUrl, { scroll: false });
   };
   return (
-    <div className="flex items-center bg-white p-2 rounded-full mx-auto w-full max-w-md">
+    <div className="flex items-center bg-white p-2 border rounded-full mx-auto w-full max-w-md">
       <button
         onClick={() =>
           router.push(
