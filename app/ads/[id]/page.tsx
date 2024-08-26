@@ -76,9 +76,8 @@ const AdDetails = async ({
           <Navbar userstatus="User" userId={userId || ""} />
         </div>
       </div>
-      <div className="max-w-6xl mx-auto">
-        <div className="h-[40px]"></div>
-        <div className="text-sm p-1 hidden lg:inline">
+      <div className="max-w-6xl mx-auto mt-[50px]">
+        <div className="text-sm p-0 hidden lg:inline">
           <div className="flex">
             <div className="bg-white p-1 rounded-full mr-2">
               <Link className="hover:text-green-700 no-underline" href={`/`}>

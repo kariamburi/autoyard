@@ -1245,9 +1245,9 @@ const SidebarSearch = ({
   return (
     <>
       <div className="flex flex-col items-center min-w-[280px] w-full">
-        <div className="w-full rounded-sm bg-gray-100 p-0 mb-2">
+        {/* <div className="w-full rounded-sm bg-gray-100 p-0 mb-2">
           <CategoryFilterSearch />
-        </div>
+        </div> */}
         <div className="flex flex-col text-white items-center rounded-t-lg w-full p-1 bg-emerald-950">
           Category
         </div>

@@ -46,10 +46,21 @@ import dynamic from "next/dynamic";
 import Skeleton from "@mui/material/Skeleton";
 import Searchmain from "./Searchmain";
 import MakeFilter from "./MakeFilter";
+import SearchIcon from "@mui/icons-material/Search";
 import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
 import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined";
 import SortOutlinedIcon from "@mui/icons-material/SortOutlined";
 import SubCategoryFilterSearch from "./SubCategoryFilterSearch";
+import SidebarSearchmobile from "./SidebarSearchmobile";
+import CloseIcon from "@mui/icons-material/Close";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "../ui/dialog";
+import { ScrollArea } from "../ui/scroll-area";
 const CollectionSearch = dynamic(() => import("./CollectionSearch"), {
   ssr: false,
   loading: () => (
@@ -326,6 +337,15 @@ CollectionProps) => {
     });
     router.push(newUrl, { scroll: false });
   };
+  const [isOpen, setIsOpen] = useState(false);
+
+  const openDialog = () => {
+    setIsOpen(true);
+  };
+
+  const closeDialog = () => {
+    setIsOpen(false);
+  };
   return (
     <>
       <div className="max-w-6xl mx-auto flex mt-3 p-1">
@@ -407,32 +427,167 @@ CollectionProps) => {
               AdsCountPerpropertysecurity={AdsCountPerpropertysecurity}
             />
           </div>
-          <div className="rounded-lg border bg-white max-w-8xl mx-auto lg:flex-row mt-0 p-1 justify-center">
+          <div className="rounded-lg bg-white max-w-8xl mx-auto lg:flex-row mt-0 p-1 justify-center">
             <section className="bg-white bg-dotted-pattern bg-cover bg-center py-0 md:py-0 rounded-sm">
-              <div className="font-bold text-lg text-emerald-950 text-center sm:text-left p-2">
-                {category} {subcategory ? <> | {subcategory}</> : "| All"}{" "}
-              </div>
-            </section>
-
-            <div className="flex items-center gap-1 justify-between">
               <SubCategoryFilterSearch
                 category={category}
                 AdsCountPerSubcategory={AdsCountPerSubcategory}
               />
+            </section>
+
+            <div className="flex items-center gap-1 justify-between">
+              <div className="font-bold text-lg text-emerald-950 text-center sm:text-left p-2">
+                {category} {subcategory ? <> | {subcategory}</> : "| All"}{" "}
+              </div>
+            </div>
+            <div className="flex items-center mt-2 gap-1 justify-between">
+              <Searchmain />
+              <Dialog open={isOpen}>
+                <DialogTrigger asChild>
+                  <div
+                    onClick={() => openDialog()}
+                    className="flex cursor-pointer text-sm bg-gray-100 rounded-sm p-1 justify-between items-center"
+                  >
+                    <SortOutlinedIcon />
+                    Filter
+                  </div>
+                </DialogTrigger>
+                <DialogContent className="sm:max-w-[425px] bg-white">
+                  <DialogHeader>
+                    <DialogTitle>
+                      <div className="font-bold text-lg text-emerald-950 text-center sm:text-left p-2">
+                        {category}{" "}
+                        {subcategory ? <> | {subcategory}</> : "| All"}{" "}
+                      </div>
+                    </DialogTitle>
+                    <div className="w-full bg-white">
+                      <div
+                        onClick={closeDialog}
+                        className="absolute top-2 right-2 z-30 bg-white"
+                      >
+                        <button className="bg-white">
+                          <CloseIcon
+                            className="bg-white"
+                            sx={{ fontSize: 24 }}
+                          />
+                        </button>
+                      </div>
+                    </div>
+                  </DialogHeader>
+
+                  <div className="w-full flex flex-col">
+                    <SidebarSearchmobile
+                      categoryList={categoryList}
+                      category={category}
+                      AdsCountPerSubcategory={AdsCountPerSubcategory}
+                      AdsCountPerRegion={AdsCountPerRegion}
+                      subcategory={subcategory}
+                      AdsCountPerVerifiedTrue={AdsCountPerVerifiedTrue}
+                      AdsCountPerVerifiedFalse={AdsCountPerVerifiedFalse}
+                      make={make}
+                      AdsCountPerColor={AdsCountPerColor}
+                      AdsCountPerTransmission={AdsCountPerTransmission}
+                      AdsCountPerFuel={AdsCountPerFuel}
+                      AdsCountPerCondition={AdsCountPerCondition}
+                      AdsCountPerCC={AdsCountPerCC}
+                      AdsCountPerExchange={AdsCountPerExchange}
+                      AdsCountPerBodyType={AdsCountPerBodyType}
+                      AdsCountPerRegistered={AdsCountPerRegistered}
+                      AdsCountPerSeats={AdsCountPerSeats}
+                      AdsCountPersecondCondition={AdsCountPersecondCondition}
+                      Types={Types}
+                      AdsCountPerYear={AdsCountPerYear}
+                      AdsCountPerlanduse={AdsCountPerlanduse}
+                      AdsCountPerfloors={AdsCountPerfloors}
+                      AdsCountPerhouseclass={AdsCountPerhouseclass}
+                      AdsCountPerbedrooms={AdsCountPerbedrooms}
+                      AdsCountPerbathrooms={AdsCountPerbathrooms}
+                      AdsCountPerfurnishing={AdsCountPerfurnishing}
+                      AdsCountPeramenities={AdsCountPeramenities}
+                      AdsCountPertoilets={AdsCountPertoilets}
+                      AdsCountPerparking={AdsCountPerparking}
+                      AdsCountPerstatus={AdsCountPerstatus}
+                      AdsCountPerarea={AdsCountPerarea}
+                      AdsCountPerpropertysecurity={AdsCountPerpropertysecurity}
+                    />
+                    <div className="text-sm mt-1 rounded-lg w-full bg-white p-2">
+                      <div className="w-full p-2">
+                        <div className="grid grid-cols-2 gap-1">
+                          <button
+                            type="submit"
+                            onClick={closeDialog}
+                            className="bg-[#30AF5B] flex gap-1 items-center text-sm rounded-sm text-white h-full"
+                          >
+                            <SearchIcon /> Search
+                          </button>
+
+                          <button
+                            type="submit"
+                            onClick={handleClear}
+                            className="bg-gray-400 flex gap-1 items-center text-sm rounded-sm text-white h-full"
+                          >
+                            <CloseIcon
+                              className="text-white"
+                              sx={{ fontSize: 24 }}
+                            />{" "}
+                            Reset Filter
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </DialogContent>
+              </Dialog>
             </div>
             <section className="my-0">
               {/* This is a comment inside a JSX expression   */}
+
               <Accordion type="single" collapsible className="w-full">
                 <AccordionItem value="item-2">
                   <AccordionTrigger>
                     <p className="">
                       <SortOutlinedIcon />
-                      Advanced Filter
+                      Filter
                     </p>
                   </AccordionTrigger>
                   <AccordionContent>
-                    <div className="grid grid-cols-2 lg:grid-cols-4">
-                      <MakeFilter />
+                    <div className="w-full p-1">
+                      <SidebarSearchmobile
+                        categoryList={categoryList}
+                        category={category}
+                        AdsCountPerSubcategory={AdsCountPerSubcategory}
+                        AdsCountPerRegion={AdsCountPerRegion}
+                        subcategory={subcategory}
+                        AdsCountPerVerifiedTrue={AdsCountPerVerifiedTrue}
+                        AdsCountPerVerifiedFalse={AdsCountPerVerifiedFalse}
+                        make={make}
+                        AdsCountPerColor={AdsCountPerColor}
+                        AdsCountPerTransmission={AdsCountPerTransmission}
+                        AdsCountPerFuel={AdsCountPerFuel}
+                        AdsCountPerCondition={AdsCountPerCondition}
+                        AdsCountPerCC={AdsCountPerCC}
+                        AdsCountPerExchange={AdsCountPerExchange}
+                        AdsCountPerBodyType={AdsCountPerBodyType}
+                        AdsCountPerRegistered={AdsCountPerRegistered}
+                        AdsCountPerSeats={AdsCountPerSeats}
+                        AdsCountPersecondCondition={AdsCountPersecondCondition}
+                        Types={Types}
+                        AdsCountPerYear={AdsCountPerYear}
+                        AdsCountPerlanduse={AdsCountPerlanduse}
+                        AdsCountPerfloors={AdsCountPerfloors}
+                        AdsCountPerhouseclass={AdsCountPerhouseclass}
+                        AdsCountPerbedrooms={AdsCountPerbedrooms}
+                        AdsCountPerbathrooms={AdsCountPerbathrooms}
+                        AdsCountPerfurnishing={AdsCountPerfurnishing}
+                        AdsCountPeramenities={AdsCountPeramenities}
+                        AdsCountPertoilets={AdsCountPertoilets}
+                        AdsCountPerparking={AdsCountPerparking}
+                        AdsCountPerstatus={AdsCountPerstatus}
+                        AdsCountPerarea={AdsCountPerarea}
+                        AdsCountPerpropertysecurity={
+                          AdsCountPerpropertysecurity
+                        }
+                      />
                     </div>
                   </AccordionContent>
                 </AccordionItem>
@@ -569,9 +724,7 @@ CollectionProps) => {
                   )}
                 </div>
               </div>
-              <div className="flex items-center gap-1 justify-between">
-                <Searchmain />
-              </div>
+
               <div className="flex w-full justify-between">
                 <div className="flex gap-1 flex-wrap justify-center md:justify-start items-center mb-4 md:mb-0">
                   <div

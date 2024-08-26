@@ -240,7 +240,7 @@ export default function Ads({ ad, userId }: CardProps) {
                     <Image
                       src={image}
                       alt={`Image ${index + 1}`}
-                      className="object-cover cursor-pointer h-[500px]"
+                      className="bg-[#000000] object-cover cursor-pointer"
                       width={800} // Adjust the width as needed
                       height={500} // Adjust the height as needed
                     />
@@ -343,7 +343,7 @@ export default function Ads({ ad, userId }: CardProps) {
                         <Image
                           src={image}
                           alt="AdImage"
-                          className="h-[100px] rounded-sm bg-opacity-40 object-cover cursor-pointer border-2 border-transparent hover:border-emerald-500"
+                          className="h-[100px] rounded-lg bg-opacity-40 object-cover cursor-pointer border-2 border-transparent hover:border-emerald-500"
                           width={244} // Adjust width to match the `w-36` Tailwind class
                           height={196} // Adjust height to match the `h-24` Tailwind class
                         />

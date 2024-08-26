@@ -52,7 +52,7 @@ const DashboardCategory = dynamic(
     ssr: false,
     loading: () => (
       <div className="flex-center h-screen w-full bg-[#ebf2f7] bg-dotted-pattern bg-cover bg-fixed bg-center">
-        <div className="flex gap-1 items-center justify-center w-full h-full">
+        <div className="flex gap-1 items-center justify-center w-full">
           <img
             src="/assets/icons/loading.gif"
             alt="edit"
@@ -458,7 +458,7 @@ const Storeads = async ({ params: { id }, searchParams }: SearchParamProps) => {
       limit: 20,
     });
   }
-  console.log("--------------------------------------" + Ads?.data);
+  // console.log("--------------------------------------" + Ads?.data);
   return (
     <>
       <div className="bg-gradient-to-r from-emerald-800 to-emerald-950 z-10 top-0 fixed w-full">
