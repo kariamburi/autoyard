@@ -85,9 +85,9 @@ CollectionProps) => {
     <>
       <div className="max-w-6xl mx-auto flex mt-3 p-1">
         <div className="flex-1">
-          <div className="rounded-lg border bg-white max-w-6xl mx-auto lg:flex-row mt-3 p-1 justify-center">
+          <div className="max-w-6xl mx-auto lg:flex-row mt-3 p-1 justify-center">
             <section className="bg-grey-50 bg-dotted-pattern bg-cover bg-center py-0 md:py-0 rounded-sm">
-              <div className="wrapper flex gap-1 items-center justify-center sm:justify-between">
+              <div className="wrapper flex gap-1 items-center justify-center">
                 <BookmarkIcon />
                 <h3 className="font-bold text-[25px] sm:text-left">Bookmark</h3>
               </div>

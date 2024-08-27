@@ -150,7 +150,7 @@ CollectionProps) => {
           <div className="border bg-white rounded-lg lg:hidden">
             <SellerProfile user={user} loggedId={loggedId} userId={userId} />
           </div>
-          <div className="rounded-lg border bg-white max-w-6xl mx-auto lg:flex-row mt-3 p-1 justify-center">
+          <div className="max-w-6xl mx-auto lg:flex-row mt-3 justify-center">
             <section className="bg-grey-50 bg-dotted-pattern bg-cover bg-center py-0 md:py-0 rounded-sm">
               <div className="flex items-center p-1 justify-between">
                 <h3 className="font-bold text-[25px] text-center sm:text-left">

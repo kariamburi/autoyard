@@ -153,7 +153,7 @@ const Verification: React.FC<SettingsProp> = ({
           {isAdCreator ? (
             <ShowPopup
               trigger={
-                <p className="text-gray-50 p-1 bg-white rounded-full text-xs cursor-pointer hover:underline">
+                <p className="text-gray-600 p-1 bg-white rounded-full text-xs cursor-pointer hover:underline">
                   <ShieldOutlinedIcon sx={{ fontSize: 16 }} />
                   Account unverified
                 </p>

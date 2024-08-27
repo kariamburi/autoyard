@@ -120,33 +120,33 @@ const HelpBox = ({
 
   return (
     <div className="">
-      <ScrollArea className="h-[390px] w-full bg-white rounded-t-md border p-4">
+      <ScrollArea className="h-[390px] text-sm lg:text-base w-full bg-white rounded-t-md border p-4">
         <div>
           <h2 className="font-bold">Frequently Asked Questions</h2>
 
           <Accordion type="single" collapsible className="w-full">
             <AccordionItem key="faq-1" value="item-1">
               <AccordionTrigger>
-                <h3>What is OfferUp?</h3>
+                <h3>What is Wheels?</h3>
               </AccordionTrigger>
               <AccordionContent>
                 <p>
-                  OfferUp is an online marketplace that allows users to buy and
-                  sell items locally. It&apos;s a platform for people to list
-                  items for sale and for buyers to find great deals in their
-                  area.
+                  Wheels.co.ke is an online marketplace that allows users to buy
+                  and sell items locally. It&apos;s a platform for people to
+                  list items for sale and for buyers to find great deals in
+                  their area.
                 </p>
               </AccordionContent>
             </AccordionItem>
 
             <AccordionItem key="faq-2" value="item-2">
               <AccordionTrigger>
-                <h3>How do I create an account on OfferUp?</h3>
+                <h3>How do I create an account on Wheels?</h3>
               </AccordionTrigger>
               <AccordionContent>
                 <p>
-                  To create an account, download the OfferUp app from the App
-                  Store or Google Play Store, or visit the OfferUp website.
+                  To create an account, download the Wheels app from the App
+                  Store or Google Play Store, or visit the Wheels.co.ke website.
                   Follow the prompts to sign up using your email address,
                   Facebook account, or Google account.
                 </p>
@@ -159,7 +159,7 @@ const HelpBox = ({
               </AccordionTrigger>
               <AccordionContent>
                 <p>
-                  Open the OfferUp app or website and click on the
+                  Open the Wheels.co.ke app or website and click on the
                   &quot;Post&quot; button. Follow the prompts to add photos, a
                   description, and a price for your item. Once you&apos;ve
                   completed the details, click &quot;Post&quot; to list your

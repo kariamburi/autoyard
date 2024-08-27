@@ -123,7 +123,7 @@ const SendMessage = ({
 
   return (
     <div className="w-full p-1 bg-[#ebf2f7]">
-      <form onSubmit={handleSendMessage} className="px-0 containerWrap flex">
+      <form onSubmit={handleSendMessage} className="flex">
         {recipientUid ? (
           <>
             {image && (
@@ -146,13 +146,13 @@ const SendMessage = ({
             <input
               value={value}
               onChange={(e) => setValue(e.target.value)}
-              className="input w-full  text-black p-2 focus:outline-none bg-white rounded-r-none rounded-l-lg"
+              className="input w-full min-w-[210px] text-sm lg:text-base text-black p-2 focus:outline-none bg-white rounded-r-none rounded-l-lg"
               type="text"
               placeholder="Enter your message..."
             />
             <button
               type="submit"
-              className="w-auto bg-gradient-to-b from-emerald-800 to-emerald-900 text-white rounded-r-lg px-5 text-sm"
+              className="w-auto text-sm  lg:text-base bg-gradient-to-b from-emerald-800 to-emerald-900 text-white rounded-r-lg px-5"
             >
               Send
             </button>
@@ -162,14 +162,14 @@ const SendMessage = ({
             <input
               value={value}
               disabled
-              className="input w-full p-2 text-black focus:outline-none bg-white rounded-r-none rounded-l-lg"
+              className="input min-w-[210px] w-full p-2 text-sm lg:text-base text-black focus:outline-none bg-white rounded-r-none rounded-l-lg"
               type="text"
               placeholder="Enter your message..."
             />
             <button
               type="submit"
               disabled
-              className="w-auto bg-gradient-to-b from-emerald-800 to-emerald-900 text-white rounded-r-lg px-5 text-sm"
+              className="w-auto text-sm lg:text-base bg-gradient-to-b from-emerald-800 to-emerald-900 text-white rounded-r-lg px-5 text-sm"
             >
               Send
             </button>

@@ -443,7 +443,7 @@ CollectionProps) => {
               AdsCountPerpropertysecurity={AdsCountPerpropertysecurity}
             />
           </div>
-          <div className="rounded-lg lg:bg-white max-w-8xl mx-auto lg:flex-row mt-0 p-1 justify-center">
+          <div className="rounded-lg max-w-8xl mx-auto justify-center">
             <div className="rounded-lg w-full bg-white p-1">
               <section className="bg-white lg:hidden bg-dotted-pattern bg-cover bg-center py-0 md:py-0 rounded-sm">
                 <SubCategoryFilterSearch
@@ -633,7 +633,7 @@ CollectionProps) => {
               </Dialog>*/}
               </div>
             </div>
-            <div className="flex items-center mt-2 gap-1 justify-between">
+            <div className="flex items-center m-2 gap-1 justify-between">
               <Searchmain />
             </div>
             <section className="my-0">
@@ -690,17 +690,17 @@ CollectionProps) => {
                 </AccordionItem>
               </Accordion>*/}
 
-              <div className="bg-gray-50 rounded-lg mt-2 p-1 mb-2 hidden lg:inline">
-                <div className="flex items-center gap-1 m-1 justify-end">
-                  <button
-                    onClick={handleClear}
-                    className="p-1 text-xs text-white bg-[#000000] rounded-lg flex hover:text-[#30AF5B] items-center gap-1 hover:cursor-pointer"
-                  >
-                    <CloseOutlinedIcon sx={{ fontSize: 16 }} />
-                    Reset Filter
-                  </button>
-                </div>
-                <div className="w-full">
+              <div className="hidden lg:inline">
+                <div className="w-full bg-white flex flex-col rounded-lg p-2">
+                  <div className="flex items-center gap-1 m-1 justify-end">
+                    <button
+                      onClick={handleClear}
+                      className="p-1 text-xs text-white bg-[#000000] rounded-lg flex hover:text-[#30AF5B] items-center gap-1 hover:cursor-pointer"
+                    >
+                      <CloseOutlinedIcon sx={{ fontSize: 16 }} />
+                      Reset Filter
+                    </button>
+                  </div>
                   {subcategory === "Car" && (
                     <>
                       <div className="grid grid-cols-4 lg:grid-cols-7 justify-between gap-1 m-0">

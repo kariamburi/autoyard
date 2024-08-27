@@ -272,6 +272,7 @@ export default function Listpackages({
           <input
             type="text"
             value={priceInput}
+            disabled
             className="border p-1 border-gray-300 font-bold rounded-md "
           />
           <SignedIn>

@@ -61,7 +61,7 @@ const ChatWindow: React.FC<ChatWindowProps> = ({
       <div className="p-1">
         {activeTab === 0 && (
           <>
-            <div className="bg-gradient-to-b from-emerald-900 to-emerald-900 h-[400px] w-[300px] lg:w-[400px] flex flex-col p-1 mt-0">
+            <div className="bg-gradient-to-b from-emerald-900 to-white h-[400px] w-[300px] lg:w-[400px] flex flex-col p-1 mt-0">
               <div className="mt-5 w-full">
                 <div className="flex items-center justify-center w-full gap-1 mt-5 mb-5">
                   <div className="w-16 h-16 border-white border-2 rounded-full">
@@ -84,13 +84,13 @@ const ChatWindow: React.FC<ChatWindowProps> = ({
                   </div>
                 </div>
                 <div className="gap-2 justify-center flex w-full items-center">
-                  <h3 className="font-semibold text-xl text-emerald-100">
+                  <h3 className="font-semibold lg:text-xl text-emerald-100">
                     Hi {senderName}
                   </h3>
                   <Image src="/hello.png" alt="logo" width={26} height={26} />
                 </div>
                 <div className="gap-2 justify-center flex w-full items-center">
-                  <h3 className="font-semibold text-3xl text-white">
+                  <h3 className="font-semibold text-2xl lg:text-3xl text-white">
                     How can we help?
                   </h3>
                 </div>
@@ -100,7 +100,7 @@ const ChatWindow: React.FC<ChatWindowProps> = ({
         )}
         {activeTab === 1 && (
           <>
-            <div className="rounded-lg w-[400px] bg-emerald-700 flex flex-col p-1 mt-0">
+            <div className="rounded-lg w-[300px] lg:w-[400px] bg-emerald-700 flex flex-col p-1 mt-0">
               <div className="lg:flex-1 p-0 ml-0 mr-0">
                 <ChatBoxSupport
                   displayName={senderName}
@@ -130,7 +130,7 @@ const ChatWindow: React.FC<ChatWindowProps> = ({
         )}
         {activeTab === 2 && (
           <>
-            <div className="rounded-lg h-[400px] w-[400px] bg-emerald-700 flex flex-col p-1 mt-0">
+            <div className="rounded-lg h-[400px] w-[300px] lg:w-[400px] bg-emerald-700 flex flex-col p-1 mt-0">
               <div className="lg:flex-1 p-0 ml-0 mr-0">
                 <HelpBox
                   displayName={senderName}
@@ -155,28 +155,28 @@ const ChatWindow: React.FC<ChatWindowProps> = ({
             {tab.map((tab, index) => (
               <button
                 key={index}
-                className={`flex-1 text-sm py-1 px-0 rounded-t-lg text-center ${
+                className={`flex-1 text-xs lg:text-sm py-1 px-0 rounded-t-lg text-center ${
                   activeTab === index ? "text-emerald-600" : "text-black"
                 }`}
                 onClick={() => handle(index)}
               >
                 {tab.title === "Home" && (
                   <div className="flex items-center">
-                    <OtherHousesOutlinedIcon />
+                    <OtherHousesOutlinedIcon sx={{ fontSize: 16 }} />
                     {tab.title}
                   </div>
                 )}
 
                 {tab.title === "Message" && (
                   <div className="flex items-center">
-                    <ChatOutlinedIcon />
+                    <ChatOutlinedIcon sx={{ fontSize: 16 }} />
                     {tab.title}
                   </div>
                 )}
 
                 {tab.title === "Help" && (
                   <div className="flex items-center">
-                    <ContactSupportOutlinedIcon />
+                    <ContactSupportOutlinedIcon sx={{ fontSize: 16 }} />
                     {tab.title}
                   </div>
                 )}

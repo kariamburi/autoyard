@@ -80,9 +80,9 @@ const Message = ({
                   width={16}
                   height={16}
                 />
-                <div className="text-xs text-black font-medium flex gap-5">
+                <div className="text-[12px] lg:text-xs text-black font-medium flex gap-5">
                   {message.name}
-                  <div className="text-xs text-gray-500">
+                  <div className="text-[12px] lg:text-xs text-gray-500">
                     {formattedCreatedAt}
                   </div>
                 </div>
@@ -104,7 +104,9 @@ const Message = ({
                       height={16}
                     />
                   )}
-                  <div>{message.text}</div>
+                  <div className="text-sm lg:text-base w-[200px] lg:w-full">
+                    {message.text}
+                  </div>
                 </div>
               </div>
             </>
@@ -120,14 +122,14 @@ const Message = ({
                   width={16}
                   height={16}
                 />
-                <div className="text-xs text-black font-medium flex gap-3">
+                <div className="text-[12px] lg:text-xs text-black font-medium flex gap-3">
                   {recipient.firstName} {recipient.lastName}
-                  <div className="text-xs text-gray-500">
+                  <div className="text-[12px] lg:text-xs text-gray-500">
                     {formattedCreatedAt}
                   </div>
                 </div>
               </div>
-              <div className="flex flex-col">
+              <div className="flex flex-col mr-2">
                 <div
                   className={`max-w-xs mx-2 my-1 p-3 rounded-lg  ${
                     message.uid === uid
@@ -144,7 +146,9 @@ const Message = ({
                       height={16}
                     />
                   )}
-                  <div>{message.text}</div>
+                  <div className="text-sm lg:text-base w-[200px] lg:w-full">
+                    {message.text}
+                  </div>
                 </div>
               </div>
             </>

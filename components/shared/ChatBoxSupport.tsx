@@ -131,7 +131,7 @@ const ChatBoxSupport = ({
 
   return (
     <div className="">
-      <ScrollArea className="h-[340px] w-full  bg-white rounded-t-md border p-4">
+      <ScrollArea className="h-[340px] w-full bg-white rounded-t-md border p-1">
         {messages.map((message: any) => (
           <>
             <Message
