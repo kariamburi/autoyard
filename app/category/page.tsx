@@ -77,7 +77,8 @@ const Storeads = async ({ params: { id }, searchParams }: SearchParamProps) => {
   const vehiclemodel = (searchParams?.vehiclemodel as string) || "";
   const yearfrom = (searchParams?.yearfrom as string) || "";
   const yearto = (searchParams?.yearto as string) || "";
-  const Price = (searchParams?.Price as string) || "";
+  const minPrice = (searchParams?.minPrice as string) || "";
+  const maxPrice = (searchParams?.maxPrice as string) || "";
   const vehiclecolor = (searchParams?.vehiclecolor as string) || "";
   const vehiclecondition = (searchParams?.vehiclecondition as string) || "";
   const region = (searchParams?.region as string) || "";
@@ -397,7 +398,8 @@ const Storeads = async ({ params: { id }, searchParams }: SearchParamProps) => {
       vehiclesecordCondition: vehiclesecordCondition,
       vehicleyear: vehicleyear,
       Types: Types,
-      Price: Price,
+      minPrice: minPrice,
+      maxPrice: maxPrice,
       bedrooms: bedrooms,
       bathrooms: bathrooms,
       furnishing: furnishing,
@@ -440,7 +442,8 @@ const Storeads = async ({ params: { id }, searchParams }: SearchParamProps) => {
       vehiclesecordCondition: vehiclesecordCondition,
       vehicleyear: vehicleyear,
       Types: Types,
-      Price: Price,
+      minPrice: minPrice,
+      maxPrice: maxPrice,
       bedrooms: bedrooms,
       bathrooms: bathrooms,
       furnishing: furnishing,

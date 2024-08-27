@@ -26,7 +26,13 @@ export default function Menumobile({ categoryList }: MobileProps) {
       });
     }
 
-    router.push("/category/" + newUrl, { scroll: false });
+    if (category === "Vehicle") {
+      router.push("/category/" + newUrl + "&subcategory=Car", {
+        scroll: false,
+      });
+    } else {
+      router.push("/category/" + newUrl, { scroll: false });
+    }
   };
   return (
     <div className="mx-auto mt-10">

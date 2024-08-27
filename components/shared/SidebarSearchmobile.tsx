@@ -155,28 +155,6 @@ const SidebarSearchmobile = ({
   const [showMore, setShowMore] = useState(false);
   const [itemsToShow, setItemsToShow] = useState(4);
   //console.log(AdsCountPerCondition);
-  const handleShowMore = () => {
-    setShowMore(true);
-  };
-  const handleQuery = (index: number, query: string) => {
-    let newUrl = "";
-    if (query) {
-      newUrl = formUrlQuerymultiple({
-        params: "",
-        updates: {
-          category: category.toString(),
-          subcategory: query.toString(),
-        },
-      });
-    } else {
-      newUrl = removeKeysFromQuery({
-        params: searchParams.toString(),
-        keysToRemove: ["subcategory"],
-      });
-    }
-    setQuery(query);
-    router.push(newUrl, { scroll: false });
-  };
 
   const [selectedRegion, setSelectedRegion] = useState("All Kenya");
 
@@ -240,26 +218,7 @@ const SidebarSearchmobile = ({
 
     router.push(newUrl, { scroll: false });
   };
-  const handlebutton = () => {
-    let newUrl = "";
 
-    if (minPrice && maxPrice) {
-      newUrl = formUrlQuery({
-        params: searchParams.toString(),
-        key: "Price",
-        value: minPrice + "-" + maxPrice,
-      });
-    } else {
-      setminPrice("");
-      setmaxPrice("");
-      newUrl = removeKeysFromQuery({
-        params: searchParams.toString(),
-        keysToRemove: ["Price"],
-      });
-    }
-
-    router.push(newUrl, { scroll: false });
-  };
   const onSelectPriceClear = () => {
     let newUrl = "";
     newUrl = removeKeysFromQuery({
@@ -1396,17 +1355,35 @@ const SidebarSearchmobile = ({
           <div className="text-sm mt-1 rounded-lg w-full bg-white p-4">
             <div className="grid grid-cols-2 gap-1">
               <TextField
-                value={minPrice}
+                value={searchParams.get("minPrice") ?? ""}
                 label="Min Price*"
                 className="text-sm"
-                onChange={(e) => setminPrice(e.target.value)}
+                onChange={(e) =>
+                  router.push(
+                    formUrlQuery({
+                      params: searchParams.toString(),
+                      key: "minPrice",
+                      value: e.target.value,
+                    }),
+                    { scroll: false }
+                  )
+                }
               />
 
               <TextField
-                value={maxPrice}
+                value={searchParams.get("maxPrice") ?? ""}
                 label="Max Price*"
                 className="text-sm"
-                onChange={(e) => setmaxPrice(e.target.value)}
+                onChange={(e) =>
+                  router.push(
+                    formUrlQuery({
+                      params: searchParams.toString(),
+                      key: "maxPrice",
+                      value: e.target.value,
+                    }),
+                    { scroll: false }
+                  )
+                }
               />
             </div>
           </div>
@@ -2064,10 +2041,25 @@ const SidebarSearchmobile = ({
                     id="vehicleyearfrom"
                     options={years}
                     getOptionLabel={(option) => option}
-                    value={years.find((yr) => yr === vehicleyearfrom) || null}
-                    onChange={(event, newValue) => {
-                      setvehicleyearfrom(newValue ?? "");
-                    }}
+                    value={
+                      years.find(
+                        (yr) => yr === searchParams.get("yearfrom")
+                      ) || null
+                    }
+                    // onChange={(event, newValue) => {
+                    //  setvehicleyearfrom(newValue ?? "");
+                    // }}
+                    className="text-sm"
+                    onChange={(event, newValue) =>
+                      router.push(
+                        formUrlQuery({
+                          params: searchParams.toString(),
+                          key: "yearfrom",
+                          value: newValue,
+                        }),
+                        { scroll: false }
+                      )
+                    }
                     renderInput={(field) => (
                       <TextField {...field} label="From" className="text-xs" />
                     )}
@@ -2077,10 +2069,21 @@ const SidebarSearchmobile = ({
                     id="vehicleyearto"
                     options={years}
                     getOptionLabel={(option) => option}
-                    value={years.find((yr) => yr === vehicleyearto) || null}
-                    onChange={(event, newValue) => {
-                      setvehicleyearto(newValue ?? "");
-                    }}
+                    value={
+                      years.find(
+                        (yr) => yr === searchParams.get("yearto")
+                      ) || null
+                    }
+                    onChange={(event, newValue) =>
+                      router.push(
+                        formUrlQuery({
+                          params: searchParams.toString(),
+                          key: "yearto",
+                          value: newValue,
+                        }),
+                        { scroll: false }
+                      )
+                    }
                     renderInput={(field) => (
                       <TextField {...field} label="To" className="text-xs" />
                     )}

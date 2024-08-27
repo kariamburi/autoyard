@@ -63,7 +63,10 @@ const SubCategoryFilterSearch = ({
   const [categoryOption, setcategoryOption] = useState("");
   return (
     <>
-      <Select onValueChange={(value: string) => onSelectCategory(value)}>
+      <Select
+        value={searchParams.get("subcategory") ?? "Select Category"}
+        onValueChange={(value: string) => onSelectCategory(value)}
+      >
         <SelectTrigger className="select-field">
           <SelectValue placeholder="Search Category" />
         </SelectTrigger>

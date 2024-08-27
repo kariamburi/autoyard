@@ -297,7 +297,8 @@ export type GetAllAdsParams = {
   address:string
   membership:string
   yearto:string
-  Price:string
+  minPrice:string
+  maxPrice:string
   limit: number
   page: number
 

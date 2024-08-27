@@ -240,21 +240,20 @@ const SidebarSearch = ({
 
     router.push(newUrl, { scroll: false });
   };
-  const handlebutton = () => {
+  const handlebutton = (index: number, minPrice: string, maxPrice: string) => {
     let newUrl = "";
-
     if (minPrice && maxPrice) {
-      newUrl = formUrlQuery({
-        params: searchParams.toString(),
-        key: "Price",
-        value: minPrice + "-" + maxPrice,
+      newUrl = formUrlQuerymultiple({
+        params: "",
+        updates: {
+          minPrice: minPrice.toString(),
+          maxPrice: maxPrice.toString(),
+        },
       });
     } else {
-      setminPrice("");
-      setmaxPrice("");
       newUrl = removeKeysFromQuery({
         params: searchParams.toString(),
-        keysToRemove: ["Price"],
+        keysToRemove: ["minPrice, maxPrice"],
       });
     }
 
@@ -264,11 +263,11 @@ const SidebarSearch = ({
     let newUrl = "";
     newUrl = removeKeysFromQuery({
       params: searchParams.toString(),
-      keysToRemove: ["Price"],
+      keysToRemove: ["minPrice,maxPrice"],
     });
 
-    setminPrice("");
-    setmaxPrice("");
+    //setminPrice("");
+    // setmaxPrice("");
     setactiverange(20);
     router.push(newUrl, { scroll: false });
   };
@@ -1417,41 +1416,38 @@ const SidebarSearch = ({
                   <div className="flex gap-1 justify-between">
                     <div className="w-full lg:w-[100px] text-sm  px-0 py-2">
                       <TextField
-                        value={minPrice}
+                        value={searchParams.get("minPrice") ?? ""}
                         label="Min Price*"
                         className="w-full text-sm"
-                        onChange={(e) => setminPrice(e.target.value)}
+                        onChange={(e) =>
+                          router.push(
+                            formUrlQuery({
+                              params: searchParams.toString(),
+                              key: "minPrice",
+                              value: e.target.value,
+                            }),
+                            { scroll: false }
+                          )
+                        }
                       />
                     </div>
 
                     <div className="w-full lg:w-[100px]  px-0 py-2">
                       <TextField
-                        value={maxPrice}
+                        value={searchParams.get("maxPrice") ?? ""}
                         label="Max Price*"
                         className="w-full text-sm"
-                        onChange={(e) => setmaxPrice(e.target.value)}
+                        onChange={(e) =>
+                          router.push(
+                            formUrlQuery({
+                              params: searchParams.toString(),
+                              key: "maxPrice",
+                              value: e.target.value,
+                            }),
+                            { scroll: false }
+                          )
+                        }
                       />
-                    </div>
-                    <div className="py-2">
-                      <button
-                        type="submit"
-                        onClick={() => handlebutton()}
-                        className="bg-[#30AF5B] rounded-sm text-white h-full"
-                      >
-                        <SearchIcon />
-                      </button>
-                    </div>
-                    <div className="py-2">
-                      <button
-                        type="submit"
-                        onClick={() => onSelectPriceClear()}
-                        className="bg-gray-400 rounded-sm text-white h-full"
-                      >
-                        <CloseIcon
-                          className="text-white"
-                          sx={{ fontSize: 24 }}
-                        />
-                      </button>
                     </div>
                   </div>
                 </div>

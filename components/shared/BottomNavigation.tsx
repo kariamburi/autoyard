@@ -31,7 +31,7 @@ const BottomNavigation = ({ userId }: navprop) => {
             <span className="text-xs">Home</span>
           </div>
         </Link>
-        <Link href="/category?category=Vehicle" passHref>
+        <Link href="/category?category=Vehicle&subcategory=Car" passHref>
           <div
             className={`flex flex-col items-center hover:text-emerald-400 ${
               isActive("/category") ? "text-emerald-600" : "text-gray-600"

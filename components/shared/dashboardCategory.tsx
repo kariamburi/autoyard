@@ -253,16 +253,18 @@ CollectionProps) => {
   const handlePrice = (index: number, min: string, max: string) => {
     //setactiverange(index);
     let newUrl = "";
-    if (min) {
-      newUrl = formUrlQuery({
-        params: searchParams.toString(),
-        key: "Price",
-        value: min + "-" + max,
+    if (min && max) {
+      newUrl = formUrlQuerymultiple({
+        params: "",
+        updates: {
+          minPrice: min.toString(),
+          maxPrice: max.toString(),
+        },
       });
     } else {
       newUrl = removeKeysFromQuery({
         params: searchParams.toString(),
-        keysToRemove: ["Price"],
+        keysToRemove: ["minPrice,maxPrice"],
       });
     }
 
@@ -328,12 +330,21 @@ CollectionProps) => {
   }, [data]);
   const handleClear = () => {
     let newUrl = "";
+    setShowPopup(false);
     newUrl = formUrlQuerymultiple({
       params: "",
       updates: {
         category: category.toString(),
         subcategory: subcategory.toString(),
       },
+    });
+    router.push(newUrl, { scroll: false });
+  };
+  const handlePriceClear = () => {
+    let newUrl = "";
+    newUrl = removeKeysFromQuery({
+      params: searchParams.toString(),
+      keysToRemove: ["minPrice,maxPrice"],
     });
     router.push(newUrl, { scroll: false });
   };
@@ -345,6 +356,11 @@ CollectionProps) => {
 
   const closeDialog = () => {
     setIsOpen(false);
+  };
+  const [showPopup, setShowPopup] = useState(false);
+  // Handler to toggle the popup
+  const togglePopup = () => {
+    setShowPopup(!showPopup);
   };
   return (
     <>
@@ -427,22 +443,99 @@ CollectionProps) => {
               AdsCountPerpropertysecurity={AdsCountPerpropertysecurity}
             />
           </div>
-          <div className="rounded-lg bg-white max-w-8xl mx-auto lg:flex-row mt-0 p-1 justify-center">
-            <section className="bg-white bg-dotted-pattern bg-cover bg-center py-0 md:py-0 rounded-sm">
-              <SubCategoryFilterSearch
-                category={category}
-                AdsCountPerSubcategory={AdsCountPerSubcategory}
-              />
-            </section>
+          <div className="rounded-lg lg:bg-white max-w-8xl mx-auto lg:flex-row mt-0 p-1 justify-center">
+            <div className="rounded-lg w-full bg-white p-1">
+              <section className="bg-white lg:hidden bg-dotted-pattern bg-cover bg-center py-0 md:py-0 rounded-sm">
+                <SubCategoryFilterSearch
+                  category={category}
+                  AdsCountPerSubcategory={AdsCountPerSubcategory}
+                />
+              </section>
 
-            <div className="flex items-center gap-1 justify-between">
-              <div className="font-bold text-lg text-emerald-950 text-center sm:text-left p-2">
-                {category} {subcategory ? <> | {subcategory}</> : "| All"}{" "}
-              </div>
-            </div>
-            <div className="flex items-center mt-2 gap-1 justify-between">
-              <Searchmain />
-              <Dialog open={isOpen}>
+              <div className="flex items-center gap-1 justify-between">
+                <div className="font-bold text-lg text-emerald-950 text-center sm:text-left p-2">
+                  {category} {subcategory ? <> | {subcategory}</> : "| All"}{" "}
+                </div>
+
+                <div
+                  onClick={togglePopup}
+                  className="flex lg:hidden cursor-pointer text-sm bg-emerald-600 text-white rounded-sm p-1 justify-between items-center"
+                >
+                  <SortOutlinedIcon />
+                  Filter
+                </div>
+                {showPopup && (
+                  <div className="bg-black fixed top-0 left-0 w-full h-screen flex justify-center items-center z-50">
+                    <div className="w-full flex flex-col rounded-lg w-full bg-white">
+                      <div className="font-bold text-lg text-emerald-950 text-center sm:text-left p-2">
+                        {category}{" "}
+                        {subcategory ? <> | {subcategory}</> : "| All"}{" "}
+                      </div>
+                      <SidebarSearchmobile
+                        categoryList={categoryList}
+                        category={category}
+                        AdsCountPerSubcategory={AdsCountPerSubcategory}
+                        AdsCountPerRegion={AdsCountPerRegion}
+                        subcategory={subcategory}
+                        AdsCountPerVerifiedTrue={AdsCountPerVerifiedTrue}
+                        AdsCountPerVerifiedFalse={AdsCountPerVerifiedFalse}
+                        make={make}
+                        AdsCountPerColor={AdsCountPerColor}
+                        AdsCountPerTransmission={AdsCountPerTransmission}
+                        AdsCountPerFuel={AdsCountPerFuel}
+                        AdsCountPerCondition={AdsCountPerCondition}
+                        AdsCountPerCC={AdsCountPerCC}
+                        AdsCountPerExchange={AdsCountPerExchange}
+                        AdsCountPerBodyType={AdsCountPerBodyType}
+                        AdsCountPerRegistered={AdsCountPerRegistered}
+                        AdsCountPerSeats={AdsCountPerSeats}
+                        AdsCountPersecondCondition={AdsCountPersecondCondition}
+                        Types={Types}
+                        AdsCountPerYear={AdsCountPerYear}
+                        AdsCountPerlanduse={AdsCountPerlanduse}
+                        AdsCountPerfloors={AdsCountPerfloors}
+                        AdsCountPerhouseclass={AdsCountPerhouseclass}
+                        AdsCountPerbedrooms={AdsCountPerbedrooms}
+                        AdsCountPerbathrooms={AdsCountPerbathrooms}
+                        AdsCountPerfurnishing={AdsCountPerfurnishing}
+                        AdsCountPeramenities={AdsCountPeramenities}
+                        AdsCountPertoilets={AdsCountPertoilets}
+                        AdsCountPerparking={AdsCountPerparking}
+                        AdsCountPerstatus={AdsCountPerstatus}
+                        AdsCountPerarea={AdsCountPerarea}
+                        AdsCountPerpropertysecurity={
+                          AdsCountPerpropertysecurity
+                        }
+                      />
+                      <div className="text-sm mt-1 p-2">
+                        <div className="w-full p-2">
+                          <div className="grid grid-cols-2 gap-1">
+                            <button
+                              type="submit"
+                              onClick={togglePopup}
+                              className="bg-[#30AF5B] flex gap-1 p-2 items-center text-sm rounded-sm text-white h-full"
+                            >
+                              <SearchIcon /> Search
+                            </button>
+
+                            <button
+                              type="submit"
+                              onClick={handleClear}
+                              className="bg-gray-400 flex gap-1 p-2 items-center text-sm rounded-sm text-white h-full"
+                            >
+                              <CloseIcon
+                                className="text-white"
+                                sx={{ fontSize: 24 }}
+                              />
+                              Reset Filter
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                )}
+                {/*  <Dialog open={isOpen}>
                 <DialogTrigger asChild>
                   <div
                     onClick={() => openDialog()}
@@ -537,10 +630,14 @@ CollectionProps) => {
                     </div>
                   </div>
                 </DialogContent>
-              </Dialog>
+              </Dialog>*/}
+              </div>
+            </div>
+            <div className="flex items-center mt-2 gap-1 justify-between">
+              <Searchmain />
             </div>
             <section className="my-0">
-              {/* This is a comment inside a JSX expression   */}
+              {/* This is a comment inside a JSX expression   
 
               <Accordion type="single" collapsible className="w-full">
                 <AccordionItem value="item-2">
@@ -591,13 +688,13 @@ CollectionProps) => {
                     </div>
                   </AccordionContent>
                 </AccordionItem>
-              </Accordion>
+              </Accordion>*/}
 
-              <div className="bg-gray-50 rounded-lg mt-2 p-1 mb-2">
+              <div className="bg-gray-50 rounded-lg mt-2 p-1 mb-2 hidden lg:inline">
                 <div className="flex items-center gap-1 m-1 justify-end">
                   <button
                     onClick={handleClear}
-                    className="p-1 text-xs bg-white rounded-lg flex hover:text-[#30AF5B] items-center gap-1 hover:cursor-pointer"
+                    className="p-1 text-xs text-white bg-[#000000] rounded-lg flex hover:text-[#30AF5B] items-center gap-1 hover:cursor-pointer"
                   >
                     <CloseOutlinedIcon sx={{ fontSize: 16 }} />
                     Reset Filter
@@ -726,7 +823,7 @@ CollectionProps) => {
               </div>
 
               <div className="flex w-full justify-between">
-                <div className="flex gap-1 flex-wrap justify-center md:justify-start items-center mb-4 md:mb-0">
+                <div className="flex gap-1 flex-wrap justify-start items-center mb-4 ">
                   <div
                     className={`cursor-pointer ${
                       activeButton === 0 ? "text-[#30AF5B]" : "text-gray-400"
