@@ -90,32 +90,7 @@ export default function Menumobile({ categoryList }: MobileProps) {
                 </div>
               </div>
             )
-          )}
-*/}
-        {categoryList &&
-          categoryList
-            .find((category: any) => category.name === "Vehicle")
-            ?.subcategory.map((sub: any, index: number) => (
-              <div
-                key={sub._id} // Added unique key prop
-                onClick={() => handleCategory(sub.title)}
-                className="h-[100px] bg-white flex flex-col items-center justify-center cursor-pointer rounded-sm p-1 border-0 border-emerald-300 hover:bg-emerald-100 "
-              >
-                <div className="flex flex-col items-center text-center justify-center">
-                  <div className="h-12 w-12 rounded-full bg-white p-2">
-                    <Image
-                      className="w-full h-full"
-                      src={"/car.png"}
-                      alt=""
-                      width={20}
-                      height={20}
-                    />
-                  </div>
-
-                  <h2 className="text-xs">{sub.title}</h2>
-                </div>
-              </div>
-            ))}
+          )}*/}
       </div>
     </div>
   );
