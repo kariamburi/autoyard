@@ -50,7 +50,7 @@ const Settings = async () => {
         <div className="flex-1">
           <div className="rounded-lg border bg-white max-w-6xl mx-auto lg:flex-row mt-0 p-1 justify-center">
             <section className="w-full bg-grey-50 bg-dotted-pattern bg-cover bg-center py-0 md:py-0 rounded-sm">
-              <div className="w-full flex items-center justify-between">
+              <div className="w-full flex items-center justify-center lg:justify-between">
                 <div className="flex text-lg gap-1 font-bold w-full">
                   <SettingsOutlinedIcon />
                   <h3 className="font-bold text-[25px]">Settings</h3>

@@ -55,7 +55,7 @@ export default function MenuSubmobile({ categoryList }: MobileProps) {
 
   return (
     <div className="mx-auto mt-10">
-      <div className="grid grid-cols-4 md:grid-cols-4 lg:grid-cols-8 m-1 gap-1">
+      <div className="grid grid-cols-3 md:grid-cols-3 lg:grid-cols-8 m-1 gap-1">
         <SignedIn>
           <div
             onClick={() => router.push("/ads/create")}
