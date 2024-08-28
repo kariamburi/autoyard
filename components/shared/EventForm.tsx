@@ -241,34 +241,46 @@ const AdForm = ({
     uploadedImageUrl = values.imageUrls;
 
     try {
-      if (form.getValues("make") === "" && SelectedCategory === "Car") {
+      if (
+        form.getValues("make") === "" &&
+        SelectedCategory === "Cars, Vans & Pickups"
+      ) {
         seterrormake("Please! Select Vehicle Make");
         return;
       }
-      if (form.getValues("vehiclemodel") === "" && SelectedCategory === "Car") {
+      if (
+        form.getValues("vehiclemodel") === "" &&
+        SelectedCategory === "Cars, Vans & Pickups"
+      ) {
         seterrormodel("Please! Select Vehicle Model");
         return;
       }
 
-      if (form.getValues("vehicleyear") === "" && SelectedCategory === "Car") {
+      if (
+        form.getValues("vehicleyear") === "" &&
+        SelectedCategory === "Cars, Vans & Pickups"
+      ) {
         seterrorvehicleyear("Please! Select Vehicle Year");
         return;
       }
-      if (form.getValues("vehiclecolor") === "" && SelectedCategory === "Car") {
+      if (
+        form.getValues("vehiclecolor") === "" &&
+        SelectedCategory === "Cars, Vans & Pickups"
+      ) {
         seterrorvehiclecolor("Please! Select Vehicle Color");
         return;
       }
 
       if (
         form.getValues("vehicleinteriorColor") === "" &&
-        SelectedCategory === "Car"
+        SelectedCategory === "Cars, Vans & Pickups"
       ) {
         seterrorvehicleinteriorColor("Please! Select Vehicle interior color");
         return;
       }
       if (
         form.getValues("vehiclecondition") === "" &&
-        SelectedCategory === "Car"
+        SelectedCategory === "Cars, Vans & Pickups"
       ) {
         seterrorvehiclecondition("Please! Select Vehicle condition");
         return;
@@ -277,7 +289,7 @@ const AdForm = ({
 
       if (
         form.getValues("vehiclesecordCondition") === "" &&
-        SelectedCategory === "Car"
+        SelectedCategory === "Cars, Vans & Pickups"
       ) {
         seterrorvehiclesecordCondition(
           "Please! Select Vehicle secord condition"
@@ -286,42 +298,42 @@ const AdForm = ({
       }
       if (
         form.getValues("vehicleTransmissions") === "" &&
-        SelectedCategory === "Car"
+        SelectedCategory === "Cars, Vans & Pickups"
       ) {
         seterrorvehicleTransmissions("Please! Select Vehicle Transmissions");
         return;
       }
       if (
         form.getValues("vehiclemileage") === "" &&
-        SelectedCategory === "Car"
+        SelectedCategory === "Cars, Vans & Pickups"
       ) {
         seterrorvehiclemileage("Please! Select Vehicle mileage");
         return;
       }
       if (
         form.getValues("vehiclekeyfeatures")?.length === 0 &&
-        SelectedCategory === "Car"
+        SelectedCategory === "Cars, Vans & Pickups"
       ) {
         seterrorvehiclekeyfeatures("Please! Select Vehicle key features");
         return;
       }
       if (
         form.getValues("vehiclechassis") === "" &&
-        SelectedCategory === "Car"
+        SelectedCategory === "Cars, Vans & Pickups"
       ) {
         seterrorvehiclechassis("Please! Select Vehicle VIN Chassis number");
         return;
       }
       if (
         form.getValues("vehicleregistered") === "" &&
-        SelectedCategory === "Car"
+        SelectedCategory === "Cars, Vans & Pickups"
       ) {
         seterrorvehicleregistered("Please! Select Vehicle registration status");
         return;
       }
       if (
         form.getValues("vehicleexchangeposible") === "" &&
-        SelectedCategory === "Car"
+        SelectedCategory === "Cars, Vans & Pickups"
       ) {
         seterrorvehicleexchangeposible(
           "Please! Select Vehicle exchange status"
@@ -330,25 +342,28 @@ const AdForm = ({
       }
       if (
         form.getValues("vehicleBodyTypes") === "" &&
-        SelectedCategory === "Car"
+        SelectedCategory === "Cars, Vans & Pickups"
       ) {
         seterrorvehicleBodyTypes("Please! Select Vehicle body type");
         return;
       }
       if (
         form.getValues("vehicleFuelTypes") === "" &&
-        SelectedCategory === "Car"
+        SelectedCategory === "Cars, Vans & Pickups"
       ) {
         seterrorvehicleFuelTypes("Please! Select Vehicle Fuel Type");
         return;
       }
-      if (form.getValues("vehicleSeats") === "" && SelectedCategory === "Car") {
+      if (
+        form.getValues("vehicleSeats") === "" &&
+        SelectedCategory === "Cars, Vans & Pickups"
+      ) {
         seterrorvehicleSeats("Please! Select Vehicle Seats No");
         return;
       }
       if (
         form.getValues("vehicleEngineSizesCC") === "" &&
-        SelectedCategory === "Car"
+        SelectedCategory === "Cars, Vans & Pickups"
       ) {
         seterrorvehicleEngineSizesCC("Please! Select Vehicle Engine Size CC");
         return;
@@ -358,7 +373,7 @@ const AdForm = ({
       //    return;
       //  }
 
-      //if (files.length < 4 && SelectedCategory === "Car" && form.getValues("ima").length < 4 && SelectedCategory === "Car") {
+      //if (files.length < 4 && SelectedCategory === "Cars, Vans & Pickups" && form.getValues("ima").length < 4 && SelectedCategory === "Cars, Vans & Pickups") {
       // setmessage(
       //   "Please upload atleast 3 images for " + SelectedCategory + " Category"
       //  );
@@ -833,7 +848,7 @@ const AdForm = ({
                 />
               </div>
 
-              {SelectedCategory === "Car" && (
+              {SelectedCategory === "Cars, Vans & Pickups" && (
                 <>
                   <div className="flex flex-col gap-5 md:flex-row">
                     <FormField
@@ -1938,7 +1953,7 @@ const AdForm = ({
                   </div>
                 </>
               )}
-              {SelectedCategory === "Motorbikes & Scooters" && (
+              {SelectedCategory === "Motorbikes,Tuktuks & Scooters" && (
                 <>
                   <div className="flex flex-col gap-5 md:flex-row">
                     <FormField

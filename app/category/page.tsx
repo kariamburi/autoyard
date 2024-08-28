@@ -273,7 +273,7 @@ const Storeads = async ({ params: { id }, searchParams }: SearchParamProps) => {
     AdsCountPerExchange = AdsCountPerExchange_;
   }
 
-  if (subcategory === "Motorbikes & Scooters") {
+  if (subcategory === "Motorbikes,Tuktuks & Scooters") {
     const [
       AdsCountPerMake_,
       AdsCountPerYear_,
@@ -330,7 +330,7 @@ const Storeads = async ({ params: { id }, searchParams }: SearchParamProps) => {
     AdsCountPerRegistered = AdsCountPerRegistered_;
     AdsCountPersecondCondition = AdsCountPersecondCondition_;
   }
-  if (subcategory === "Car") {
+  if (subcategory === "Cars, Vans & Pickups") {
     const [
       AdsCountPerMake_,
       AdsCountPerYear_,
@@ -507,12 +507,13 @@ const Storeads = async ({ params: { id }, searchParams }: SearchParamProps) => {
                     d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z"
                   ></path>
                 </svg>
-                <Link
+                {/*  <Link
                   className="hover:text-green-700 no-underline"
                   href={`/category?category=${category}`}
                 >
                   <p className="p-medium-1 p-medium-14"> {category}</p>
-                </Link>
+                </Link> */}
+                <p className="p-medium-1 p-medium-14"> {category}</p>
               </div>
             </div>
             <div className="bg-white p-2 rounded-full">

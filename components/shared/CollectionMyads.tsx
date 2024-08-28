@@ -84,8 +84,8 @@ const CollectionMyads = ({
         )
       ) : (
         <div className="flex-center wrapper min-h-[200px] w-full flex-col gap-3 rounded-[14px] bg-grey-50 py-28 text-center">
-          <h3 className="font-bold text-[25px]">{emptyTitle}</h3>
-          <p className="p-regular-14">{emptyStateSubtext}</p>
+          <h3 className="font-bold text-[16px] lg:text-[25px]">{emptyTitle}</h3>
+          <p className="text-sm lg:p-regular-14">{emptyStateSubtext}</p>
         </div>
       )}
     </>

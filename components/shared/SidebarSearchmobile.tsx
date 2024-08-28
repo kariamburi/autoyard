@@ -617,203 +617,6 @@ const SidebarSearchmobile = ({
     //alert(event.target.value);
   };
 
-  const handleExchangeChange = (event: any) => {
-    let newUrl = "";
-
-    if (event.target.value) {
-      setselectedExchangeOption(event.target.value);
-      newUrl = formUrlQuery({
-        params: searchParams.toString(),
-        key: "vehicleexchangeposible",
-        value: event.target.value,
-      });
-    } else {
-      setselectedExchangeOption("all");
-      newUrl = removeKeysFromQuery({
-        params: searchParams.toString(),
-        keysToRemove: ["vehicleexchangeposible"],
-      });
-    }
-
-    router.push(newUrl, { scroll: false });
-    //alert(event.target.value);
-  };
-
-  const handleRegisteredChange = (event: any) => {
-    let newUrl = "";
-
-    if (event.target.value) {
-      setselectedRegisteredOption(event.target.value);
-      newUrl = formUrlQuery({
-        params: searchParams.toString(),
-        key: "vehicleregistered",
-        value: event.target.value,
-      });
-    } else {
-      setselectedRegisteredOption("all");
-      newUrl = removeKeysFromQuery({
-        params: searchParams.toString(),
-        keysToRemove: ["vehicleregistered"],
-      });
-    }
-
-    router.push(newUrl, { scroll: false });
-    //alert(event.target.value);
-  };
-
-  const handleCCChange = (event: any) => {
-    let newUrl = "";
-
-    if (event.target.value) {
-      setselectedCCOption(event.target.value);
-      newUrl = formUrlQuery({
-        params: searchParams.toString(),
-        key: "vehicleEngineSizesCC",
-        value: event.target.value,
-      });
-    } else {
-      setselectedCCOption("all");
-      newUrl = removeKeysFromQuery({
-        params: searchParams.toString(),
-        keysToRemove: ["vehicleEngineSizesCC"],
-      });
-    }
-
-    router.push(newUrl, { scroll: false });
-    //alert(event.target.value);
-  };
-
-  const handleYearChange = (event: any) => {
-    let newUrl = "";
-
-    if (event.target.value) {
-      setselectedYearOption(event.target.value);
-      newUrl = formUrlQuery({
-        params: searchParams.toString(),
-        key: "vehicleyear",
-        value: event.target.value,
-      });
-    } else {
-      setselectedYearOption("all");
-      newUrl = removeKeysFromQuery({
-        params: searchParams.toString(),
-        keysToRemove: ["vehicleyear"],
-      });
-    }
-
-    router.push(newUrl, { scroll: false });
-  };
-
-  const handleBodyChange = (event: any) => {
-    let newUrl = "";
-
-    if (event.target.value) {
-      setselectedBodyOption(event.target.value);
-      newUrl = formUrlQuery({
-        params: searchParams.toString(),
-        key: "vehicleBodyTypes",
-        value: event.target.value,
-      });
-    } else {
-      setselectedBodyOption("all");
-      newUrl = removeKeysFromQuery({
-        params: searchParams.toString(),
-        keysToRemove: ["vehicleBodyTypes"],
-      });
-    }
-
-    router.push(newUrl, { scroll: false });
-    //alert(event.target.value);
-  };
-
-  const handleFuelChange = (event: any) => {
-    let newUrl = "";
-
-    if (event.target.value) {
-      setselectedFuelOption(event.target.value);
-      newUrl = formUrlQuery({
-        params: searchParams.toString(),
-        key: "vehicleFuelTypes",
-        value: event.target.value,
-      });
-    } else {
-      setselectedFuelOption("all");
-      newUrl = removeKeysFromQuery({
-        params: searchParams.toString(),
-        keysToRemove: ["vehicleFuelTypes"],
-      });
-    }
-
-    router.push(newUrl, { scroll: false });
-    //alert(event.target.value);
-  };
-
-  const handleTransmissionChange = (event: any) => {
-    let newUrl = "";
-
-    if (event.target.value) {
-      setselectedTransmissionOption(event.target.value);
-      newUrl = formUrlQuery({
-        params: searchParams.toString(),
-        key: "vehicleTransmissions",
-        value: event.target.value,
-      });
-    } else {
-      setselectedTransmissionOption("all");
-      newUrl = removeKeysFromQuery({
-        params: searchParams.toString(),
-        keysToRemove: ["vehicleTransmissions"],
-      });
-    }
-
-    router.push(newUrl, { scroll: false });
-    //alert(event.target.value);
-  };
-
-  const handleColorChange = (event: any) => {
-    let newUrl = "";
-
-    if (event.target.value) {
-      setselectedColorOption(event.target.value);
-      newUrl = formUrlQuery({
-        params: searchParams.toString(),
-        key: "vehiclecolor",
-        value: event.target.value,
-      });
-    } else {
-      setselectedColorOption("all");
-      newUrl = removeKeysFromQuery({
-        params: searchParams.toString(),
-        keysToRemove: ["vehiclecolor"],
-      });
-    }
-
-    router.push(newUrl, { scroll: false });
-    //alert(event.target.value);
-  };
-
-  const handleConditionChange = (event: any) => {
-    let newUrl = "";
-
-    if (event.target.value) {
-      setselectedConditionOption(event.target.value);
-      newUrl = formUrlQuery({
-        params: searchParams.toString(),
-        key: "vehiclecondition",
-        value: event.target.value,
-      });
-    } else {
-      setselectedConditionOption("all");
-      newUrl = removeKeysFromQuery({
-        params: searchParams.toString(),
-        keysToRemove: ["vehiclecondition"],
-      });
-    }
-
-    router.push(newUrl, { scroll: false });
-    //alert(event.target.value);
-  };
-
   const handleChange = (event: any) => {
     let newUrl = "";
 
@@ -841,37 +644,6 @@ const SidebarSearchmobile = ({
   for (let year = currentYear; year >= 1960; year--) {
     years.push(year.toString());
   }
-
-  const onSelectYearClear = () => {
-    let newUrl = "";
-
-    newUrl = removeKeysFromQuery({
-      params: searchParams.toString(),
-      keysToRemove: ["yearfrom", "yearto"],
-    });
-
-    router.push(newUrl, { scroll: false });
-  };
-  const onSelectYear = () => {
-    let newUrl = "";
-
-    if (vehicleyearfrom && vehicleyearto) {
-      newUrl = formUrlQuerymultiple({
-        params: searchParams.toString(),
-        updates: {
-          yearfrom: vehicleyearfrom,
-          yearto: vehicleyearto,
-        },
-      });
-    } else {
-      newUrl = removeKeysFromQuery({
-        params: searchParams.toString(),
-        keysToRemove: ["yearfrom", "yearto"],
-      });
-    }
-
-    router.push(newUrl, { scroll: false });
-  };
 
   const [totalMake, settotalMake] = useState(0);
   const [totalColor, settotalColor] = useState(0);
@@ -1388,7 +1160,7 @@ const SidebarSearchmobile = ({
             </div>
           </div>
 
-          {subcategory === "Car" && (
+          {subcategory === "Cars, Vans & Pickups" && (
             <>
               <div className="text-sm mt-1 rounded-lg w-full bg-white p-2">
                 <div className="w-full p-2">
@@ -1833,7 +1605,7 @@ const SidebarSearchmobile = ({
               </div>
             </>
           )}
-          {subcategory === "Motorbikes & Scooters" && (
+          {subcategory === "Motorbikes,Tuktuks & Scooters" && (
             <>
               <div className="text-sm mt-1 rounded-lg w-full bg-white p-2">
                 <div className="w-full p-2">
@@ -2028,9 +1800,9 @@ const SidebarSearchmobile = ({
               </div>
             </>
           )}
-          {(subcategory === "Car" ||
+          {(subcategory === "Cars, Vans & Pickups" ||
             subcategory === "Buses & Microbuses" ||
-            subcategory === "Motorbikes & Scooters" ||
+            subcategory === "Motorbikes,Tuktuks & Scooters" ||
             subcategory === "Heavy Equipment" ||
             subcategory === "Trucks & Trailers" ||
             subcategory === "Watercraft & Boats") && (
@@ -2042,9 +1814,8 @@ const SidebarSearchmobile = ({
                     options={years}
                     getOptionLabel={(option) => option}
                     value={
-                      years.find(
-                        (yr) => yr === searchParams.get("yearfrom")
-                      ) || null
+                      years.find((yr) => yr === searchParams.get("yearfrom")) ||
+                      null
                     }
                     // onChange={(event, newValue) => {
                     //  setvehicleyearfrom(newValue ?? "");
@@ -2070,9 +1841,8 @@ const SidebarSearchmobile = ({
                     options={years}
                     getOptionLabel={(option) => option}
                     value={
-                      years.find(
-                        (yr) => yr === searchParams.get("yearto")
-                      ) || null
+                      years.find((yr) => yr === searchParams.get("yearto")) ||
+                      null
                     }
                     onChange={(event, newValue) =>
                       router.push(
@@ -2092,9 +1862,9 @@ const SidebarSearchmobile = ({
               </div>
             </>
           )}
-          {(subcategory === "Car" ||
+          {(subcategory === "Cars, Vans & Pickups" ||
             subcategory === "Buses & Microbuses" ||
-            subcategory === "Motorbikes & Scooters" ||
+            subcategory === "Motorbikes,Tuktuks & Scooters" ||
             subcategory === "Heavy Equipment" ||
             subcategory === "Trucks & Trailers" ||
             subcategory === "Vehicle Parts & Accessories" ||
@@ -2163,9 +1933,9 @@ const SidebarSearchmobile = ({
               </div>
             </>
           )}
-          {(subcategory === "Car" ||
+          {(subcategory === "Cars, Vans & Pickups" ||
             subcategory === "Buses & Microbuses" ||
-            subcategory === "Motorbikes & Scooters") && (
+            subcategory === "Motorbikes,Tuktuks & Scooters") && (
             <>
               <div className="text-sm mt-1 rounded-lg w-full bg-white p-2">
                 <div className="w-full p-2">
@@ -2230,9 +2000,9 @@ const SidebarSearchmobile = ({
               </div>
             </>
           )}
-          {(subcategory === "Car" ||
+          {(subcategory === "Cars, Vans & Pickups" ||
             subcategory === "Buses & Microbuses" ||
-            subcategory === "Motorbikes & Scooters" ||
+            subcategory === "Motorbikes,Tuktuks & Scooters" ||
             subcategory === "Trucks & Trailers") && (
             <>
               <div className="text-sm mt-1 rounded-lg w-full bg-white p-2">
@@ -2299,7 +2069,8 @@ const SidebarSearchmobile = ({
               </div>
             </>
           )}
-          {(subcategory === "Car" || subcategory === "Buses & Microbuses") && (
+          {(subcategory === "Cars, Vans & Pickups" ||
+            subcategory === "Buses & Microbuses") && (
             <>
               <div className="text-sm mt-1 rounded-lg w-full bg-white p-2">
                 <div className="w-full p-2">
@@ -2364,7 +2135,7 @@ const SidebarSearchmobile = ({
               </div>
             </>
           )}
-          {subcategory === "Car" && (
+          {subcategory === "Cars, Vans & Pickups" && (
             <>
               <div className="text-sm mt-1 rounded-lg w-full bg-white p-2">
                 <div className="w-full p-2">
@@ -2430,7 +2201,7 @@ const SidebarSearchmobile = ({
               </div>
             </>
           )}
-          {subcategory === "Car" && (
+          {subcategory === "Cars, Vans & Pickups" && (
             <>
               <div className="text-sm mt-1 rounded-lg w-full bg-white p-2">
                 <div className="w-full p-2">
@@ -2484,9 +2255,9 @@ const SidebarSearchmobile = ({
               </div>
             </>
           )}
-          {(subcategory === "Car" ||
+          {(subcategory === "Cars, Vans & Pickups" ||
             subcategory === "Buses & Microbuses" ||
-            subcategory === "Motorbikes & Scooters") && (
+            subcategory === "Motorbikes,Tuktuks & Scooters") && (
             <>
               <div className="text-sm mt-1 rounded-lg w-full bg-white p-2">
                 <div className="w-full p-2">
@@ -2551,9 +2322,9 @@ const SidebarSearchmobile = ({
               </div>
             </>
           )}
-          {(subcategory === "Car" ||
+          {(subcategory === "Cars, Vans & Pickups" ||
             subcategory === "Buses & Microbuses" ||
-            subcategory === "Motorbikes & Scooters" ||
+            subcategory === "Motorbikes,Tuktuks & Scooters" ||
             subcategory === "Heavy Equipment" ||
             subcategory === "Trucks & Trailers" ||
             subcategory === "Watercraft & Boats") && (
@@ -2622,7 +2393,7 @@ const SidebarSearchmobile = ({
               </div>
             </>
           )}
-          {subcategory === "Car" && (
+          {subcategory === "Cars, Vans & Pickups" && (
             <>
               <div className="text-sm mt-1 rounded-lg w-full bg-white p-2">
                 <div className="w-full p-2">
@@ -2687,7 +2458,8 @@ const SidebarSearchmobile = ({
               </div>
             </>
           )}
-          {(subcategory === "Car" || subcategory === "Buses & Microbuses") && (
+          {(subcategory === "Cars, Vans & Pickups" ||
+            subcategory === "Buses & Microbuses") && (
             <>
               <div className="text-sm mt-1 rounded-lg w-full bg-white p-2">
                 <div className="w-full p-2">

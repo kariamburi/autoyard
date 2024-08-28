@@ -8,7 +8,7 @@ import { SignedIn, SignedOut } from "@clerk/nextjs";
 import AddCircleOutlineOutlinedIcon from "@mui/icons-material/AddCircleOutlineOutlined";
 import Link from "next/link";
 import { getAllAd } from "@/lib/actions/ad.actions";
-import Menumobile from "@/components/shared/Menumobile";
+import MenuSubmobile from "@/components/shared/MenuSubmobile";
 import Collection from "@/components/shared/Collection";
 
 export default async function Home({ searchParams }: SearchParamProps) {
@@ -136,7 +136,7 @@ export default async function Home({ searchParams }: SearchParamProps) {
       <div className="max-w-6xl mx-auto flex mt-0">
         <div className="flex-1">
           <div className="mt-[190px] sm:mt-0">
-            <Menumobile categoryList={categoryList} />
+            <MenuSubmobile categoryList={categoryList} />
           </div>
           <div className="p-2 mt-2 mb-20 lg:mb-0">
             <div className="flex w-full items-center justify-between gap-5 p-2 md:flex-row">

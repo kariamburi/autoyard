@@ -1530,7 +1530,7 @@ const SidebarSearch = ({
           </Accordion>
         </div>
 
-        {subcategory === "Car" && (
+        {subcategory === "Cars, Vans & Pickups" && (
           <>
             <div className="text-sm mt-2 rounded-lg w-full bg-white p-2">
               <Accordion type="single" collapsible>
@@ -2119,7 +2119,7 @@ const SidebarSearch = ({
             </div>
           </>
         )}
-        {subcategory === "Motorbikes & Scooters" && (
+        {subcategory === "Motorbikes,Tuktuks & Scooters" && (
           <>
             <div className="text-sm mt-2 rounded-lg w-full bg-white p-2">
               <Accordion type="single" collapsible>
@@ -2371,9 +2371,9 @@ const SidebarSearch = ({
             </div>
           </>
         )}
-        {(subcategory === "Car" ||
+        {(subcategory === "Cars, Vans & Pickups" ||
           subcategory === "Buses & Microbuses" ||
-          subcategory === "Motorbikes & Scooters" ||
+          subcategory === "Motorbikes,Tuktuks & Scooters" ||
           subcategory === "Heavy Equipment" ||
           subcategory === "Trucks & Trailers" ||
           subcategory === "Watercraft & Boats") && (
@@ -2528,9 +2528,9 @@ const SidebarSearch = ({
             </div>
           </>
         )}
-        {(subcategory === "Car" ||
+        {(subcategory === "Cars, Vans & Pickups" ||
           subcategory === "Buses & Microbuses" ||
-          subcategory === "Motorbikes & Scooters" ||
+          subcategory === "Motorbikes,Tuktuks & Scooters" ||
           subcategory === "Heavy Equipment" ||
           subcategory === "Trucks & Trailers" ||
           subcategory === "Vehicle Parts & Accessories" ||
@@ -2609,9 +2609,9 @@ const SidebarSearch = ({
             </div>
           </>
         )}
-        {(subcategory === "Car" ||
+        {(subcategory === "Cars, Vans & Pickups" ||
           subcategory === "Buses & Microbuses" ||
-          subcategory === "Motorbikes & Scooters") && (
+          subcategory === "Motorbikes,Tuktuks & Scooters") && (
           <>
             <div className="text-sm mt-2 rounded-lg w-full bg-white p-2">
               <Accordion type="single" collapsible>
@@ -2699,9 +2699,9 @@ const SidebarSearch = ({
             </div>
           </>
         )}
-        {(subcategory === "Car" ||
+        {(subcategory === "Cars, Vans & Pickups" ||
           subcategory === "Buses & Microbuses" ||
-          subcategory === "Motorbikes & Scooters" ||
+          subcategory === "Motorbikes,Tuktuks & Scooters" ||
           subcategory === "Trucks & Trailers") && (
           <>
             <div className="text-sm mt-2 rounded-lg w-full bg-white p-2">
@@ -2775,7 +2775,8 @@ const SidebarSearch = ({
             </div>
           </>
         )}
-        {(subcategory === "Car" || subcategory === "Buses & Microbuses") && (
+        {(subcategory === "Cars, Vans & Pickups" ||
+          subcategory === "Buses & Microbuses") && (
           <>
             <div className="text-sm mt-2 rounded-lg w-full bg-white p-2">
               <Accordion type="single" collapsible>
@@ -2863,7 +2864,7 @@ const SidebarSearch = ({
             </div>
           </>
         )}
-        {subcategory === "Car" && (
+        {subcategory === "Cars, Vans & Pickups" && (
           <>
             <div className="text-sm mt-2 rounded-lg w-full bg-white p-2">
               <Accordion type="single" collapsible>
@@ -2951,7 +2952,7 @@ const SidebarSearch = ({
             </div>
           </>
         )}
-        {subcategory === "Car" && (
+        {subcategory === "Cars, Vans & Pickups" && (
           <>
             <div className="text-sm mt-2 rounded-lg w-full bg-white p-2">
               <Accordion type="single" collapsible>
@@ -3039,9 +3040,9 @@ const SidebarSearch = ({
             </div>
           </>
         )}
-        {(subcategory === "Car" ||
+        {(subcategory === "Cars, Vans & Pickups" ||
           subcategory === "Buses & Microbuses" ||
-          subcategory === "Motorbikes & Scooters") && (
+          subcategory === "Motorbikes,Tuktuks & Scooters") && (
           <>
             <div className="text-sm mt-2 rounded-lg w-full bg-white p-2">
               <Accordion type="single" collapsible>
@@ -3110,9 +3111,9 @@ const SidebarSearch = ({
             </div>
           </>
         )}
-        {(subcategory === "Car" ||
+        {(subcategory === "Cars, Vans & Pickups" ||
           subcategory === "Buses & Microbuses" ||
-          subcategory === "Motorbikes & Scooters" ||
+          subcategory === "Motorbikes,Tuktuks & Scooters" ||
           subcategory === "Heavy Equipment" ||
           subcategory === "Trucks & Trailers" ||
           subcategory === "Watercraft & Boats") && (
@@ -3184,7 +3185,7 @@ const SidebarSearch = ({
             </div>
           </>
         )}
-        {subcategory === "Car" && (
+        {subcategory === "Cars, Vans & Pickups" && (
           <>
             <div className="text-sm mt-2 rounded-lg w-full bg-white p-2">
               <Accordion type="single" collapsible>
@@ -3274,7 +3275,8 @@ const SidebarSearch = ({
             </div>
           </>
         )}
-        {(subcategory === "Car" || subcategory === "Buses & Microbuses") && (
+        {(subcategory === "Cars, Vans & Pickups" ||
+          subcategory === "Buses & Microbuses") && (
           <>
             <div className="text-sm mt-2 rounded-lg w-full bg-white p-2">
               <Accordion type="single" collapsible>
