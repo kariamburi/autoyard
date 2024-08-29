@@ -112,7 +112,7 @@ const Verification: React.FC<SettingsProp> = ({
             onClick={() =>
               handlePay(_id, "Verification", "0", activationfee.toString())
             }
-            className="hover:text-gray-500 bg-[#30AF5B] text-white text-xs hover:bg-white mt-2 p-2 rounded-lg shadow"
+            className="flex gap-1 items-center hover:bg-black bg-[#30AF5B] text-white text-xs hover:bg-white mt-2 p-1 rounded-lg shadow"
           >
             <CheckCircleIcon sx={{ marginRight: "5px" }} />
             Request Verification
@@ -153,7 +153,7 @@ const Verification: React.FC<SettingsProp> = ({
           {isAdCreator ? (
             <ShowPopup
               trigger={
-                <p className="text-gray-400 p-1 bg-white rounded-full text-xs cursor-pointer hover:underline">
+                <p className="text-gray-600 p-1 bg-white rounded-full text-xs cursor-pointer hover:underline">
                   <ShieldOutlinedIcon sx={{ fontSize: 16 }} />
                   Account unverified
                 </p>
@@ -163,7 +163,7 @@ const Verification: React.FC<SettingsProp> = ({
           ) : (
             <ShowPopup
               trigger={
-                <p className="text-gray-400 p-1 bg-white rounded-full text-xs cursor-pointer hover:underline">
+                <p className="text-gray-600 p-1 bg-white rounded-full text-xs cursor-pointer hover:underline">
                   <ShieldOutlinedIcon sx={{ fontSize: 16 }} />
                   Account unverified
                 </p>

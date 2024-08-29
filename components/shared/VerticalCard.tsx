@@ -164,7 +164,7 @@ const VerticalCard = ({ userId, ad, isAdCreator }: CardProps) => {
         ) : (
           <div className="flex items-center p-1">
             <Link href={`/ads/${ad._id}`} className="no-underline">
-              <span className="text-emerald-950 text-[12px] lg:text-lg w-min rounded-full text-green-60">
+              <span className="text-emerald-950 font-bold text-[12px] lg:text-lg w-min rounded-full text-green-60">
                 {NGnaira.format(ad.price)}
               </span>
             </Link>

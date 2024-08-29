@@ -121,53 +121,90 @@ const HelpBox = ({
   return (
     <div className="">
       <ScrollArea className="h-[390px] text-sm lg:text-base w-full bg-white rounded-t-md border p-4">
-        <div>
+        <div className="justify-start">
           <h2 className="font-bold">Frequently Asked Questions</h2>
 
           <Accordion type="single" collapsible className="w-full">
             <AccordionItem key="faq-1" value="item-1">
               <AccordionTrigger>
-                <h3>What is Wheels?</h3>
+                <div className="w-full">
+                  <h3>
+                    1. How do I post a vehicle for sale on WheelMart.co.ke?
+                  </h3>
+                </div>
               </AccordionTrigger>
               <AccordionContent>
                 <p>
-                  Wheels.co.ke is an online marketplace that allows users to buy
-                  and sell items locally. It&apos;s a platform for people to
-                  list items for sale and for buyers to find great deals in
-                  their area.
+                  To post a vehicle, simply create an account, navigate to the
+                  "Sell" section, and fill out the required details. Upload
+                  photos, set your price, and submit your listing.
                 </p>
               </AccordionContent>
             </AccordionItem>
 
             <AccordionItem key="faq-2" value="item-2">
               <AccordionTrigger>
-                <h3>How do I create an account on Wheels?</h3>
+                <h3>2. Is there a fee for posting a vehicle?</h3>
               </AccordionTrigger>
               <AccordionContent>
                 <p>
-                  To create an account, download the Wheels app from the App
-                  Store or Google Play Store, or visit the Wheels.co.ke website.
-                  Follow the prompts to sign up using your email address,
-                  Facebook account, or Google account.
+                  Posting a basic vehicle listing on WheelMart.co.ke is free.
+                  However, we offer premium listing options for increased
+                  visibility, which come with a small fee.
                 </p>
               </AccordionContent>
             </AccordionItem>
 
             <AccordionItem key="faq-3" value="item-3">
               <AccordionTrigger>
-                <h3>How do I list an item for sale?</h3>
+                <h3>3. How can I contact a seller?</h3>
               </AccordionTrigger>
               <AccordionContent>
                 <p>
-                  Open the Wheels.co.ke app or website and click on the
-                  &quot;Post&quot; button. Follow the prompts to add photos, a
-                  description, and a price for your item. Once you&apos;ve
-                  completed the details, click &quot;Post&quot; to list your
-                  item for sale.
+                  You can contact a seller directly via the chat function on the
+                  website, or by using the provided email or phone number listed
+                  in the vehicle details.
                 </p>
               </AccordionContent>
             </AccordionItem>
 
+            <AccordionItem key="faq-4" value="item-4">
+              <AccordionTrigger>
+                <h3>4. What should I do if I suspect a fraudulent listing?</h3>
+              </AccordionTrigger>
+              <AccordionContent>
+                <p>
+                  If you suspect a fraudulent listing, please report it
+                  immediately using the "Report" button on the listing page. Our
+                  team will review and take appropriate action.
+                </p>
+              </AccordionContent>
+            </AccordionItem>
+
+            <AccordionItem key="faq-5" value="item-5">
+              <AccordionTrigger>
+                <h3>5. How do I edit or delete my vehicle listing?</h3>
+              </AccordionTrigger>
+              <AccordionContent>
+                <p>
+                  You can edit or delete your listing by logging into your
+                  account, navigating to "My Listings," and selecting the option
+                  to edit or delete the desired vehicle listing.
+                </p>
+              </AccordionContent>
+            </AccordionItem>
+            <AccordionItem key="faq-6" value="item-6">
+              <AccordionTrigger>
+                <h3>6. Can I get a refund for a premium listing?</h3>
+              </AccordionTrigger>
+              <AccordionContent>
+                <p>
+                  Refunds for premium listings are subject to our refund policy.
+                  Please review the policy or contact our support team for
+                  assistance.
+                </p>
+              </AccordionContent>
+            </AccordionItem>
             {/* Add more FAQ sections with unique keys */}
           </Accordion>
         </div>

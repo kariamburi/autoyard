@@ -12,6 +12,8 @@ import { Separator } from "../ui/separator";
 import MenuIcon from "@mui/icons-material/Menu";
 import { useState } from "react";
 import NavItems from "./NavItems";
+import StyledBrandNameblack from "./StyledBrandNameblack";
+import Link from "next/link";
 type MobileProps = {
   userstatus: string;
   userId: string;
@@ -49,11 +51,51 @@ const MobileNav = ({ userstatus, userId }: MobileProps) => {
                   height={26}
                 />
               </div>
-              <span className="text-emerald-900">Wheels</span>
+              <StyledBrandNameblack />
             </div>
           </SheetTitle>
           <Separator className="border border-gray-50" />
           <NavItems userstatus={userstatus} userId={userId} />
+          <Separator className="border border-gray-50" />
+          <div className="flex text-xs">
+            <div className="flex gap-1 w-full text-gray-600">
+              <div className="transition-colors text-[10px] hover:text-emerald-600 hover:cursor-pointer">
+                <Link
+                  href="/about"
+                  className="no-underline hover:text-emerald-500 "
+                >
+                  About
+                </Link>
+              </div>
+              <div>|</div>
+              <div className="transition-colors text-[10px] hover:text-emerald-600 hover:cursor-pointer">
+                <Link
+                  href="/terms"
+                  className="no-underline hover:text-emerald-500 "
+                >
+                  <div>Terms & Conditions</div>
+                </Link>
+              </div>
+              <div>|</div>
+              <div className="transition-colors text-[10px] hover:text-emerald-600 hover:cursor-pointer">
+                <Link
+                  href="/privacy"
+                  className="no-underline hover:text-emerald-500 "
+                >
+                  Privacy Policy
+                </Link>
+              </div>
+              <div>|</div>
+              <div className="transition-colors text-[10px] hover:text-emerald-600 hover:cursor-pointer">
+                <Link
+                  href="/safety"
+                  className="no-underline hover:text-emerald-500 "
+                >
+                  Safety Tips
+                </Link>
+              </div>
+            </div>
+          </div>
         </SheetContent>
       </Sheet>
     </nav>

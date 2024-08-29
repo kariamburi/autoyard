@@ -16,14 +16,29 @@ const Footer = () => {
             <div className="divider"></div>
             <ul className="space-y-4">
               <li className="transition-colors text-sm hover:text-emerald-600 hover:cursor-pointer">
-                About Wheels
+                <Link
+                  href="/about"
+                  className="no-underline hover:text-emerald-500 "
+                >
+                  About WheelMart
+                </Link>
               </li>
 
               <li className="transition-colors text-sm hover:text-emerald-600 hover:cursor-pointer">
-                <div>Terms & Conditions</div>
+                <Link
+                  href="/terms"
+                  className="no-underline hover:text-emerald-500 "
+                >
+                  <div>Terms & Conditions</div>
+                </Link>
               </li>
               <li className="transition-colors text-sm hover:text-emerald-600 hover:cursor-pointer">
-                Privacy Policy
+                <Link
+                  href="/privacy"
+                  className="no-underline hover:text-emerald-500 "
+                >
+                  Privacy Policy
+                </Link>
               </li>
             </ul>
           </div>
@@ -31,14 +46,22 @@ const Footer = () => {
             <p className="mb-3 text-slate-950 font-bold">Support</p>
             <ul className="space-y-4">
               <li className="transition-colors text-sm hover:text-emerald-600 hover:cursor-pointer">
-                support@wheels.co.ke
+                <Link
+                  href="mailto:support@wheelmart.co.ke"
+                  className="no-underline hover:text-emerald-500 "
+                >
+                  support@wheelmart.co.ke
+                </Link>
               </li>
               <li className="transition-colors text-sm hover:text-emerald-600 hover:cursor-pointer">
-                Safety tips
+                <Link
+                  href="/safety"
+                  className="no-underline hover:text-emerald-500 "
+                >
+                  Safety tips
+                </Link>
               </li>
-              <li className="transition-colors text-sm hover:text-emerald-600 hover:cursor-pointer">
-                Contact Us
-              </li>
+
               <li className="transition-colors text-sm hover:text-emerald-600 hover:cursor-pointer">
                 FAQ
               </li>
@@ -71,7 +94,7 @@ const Footer = () => {
             <p className="mb-3 text-slate-950 font-bold">Our resources</p>
             <ul className="space-y-4">
               <li className="transition-colors text-sm hover:text-emerald-600 hover:cursor-pointer">
-                Wheels on FB
+                Our FB
               </li>
               <li className="transition-colors text-sm  hover:text-emerald-600 hover:cursor-pointer">
                 Our Instagram
@@ -90,7 +113,7 @@ const Footer = () => {
       <div className="border-t border-gray-300 p-2 mt-3"></div>
       <div className="flex flex-col items-center justify-center">
         <p className="text-xs font-bold">
-          {currentYear} Wheels. All Rights reserved.
+          {currentYear} WheelMart. All Rights reserved.
         </p>
         <p className="text-[8px] lg:text-xs">
           Developed by{" "}

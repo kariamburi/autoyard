@@ -444,18 +444,19 @@ CollectionProps) => {
             />
           </div>
           <div className="rounded-lg max-w-8xl mx-auto justify-center">
-            <div className="rounded-lg w-full bg-white p-1">
-              <section className="bg-white lg:hidden bg-dotted-pattern bg-cover bg-center py-0 md:py-0 rounded-sm">
-                <SubCategoryFilterSearch
-                  category={category}
-                  AdsCountPerSubcategory={AdsCountPerSubcategory}
-                />
-              </section>
-
-              <div className="flex items-center gap-1 justify-between">
-                <div className="font-bold text-lg text-emerald-950 text-center sm:text-left p-2">
-                  {category} {subcategory ? <> | {subcategory}</> : "| All"}{" "}
-                </div>
+            <div className="rounded-lg w-full">
+              <div className="font-bold hidden lg:inline text-lg text-emerald-950 text-center sm:text-left p-2">
+                {subcategory ? <> {subcategory}</> : "All"}
+              </div>
+              <div className="lg:hidden flex items-center gap-1 bg-white p-1 justify-between">
+                <section className="bg-white bg-dotted-pattern bg-cover bg-center py-0 md:py-0 rounded-sm">
+                  <div className="flex gap-1 font-bold items-center">
+                    <SubCategoryFilterSearch
+                      category={category}
+                      AdsCountPerSubcategory={AdsCountPerSubcategory}
+                    />
+                  </div>
+                </section>
 
                 <div
                   onClick={togglePopup}
@@ -701,7 +702,7 @@ CollectionProps) => {
                       Reset Filter
                     </button>
                   </div>
-                  {subcategory === "Car" && (
+                  {subcategory === "Cars, Vans & Pickups" && (
                     <>
                       <div className="grid grid-cols-4 lg:grid-cols-7 justify-between gap-1 m-0">
                         <div
@@ -795,7 +796,7 @@ CollectionProps) => {
                       />
                     </>
                   )}
-                  {subcategory === "Motorbikes & Scooters" && (
+                  {subcategory === "Motorbikes,Tuktuks & Scooters" && (
                     <>
                       <MenumakeMotobikes
                         category={category}

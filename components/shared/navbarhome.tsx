@@ -42,6 +42,7 @@ import {
 } from "../ui/tooltip";
 import Unreadmessages from "./Unreadmessages";
 import dynamic from "next/dynamic";
+import StyledBrandName from "./StyledBrandName";
 const SignedIn = dynamic(
   () => import("@clerk/nextjs").then((mod) => mod.SignedIn),
   { ssr: false }
@@ -54,7 +55,6 @@ const UserButton = dynamic(
   () => import("@clerk/nextjs").then((mod) => mod.UserButton),
   { ssr: false }
 );
-
 
 type NavProps = {
   userstatus: string;
@@ -105,7 +105,7 @@ export default function Navbarhome({ userstatus, userId }: NavProps) {
               className="font-bold text-base lg:text-lg text-white hover:cursor-pointer"
               onClick={() => router.push("/")}
             >
-              Wheels
+              <StyledBrandName />
             </span>
           </div>
         </div>

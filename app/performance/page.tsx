@@ -49,34 +49,17 @@ const Settings = async () => {
 
         <div className="flex-1">
           <div className="rounded-lg border bg-white max-w-6xl mx-auto lg:flex-row mt-0 p-1 justify-center">
-            <section className="w-full bg-grey-50 bg-dotted-pattern bg-cover bg-center py-0 md:py-0 rounded-sm">
-              <div className="w-full flex flex-col">
-                <div className="flex text-lg gap-1 font-bold w-full">
-                  <SettingsOutlinedIcon />
-                  <h3 className="font-bold text-[25px]">Settings</h3>
-                </div>
+            <div className="privacy-policy p-6 bg-gray-50 text-gray-800">
+              <h1 className="text-2xl font-bold mb-4">Performance</h1>
 
-                <Verification
-                  user={user}
-                  userId={userId}
-                  isAdCreator={isAdCreator}
-                />
-              </div>
-            </section>
-
-            <div className="p-1 bg-white text-lg font-bold breadcrumbs mx-auto text-center relative rounded-md"></div>
-
-            <SettingsEdit user={user} type="Update" userId={userId} />
-            <Toaster />
+              <p className="mb-4">No results yet</p>
+            </div>
           </div>
         </div>
       </div>
       <footer>
-        <div className="hidden lg:inline">
+        <div>
           <Footersub />
-        </div>
-        <div className="lg:hidden">
-          <BottomNavigation userId={userId} />
         </div>
       </footer>
     </>
