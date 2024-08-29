@@ -8,11 +8,13 @@ import Verification from "@/components/shared/Verification";
 import Image from "next/image";
 import BottomNavigation from "@/components/shared/BottomNavigation";
 import Footersub from "@/components/shared/Footersub";
+
 const Settings = async () => {
   const { sessionClaims } = auth();
   const userId = sessionClaims?.userId as string;
   const user = await getUserById(userId);
   const isAdCreator = true;
+
   if (!user) {
     return (
       <div className="flex-center h-screen w-full bg-[#ebf2f7] bg-dotted-pattern bg-cover bg-fixed bg-center">
@@ -25,7 +27,7 @@ const Settings = async () => {
           <div className="flex gap-1 items-center">
             <Image
               src="/assets/icons/loading.gif"
-              alt="edit"
+              alt="Loading..."
               width={60}
               height={60}
             />
@@ -275,4 +277,5 @@ const Settings = async () => {
     </>
   );
 };
+
 export default Settings;

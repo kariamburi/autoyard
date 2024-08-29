@@ -1,3 +1,4 @@
+"use client";
 import Navbar from "@/components/shared/navbar";
 import SettingsEdit from "@/components/shared/SettingsEdit";
 import { getUserById } from "@/lib/actions/user.actions";
@@ -8,11 +9,12 @@ import Verification from "@/components/shared/Verification";
 import Image from "next/image";
 import BottomNavigation from "@/components/shared/BottomNavigation";
 import Footersub from "@/components/shared/Footersub";
+
 const Settings = async () => {
   const { sessionClaims } = auth();
   const userId = sessionClaims?.userId as string;
   const user = await getUserById(userId);
-  const isAdCreator = true;
+
   if (!user) {
     return (
       <div className="flex-center h-screen w-full bg-[#ebf2f7] bg-dotted-pattern bg-cover bg-fixed bg-center">
@@ -25,7 +27,7 @@ const Settings = async () => {
           <div className="flex gap-1 items-center">
             <Image
               src="/assets/icons/loading.gif"
-              alt="edit"
+              alt="Loading"
               width={60}
               height={60}
             />
@@ -61,8 +63,9 @@ const Settings = async () => {
                   </h3>
                   <p className="text-gray-700">
                     To post a vehicle, simply create an account, navigate to the
-                    "Post a Vehicle" section, and fill out the required details.
-                    Upload photos, set your price, and submit your listing.
+                    &quot;Post a Vehicle&quot; section, and fill out the
+                    required details. Upload photos, set your price, and submit
+                    your listing.
                   </p>
                 </div>
 
@@ -94,8 +97,9 @@ const Settings = async () => {
                   </h3>
                   <p className="text-gray-700">
                     If you suspect a fraudulent listing, please report it
-                    immediately using the "Report" button on the listing page.
-                    Our team will review and take appropriate action.
+                    immediately using the &quot;Report&quot; button on the
+                    listing page. Our team will review and take appropriate
+                    action.
                   </p>
                 </div>
 
@@ -105,8 +109,9 @@ const Settings = async () => {
                   </h3>
                   <p className="text-gray-700">
                     You can edit or delete your listing by logging into your
-                    account, navigating to "My Listings," and selecting the
-                    option to edit or delete the desired vehicle listing.
+                    account, navigating to &quot;My Listings,&quot; and
+                    selecting the option to edit or delete the desired vehicle
+                    listing.
                   </p>
                 </div>
 
@@ -134,4 +139,5 @@ const Settings = async () => {
     </>
   );
 };
+
 export default Settings;
