@@ -136,8 +136,8 @@ const HelpBox = ({
               <AccordionContent>
                 <p>
                   To post a vehicle, simply create an account, navigate to the
-                  "Sell" section, and fill out the required details. Upload
-                  photos, set your price, and submit your listing.
+                  &quot;Sell&quot; section, and fill out the required details.
+                  Upload photos, set your price, and submit your listing.
                 </p>
               </AccordionContent>
             </AccordionItem>
@@ -175,8 +175,8 @@ const HelpBox = ({
               <AccordionContent>
                 <p>
                   If you suspect a fraudulent listing, please report it
-                  immediately using the "Report" button on the listing page. Our
-                  team will review and take appropriate action.
+                  immediately using the &quot;Report&quot; button on the listing
+                  page. Our team will review and take appropriate action.
                 </p>
               </AccordionContent>
             </AccordionItem>
@@ -188,8 +188,8 @@ const HelpBox = ({
               <AccordionContent>
                 <p>
                   You can edit or delete your listing by logging into your
-                  account, navigating to "My Listings," and selecting the option
-                  to edit or delete the desired vehicle listing.
+                  account, navigating to &quot;My Listings,&quot; and selecting
+                  the option to edit or delete the desired vehicle listing.
                 </p>
               </AccordionContent>
             </AccordionItem>
