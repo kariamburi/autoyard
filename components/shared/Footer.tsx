@@ -63,7 +63,12 @@ const Footer = () => {
               </li>
 
               <li className="transition-colors text-sm hover:text-emerald-600 hover:cursor-pointer">
-                FAQ
+                <Link
+                  href="/faq"
+                  className="no-underline hover:text-emerald-500 "
+                >
+                  FAQ
+                </Link>
               </li>
             </ul>
           </div>

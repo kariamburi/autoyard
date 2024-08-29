@@ -8,13 +8,11 @@ import Verification from "@/components/shared/Verification";
 import Image from "next/image";
 import BottomNavigation from "@/components/shared/BottomNavigation";
 import Footersub from "@/components/shared/Footersub";
-
 const Settings = async () => {
   const { sessionClaims } = auth();
   const userId = sessionClaims?.userId as string;
   const user = await getUserById(userId);
   const isAdCreator = true;
-
   if (!user) {
     return (
       <div className="flex-center h-screen w-full bg-[#ebf2f7] bg-dotted-pattern bg-cover bg-fixed bg-center">
@@ -27,7 +25,7 @@ const Settings = async () => {
           <div className="flex gap-1 items-center">
             <Image
               src="/assets/icons/loading.gif"
-              alt="Loading..."
+              alt="edit"
               width={60}
               height={60}
             />
@@ -240,9 +238,9 @@ const Settings = async () => {
               <p className="mb-4">
                 We may update our Privacy Policy from time to time. We will
                 notify you of any changes by posting the new Privacy Policy on
-                this page and updating the "Last Updated" date at the bottom of
-                this section. You are advised to review this Privacy Policy
-                periodically for any changes.
+                this page and updating the &quot;Last Updated &quot; date at the
+                bottom of this section. You are advised to review this Privacy
+                Policy periodically for any changes.
               </p>
 
               <h2 className="text-xl font-semibold mt-6 mb-2">8. Contact Us</h2>
@@ -277,5 +275,4 @@ const Settings = async () => {
     </>
   );
 };
-
 export default Settings;

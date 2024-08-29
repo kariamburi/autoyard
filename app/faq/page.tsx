@@ -1,4 +1,3 @@
-"use client";
 import Navbar from "@/components/shared/navbar";
 import SettingsEdit from "@/components/shared/SettingsEdit";
 import { getUserById } from "@/lib/actions/user.actions";
@@ -9,12 +8,11 @@ import Verification from "@/components/shared/Verification";
 import Image from "next/image";
 import BottomNavigation from "@/components/shared/BottomNavigation";
 import Footersub from "@/components/shared/Footersub";
-
 const Settings = async () => {
   const { sessionClaims } = auth();
   const userId = sessionClaims?.userId as string;
   const user = await getUserById(userId);
-
+  const isAdCreator = true;
   if (!user) {
     return (
       <div className="flex-center h-screen w-full bg-[#ebf2f7] bg-dotted-pattern bg-cover bg-fixed bg-center">
@@ -27,7 +25,7 @@ const Settings = async () => {
           <div className="flex gap-1 items-center">
             <Image
               src="/assets/icons/loading.gif"
-              alt="Loading"
+              alt="edit"
               width={60}
               height={60}
             />
@@ -51,7 +49,7 @@ const Settings = async () => {
 
         <div className="flex-1">
           <div className="rounded-lg border bg-white max-w-6xl mx-auto lg:flex-row mt-0 p-1 justify-center">
-            <div className="max-w-3xl mx-auto p-6 bg-gray-50 rounded-lg">
+            <div className="max-w-3xl mx-auto p-6 rounded-lg">
               <h2 className="text-2xl font-semibold text-gray-800 mb-6">
                 Frequently Asked Questions
               </h2>
@@ -63,9 +61,9 @@ const Settings = async () => {
                   </h3>
                   <p className="text-gray-700">
                     To post a vehicle, simply create an account, navigate to the
-                    &quot;Post a Vehicle&quot; section, and fill out the
-                    required details. Upload photos, set your price, and submit
-                    your listing.
+                    &quot;Sell &quot; section, and fill out the required
+                    details. Upload photos, set your price, and submit your
+                    listing.
                   </p>
                 </div>
 
@@ -97,7 +95,7 @@ const Settings = async () => {
                   </h3>
                   <p className="text-gray-700">
                     If you suspect a fraudulent listing, please report it
-                    immediately using the &quot;Report&quot; button on the
+                    immediately using the &quot;Report &quot; button on the
                     listing page. Our team will review and take appropriate
                     action.
                   </p>
@@ -109,7 +107,7 @@ const Settings = async () => {
                   </h3>
                   <p className="text-gray-700">
                     You can edit or delete your listing by logging into your
-                    account, navigating to &quot;My Listings,&quot; and
+                    account, navigating to &quot;My Listings, &quot; and
                     selecting the option to edit or delete the desired vehicle
                     listing.
                   </p>
@@ -139,5 +137,4 @@ const Settings = async () => {
     </>
   );
 };
-
 export default Settings;

@@ -112,7 +112,7 @@ const Verification: React.FC<SettingsProp> = ({
             onClick={() =>
               handlePay(_id, "Verification", "0", activationfee.toString())
             }
-            className="flex gap-1 items-center hover:bg-black bg-[#30AF5B] text-white text-xs hover:bg-white mt-2 p-1 rounded-lg shadow"
+            className="flex gap-1 items-center hover:bg-black bg-[#30AF5B] text-white text-xs mt-2 p-1 rounded-lg shadow"
           >
             <CheckCircleIcon sx={{ marginRight: "5px" }} />
             Request Verification
