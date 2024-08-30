@@ -53,7 +53,7 @@ const Settings = async () => {
               <h1 className="text-2xl font-bold mb-4">Privacy Policy</h1>
 
               <p className="mb-4">
-                Your privacy is important to us at WheelMart.co.ke. This Privacy
+                Your privacy is important to us at AutoYard.co.ke. This Privacy
                 Policy explains how we collect, use, disclose, and safeguard
                 your information when you visit our website or use our services.
                 By using our site, you agree to the terms outlined in this
@@ -252,14 +252,14 @@ const Settings = async () => {
               <p className="mb-2">
                 Email:{" "}
                 <a
-                  href="mailto:support@wheelmart.co.ke"
+                  href="mailto:support@AutoYard.co.ke"
                   className="text-blue-600 hover:underline"
                 >
-                  support@wheelmart.co.ke
+                  support@AutoYard.co.ke
                 </a>
               </p>
               <p className="mb-4">
-                Address: WheelMart.co.ke, 1195-20300 Nyahururu, Kenya
+                Address: AutoYard.co.ke, 1195-20300 Nyahururu, Kenya
               </p>
 
               <p className="italic">Last Updated: 08/29/2024</p>

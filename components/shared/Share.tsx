@@ -16,9 +16,9 @@ const Share: React.FC<shareProps> = ({ userId }) => {
   };
 
   const shareTitle = "Wheels | Buy & Sell";
-  const shareUrl = `https://wheels.co.ke/shop/${userId}`;
+  const shareUrl = `https://autoyard.co.ke/shop/${userId}`;
 
-  const shareDescription = `Discover all the amazing products I'm selling on my Wheels shop! Check them out here: ${shareUrl} #ShopNow #WheelsDeals #ExclusiveProducts `;
+  const shareDescription = `Discover all the amazing products I'm selling on my Wheels shop! Check them out here: ${shareUrl} #ShopNow #AutoYardDeals #ExclusiveProducts `;
 
   const handleShare = (platform: string) => {
     let url = "";

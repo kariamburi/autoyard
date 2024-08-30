@@ -20,7 +20,7 @@ const Footer = () => {
                   href="/about"
                   className="no-underline hover:text-emerald-500 "
                 >
-                  About WheelMart
+                  About AutoYard
                 </Link>
               </li>
 
@@ -47,10 +47,10 @@ const Footer = () => {
             <ul className="space-y-4">
               <li className="transition-colors text-sm hover:text-emerald-600 hover:cursor-pointer">
                 <Link
-                  href="mailto:support@wheelmart.co.ke"
+                  href="mailto:support@autoyard.co.ke"
                   className="no-underline hover:text-emerald-500 "
                 >
-                  support@wheelmart.co.ke
+                  support@autoyard.co.ke
                 </Link>
               </li>
               <li className="transition-colors text-sm hover:text-emerald-600 hover:cursor-pointer">
@@ -118,7 +118,7 @@ const Footer = () => {
       <div className="border-t border-gray-300 p-2 mt-3"></div>
       <div className="flex flex-col items-center justify-center">
         <p className="text-xs font-bold">
-          {currentYear} WheelMart. All Rights reserved.
+          {currentYear} AutoYard. All Rights reserved.
         </p>
         <p className="text-[8px] lg:text-xs">
           Developed by{" "}

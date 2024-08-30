@@ -129,7 +129,7 @@ const HelpBox = ({
               <AccordionTrigger>
                 <div className="w-full">
                   <h3>
-                    1. How do I post a vehicle for sale on WheelMart.co.ke?
+                    1. How do I post a vehicle for sale on AutoYard.co.ke?
                   </h3>
                 </div>
               </AccordionTrigger>
@@ -148,7 +148,7 @@ const HelpBox = ({
               </AccordionTrigger>
               <AccordionContent>
                 <p>
-                  Posting a basic vehicle listing on WheelMart.co.ke is free.
+                  Posting a basic vehicle listing on AutoYard.co.ke is free.
                   However, we offer premium listing options for increased
                   visibility, which come with a small fee.
                 </p>

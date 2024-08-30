@@ -11,8 +11,8 @@ const poppins = Poppins({
 });
 
 export const metadata: Metadata = {
-  title: "WheelsMart",
-  description: "WheelMart | Buy & Sell online",
+  title: "AutoYard",
+  description: "AutoYard | Where Every Ride Finds a Buyer",
   icons: {
     icon: "/assets/images/favicon.png",
   },

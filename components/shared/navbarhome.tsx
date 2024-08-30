@@ -69,7 +69,7 @@ export default function Navbarhome({ userstatus, userId }: NavProps) {
   const isActive = pathname === "/";
 
   return (
-    <div className="w-full bg-gradient-to-r from-emerald-800 to-emerald-950">
+    <div className="w-full">
       <div className="flex p-1 w-full">
         <div className="flex-1">
           <div className="flex items-center">

@@ -79,15 +79,19 @@ const Collection = ({
         </div>
       )}
 
-      <FloatingChatIcon onClick={toggleChat} isOpen={isChatOpen} />
-      <ChatWindow
-        isOpen={isChatOpen}
-        onClose={toggleChat}
-        senderId={userId}
-        senderName={userName}
-        senderImage={userImage}
-        recipientUid={"65d4a2ffec4c43cdc488ce0d"}
-      />
+      {userId && (
+        <>
+          <FloatingChatIcon onClick={toggleChat} isOpen={isChatOpen} />
+          <ChatWindow
+            isOpen={isChatOpen}
+            onClose={toggleChat}
+            senderId={userId}
+            senderName={userName}
+            senderImage={userImage}
+            recipientUid={"65d4a2ffec4c43cdc488ce0d"}
+          />
+        </>
+      )}
     </div>
   );
 };

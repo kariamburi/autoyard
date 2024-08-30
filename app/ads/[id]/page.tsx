@@ -76,7 +76,7 @@ const AdDetails = async ({
           <Navbar userstatus="User" userId={userId || ""} />
         </div>
       </div>
-      <div className="max-w-6xl mx-auto mt-[50px]">
+      <div className="max-w-6xl mx-auto mt-[70px]">
         <div className="text-sm p-0 hidden lg:inline">
           <div className="flex">
             <div className="bg-white p-1 rounded-full mr-2">
@@ -104,7 +104,7 @@ const AdDetails = async ({
                 {ad && (
                   <Link
                     className="flex hover:text-green-700 no-underline"
-                    href={`/category/?category=${ad.category.name}`}
+                    href={`/category/?category=Vehicle&subcategory=${ad.subcategory}`}
                   >
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -119,7 +119,7 @@ const AdDetails = async ({
                         d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z"
                       ></path>
                     </svg>
-                    <p className="text-xs lg:text-sm">{ad.category.name}</p>
+                    <p className="text-xs lg:text-sm">{ad.subcategory}</p>
                   </Link>
                 )}
               </div>

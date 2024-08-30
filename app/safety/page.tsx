@@ -51,7 +51,7 @@ const Settings = async () => {
           <div className="rounded-lg border bg-white max-w-6xl mx-auto lg:flex-row mt-0 p-1 justify-center">
             <div className="max-w-3xl mx-auto p-6 bg-gray-50 rounded-lg">
               <h2 className="text-2xl font-semibold text-gray-800 mb-4">
-                Safety Tips for WheelMart.co.ke
+                Safety Tips for AutoYard.co.ke
               </h2>
 
               <div className="space-y-6">

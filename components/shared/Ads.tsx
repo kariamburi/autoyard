@@ -785,15 +785,6 @@ export default function Ads({ ad, userId }: CardProps) {
           </div>
         </div>
       </div>
-      <FloatingChatIcon onClick={toggleChat} isOpen={false} />
-      <ChatWindow
-        isOpen={isChatOpen}
-        onClose={toggleChat}
-        recipientUid={""}
-        senderId={""}
-        senderName={""}
-        senderImage={""}
-      />
     </>
   );
 }

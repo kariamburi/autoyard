@@ -12,7 +12,7 @@ const Footersub = () => {
       <div className="border-t border-gray-300 p-2 mt-3"></div>
       <div className="flex flex-col items-center justify-center">
         <p className="text-xs font-bold">
-          {currentYear} WheelMart. All Rights reserved.
+          {currentYear} AutoYard. All Rights reserved.
         </p>
         <div className="flex text-xs">
           <div className="flex gap-1 w-full text-gray-600">

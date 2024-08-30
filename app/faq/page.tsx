@@ -57,7 +57,7 @@ const Settings = async () => {
               <div className="space-y-8">
                 <div>
                   <h3 className="text-xl font-semibold text-emerald-600 mb-2">
-                    1. How do I post a vehicle for sale on WheelMart.co.ke?
+                    1. How do I post a vehicle for sale on AutoYard.co.ke?
                   </h3>
                   <p className="text-gray-700">
                     To post a vehicle, simply create an account, navigate to the
@@ -72,7 +72,7 @@ const Settings = async () => {
                     2. Is there a fee for posting a vehicle?
                   </h3>
                   <p className="text-gray-700">
-                    Posting a basic vehicle listing on WheelMart.co.ke is free.
+                    Posting a basic vehicle listing on AutoYard.co.ke is free.
                     However, we offer premium listing options for increased
                     visibility, which come with a small fee.
                   </p>

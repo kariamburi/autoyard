@@ -53,7 +53,7 @@ const Settings = async () => {
               <h1 className="text-2xl font-bold mb-4">Terms and Conditions</h1>
 
               <p className="mb-4">
-                Welcome to WheelMart.co.ke! By using our website, you agree to
+                Welcome to AutoYard.co.ke! By using our website, you agree to
                 comply with and be bound by the following terms and conditions.
                 Please review them carefully. If you do not agree to these
                 terms, you should not use this website.
@@ -63,9 +63,9 @@ const Settings = async () => {
                 1. Acceptance of Terms
               </h2>
               <p className="mb-4">
-                By accessing and using WheelMart.co.ke, you accept and agree to
+                By accessing and using AutoYard.co.ke, you accept and agree to
                 be bound by the terms and provision of this agreement. In
-                addition, when using WheelMart.co.ke&apos;s services, you shall
+                addition, when using AutoYard.co.ke&apos;s services, you shall
                 be subject to any posted guidelines or rules applicable to such
                 services, which may be posted and modified from time to time.
                 All such guidelines or rules are hereby incorporated by
@@ -80,7 +80,7 @@ const Settings = async () => {
                 listing vehicles for sale. You must not post any misleading or
                 false information, and you are responsible for ensuring that the
                 vehicle you are listing complies with all applicable laws and
-                regulations. You must not use WheelMart.co.ke to engage in any
+                regulations. You must not use AutoYard.co.ke to engage in any
                 illegal activities.
               </p>
 
@@ -98,20 +98,20 @@ const Settings = async () => {
                 4. Payment and Fees
               </h2>
               <p className="mb-4">
-                WheelMart.co.ke may charge fees for listing vehicles or for
-                other premium services. These fees will be clearly outlined on
-                the website, and users will be notified of any applicable
-                charges before using a paid service.
+                AutoYard.co.ke may charge fees for listing vehicles or for other
+                premium services. These fees will be clearly outlined on the
+                website, and users will be notified of any applicable charges
+                before using a paid service.
               </p>
 
               <h2 className="text-xl font-semibold mt-6 mb-2">
                 5. No Guarantee of Sale
               </h2>
               <p className="mb-4">
-                WheelMart.co.ke does not guarantee that your vehicle will be
-                sold within a certain time frame or at all. We are not
-                responsible for any transactions that occur between buyers and
-                sellers and do not act as a mediator in any disputes.
+                AutoYard.co.ke does not guarantee that your vehicle will be sold
+                within a certain time frame or at all. We are not responsible
+                for any transactions that occur between buyers and sellers and
+                do not act as a mediator in any disputes.
               </p>
 
               <h2 className="text-xl font-semibold mt-6 mb-2">
@@ -137,8 +137,8 @@ const Settings = async () => {
                 7. Intellectual Property
               </h2>
               <p className="mb-4">
-                All content on WheelMart.co.ke, including text, images, logos,
-                and design, is the property of WheelMart.co.ke or its content
+                All content on AutoYard.co.ke, including text, images, logos,
+                and design, is the property of AutoYard.co.ke or its content
                 suppliers and is protected by intellectual property laws. Users
                 may not copy, reproduce, distribute, or create derivative works
                 from any part of this site without express permission.
@@ -148,10 +148,10 @@ const Settings = async () => {
                 8. Limitation of Liability
               </h2>
               <p className="mb-4">
-                WheelMart.co.ke is not responsible for any damages that may
-                arise from your use of this website. This includes direct,
-                indirect, incidental, consequential, or punitive damages, even
-                if WheelMart.co.ke has been advised of the possibility of such
+                AutoYard.co.ke is not responsible for any damages that may arise
+                from your use of this website. This includes direct, indirect,
+                incidental, consequential, or punitive damages, even if
+                AutoYard.co.ke has been advised of the possibility of such
                 damages.
               </p>
 
@@ -159,7 +159,7 @@ const Settings = async () => {
                 9. Modifications to Terms
               </h2>
               <p className="mb-4">
-                WheelMart.co.ke reserves the right to change these terms and
+                AutoYard.co.ke reserves the right to change these terms and
                 conditions at any time. Any changes will be posted on this page,
                 and it is the responsibility of users to review these terms
                 regularly. Continued use of the site after any such changes
@@ -170,10 +170,10 @@ const Settings = async () => {
                 10. Termination of Use
               </h2>
               <p className="mb-4">
-                WheelMart.co.ke reserves the right to terminate or suspend your
+                AutoYard.co.ke reserves the right to terminate or suspend your
                 access to the website, without notice, for conduct that
-                WheelMart.co.ke believes violates these Terms and Conditions or
-                is harmful to other users, WheelMart.co.ke, or third parties, or
+                AutoYard.co.ke believes violates these Terms and Conditions or
+                is harmful to other users, AutoYard.co.ke, or third parties, or
                 for any other reason.
               </p>
 
@@ -185,7 +185,7 @@ const Settings = async () => {
                 accordance with the laws of Kenya. You agree to submit to the
                 exclusive jurisdiction of the courts located within Kenya for
                 the resolution of any disputes arising from these terms and
-                conditions or your use of WheelMart.co.ke.
+                conditions or your use of AutoYard.co.ke.
               </p>
 
               <h2 className="text-xl font-semibold mt-6 mb-2">
@@ -195,10 +195,10 @@ const Settings = async () => {
                 If you have any questions about these terms and conditions,
                 please contact us at:
                 <a
-                  href="mailto:support@wheelmart.co.ke"
+                  href="mailto:support@AutoYard.co.ke"
                   className="text-blue-600 hover:underline"
                 >
-                  support@wheelmart.co.ke
+                  support@AutoYard.co.ke
                 </a>
               </p>
             </div>
