@@ -32,7 +32,9 @@ const BottomNavigation = ({ userId }: navprop) => {
           </div>
         </Link>
         <Link
-          href="/category?category=Vehicle&subcategory=Cars, Vans & Pickups"
+          href={`/category?category=Vehicle&subcategory=${encodeURIComponent(
+            "Cars, Vans & Pickups"
+          )}`}
           passHref
         >
           <div

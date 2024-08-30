@@ -76,7 +76,7 @@ const AdDetails = async ({
           <Navbar userstatus="User" userId={userId || ""} />
         </div>
       </div>
-      <div className="max-w-6xl mx-auto mt-[70px]">
+      <div className="max-w-6xl mx-auto mt-[50px] lg:mt-[70px]">
         <div className="text-sm p-0 hidden lg:inline">
           <div className="flex">
             <div className="bg-white p-1 rounded-full mr-2">
@@ -104,7 +104,9 @@ const AdDetails = async ({
                 {ad && (
                   <Link
                     className="flex hover:text-green-700 no-underline"
-                    href={`/category/?category=Vehicle&subcategory=${ad.subcategory}`}
+                    href={`/category?category=Vehicle&subcategory=${encodeURIComponent(
+                      ad.subcategory
+                    )}`}
                   >
                     <svg
                       xmlns="http://www.w3.org/2000/svg"

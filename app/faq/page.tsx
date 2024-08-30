@@ -8,33 +8,9 @@ import Verification from "@/components/shared/Verification";
 import Image from "next/image";
 import BottomNavigation from "@/components/shared/BottomNavigation";
 import Footersub from "@/components/shared/Footersub";
-const Settings = async () => {
+const Faq = async () => {
   const { sessionClaims } = auth();
   const userId = sessionClaims?.userId as string;
-  const user = await getUserById(userId);
-  const isAdCreator = true;
-  if (!user) {
-    return (
-      <div className="flex-center h-screen w-full bg-[#ebf2f7] bg-dotted-pattern bg-cover bg-fixed bg-center">
-        <div className="bg-gradient-to-r from-emerald-800 to-emerald-950 top-0 z-10 fixed w-full">
-          <div className="p-2">
-            <Navbar userstatus="User" userId={userId || ""} />
-          </div>
-        </div>
-        <div className="max-w-6xl mx-auto mt-20">
-          <div className="flex gap-1 items-center">
-            <Image
-              src="/assets/icons/loading.gif"
-              alt="edit"
-              width={60}
-              height={60}
-            />
-            Loading...
-          </div>
-        </div>
-      </div>
-    );
-  }
 
   return (
     <>
@@ -137,4 +113,4 @@ const Settings = async () => {
     </>
   );
 };
-export default Settings;
+export default Faq;

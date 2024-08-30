@@ -49,8 +49,8 @@ const ChatWindow: React.FC<ChatWindowProps> = ({
   if (!isOpen) return null;
 
   return (
-    <div className="fixed bottom-20 right-5 bg-gradient-to-r from-[#FEA03C] to-[#FEA03C] rounded-lg shadow-xlg w-100 z-30">
-      <div className="bg-gradient-to-r from-[#FEA03C] to-[#FEA03C] text-white p-2 rounded-t-lg">
+    <div className="fixed bottom-20 right-5 bg-gradient-to-r from-[#000000] to-[#000000] rounded-lg shadow-xlg w-100 z-30">
+      <div className="bg-gradient-to-r from-[#000000] to-[#000000] text-white p-2 rounded-t-lg">
         <div className="flex justify-between w-full">
           <h3 className="font-semibold text-white">{title}</h3>
           <div onClick={onClose} className="cursor-pointer text-white">
@@ -61,7 +61,7 @@ const ChatWindow: React.FC<ChatWindowProps> = ({
       <div className="p-1">
         {activeTab === 0 && (
           <>
-            <div className="bg-gradient-to-b from-[#FEA03C] to-white h-[400px] w-[300px] lg:w-[400px] flex flex-col p-1 mt-0">
+            <div className="bg-gradient-to-b from-[#000000] to-white h-[400px] w-[300px] lg:w-[400px] flex flex-col p-1 mt-0">
               <div className="mt-5 w-full">
                 <div className="flex items-center justify-center w-full gap-1 mt-5 mb-5">
                   <div className="w-16 h-16 border-white border-2 rounded-full">
@@ -84,7 +84,9 @@ const ChatWindow: React.FC<ChatWindowProps> = ({
                   </div>
                 </div>
                 <div className="gap-2 justify-center flex w-full items-center">
-                  <h3 className="font-semibold lg:text-xl">Hi {senderName}</h3>
+                  <h3 className="font-semibold text-emerald-100 lg:text-xl">
+                    Hi {senderName}
+                  </h3>
                   <Image src="/hello.png" alt="logo" width={26} height={26} />
                 </div>
                 <div className="gap-2 justify-center flex w-full items-center">
@@ -98,7 +100,7 @@ const ChatWindow: React.FC<ChatWindowProps> = ({
         )}
         {activeTab === 1 && (
           <>
-            <div className="rounded-lg w-[300px] lg:w-[400px] bg-[#D87201] flex flex-col p-1 mt-0">
+            <div className="rounded-sm w-[300px] lg:w-[400px] bg-[#000000] flex flex-col p-1 mt-0">
               <div className="lg:flex-1 p-0 ml-0 mr-0">
                 <ChatBoxSupport
                   displayName={senderName}
@@ -128,7 +130,7 @@ const ChatWindow: React.FC<ChatWindowProps> = ({
         )}
         {activeTab === 2 && (
           <>
-            <div className="rounded-lg h-[400px] w-[300px] lg:w-[400px] bg-[#D87201] flex flex-col p-1 mt-0">
+            <div className="rounded-lg h-[400px] w-[300px] lg:w-[400px] bg-[#000000] flex flex-col p-1 mt-0">
               <div className="lg:flex-1 p-0 ml-0 mr-0">
                 <HelpBox
                   displayName={senderName}
@@ -154,7 +156,7 @@ const ChatWindow: React.FC<ChatWindowProps> = ({
               <button
                 key={index}
                 className={`flex-1 text-xs lg:text-sm py-1 px-0 rounded-t-lg text-center ${
-                  activeTab === index ? "text-[#D87201]" : "text-black"
+                  activeTab === index ? "text-emerald-600" : "text-black"
                 }`}
                 onClick={() => handle(index)}
               >

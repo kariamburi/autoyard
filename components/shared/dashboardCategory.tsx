@@ -448,23 +448,23 @@ CollectionProps) => {
               <div className="font-bold hidden lg:inline text-lg text-emerald-950 text-center sm:text-left p-2">
                 {subcategory ? <> {subcategory}</> : "All"}
               </div>
-              <div className="lg:hidden flex items-center gap-1 bg-white p-1 justify-between">
-                <section className="bg-white bg-dotted-pattern bg-cover bg-center py-0 md:py-0 rounded-sm">
-                  <div className="flex gap-1 font-bold items-center">
+              <div className="lg:hidden">
+                <section className="flex justify-between items-center gap-1 bg-white p-1 bg-white bg-dotted-pattern bg-cover bg-center py-0 md:py-0 rounded-sm">
+                  <div className="flex w-full p-1">
                     <SubCategoryFilterSearch
                       category={category}
                       AdsCountPerSubcategory={AdsCountPerSubcategory}
                     />
                   </div>
-                </section>
 
-                <div
-                  onClick={togglePopup}
-                  className="flex lg:hidden cursor-pointer text-sm bg-emerald-600 text-white rounded-sm p-1 justify-between items-center"
-                >
-                  <SortOutlinedIcon />
-                  Filter
-                </div>
+                  <div
+                    onClick={togglePopup}
+                    className="flex cursor-pointer text-sm bg-[#000000] hover:bg-emerald-600 text-white rounded-sm p-1 justify-between items-center"
+                  >
+                    <SortOutlinedIcon />
+                    Filter
+                  </div>
+                </section>
                 {showPopup && (
                   <div className="bg-black fixed top-0 left-0 w-full h-screen flex justify-center items-center z-50">
                     <div className="w-full flex flex-col rounded-lg w-full bg-white">
@@ -509,12 +509,12 @@ CollectionProps) => {
                         }
                       />
                       <div className="text-sm mt-1 p-2">
-                        <div className="w-full p-2">
-                          <div className="grid grid-cols-2 gap-1">
+                        <div className="w-full">
+                          <div className="grid grid-cols-2 gap-1 mb-1">
                             <button
                               type="submit"
                               onClick={togglePopup}
-                              className="bg-[#30AF5B] flex gap-1 p-2 items-center text-sm rounded-sm text-white h-full"
+                              className="bg-[#30AF5B] hover:bg-emerald-600 flex gap-1 p-2 items-center text-sm rounded-sm text-white h-full"
                             >
                               <SearchIcon /> Search
                             </button>
@@ -522,7 +522,7 @@ CollectionProps) => {
                             <button
                               type="submit"
                               onClick={handleClear}
-                              className="bg-gray-400 flex gap-1 p-2 items-center text-sm rounded-sm text-white h-full"
+                              className="bg-[#000000] hover:bg-[#333333] flex gap-1 p-2 items-center text-sm rounded-sm text-white h-full"
                             >
                               <CloseIcon
                                 className="text-white"
