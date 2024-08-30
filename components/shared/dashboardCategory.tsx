@@ -708,7 +708,8 @@ CollectionProps) => {
                         <div
                           onClick={() => handlePrice(1, "0", "500000")}
                           className={`text-sm rounded-sm p-2 justify-center cursor-pointer ${
-                            "0-500000" === searchParams.get("Price")
+                            "0" === searchParams.get("minPrice") &&
+                            "500000" === searchParams.get("maxPrice")
                               ? "bg-[#30AF5B] text-white"
                               : "bg-[#ebf2f7] hover:bg-emerald-100"
                           }`}
@@ -719,7 +720,8 @@ CollectionProps) => {
                         <div
                           onClick={() => handlePrice(2, "500000", "1000000")}
                           className={`text-sm rounded-sm p-2 justify-center cursor-pointer ${
-                            "500000-1000000" === searchParams.get("Price")
+                            "500000" === searchParams.get("minPrice") &&
+                            "1000000" === searchParams.get("maxPrice")
                               ? "bg-[#30AF5B] text-white"
                               : "bg-[#ebf2f7] hover:bg-emerald-100"
                           }`}
@@ -730,7 +732,8 @@ CollectionProps) => {
                         <div
                           onClick={() => handlePrice(3, "1000000", "2000000")}
                           className={`text-sm rounded-sm p-2 justify-center cursor-pointer ${
-                            "1000000-2000000" === searchParams.get("Price")
+                            "1000000" === searchParams.get("minPrice") &&
+                            "2000000" === searchParams.get("maxPrice")
                               ? "bg-[#30AF5B] text-white"
                               : "bg-[#ebf2f7] hover:bg-emerald-100"
                           }`}
@@ -740,7 +743,8 @@ CollectionProps) => {
                         <div
                           onClick={() => handlePrice(4, "2000000", "3000000")}
                           className={`text-sm rounded-sm p-2 justify-center cursor-pointer ${
-                            "2000000-3000000" === searchParams.get("Price")
+                            "2000000" === searchParams.get("minPrice") &&
+                            "3000000" === searchParams.get("maxPrice")
                               ? "bg-[#30AF5B] text-white"
                               : "bg-[#ebf2f7] hover:bg-emerald-100"
                           }`}
@@ -750,7 +754,8 @@ CollectionProps) => {
                         <div
                           onClick={() => handlePrice(5, "3000000", "5000000")}
                           className={`text-sm rounded-sm p-2 justify-center cursor-pointer ${
-                            "3000000-5000000" === searchParams.get("Price")
+                            "3000000" === searchParams.get("minPrice") &&
+                            "5000000" === searchParams.get("maxPrice")
                               ? "bg-[#30AF5B] text-white"
                               : "bg-[#ebf2f7] hover:bg-emerald-100"
                           }`}
@@ -760,7 +765,8 @@ CollectionProps) => {
                         <div
                           onClick={() => handlePrice(6, "5000000", "10000000")}
                           className={`text-sm rounded-sm p-2 justify-center cursor-pointer ${
-                            "5000000-10000000" === searchParams.get("Price")
+                            "5000000" === searchParams.get("minPrice") &&
+                            "10000000" === searchParams.get("maxPrice")
                               ? "bg-[#30AF5B] text-white"
                               : "bg-[#ebf2f7] hover:bg-emerald-100"
                           }`}
@@ -772,7 +778,8 @@ CollectionProps) => {
                             handlePrice(7, "10000000", "9999999999")
                           }
                           className={`text-sm rounded-sm p-2 justify-center cursor-pointer ${
-                            "10000000-9999999999" === searchParams.get("Price")
+                            "10000000" === searchParams.get("minPrice") &&
+                            "9999999999" === searchParams.get("maxPrice")
                               ? "bg-[#30AF5B] text-white"
                               : "bg-[#ebf2f7] hover:bg-emerald-100"
                           }`}

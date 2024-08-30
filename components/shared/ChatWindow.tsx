@@ -78,8 +78,8 @@ const ChatWindow: React.FC<ChatWindowProps> = ({
                       className="w-full h-full rounded-full object-cover"
                       src={senderImage}
                       alt="Profile Image"
-                      width={16}
-                      height={16}
+                      width={200}
+                      height={200}
                     />
                   </div>
                 </div>
@@ -87,7 +87,14 @@ const ChatWindow: React.FC<ChatWindowProps> = ({
                   <h3 className="font-semibold text-emerald-100 lg:text-xl">
                     Hi {senderName}
                   </h3>
-                  <Image src="/hello.png" alt="logo" width={26} height={26} />
+                  <div className="h-16 w-16">
+                    <Image
+                      src="/hello.png"
+                      alt="logo"
+                      width={200}
+                      height={200}
+                    />
+                  </div>
                 </div>
                 <div className="gap-2 justify-center flex w-full items-center">
                   <h3 className="font-semibold text-2xl lg:text-3xl text-white">
