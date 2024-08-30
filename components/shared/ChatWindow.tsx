@@ -69,17 +69,17 @@ const ChatWindow: React.FC<ChatWindowProps> = ({
                       className="w-full h-full rounded-full object-cover"
                       src={"/customer.jpg"}
                       alt="Profile Image"
-                      width={16}
-                      height={16}
+                      width={200}
+                      height={200}
                     />
                   </div>
-                  <div className="w-16 h-16 border-white border-2 rounded-full">
+                  <div className="w-10 h-10 border-white border-2 rounded-full">
                     <Image
                       className="w-full h-full rounded-full object-cover"
                       src={senderImage}
-                      alt="Profile Image"
-                      width={200}
-                      height={200}
+                      alt=""
+                      width={50}
+                      height={50}
                     />
                   </div>
                 </div>
