@@ -419,14 +419,7 @@ export default function Ads({ ad, userId }: CardProps) {
                 <VisibilityIcon sx={{ fontSize: 20 }} /> {ad.views} Views
               </p>
             </div>
-            {!videoAdId && hideAddVideo && (
-              <a href={`/video/`}>
-                <button className="bg-[#000000] mt-2 hover:bg-emerald-600 text-sm text-white py-1 px-4 rounded-full flex items-center">
-                  <YouTubeIcon style={{ color: "red" }} />
-                  Link to youtube video
-                </button>
-              </a>
-            )}
+
             {videoAdId && (
               <>
                 <div className="divider"></div>

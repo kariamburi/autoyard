@@ -5,6 +5,7 @@ import Image from "next/image";
 import { getAllPackages } from "@/lib/actions/packages.actions";
 import { getData } from "@/lib/actions/transactionstatus";
 import { auth } from "@clerk/nextjs/server";
+import { getAdById } from "@/lib/actions/ad.actions";
 type UpdateAdProps = {
   params: {
     id: string;
@@ -14,6 +15,7 @@ const UpdateAd = async ({ params: { id } }: UpdateAdProps) => {
   const { sessionClaims } = auth();
   const userId = sessionClaims?.userId as string;
   const userName = sessionClaims?.userName as string;
+  const Ad = await getAdById(id);
   let subscription: any = [];
   let daysRemaining = 0;
   let remainingads = 0;
@@ -65,7 +67,7 @@ const UpdateAd = async ({ params: { id } }: UpdateAdProps) => {
       adstatus = "Active";
     }
   } catch {}
-  if (!subscription && !packagesList) {
+  if (!subscription && !packagesList && !Ad) {
     return (
       <div className="flex-center h-screen w-full bg-[#ebf2f7] bg-dotted-pattern bg-cover bg-fixed bg-center">
         <div className="bg-gradient-to-r from-emerald-800 to-emerald-950 top-0 z-10 fixed w-full">
@@ -98,6 +100,8 @@ const UpdateAd = async ({ params: { id } }: UpdateAdProps) => {
         <Dashboard
           userId={userId}
           type="Update"
+          ad={Ad}
+          adId={Ad._id}
           daysRemaining={daysRemaining}
           packname={planpackage}
           planId={planId}

@@ -765,7 +765,7 @@ const AdForm = ({
         >
           <div className="p-0 rounded-sm m-1 shadow-lg bg-white">
             <div className="flex flex-col">
-              <section className="bg-grey-50 bg-dotted-pattern bg-cover bg-center py-0 md:py-0 rounded-sm">
+              <section className="bg-grey-50 bg-dotted-pattern bg-cover bg-center mb-2 mt-2 rounded-sm">
                 <div className="wrapper flex items-center justify-center sm:justify-between">
                   <div className="lg:flex-1 p-1 ml-2 mr-5 mb-0 lg:mb-0">
                     <div className="text-lg font-bold breadcrumbs">
@@ -3489,29 +3489,6 @@ const AdForm = ({
                             label="Add Youtube link"
                             className="w-full"
                           />
-
-                          {!ad?.youtube && type === "Update" && (
-                            <div className="flex items-center">
-                              <a href={`/video/`}>
-                                <HoverCard>
-                                  <HoverCardTrigger>
-                                    <button
-                                      className="bg-[#000000] mt-2 text-sm hover:bg-emerald-700 text-white py-2 px-3 rounded-lg flex items-center"
-                                      style={{ width: "140px" }}
-                                    >
-                                      <YouTubeIcon style={{ color: "red" }} />{" "}
-                                      Add Video
-                                    </button>
-                                  </HoverCardTrigger>
-                                  <HoverCardContent className="text-xs bg-[#000000] text-white">
-                                    If you have a video advertisement for this
-                                    product, you can click the button to upload
-                                    it or enter a YouTube link here.
-                                  </HoverCardContent>
-                                </HoverCard>
-                              </a>
-                            </div>
-                          )}
                         </div>
                       </FormControl>
                       <FormMessage />
@@ -3519,7 +3496,7 @@ const AdForm = ({
                   )}
                 />
               </div>
-              <div className="flex flex-col gap-5 px-4 md:flex-row">
+              <div className="flex flex-col gap-5 px-4 mt-2 md:flex-row">
                 <FormField
                   control={form.control}
                   name="phone"
@@ -3613,7 +3590,7 @@ const AdForm = ({
                   )}
                 />
               </div>
-              <div className="mb-10">
+              <div className="mb-10 mt-2">
                 <div className="w-full overflow-bg-white px-4 py-0">
                   <div className="grid w-full gap-1.5">
                     <h2 className="font-bold">Location: {myaddress}</h2>
