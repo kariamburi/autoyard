@@ -64,22 +64,22 @@ const ChatWindow: React.FC<ChatWindowProps> = ({
             <div className="bg-gradient-to-b from-[#000000] to-white h-[400px] w-[300px] lg:w-[400px] flex flex-col p-1 mt-0">
               <div className="mt-5 w-full">
                 <div className="flex items-center justify-center w-full gap-1 mt-5 mb-5">
-                  <div className="w-16 h-16 border-white border-2 rounded-full">
+                  <div className="w-12 h-12 border-white border-2 rounded-full">
                     <Image
                       className="w-full h-full rounded-full object-cover"
                       src={"/customer.jpg"}
                       alt="Profile Image"
-                      width={200}
-                      height={200}
+                      width={90}
+                      height={90}
                     />
                   </div>
-                  <div className="w-10 h-10 border-white border-2 rounded-full">
+                  <div className="w-12 h-12 border-white border-2 rounded-full">
                     <Image
                       className="w-full h-full rounded-full object-cover"
                       src={senderImage}
                       alt=""
-                      width={50}
-                      height={50}
+                      width={90}
+                      height={90}
                     />
                   </div>
                 </div>
@@ -88,12 +88,7 @@ const ChatWindow: React.FC<ChatWindowProps> = ({
                     Hi {senderName}
                   </h3>
                   <div className="h-16 w-16">
-                    <Image
-                      src="/hello.png"
-                      alt="logo"
-                      width={200}
-                      height={200}
-                    />
+                    <Image src="/hello.png" alt="logo" width={16} height={16} />
                   </div>
                 </div>
                 <div className="gap-2 justify-center flex w-full items-center">
