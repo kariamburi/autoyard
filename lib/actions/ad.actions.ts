@@ -189,7 +189,7 @@ export async function deleteSingleImage({ deleteImage, path }: deleteImageParams
 }
 
 // GET ALL Ad
-export async function getAllAd({ query, limit = 20, page, category, subcategory, sortby,make,vehiclemodel,yearfrom,yearto,minPrice,maxPrice,vehiclecolor,vehiclecondition,address, membership,vehicleTransmissions,vehicleFuelTypes,vehicleBodyTypes,vehicleEngineSizesCC,vehicleexchangeposible,vehicleSeats,vehicleregistered,vehiclesecordCondition,vehicleyear,Types,bedrooms,bathrooms,furnishing,amenities,toilets,parking,status,area,landuse,propertysecurity,floors,estatename,houseclass}: GetAllAdsParams) {
+export async function getAllAd({ query, limit = 20, page, category, subcategory, sortby,make,vehiclemodel,yearfrom,yearto,Price,vehiclecolor,vehiclecondition,address, membership,vehicleTransmissions,vehicleFuelTypes,vehicleBodyTypes,vehicleEngineSizesCC,vehicleexchangeposible,vehicleSeats,vehicleregistered,vehiclesecordCondition,vehicleyear,Types,bedrooms,bathrooms,furnishing,amenities,toilets,parking,status,area,landuse,propertysecurity,floors,estatename,houseclass}: GetAllAdsParams) {
   try {
     await connectToDatabase()
    
@@ -231,7 +231,7 @@ export async function getAllAd({ query, limit = 20, page, category, subcategory,
    yearCondition = yearto ? { vehicleyear: { $gte: parseInt(yearfrom), $lte: parseInt(yearto) } } : {}
 
 }
-   // const [minPrice, maxPrice] = Price.split("-");
+    const [minPrice, maxPrice] = Price.split("-");
     const priceCondition = minPrice && maxPrice ? { price: { $gte: parseInt(minPrice), $lte: parseInt(maxPrice) } } : {}
     const categoryCondition = category ? await getCategoryByName(category) : null
  // Fetch verified users
@@ -342,7 +342,7 @@ export async function getListingsNearLocationD() {
 }
 
 
-export async function getListingsNearLocation({ query, limit = 20, page, category, subcategory, sortby,make,vehiclemodel,yearfrom,yearto,minPrice,maxPrice,vehiclecolor,vehiclecondition,longitude,latitude,vehicleTransmissions,vehicleFuelTypes,vehicleBodyTypes,vehicleEngineSizesCC,vehicleSeats,vehicleregistered,vehicleexchangeposible,vehiclesecordCondition,vehicleyear,Types,bedrooms,bathrooms,furnishing,amenities,toilets,parking,status,area,landuse,propertysecurity,floors,estatename,houseclass}: GetAllAdsParams) {
+export async function getListingsNearLocation({ query, limit = 20, page, category, subcategory, sortby,make,vehiclemodel,yearfrom,yearto,Price,vehiclecolor,vehiclecondition,longitude,latitude,vehicleTransmissions,vehicleFuelTypes,vehicleBodyTypes,vehicleEngineSizesCC,vehicleSeats,vehicleregistered,vehicleexchangeposible,vehiclesecordCondition,vehicleyear,Types,bedrooms,bathrooms,furnishing,amenities,toilets,parking,status,area,landuse,propertysecurity,floors,estatename,houseclass}: GetAllAdsParams) {
   try {
   await connectToDatabase()
   if(longitude && latitude){
@@ -381,6 +381,7 @@ export async function getListingsNearLocation({ query, limit = 20, page, categor
    yearCondition = yearto ? { vehicleyear: { $gte: parseInt(yearfrom), $lte: parseInt(yearto) } } : {}
 
 }
+const [minPrice, maxPrice] = Price.split("-");
 const priceCondition = minPrice && maxPrice ? { price: { $gte: parseInt(minPrice), $lte: parseInt(maxPrice) } } : {}
     const categoryCondition = category ? await getCategoryByName(category) : null
     

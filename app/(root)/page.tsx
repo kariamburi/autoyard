@@ -25,8 +25,7 @@ export default async function Home({ searchParams }: SearchParamProps) {
   const vehiclemodel = (searchParams?.vehiclemodel as string) || "";
   const yearfrom = (searchParams?.yearfrom as string) || "";
   const yearto = (searchParams?.yearto as string) || "";
-  const minPrice = (searchParams?.minPrice as string) || "";
-  const maxPrice = (searchParams?.maxPrice as string) || "";
+  const Price = (searchParams?.Price as string) || "";
   const vehiclecolor = (searchParams?.vehiclecolor as string) || "";
   const vehiclecondition = (searchParams?.vehiclecondition as string) || "";
   const longitude = (searchParams?.longitude as string) || "";
@@ -95,8 +94,7 @@ export default async function Home({ searchParams }: SearchParamProps) {
     vehicleSeats: vehicleSeats,
     vehiclesecordCondition: vehiclesecordCondition,
     vehicleyear: vehicleyear,
-    minPrice: minPrice,
-    maxPrice: maxPrice,
+    Price: Price,
     bedrooms: bedrooms,
     bathrooms: bathrooms,
     furnishing: furnishing,
