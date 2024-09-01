@@ -27,14 +27,14 @@ const About = async () => {
           <div className="rounded-lg border bg-white max-w-6xl mx-auto lg:flex-row mt-0 p-1 justify-center">
             <div className="max-w-4xl mx-auto p-8 bg-gray-50 rounded-lg">
               <h1 className="text-3xl font-bold text-gray-800 mb-6 text-center">
-                About WheelMart.co.ke
+                About AutoYard.co.ke
               </h1>
 
               <div className="space-y-6 text-gray-700">
                 <p className="text-lg">
                   Welcome to{" "}
-                  <span className="font-semibold text-blue-600">
-                    WheelMart.co.ke
+                  <span className="font-semibold text-emerald-600">
+                    AutoYard.co.ke
                   </span>
                   , Kenya&apos;s premier online marketplace for buying and
                   selling vehicles. Whether you&apos;re in the market for a car,
@@ -48,7 +48,7 @@ const About = async () => {
                     Our Mission
                   </h2>
                   <p>
-                    At WheelMart.co.ke, our mission is simple: to make the
+                    At AutoYard.co.ke, our mission is simple: to make the
                     process of buying and selling vehicles as seamless,
                     transparent, and secure as possible. We understand that
                     purchasing a vehicle is a significant investment, and our
@@ -60,7 +60,7 @@ const About = async () => {
 
                 <div>
                   <h2 className="text-2xl font-semibold text-gray-800 mb-4">
-                    Why Choose WheelMart.co.ke?
+                    Why Choose AutoYard.co.ke?
                   </h2>
                   <ul className="list-disc pl-6 space-y-2">
                     <li>
@@ -110,7 +110,7 @@ const About = async () => {
                   </h2>
                   <p>
                     Founded with the vision of revolutionizing the vehicle sales
-                    industry in Kenya, WheelMart.co.ke has rapidly grown to
+                    industry in Kenya, AutoYard.co.ke has rapidly grown to
                     become a trusted name in the market. Our team is passionate
                     about automotive technology and customer service, and we
                     work tirelessly to improve our platform and expand our
@@ -125,15 +125,15 @@ const About = async () => {
                   <p>
                     Whether you&apos;re a seasoned car dealer, a first-time
                     buyer, or someone looking to sell your vehicle,
-                    WheelMart.co.ke is here to help you every step of the way.
+                    AutoYard.co.ke is here to help you every step of the way.
                     Join our growing community today and experience the
                     convenience and peace of mind that comes with using
                     Kenya&apos;s leading vehicle marketplace.
                   </p>
                   <p>
                     Thank you for choosing{" "}
-                    <span className="font-semibold text-blue-600">
-                      WheelMart.co.ke
+                    <span className="font-semibold text-emerald-600">
+                      AutoYard.co.ke
                     </span>
                     . We look forward to helping you find your next vehicle or
                     connect with the perfect buyer.

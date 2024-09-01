@@ -32,7 +32,7 @@ const Safety = async () => {
 
               <div className="space-y-6">
                 <div>
-                  <h3 className="text-xl font-semibold text-blue-600 mb-2">
+                  <h3 className="text-xl font-semibold text-orange-600 mb-2">
                     For Sellers:
                   </h3>
                   <ul className="list-disc pl-6 space-y-2 text-gray-700">

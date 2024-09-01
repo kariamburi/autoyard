@@ -186,7 +186,7 @@ const SidebarSearch = ({
     let newUrl = "";
     if (regionId) {
       newUrl = formUrlQuerymultiple({
-        params: "",
+        params: searchParams.toString(),
         updates: {
           category: category.toString(),
           region: regionId.toString(),
@@ -1341,9 +1341,16 @@ const SidebarSearch = ({
                 <DialogTitle>
                   <div className="text-sm w-full">
                     <div className="flex text-sm text-gray-950 w-full gap-1 items-center mt-1 mb-1">
-                      All Kenya -{category}
+                      All Kenya - {subcategory}
                       <div className="text-xs text-emerald-600">
-                        | {totalRegion} ads
+                        |{" "}
+                        {(AdsCountPerSubcategory &&
+                          AdsCountPerSubcategory.find(
+                            (item: { _id: string; adCount: number }) =>
+                              item._id === subcategory
+                          )?.adCount) ??
+                          0}{" "}
+                        ads
                       </div>
                     </div>
                   </div>
@@ -1413,17 +1420,17 @@ const SidebarSearch = ({
               </AccordionTrigger>
               <AccordionContent>
                 <div>
-                  <div className="flex gap-1 justify-between">
-                    <div className="w-full lg:w-[100px] text-sm  px-0 py-2">
+                  <div className="flex grid grid-cols-2  gap-1 justify-between">
+                    <div className="w-full text-sm px-0 py-2">
                       <TextField
                         value={minPrice}
                         label="Min Price*"
-                        className="w-full text-sm"
+                        className="w-[120px] text-sm"
                         onChange={(e) => setminPrice(e.target.value)}
                       />
                     </div>
 
-                    <div className="w-full lg:w-[100px]  px-0 py-2">
+                    <div className="w-[120px] px-0 py-2">
                       <TextField
                         value={maxPrice}
                         label="Max Price*"
@@ -1431,25 +1438,26 @@ const SidebarSearch = ({
                         onChange={(e) => setmaxPrice(e.target.value)}
                       />
                     </div>
-                    <div className="py-2">
-                      <button
-                        type="submit"
-                        onClick={() => handlebutton()}
-                        className="bg-[#30AF5B] rounded-sm text-white h-full"
-                      >
-                        <SearchIcon />
-                      </button>
-                    </div>
-                    <div className="py-2">
+                    <div className="w-[120px]">
                       <button
                         type="submit"
                         onClick={() => onSelectPriceClear()}
-                        className="bg-gray-400 rounded-sm text-white h-full"
+                        className="bg-gray-400 w-full p-1 text-xs rounded-sm text-white h-full"
                       >
                         <CloseIcon
                           className="text-white"
                           sx={{ fontSize: 24 }}
-                        />
+                        />{" "}
+                        Clear Price
+                      </button>
+                    </div>
+                    <div className="w-[120px]">
+                      <button
+                        type="submit"
+                        onClick={() => handlebutton()}
+                        className="bg-[#30AF5B] w-full p-1 text-xs rounded-sm text-white h-full"
+                      >
+                        <SearchIcon /> Search Price
                       </button>
                     </div>
                   </div>
@@ -2393,8 +2401,8 @@ const SidebarSearch = ({
                   </AccordionTrigger>
                   <AccordionContent>
                     <div className="w-full">
-                      <div className="flex gap-1 justify-between">
-                        <div className="w-full lg:w-[100px] text-xs  px-0 py-2">
+                      <div className="flex grid grid-cols-2 mb-2 justify-between">
+                        <div className="w-[120px] text-xs  px-0 py-2">
                           <Autocomplete
                             id="vehicleyearfrom"
                             options={years}
@@ -2415,7 +2423,7 @@ const SidebarSearch = ({
                           />
                         </div>
 
-                        <div className="w-full lg:w-[100px]  px-0 py-2 text-xs">
+                        <div className="w-[120px] px-0 py-2 text-xs">
                           <Autocomplete
                             id="vehicleyearto"
                             options={years}
@@ -2435,25 +2443,27 @@ const SidebarSearch = ({
                             )}
                           />
                         </div>
-                        <div className="py-2">
-                          <button
-                            type="submit"
-                            onClick={() => onSelectYear()}
-                            className="bg-[#30AF5B] rounded-sm text-white h-full"
-                          >
-                            <SearchIcon />
-                          </button>
-                        </div>
-                        <div className="py-2">
+
+                        <div className="w-[120px]">
                           <button
                             type="submit"
                             onClick={() => onSelectYearClear()}
-                            className="bg-gray-400 rounded-sm text-white h-full"
+                            className="bg-gray-400 text-xs w-full p-1 rounded-sm text-white h-full"
                           >
                             <CloseIcon
                               className="text-white"
                               sx={{ fontSize: 24 }}
-                            />
+                            />{" "}
+                            Clear Year
+                          </button>
+                        </div>
+                        <div className="w-[120px]">
+                          <button
+                            type="submit"
+                            onClick={() => onSelectYear()}
+                            className="bg-[#30AF5B] text-xs  w-full p-1 rounded-sm text-white h-full"
+                          >
+                            <SearchIcon /> Search Year
                           </button>
                         </div>
                       </div>

@@ -172,7 +172,7 @@ const Terms = async () => {
                 please contact us at:
                 <a
                   href="mailto:support@AutoYard.co.ke"
-                  className="text-blue-600 hover:underline"
+                  className="text-emerald-600 hover:underline"
                 >
                   support@AutoYard.co.ke
                 </a>

@@ -458,12 +458,23 @@ CollectionProps) => {
                   </div>
                 </section>
                 {showPopup && (
-                  <div className="bg-black fixed top-0 left-0 w-full h-screen flex justify-center items-center z-50">
-                    <div className="w-full flex flex-col rounded-lg w-full bg-white">
-                      <div className="font-bold text-lg text-emerald-950 text-center sm:text-left p-2">
-                        {category}{" "}
-                        {subcategory ? <> | {subcategory}</> : "| All"}{" "}
+                  <div className="bg-black bg-opacity-70 fixed top-0 left-0 w-full h-screen flex justify-center items-center z-50">
+                    <div className="w-full flex flex-col h-[500px] m-1 rounded-lg w-full bg-white">
+                      <div className="flex w-full items-center justify-between">
+                        <div className="font-bold text-lg text-emerald-950 text-center sm:text-left p-2">
+                          {subcategory ? <> {subcategory}</> : "All"}{" "}
+                        </div>
+
+                        <div onClick={togglePopup}>
+                          <button className="bg-white mr-2">
+                            <CloseIcon
+                              className="bg-white"
+                              sx={{ fontSize: 24 }}
+                            />
+                          </button>
+                        </div>
                       </div>
+
                       <SidebarSearchmobile
                         categoryList={categoryList}
                         category={category}
@@ -505,14 +516,6 @@ CollectionProps) => {
                           <div className="grid grid-cols-2 gap-1 mb-1">
                             <button
                               type="submit"
-                              onClick={togglePopup}
-                              className="bg-[#30AF5B] hover:bg-emerald-600 flex gap-1 p-2 items-center text-sm rounded-sm text-white h-full"
-                            >
-                              <SearchIcon /> Search
-                            </button>
-
-                            <button
-                              type="submit"
                               onClick={handleClear}
                               className="bg-[#000000] hover:bg-[#333333] flex gap-1 p-2 items-center text-sm rounded-sm text-white h-full"
                             >
@@ -521,6 +524,13 @@ CollectionProps) => {
                                 sx={{ fontSize: 24 }}
                               />
                               Reset Filter
+                            </button>
+                            <button
+                              type="submit"
+                              onClick={togglePopup}
+                              className="bg-[#30AF5B] hover:bg-emerald-600 flex gap-1 p-2 items-center text-sm rounded-sm text-white h-full"
+                            >
+                              <SearchIcon /> Search
                             </button>
                           </div>
                         </div>

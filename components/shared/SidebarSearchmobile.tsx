@@ -158,13 +158,55 @@ const SidebarSearchmobile = ({
 
   const [selectedRegion, setSelectedRegion] = useState("All Kenya");
 
+  const handleYearChange = (yearfrom: string, yearto: string) => {
+    let newUrl = "";
+    setyearfrom(yearfrom);
+    setyearto(yearto);
+    if (yearfrom && yearto) {
+      newUrl = formUrlQuerymultiple({
+        params: searchParams.toString(),
+        updates: {
+          yearfrom: yearfrom,
+          yearto: yearto,
+        },
+      });
+    } else {
+      newUrl = removeKeysFromQuery({
+        params: searchParams.toString(),
+        keysToRemove: ["yearfrom", "yearto"],
+      });
+    }
+    router.push(newUrl, { scroll: false });
+  };
+
+  const handlePriceChange = (minPrice: string, maxPrice: string) => {
+    let newUrl = "";
+    setminPrice(minPrice);
+    setmaxPrice(maxPrice);
+    if (minPrice && maxPrice) {
+      newUrl = formUrlQuery({
+        params: searchParams.toString(),
+        key: "Price",
+        value: minPrice + "-" + maxPrice,
+      });
+      router.push(newUrl, { scroll: false });
+    } //else {
+    //setminPrice("");
+    //setmaxPrice("");
+    // newUrl = removeKeysFromQuery({
+    //  params: searchParams.toString(),
+    //  keysToRemove: ["Price"],
+    //   });
+    // }
+  };
+
   const handleRegionClick = (regionId: any) => {
     // Update the selected region state
 
     let newUrl = "";
     if (regionId) {
       newUrl = formUrlQuerymultiple({
-        params: "",
+        params: searchParams.toString(),
         updates: {
           category: category.toString(),
           region: regionId.toString(),
@@ -181,6 +223,25 @@ const SidebarSearchmobile = ({
     router.push(newUrl, { scroll: false });
     // Perform any other actions you need
   };
+  const handleChange = (event: any) => {
+    let newUrl = "";
+
+    if (event.target.value) {
+      newUrl = formUrlQuery({
+        params: searchParams.toString(),
+        key: "membership",
+        value: event.target.value,
+      });
+    } else {
+      newUrl = removeKeysFromQuery({
+        params: searchParams.toString(),
+        keysToRemove: ["membership"],
+      });
+    }
+    setSelectedOption(event.target.value);
+    router.push(newUrl, { scroll: false });
+    //alert(event.target.value);
+  };
 
   const [isOpen, setIsOpen] = useState(false);
 
@@ -194,44 +255,6 @@ const SidebarSearchmobile = ({
 
   const [minPrice, setminPrice] = useState("");
   const [maxPrice, setmaxPrice] = useState("");
-
-  const [activerange, setactiverange] = useState(20);
-  const handlePrice = (index: number, min: string, max: string) => {
-    setactiverange(index);
-    let newUrl = "";
-    if (min) {
-      newUrl = formUrlQuery({
-        params: searchParams.toString(),
-        key: "Price",
-        value: min + "-" + max,
-      });
-      setminPrice(min);
-      setmaxPrice(max);
-    } else {
-      setminPrice("");
-      setmaxPrice("");
-      newUrl = removeKeysFromQuery({
-        params: searchParams.toString(),
-        keysToRemove: ["Price"],
-      });
-    }
-
-    router.push(newUrl, { scroll: false });
-  };
-
-  const onSelectPriceClear = () => {
-    let newUrl = "";
-    newUrl = removeKeysFromQuery({
-      params: searchParams.toString(),
-      keysToRemove: ["Price"],
-    });
-
-    setminPrice("");
-    setmaxPrice("");
-    setactiverange(20);
-    router.push(newUrl, { scroll: false });
-  };
-
   const [selectedOption, setSelectedOption] = useState("all");
   const [selectedConditionOption, setselectedConditionOption] = useState("all");
   const [selectedColorOption, setselectedColorOption] = useState("all");
@@ -251,32 +274,159 @@ const SidebarSearchmobile = ({
 
   const [selectedMakeOption, setselectedMakeOption] = useState("all");
 
-  const [selectedYearOption, setselectedYearOption] = useState("all");
+  const [yearfrom, setyearfrom] = useState("");
+  const [yearto, setyearto] = useState("");
 
   const [selectedTypesOption, setselectedTypesOption] = useState("all");
 
-  const [selectedhouseclassOption, setselectedhouseclassOption] =
-    useState("all");
-
-  const handlehouseclassChange = (event: any) => {
+  const handleExchangeChange = (event: any) => {
     let newUrl = "";
 
     if (event.target.value) {
-      setselectedhouseclassOption(event.target.value);
+      setselectedExchangeOption(event.target.value);
       newUrl = formUrlQuery({
         params: searchParams.toString(),
-        key: "houseclass",
+        key: "vehicleexchangeposible",
         value: event.target.value,
       });
     } else {
-      setselectedhouseclassOption("all");
+      setselectedExchangeOption("all");
       newUrl = removeKeysFromQuery({
         params: searchParams.toString(),
-        keysToRemove: ["houseclass"],
+        keysToRemove: ["vehicleexchangeposible"],
+      });
+    }
+    router.push(newUrl, { scroll: false });
+    //alert(event.target.value);
+  };
+
+  const handleRegisteredChange = (event: any) => {
+    let newUrl = "";
+
+    if (event.target.value) {
+      setselectedRegisteredOption(event.target.value);
+      newUrl = formUrlQuery({
+        params: searchParams.toString(),
+        key: "vehicleregistered",
+        value: event.target.value,
+      });
+    } else {
+      setselectedRegisteredOption("all");
+      newUrl = removeKeysFromQuery({
+        params: searchParams.toString(),
+        keysToRemove: ["vehicleregistered"],
       });
     }
 
     router.push(newUrl, { scroll: false });
+    //alert(event.target.value);
+  };
+  const handleCCChange = (event: any) => {
+    let newUrl = "";
+
+    if (event.target.value) {
+      setselectedCCOption(event.target.value);
+      newUrl = formUrlQuery({
+        params: searchParams.toString(),
+        key: "vehicleEngineSizesCC",
+        value: event.target.value,
+      });
+    } else {
+      setselectedCCOption("all");
+      newUrl = removeKeysFromQuery({
+        params: searchParams.toString(),
+        keysToRemove: ["vehicleEngineSizesCC"],
+      });
+    }
+
+    router.push(newUrl, { scroll: false });
+    //alert(event.target.value);
+  };
+  const handleBodyChange = (event: any) => {
+    let newUrl = "";
+
+    if (event.target.value) {
+      setselectedBodyOption(event.target.value);
+      newUrl = formUrlQuery({
+        params: searchParams.toString(),
+        key: "vehicleBodyTypes",
+        value: event.target.value,
+      });
+    } else {
+      setselectedBodyOption("all");
+      newUrl = removeKeysFromQuery({
+        params: searchParams.toString(),
+        keysToRemove: ["vehicleBodyTypes"],
+      });
+    }
+
+    router.push(newUrl, { scroll: false });
+    //alert(event.target.value);
+  };
+  const handleFuelChange = (event: any) => {
+    let newUrl = "";
+
+    if (event.target.value) {
+      setselectedFuelOption(event.target.value);
+      newUrl = formUrlQuery({
+        params: searchParams.toString(),
+        key: "vehicleFuelTypes",
+        value: event.target.value,
+      });
+    } else {
+      setselectedFuelOption("all");
+      newUrl = removeKeysFromQuery({
+        params: searchParams.toString(),
+        keysToRemove: ["vehicleFuelTypes"],
+      });
+    }
+
+    router.push(newUrl, { scroll: false });
+    //alert(event.target.value);
+  };
+
+  const handleTransmissionChange = (event: any) => {
+    let newUrl = "";
+
+    if (event.target.value) {
+      setselectedTransmissionOption(event.target.value);
+      newUrl = formUrlQuery({
+        params: searchParams.toString(),
+        key: "vehicleTransmissions",
+        value: event.target.value,
+      });
+    } else {
+      setselectedTransmissionOption("all");
+      newUrl = removeKeysFromQuery({
+        params: searchParams.toString(),
+        keysToRemove: ["vehicleTransmissions"],
+      });
+    }
+
+    router.push(newUrl, { scroll: false });
+    //alert(event.target.value);
+  };
+
+  const handleConditionChange = (event: any) => {
+    let newUrl = "";
+
+    if (event.target.value) {
+      setselectedConditionOption(event.target.value);
+      newUrl = formUrlQuery({
+        params: searchParams.toString(),
+        key: "vehiclecondition",
+        value: event.target.value,
+      });
+    } else {
+      setselectedConditionOption("all");
+      newUrl = removeKeysFromQuery({
+        params: searchParams.toString(),
+        keysToRemove: ["vehiclecondition"],
+      });
+    }
+
+    router.push(newUrl, { scroll: false });
+    //alert(event.target.value);
   };
 
   const [selectedfloorsOption, setselectedfloorsOption] = useState("all");
@@ -577,14 +727,14 @@ const SidebarSearchmobile = ({
     let newUrl = "";
     alert(event.target.value);
     if (event.target.value) {
-      //   setselectedSecondOption(event.target.value);
+      setselectedSecondOption(event.target.value);
       newUrl = formUrlQuery({
         params: searchParams.toString(),
         key: "vehiclesecordCondition",
         value: event.target.value,
       });
     } else {
-      // setselectedSecondOption("all");
+      setselectedSecondOption("all");
       newUrl = removeKeysFromQuery({
         params: searchParams.toString(),
         keysToRemove: ["vehiclesecordCondition"],
@@ -616,29 +766,27 @@ const SidebarSearchmobile = ({
     router.push(newUrl, { scroll: false });
     //alert(event.target.value);
   };
-
-  const handleChange = (event: any) => {
+  const handleColorChange = (event: any) => {
     let newUrl = "";
 
     if (event.target.value) {
+      setselectedColorOption(event.target.value);
       newUrl = formUrlQuery({
         params: searchParams.toString(),
-        key: "membership",
+        key: "vehiclecolor",
         value: event.target.value,
       });
     } else {
+      setselectedColorOption("all");
       newUrl = removeKeysFromQuery({
         params: searchParams.toString(),
-        keysToRemove: ["membership"],
+        keysToRemove: ["vehiclecolor"],
       });
     }
-    setSelectedOption(event.target.value);
+
     router.push(newUrl, { scroll: false });
     //alert(event.target.value);
   };
-
-  const [vehicleyearfrom, setvehicleyearfrom] = useState("");
-  const [vehicleyearto, setvehicleyearto] = useState("");
   const currentYear = new Date().getFullYear();
   let years = [];
   for (let year = currentYear; year >= 1960; year--) {
@@ -997,9 +1145,16 @@ const SidebarSearchmobile = ({
                   <DialogTitle>
                     <div className="text-sm w-full">
                       <div className="flex text-sm text-gray-950 w-full gap-1 items-center mt-1 mb-1">
-                        All Kenya -{category}
+                        All Kenya - {subcategory}
                         <div className="text-xs text-emerald-600">
-                          | {totalRegion} ads
+                          |{" "}
+                          {(AdsCountPerSubcategory &&
+                            AdsCountPerSubcategory.find(
+                              (item: { _id: string; adCount: number }) =>
+                                item._id === subcategory
+                            )?.adCount) ??
+                            0}{" "}
+                          ads
                         </div>
                       </div>
                     </div>
@@ -1127,35 +1282,17 @@ const SidebarSearchmobile = ({
           <div className="text-sm mt-1 rounded-lg w-full bg-white p-4">
             <div className="grid grid-cols-2 gap-1">
               <TextField
-                value={searchParams.get("minPrice") ?? ""}
+                value={minPrice}
                 label="Min Price*"
                 className="text-sm"
-                onChange={(e) =>
-                  router.push(
-                    formUrlQuery({
-                      params: searchParams.toString(),
-                      key: "minPrice",
-                      value: e.target.value,
-                    }),
-                    { scroll: false }
-                  )
-                }
+                onChange={(e) => handlePriceChange(e.target.value, maxPrice)}
               />
 
               <TextField
-                value={searchParams.get("maxPrice") ?? ""}
+                value={maxPrice}
                 label="Max Price*"
                 className="text-sm"
-                onChange={(e) =>
-                  router.push(
-                    formUrlQuery({
-                      params: searchParams.toString(),
-                      key: "maxPrice",
-                      value: e.target.value,
-                    }),
-                    { scroll: false }
-                  )
-                }
+                onChange={(e) => handlePriceChange(minPrice, e.target.value)}
               />
             </div>
           </div>
@@ -1170,25 +1307,10 @@ const SidebarSearchmobile = ({
                     getOptionLabel={(option) => option.make}
                     value={
                       vehicleModels.find(
-                        (cond: any) => cond.make === searchParams.get("make")
+                        (cond: any) => cond.make === selectedMakeOption
                       ) || null
                     }
-                    onChange={(event, newValue) => {
-                      let newUrl = "";
-                      if (newValue) {
-                        newUrl = formUrlQuery({
-                          params: searchParams.toString(),
-                          key: "make",
-                          value: newValue.make, // Here, newValue will be the option string itself
-                        });
-                      } else {
-                        newUrl = removeKeysFromQuery({
-                          params: searchParams.toString(),
-                          keysToRemove: ["make"],
-                        });
-                      }
-                      router.push(newUrl, { scroll: false });
-                    }}
+                    onChange={handleMakeChange}
                     renderOption={(props: any, option: any) => (
                       <div
                         {...props}
@@ -1235,25 +1357,10 @@ const SidebarSearchmobile = ({
                     getOptionLabel={(option) => option.name}
                     value={
                       automotivePartsCategories.find(
-                        (cond: any) => cond.name === searchParams.get("Types")
+                        (cond: any) => cond.name === selectedTypesOption
                       ) || null
                     }
-                    onChange={(event, newValue) => {
-                      let newUrl = "";
-                      if (newValue) {
-                        newUrl = formUrlQuery({
-                          params: searchParams.toString(),
-                          key: "Types",
-                          value: newValue.name, // Here, newValue will be the option string itself
-                        });
-                      } else {
-                        newUrl = removeKeysFromQuery({
-                          params: searchParams.toString(),
-                          keysToRemove: ["Types"],
-                        });
-                      }
-                      router.push(newUrl, { scroll: false });
-                    }}
+                    onChange={handleTypesChange}
                     renderOption={(props: any, option: any) => (
                       <div
                         {...props}
@@ -1296,25 +1403,10 @@ const SidebarSearchmobile = ({
                     getOptionLabel={(option) => option.make}
                     value={
                       automotivePartsMakes.find(
-                        (cond: any) => cond.make === searchParams.get("make")
+                        (cond: any) => cond.make === selectedMakeOption
                       ) || null
                     }
-                    onChange={(event, newValue) => {
-                      let newUrl = "";
-                      if (newValue) {
-                        newUrl = formUrlQuery({
-                          params: searchParams.toString(),
-                          key: "make",
-                          value: newValue.make, // Here, newValue will be the option string itself
-                        });
-                      } else {
-                        newUrl = removeKeysFromQuery({
-                          params: searchParams.toString(),
-                          keysToRemove: ["make"],
-                        });
-                      }
-                      router.push(newUrl, { scroll: false });
-                    }}
+                    onChange={handleMakeChange}
                     renderOption={(props: any, option: any) => (
                       <div
                         {...props}
@@ -1361,25 +1453,10 @@ const SidebarSearchmobile = ({
                     getOptionLabel={(option) => option.type}
                     value={
                       truckTypes.find(
-                        (cond: any) => cond.type === searchParams.get("Types")
+                        (cond: any) => cond.type === selectedTypesOption
                       ) || null
                     }
-                    onChange={(event, newValue) => {
-                      let newUrl = "";
-                      if (newValue) {
-                        newUrl = formUrlQuery({
-                          params: searchParams.toString(),
-                          key: "Types",
-                          value: newValue.type, // Here, newValue will be the option string itself
-                        });
-                      } else {
-                        newUrl = removeKeysFromQuery({
-                          params: searchParams.toString(),
-                          keysToRemove: ["Types"],
-                        });
-                      }
-                      router.push(newUrl, { scroll: false });
-                    }}
+                    onChange={handleTypesChange}
                     renderOption={(props: any, option: any) => (
                       <div
                         {...props}
@@ -1423,25 +1500,10 @@ const SidebarSearchmobile = ({
                     getOptionLabel={(option) => option.make}
                     value={
                       truckMakes.find(
-                        (cond: any) => cond.make === searchParams.get("make")
+                        (cond: any) => cond.make === selectedMakeOption
                       ) || null
                     }
-                    onChange={(event, newValue) => {
-                      let newUrl = "";
-                      if (newValue) {
-                        newUrl = formUrlQuery({
-                          params: searchParams.toString(),
-                          key: "make",
-                          value: newValue.make, // Here, newValue will be the option string itself
-                        });
-                      } else {
-                        newUrl = removeKeysFromQuery({
-                          params: searchParams.toString(),
-                          keysToRemove: ["make"],
-                        });
-                      }
-                      router.push(newUrl, { scroll: false });
-                    }}
+                    onChange={handleMakeChange}
                     renderOption={(props: any, option: any) => (
                       <div
                         {...props}
@@ -1488,25 +1550,10 @@ const SidebarSearchmobile = ({
                     getOptionLabel={(option) => option.type}
                     value={
                       equipmentTypes.find(
-                        (cond: any) => cond.type === searchParams.get("Types")
+                        (cond: any) => cond.type === selectedTypesOption
                       ) || null
                     }
-                    onChange={(event, newValue) => {
-                      let newUrl = "";
-                      if (newValue) {
-                        newUrl = formUrlQuery({
-                          params: searchParams.toString(),
-                          key: "Types",
-                          value: newValue.type, // Here, newValue will be the option string itself
-                        });
-                      } else {
-                        newUrl = removeKeysFromQuery({
-                          params: searchParams.toString(),
-                          keysToRemove: ["Types"],
-                        });
-                      }
-                      router.push(newUrl, { scroll: false });
-                    }}
+                    onChange={handleTypesChange}
                     renderOption={(props: any, option: any) => (
                       <div
                         {...props}
@@ -1550,25 +1597,10 @@ const SidebarSearchmobile = ({
                     getOptionLabel={(option) => option.make}
                     value={
                       equipmentMakes.find(
-                        (cond: any) => cond.make === searchParams.get("make")
+                        (cond: any) => cond.make === selectedMakeOption
                       ) || null
                     }
-                    onChange={(event, newValue) => {
-                      let newUrl = "";
-                      if (newValue) {
-                        newUrl = formUrlQuery({
-                          params: searchParams.toString(),
-                          key: "make",
-                          value: newValue.make, // Here, newValue will be the option string itself
-                        });
-                      } else {
-                        newUrl = removeKeysFromQuery({
-                          params: searchParams.toString(),
-                          keysToRemove: ["make"],
-                        });
-                      }
-                      router.push(newUrl, { scroll: false });
-                    }}
+                    onChange={handleMakeChange}
                     renderOption={(props: any, option: any) => (
                       <div
                         {...props}
@@ -1615,25 +1647,10 @@ const SidebarSearchmobile = ({
                     getOptionLabel={(option) => option.make}
                     value={
                       motorcycleMakes.find(
-                        (cond: any) => cond.make === searchParams.get("make")
+                        (cond: any) => cond.make === selectedMakeOption
                       ) || null
                     }
-                    onChange={(event, newValue) => {
-                      let newUrl = "";
-                      if (newValue) {
-                        newUrl = formUrlQuery({
-                          params: searchParams.toString(),
-                          key: "make",
-                          value: newValue.make, // Here, newValue will be the option string itself
-                        });
-                      } else {
-                        newUrl = removeKeysFromQuery({
-                          params: searchParams.toString(),
-                          keysToRemove: ["make"],
-                        });
-                      }
-                      router.push(newUrl, { scroll: false });
-                    }}
+                    onChange={handleMakeChange}
                     renderOption={(props: any, option: any) => (
                       <div
                         {...props}
@@ -1680,25 +1697,10 @@ const SidebarSearchmobile = ({
                     getOptionLabel={(option) => option.make}
                     value={
                       BusesMake.find(
-                        (cond: any) => cond.make === searchParams.get("make")
+                        (cond: any) => cond.make === selectedMakeOption
                       ) || null
                     }
-                    onChange={(event, newValue) => {
-                      let newUrl = "";
-                      if (newValue) {
-                        newUrl = formUrlQuery({
-                          params: searchParams.toString(),
-                          key: "make",
-                          value: newValue.make, // Here, newValue will be the option string itself
-                        });
-                      } else {
-                        newUrl = removeKeysFromQuery({
-                          params: searchParams.toString(),
-                          keysToRemove: ["make"],
-                        });
-                      }
-                      router.push(newUrl, { scroll: false });
-                    }}
+                    onChange={handleMakeChange}
                     renderOption={(props: any, option: any) => (
                       <div
                         {...props}
@@ -1745,25 +1747,10 @@ const SidebarSearchmobile = ({
                     getOptionLabel={(option) => option.type}
                     value={
                       boatTypes.find(
-                        (cond: any) => cond.type === searchParams.get("Types")
+                        (cond: any) => cond.type === selectedTypesOption
                       ) || null
                     }
-                    onChange={(event, newValue) => {
-                      let newUrl = "";
-                      if (newValue) {
-                        newUrl = formUrlQuery({
-                          params: searchParams.toString(),
-                          key: "Types",
-                          value: newValue.type, // Here, newValue will be the option string itself
-                        });
-                      } else {
-                        newUrl = removeKeysFromQuery({
-                          params: searchParams.toString(),
-                          keysToRemove: ["Types"],
-                        });
-                      }
-                      router.push(newUrl, { scroll: false });
-                    }}
+                    onChange={handleTypesChange}
                     renderOption={(props: any, option: any) => (
                       <div
                         {...props}
@@ -1813,23 +1800,10 @@ const SidebarSearchmobile = ({
                     id="vehicleyearfrom"
                     options={years}
                     getOptionLabel={(option) => option}
-                    value={
-                      years.find((yr) => yr === searchParams.get("yearfrom")) ||
-                      null
-                    }
-                    // onChange={(event, newValue) => {
-                    //  setvehicleyearfrom(newValue ?? "");
-                    // }}
+                    value={years.find((yr) => yr === yearfrom) || null}
                     className="text-sm"
                     onChange={(event, newValue) =>
-                      router.push(
-                        formUrlQuery({
-                          params: searchParams.toString(),
-                          key: "yearfrom",
-                          value: newValue,
-                        }),
-                        { scroll: false }
-                      )
+                      handleYearChange(newValue ?? "", yearto)
                     }
                     renderInput={(field) => (
                       <TextField {...field} label="From" className="text-xs" />
@@ -1840,19 +1814,9 @@ const SidebarSearchmobile = ({
                     id="vehicleyearto"
                     options={years}
                     getOptionLabel={(option) => option}
-                    value={
-                      years.find((yr) => yr === searchParams.get("yearto")) ||
-                      null
-                    }
+                    value={years.find((yr) => yr === yearto) || null}
                     onChange={(event, newValue) =>
-                      router.push(
-                        formUrlQuery({
-                          params: searchParams.toString(),
-                          key: "yearto",
-                          value: newValue,
-                        }),
-                        { scroll: false }
-                      )
+                      handleYearChange(yearfrom, newValue ?? "")
                     }
                     renderInput={(field) => (
                       <TextField {...field} label="To" className="text-xs" />
@@ -1878,25 +1842,10 @@ const SidebarSearchmobile = ({
                     getOptionLabel={(option) => option}
                     value={
                       vehicleConditions.find(
-                        (cond) => cond === searchParams.get("vehiclecondition")
+                        (cond) => cond === selectedConditionOption
                       ) || null
                     }
-                    onChange={(event, newValue) => {
-                      let newUrl = "";
-                      if (newValue) {
-                        newUrl = formUrlQuery({
-                          params: searchParams.toString(),
-                          key: "vehiclecondition",
-                          value: newValue, // Here, newValue will be the option string itself
-                        });
-                      } else {
-                        newUrl = removeKeysFromQuery({
-                          params: searchParams.toString(),
-                          keysToRemove: ["vehiclecondition"],
-                        });
-                      }
-                      router.push(newUrl, { scroll: false });
-                    }}
+                    onChange={handleConditionChange}
                     renderOption={(props: any, option: any) => (
                       <div
                         {...props}
@@ -1945,25 +1894,10 @@ const SidebarSearchmobile = ({
                     getOptionLabel={(option) => option}
                     value={
                       vehicleColors.find(
-                        (cond) => cond === searchParams.get("vehiclecolor")
+                        (cond) => cond === selectedColorOption
                       ) || null
                     }
-                    onChange={(event, newValue) => {
-                      let newUrl = "";
-                      if (newValue) {
-                        newUrl = formUrlQuery({
-                          params: searchParams.toString(),
-                          key: "vehiclecolor",
-                          value: newValue, // Here, newValue will be the option string itself
-                        });
-                      } else {
-                        newUrl = removeKeysFromQuery({
-                          params: searchParams.toString(),
-                          keysToRemove: ["vehiclecolor"],
-                        });
-                      }
-                      router.push(newUrl, { scroll: false });
-                    }}
+                    onChange={handleColorChange}
                     renderOption={(props: any, option: any) => (
                       <div
                         {...props}
@@ -2013,26 +1947,10 @@ const SidebarSearchmobile = ({
                     getOptionLabel={(option) => option}
                     value={
                       vehicleTransmissions.find(
-                        (cond) =>
-                          cond === searchParams.get("vehicleTransmissions")
+                        (cond) => cond === selectedTransmissionOption
                       ) || null
                     }
-                    onChange={(event, newValue) => {
-                      let newUrl = "";
-                      if (newValue) {
-                        newUrl = formUrlQuery({
-                          params: searchParams.toString(),
-                          key: "vehicleTransmissions",
-                          value: newValue, // Here, newValue will be the option string itself
-                        });
-                      } else {
-                        newUrl = removeKeysFromQuery({
-                          params: searchParams.toString(),
-                          keysToRemove: ["vehicleTransmissions"],
-                        });
-                      }
-                      router.push(newUrl, { scroll: false });
-                    }}
+                    onChange={handleTransmissionChange}
                     renderOption={(props: any, option: any) => (
                       <div
                         {...props}
@@ -2080,25 +1998,10 @@ const SidebarSearchmobile = ({
                     getOptionLabel={(option) => option}
                     value={
                       vehicleFuelTypes.find(
-                        (cond) => cond === searchParams.get("vehicleFuelTypes")
+                        (cond) => cond === selectedFuelOption
                       ) || null
                     }
-                    onChange={(event, newValue) => {
-                      let newUrl = "";
-                      if (newValue) {
-                        newUrl = formUrlQuery({
-                          params: searchParams.toString(),
-                          key: "vehicleFuelTypes",
-                          value: newValue, // Here, newValue will be the option string itself
-                        });
-                      } else {
-                        newUrl = removeKeysFromQuery({
-                          params: searchParams.toString(),
-                          keysToRemove: ["vehicleFuelTypes"],
-                        });
-                      }
-                      router.push(newUrl, { scroll: false });
-                    }}
+                    onChange={handleFuelChange}
                     renderOption={(props: any, option: any) => (
                       <div
                         {...props}
@@ -2145,26 +2048,10 @@ const SidebarSearchmobile = ({
                     getOptionLabel={(option) => option.type}
                     value={
                       vehicleBodyTypes.find(
-                        (cond: any) =>
-                          cond.type === searchParams.get("vehicleBodyTypes")
+                        (cond: any) => cond.type === selectedBodyOption
                       ) || null
                     }
-                    onChange={(event, newValue) => {
-                      let newUrl = "";
-                      if (newValue) {
-                        newUrl = formUrlQuery({
-                          params: searchParams.toString(),
-                          key: "vehicleBodyTypes",
-                          value: newValue.type, // Here, newValue will be the option string itself
-                        });
-                      } else {
-                        newUrl = removeKeysFromQuery({
-                          params: searchParams.toString(),
-                          keysToRemove: ["vehicleBodyTypes"],
-                        });
-                      }
-                      router.push(newUrl, { scroll: false });
-                    }}
+                    onChange={handleBodyChange}
                     renderOption={(props: any, option: any) => (
                       <div
                         {...props}
@@ -2214,26 +2101,10 @@ const SidebarSearchmobile = ({
                     getOptionLabel={(option) => option._id}
                     value={
                       AdsCountPerCC.find(
-                        (cond: any) =>
-                          cond._id === searchParams.get("vehicleEngineSizesCC")
+                        (cond: any) => cond._id === selectedCCOption
                       ) || null
                     }
-                    onChange={(event, newValue) => {
-                      let newUrl = "";
-                      if (newValue) {
-                        newUrl = formUrlQuery({
-                          params: searchParams.toString(),
-                          key: "vehicleEngineSizesCC",
-                          value: newValue._id, // Here, newValue will be the option string itself
-                        });
-                      } else {
-                        newUrl = removeKeysFromQuery({
-                          params: searchParams.toString(),
-                          keysToRemove: ["vehicleEngineSizesCC"],
-                        });
-                      }
-                      router.push(newUrl, { scroll: false });
-                    }}
+                    onChange={handleCCChange}
                     renderOption={(props: any, option: any) => (
                       <div
                         {...props}
@@ -2267,25 +2138,10 @@ const SidebarSearchmobile = ({
                     getOptionLabel={(option) => option}
                     value={
                       vehicleRegistered.find(
-                        (cond) => cond === searchParams.get("vehicleRegistered")
+                        (cond) => cond === selectedRegisteredOption
                       ) || null
                     }
-                    onChange={(event, newValue) => {
-                      let newUrl = "";
-                      if (newValue) {
-                        newUrl = formUrlQuery({
-                          params: searchParams.toString(),
-                          key: "vehicleRegistered",
-                          value: newValue, // Here, newValue will be the option string itself
-                        });
-                      } else {
-                        newUrl = removeKeysFromQuery({
-                          params: searchParams.toString(),
-                          keysToRemove: ["vehicleRegistered"],
-                        });
-                      }
-                      router.push(newUrl, { scroll: false });
-                    }}
+                    onChange={handleRegisteredChange}
                     renderOption={(props: any, option: any) => (
                       <div
                         {...props}
@@ -2337,26 +2193,10 @@ const SidebarSearchmobile = ({
                     getOptionLabel={(option) => option}
                     value={
                       vehicleRegistered.find(
-                        (cond) =>
-                          cond === searchParams.get("vehicleexchangeposible")
+                        (cond) => cond === selectedExchangeOption
                       ) || null
                     }
-                    onChange={(event, newValue) => {
-                      let newUrl = "";
-                      if (newValue) {
-                        newUrl = formUrlQuery({
-                          params: searchParams.toString(),
-                          key: "vehicleexchangeposible",
-                          value: newValue, // Here, newValue will be the option string itself
-                        });
-                      } else {
-                        newUrl = removeKeysFromQuery({
-                          params: searchParams.toString(),
-                          keysToRemove: ["vehicleexchangeposible"],
-                        });
-                      }
-                      router.push(newUrl, { scroll: false });
-                    }}
+                    onChange={handleExchangeChange}
                     renderOption={(props: any, option: any) => (
                       <div
                         {...props}
@@ -2403,25 +2243,10 @@ const SidebarSearchmobile = ({
                     getOptionLabel={(option) => option}
                     value={
                       vehicleSeats.find(
-                        (cond) => cond === searchParams.get("vehicleSeats")
+                        (cond) => cond === selectedSeatsOption
                       ) || null
                     }
-                    onChange={(event, newValue) => {
-                      let newUrl = "";
-                      if (newValue) {
-                        newUrl = formUrlQuery({
-                          params: searchParams.toString(),
-                          key: "vehicleSeats",
-                          value: newValue, // Here, newValue will be the option string itself
-                        });
-                      } else {
-                        newUrl = removeKeysFromQuery({
-                          params: searchParams.toString(),
-                          keysToRemove: ["vehicleSeats"],
-                        });
-                      }
-                      router.push(newUrl, { scroll: false });
-                    }}
+                    onChange={handleSeatsChange}
                     renderOption={(props: any, option: any) => (
                       <div
                         {...props}
@@ -2469,26 +2294,13 @@ const SidebarSearchmobile = ({
                     getOptionLabel={(option) => option}
                     value={
                       vehicleSecondConditions.find(
-                        (cond) =>
-                          cond === searchParams.get("vehiclesecordCondition")
+                        (cond) => cond === selectedSecondOption
                       ) || null
                     }
-                    onChange={(event, newValue) => {
-                      let newUrl = "";
-                      if (newValue) {
-                        newUrl = formUrlQuery({
-                          params: searchParams.toString(),
-                          key: "vehiclesecordCondition",
-                          value: newValue, // Here, newValue will be the option string itself
-                        });
-                      } else {
-                        newUrl = removeKeysFromQuery({
-                          params: searchParams.toString(),
-                          keysToRemove: ["vehiclesecordCondition"],
-                        });
-                      }
-                      router.push(newUrl, { scroll: false });
-                    }}
+                    onChange={handleSecondChange}
+                    //  onChange={(event, newValue) => {
+                    //    setselectedSecondOption(newValue);
+                    //  }}
                     renderOption={(props: any, option: any) => (
                       <div
                         {...props}

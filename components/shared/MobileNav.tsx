@@ -59,7 +59,7 @@ const MobileNav = ({ userstatus, userId }: MobileProps) => {
           <Separator className="border border-gray-50" />
           <div className="flex text-xs">
             <div className="flex gap-1 w-full text-gray-600">
-              <div className="transition-colors text-[8px] hover:text-emerald-600 hover:cursor-pointer">
+              <div className="transition-colors text-[10px] hover:text-emerald-600 hover:cursor-pointer">
                 <Link
                   href="/about"
                   className="no-underline hover:text-emerald-500 "
@@ -68,7 +68,7 @@ const MobileNav = ({ userstatus, userId }: MobileProps) => {
                 </Link>
               </div>
               <div>|</div>
-              <div className="transition-colors text-[8px] hover:text-emerald-600 hover:cursor-pointer">
+              <div className="transition-colors text-[10px] hover:text-emerald-600 hover:cursor-pointer">
                 <Link
                   href="/terms"
                   className="no-underline hover:text-emerald-500 "
@@ -77,7 +77,7 @@ const MobileNav = ({ userstatus, userId }: MobileProps) => {
                 </Link>
               </div>
               <div>|</div>
-              <div className="transition-colors text-[8px] hover:text-emerald-600 hover:cursor-pointer">
+              <div className="transition-colors text-[10px] hover:text-emerald-600 hover:cursor-pointer">
                 <Link
                   href="/privacy"
                   className="no-underline hover:text-emerald-500 "
@@ -86,7 +86,7 @@ const MobileNav = ({ userstatus, userId }: MobileProps) => {
                 </Link>
               </div>
               <div>|</div>
-              <div className="transition-colors text-[8px] hover:text-emerald-600 hover:cursor-pointer">
+              <div className="transition-colors text-[10px] hover:text-emerald-600 hover:cursor-pointer">
                 <Link
                   href="/safety"
                   className="no-underline hover:text-emerald-500 "

@@ -776,14 +776,20 @@ const AdForm = ({
                   </div>
                 </div>
               </section>
-              <div className="flex flex-col gap-5 md:flex-row">
+              <div className="flex flex-col md:flex-row">
                 <FormField
                   control={form.control}
                   name="categoryId"
                   render={({ field }) => (
-                    <FormItem className="w-full">
+                    <FormItem className="w-[0px]">
                       <FormControl>
-                        <div className="w-full overflow-hidden rounded-full px-4 py-2">
+                        <TextField
+                          {...field}
+                          type="hidden"
+                          value="65e5e7b50419f8e5bc016aaf"
+                        />
+
+                        {/*     <div className="w-full overflow-hidden rounded-full px-4 py-2">
                           <Autocomplete
                             id="categoryId"
                             options={categories}
@@ -804,6 +810,7 @@ const AdForm = ({
                             )}
                           />
                         </div>
+                        */}
                       </FormControl>
                       <FormMessage />
                     </FormItem>
@@ -823,8 +830,7 @@ const AdForm = ({
                               categories
                                 .find(
                                   (category) =>
-                                    category._id ===
-                                    form.getValues("categoryId")
+                                    category._id === "65e5e7b50419f8e5bc016aaf"
                                 )
                                 ?.subcategory.map((sub: any) => sub.title) || []
                             }
@@ -834,10 +840,7 @@ const AdForm = ({
                               SetselectedCategory(newValue);
                             }}
                             renderInput={(field) => (
-                              <TextField
-                                {...field}
-                                label="Select Sub Category*"
-                              />
+                              <TextField {...field} label="Select Category*" />
                             )}
                           />
                         </div>
