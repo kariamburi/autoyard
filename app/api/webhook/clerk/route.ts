@@ -4,6 +4,7 @@ import { clerkClient, WebhookEvent } from '@clerk/nextjs/server'
 import { createUser, deleteUser, updateUser } from '@/lib/actions/user.actions'
 //import { clerkClient } from '@clerk/nextjs'
 import { NextResponse } from 'next/server'
+import { IUser } from '@/lib/database/models/user.model'
  
 export async function POST(req: Request) {
   
@@ -66,6 +67,23 @@ export async function POST(req: Request) {
       firstName: first_name,
       lastName: last_name,
       photo: image_url,
+      status: 'active',
+      businessname: '',
+      aboutbusiness: '',
+      businessaddress: '',
+      latitude: '',
+      longitude: '',
+      businesshours: [],
+      businessworkingdays: [],
+      phone: '',
+      whatsapp: '',
+      website: '',
+      facebook: '',
+      twitter: '',
+      instagram: '',
+      tiktok: '',
+      verified: [],
+      imageUrl: '',
     }
 
     const newUser = await createUser(user);
