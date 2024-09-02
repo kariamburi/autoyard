@@ -146,7 +146,12 @@ const AdDetails = async ({
             </div>
           </div>
         </div>
-        <Ads ad={ad} userId={userId || ""} />
+        <Ads
+          ad={ad}
+          userId={userId || ""}
+          userName={userName || ""}
+          userImage={userImage || ""}
+        />
         <h2 className="font-bold p-2 text-[30px]">Related Ads</h2>
         <div className="p-1 mb-20 lg:mb-0">
           <Collection

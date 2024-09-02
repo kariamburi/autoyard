@@ -65,12 +65,16 @@ import {
   CarouselPrevious,
 } from "../ui/carousel";
 import SellerProfile from "./SellerProfile";
+import { addDoc, collection, serverTimestamp } from "firebase/firestore";
+import { db } from "@/lib/firebase";
 
 type CardProps = {
   ad: IAd;
   userId: string;
+  userImage: string;
+  userName: string;
 };
-export default function Ads({ ad, userId }: CardProps) {
+export default function Ads({ ad, userId, userImage, userName }: CardProps) {
   const [videoAdId, setvideoAdId] = React.useState<string | null>(null);
   const [selectedIndex, setSelectedIndex] = React.useState<number | null>(null);
   const hideAddVideo = userId === ad.organizer._id;
@@ -220,7 +224,46 @@ export default function Ads({ ad, userId }: CardProps) {
   } catch {
     // Handle error when formatting date
   }
+  const [isPopupOpen, setIsPopupOpen] = useState(false);
+  const [abuseDescription, setAbuseDescription] = useState("");
 
+  const handleOpenPopup = () => {
+    setIsPopupOpen(true);
+  };
+
+  const handleClosePopup = () => {
+    setIsPopupOpen(false);
+    setAbuseDescription(""); // Clear the textarea on close
+  };
+  const handleDescriptionChange = (
+    event: React.ChangeEvent<HTMLTextAreaElement>
+  ) => {
+    setAbuseDescription(event.target.value);
+  };
+  const handleSubmitReport = async () => {
+    // Logic to handle report submission
+    // For example, send data to the admin via an API call
+    if (abuseDescription.trim()) {
+      // Logic to handle report submission, e.g., send the description to the admin
+      console.log("Report Submitted:", abuseDescription);
+      const read = "1";
+      const imageUrl = "";
+      await addDoc(collection(db, "messages"), {
+        text: abuseDescription + " AD REPORTED:" + ad._id,
+        name: userName,
+        avatar: userImage,
+        createdAt: serverTimestamp(),
+        uid: userId,
+        recipientUid: "65d4a2ffec4c43cdc488ce0d",
+        imageUrl,
+        read,
+      });
+      // Reset and close the popup after submission
+      handleClosePopup();
+    } else {
+      alert("Please enter a description of the abuse.");
+    }
+  };
   return (
     <>
       <div className="m-1 space-y-0 lg:flex lg:space-x-5">
@@ -586,26 +629,76 @@ export default function Ads({ ad, userId }: CardProps) {
             <h1 className="mt-5 p-0 font-bold text-emerald-950 text-sm">
               Share this Ad on Social media
             </h1>
-            <div className="flex items-center space-x-2">
-              <FacebookShareButton url={"https://localhost/ads/" + ad._id + ""}>
-                <FacebookIcon size={32} round />
-              </FacebookShareButton>
+            <div className="flex justify-between w-full items-center">
+              <div className="flex items-center space-x-2">
+                <FacebookShareButton
+                  url={"https://autoyard.co.ke/ads/" + ad._id + ""}
+                >
+                  <FacebookIcon size={32} round />
+                </FacebookShareButton>
 
-              <RedditShareButton url={"https://localhost/ads/" + ad._id + ""}>
-                <RedditIcon size={32} round />
-              </RedditShareButton>
-              <WhatsappShareButton url={"https://localhost/ads/" + ad._id + ""}>
-                <WhatsappIcon size={32} round />
-              </WhatsappShareButton>
-              <LinkedinShareButton url={"https://localhost/ads/" + ad._id + ""}>
-                <LinkedinIcon size={32} round />
-              </LinkedinShareButton>
-              <TwitterShareButton url={"https://localhost/ads/" + ad._id + ""}>
-                <TwitterIcon size={32} round />
-              </TwitterShareButton>
-              <EmailShareButton url={"https://localhost/ads/" + ad._id + ""}>
-                <EmailIcon size={32} round />
-              </EmailShareButton>
+                <RedditShareButton
+                  url={"https://autoyard.co.ke/ads/" + ad._id + ""}
+                >
+                  <RedditIcon size={32} round />
+                </RedditShareButton>
+                <WhatsappShareButton
+                  url={"https://autoyard.co.ke/ads/" + ad._id + ""}
+                >
+                  <WhatsappIcon size={32} round />
+                </WhatsappShareButton>
+                <LinkedinShareButton
+                  url={"https://autoyard.co.ke/ads/" + ad._id + ""}
+                >
+                  <LinkedinIcon size={32} round />
+                </LinkedinShareButton>
+                <TwitterShareButton
+                  url={"https://autoyard.co.ke/ads/" + ad._id + ""}
+                >
+                  <TwitterIcon size={32} round />
+                </TwitterShareButton>
+                <EmailShareButton
+                  url={"https://autoyard.co.ke/ads/" + ad._id + ""}
+                >
+                  <EmailIcon size={32} round />
+                </EmailShareButton>
+              </div>
+
+              <button
+                onClick={handleOpenPopup}
+                className="mt-2 mb-2 p-1 gap-1 text-xs text-emerald-900 rounded-sm bg-white ring-1 ring-emerald-900 hover:bg-emerald-100"
+              >
+                Report Abuse
+              </button>
+              {isPopupOpen && (
+                <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
+                  <div className="bg-white p-4 w-[300px] rounded-md shadow-lg">
+                    <h2 className="text-lg font-semibold text-emerald-900">
+                      Report Abuse
+                    </h2>
+                    <textarea
+                      className="w-full mt-2 p-2 border border-emerald-900 rounded-sm"
+                      placeholder="Describe the issue..."
+                      value={abuseDescription}
+                      onChange={handleDescriptionChange}
+                    />
+                    <div className="mt-4 flex justify-end gap-2">
+                      <button
+                        className="p-2 text-xs text-emerald-900 rounded-sm bg-emerald-100 hover:bg-emerald-200"
+                        onClick={handleSubmitReport}
+                      >
+                        Submit
+                      </button>
+                      <button
+                        className="p-2 text-xs text-emerald-900 rounded-sm bg-gray-100 hover:bg-gray-200"
+                        onClick={handleClosePopup}
+                      >
+                        Cancel
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              )}
             </div>
           </div>
         </div>
@@ -741,37 +834,54 @@ export default function Ads({ ad, userId }: CardProps) {
 
             <ol>
               <li>
-                <div className="flex gap-2 text-xs lg:text-sm">
-                  <CheckCircleIcon sx={{ fontSize: 14 }} /> Don&apos;t pay in
-                  advance, including for delivery
+                <div className="text-xs lg:text-sm">
+                  <p className="font-bold flex gap-2 text-xs lg:text-sm">
+                    <CheckCircleIcon sx={{ fontSize: 14 }} />
+                    Research the Seller
+                  </p>
+                  <p>
+                    Before contacting a seller, research their profile and
+                    reviews if available. Be cautious of sellers with little to
+                    no history on the platform.
+                  </p>
                 </div>
               </li>
 
               <li>
-                <div className="flex gap-2 text-xs lg:text-sm">
-                  <CheckCircleIcon sx={{ fontSize: 14 }} /> Meet the seller at a
-                  safe public place
+                <div className="mt-2 gap-2 text-xs lg:text-sm">
+                  <p className="font-bold flex gap-2 text-xs lg:text-sm">
+                    <CheckCircleIcon sx={{ fontSize: 14 }} /> Inspect the
+                    Vehicle
+                  </p>
+                  <p>
+                    Always inspect the vehicle in person before making a
+                    purchase. Ensure that the vehicle is in the condition
+                    described in the listing.
+                  </p>
                 </div>
               </li>
 
               <li>
-                <div className="flex gap-2 text-xs lg:text-sm">
-                  <CheckCircleIcon sx={{ fontSize: 14 }} /> Inspect the item and
-                  ensure its exactly what you want
+                <div className="gap-2 mt-2 text-xs lg:text-sm">
+                  <p className="font-bold flex gap-2 text-xs lg:text-sm">
+                    <CheckCircleIcon sx={{ fontSize: 14 }} /> Meet in Safe
+                    Locations
+                  </p>
+                  <p>
+                    Arrange to meet the seller in a public place. Avoid secluded
+                    areas and always choose a location where you feel safe.
+                  </p>
                 </div>
               </li>
 
               <li>
-                <div className="flex gap-2 text-xs lg:text-sm">
-                  <CheckCircleIcon sx={{ fontSize: 14 }} /> On delivery, check
-                  that the item delivered is what was inspected
-                </div>
-              </li>
-
-              <li>
-                <div className="flex gap-2 text-xs lg:text-sm">
-                  <CheckCircleIcon sx={{ fontSize: 14 }} /> Only pay when youre
-                  satisfied
+                <div className="mt-2 transition-colors font-bold text-emerald-600 hover:text-emerald-950 hover:cursor-pointer">
+                  <Link
+                    href="/safety"
+                    className="no-underline hover:text-emerald-500 "
+                  >
+                    Read more....
+                  </Link>
                 </div>
               </li>
             </ol>
