@@ -68,9 +68,9 @@ export async function POST(req: Request) {
       lastName: last_name,
       photo: image_url,
     }
-    console.log("clerkId:" + id+" email:"+email_addresses[0].email_address+" username:"+username+" first_name:"+first_name+" last_name:"+last_name+" imageurl:"+image_url);
+  //  console.log("clerkId:" + id+" email:"+email_addresses[0].email_address+" username:"+username+" first_name:"+first_name+" last_name:"+last_name+" imageurl:"+image_url);
     const newUser = await createUser(user);
-    console.log("reaponse:" + newUser);
+ //   console.log("reaponse:" + newUser);
     if(newUser) {
       await clerkClient.users.updateUserMetadata(id, {
         publicMetadata: {
