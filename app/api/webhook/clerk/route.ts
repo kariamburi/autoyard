@@ -54,12 +54,15 @@ export async function POST(req: Request) {
   }
  
   // Get the ID and type
-  const { id } = evt.data;
+ 
   const eventType = evt.type;
  
   if(eventType === 'user.created') {
     const { id, email_addresses, image_url, first_name, last_name, username } = evt.data;
-   
+    if (!first_name || !last_name || !username || !id || !email_addresses[0].email_address) {
+      return new Response('Incomplete user data', { status: 400 });
+    }
+
     const user:any = {
       clerkId: id,
       email: email_addresses[0].email_address,
