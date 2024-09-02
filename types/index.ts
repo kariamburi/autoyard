@@ -6,23 +6,23 @@ export type CreateUserParams = {
   username: string
   email: string
   photo: string
-  status: string
-  businessname:string
-  aboutbusiness:string
-  businessaddress:string
-  latitude: string
-  longitude: string
-  businesshours:Businesshours[]
-  businessworkingdays: string[]
-  phone: string
-  whatsapp:string
-  website:string
-  facebook:string
-  twitter:string
-  instagram:string
-  tiktok:string
-  verified:Verified[]
-  imageUrl: string
+  status?: string
+  businessname?:string
+  aboutbusiness?:string
+  businessaddress?:string
+  latitude?: string
+  longitude?: string
+  businesshours?:Businesshours[]
+  businessworkingdays?: string[]
+  phone?: string
+  whatsapp?:string
+  website?:string
+  facebook?:string
+  twitter?:string
+  instagram?:string
+  tiktok?:string
+  verified?:Verified[]
+  imageUrl?: string
 }
 export interface Businesshours {
   openHour: string

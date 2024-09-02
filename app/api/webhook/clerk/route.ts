@@ -67,23 +67,7 @@ export async function POST(req: Request) {
       firstName: first_name,
       lastName: last_name,
       photo: image_url,
-      status: 'active',
-      businessname: '',
-      aboutbusiness: '',
-      businessaddress: '',
-      latitude: '',
-      longitude: '',
-      businesshours: [],
-      businessworkingdays: [],
-      phone: '',
-      whatsapp: '',
-      website: '',
-      facebook: '',
-      twitter: '',
-      instagram: '',
-      tiktok: '',
-      verified: [],
-      imageUrl: '',
+   
     }
 
     const newUser = await createUser(user);

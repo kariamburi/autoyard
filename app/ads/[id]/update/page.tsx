@@ -15,6 +15,7 @@ const UpdateAd = async ({ params: { id } }: UpdateAdProps) => {
   const { sessionClaims } = auth();
   const userId = sessionClaims?.userId as string;
   const userName = sessionClaims?.userName as string;
+  const userImage = sessionClaims?.userImage as string;
   const Ad = await getAdById(id);
   let subscription: any = [];
   let daysRemaining = 0;
