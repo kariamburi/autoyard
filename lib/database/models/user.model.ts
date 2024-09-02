@@ -38,14 +38,14 @@ export interface Verified {
   verifieddate: Date
 }
 const BusinesshoursSchema = new Schema<Businesshours>({
-  openHour: { type: String, required: true },
-  openMinute: { type: String, required: true },
-  closeHour: { type: String, required: true },
-  closeMinute: { type: String, required: true },
+  openHour: { type: String },
+  openMinute: { type: String },
+  closeHour: { type: String },
+  closeMinute: { type: String},
 });
 const VerifiedSchema = new Schema<Verified>({
-  accountverified: { type: Boolean, required: true },
-  verifieddate: { type: Date, required: true },
+  accountverified: { type: Boolean},
+  verifieddate: { type: Date },
  
 });
 
