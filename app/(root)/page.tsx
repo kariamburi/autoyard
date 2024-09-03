@@ -18,19 +18,19 @@ export default async function Home({ searchParams }: SearchParamProps) {
   const userName = sessionClaims?.userName as string;
   const userImage = sessionClaims?.userImage as string;
 
-  // const userr = {
-  //   clerkId: "jamba",
-  //   email: "nice@gmail.com",
-  //   username: "nive",
-  //   firstName: "okayy",
-  //   lastName: "last_name",
-  //   photo: "image_url",
-  //   status: "User", // Example value for status
-  // };
+  const userr: any = {
+    clerkId: "hello",
+    email: "hello@gmail.com",
+    username: "dov",
+    firstName: "sol",
+    lastName: "vob",
+    photo: "mkl",
+    status: "User", // Example value for status
+  };
   //  console.log("clerkId:" + id+" email:"+email_addresses[0].email_address+" username:"+username+" first_name:"+first_name+" last_name:"+last_name+" imageurl:"+image_url);
-  // console.log("Creating user with data:", userr);
-  // const newUser = await createUser(userr);
-  // console.log(newUser);
+  console.log("Creating user with data:", userr);
+  const newUser = await createUser(userr);
+  console.log(newUser[0]);
 
   const page = Number(searchParams?.page) || 1;
   const searchText = (searchParams?.query as string) || "";

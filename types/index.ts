@@ -6,6 +6,15 @@ export type CreateUserParams = {
   username: string
   email: string
   photo: string
+}
+
+export type CreateUserParamss = {
+  clerkId: string
+  firstName: string
+  lastName: string
+  username: string
+  email: string
+  photo: string
   status: string
   businessname?:string
   aboutbusiness?:string
