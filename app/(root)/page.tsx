@@ -10,12 +10,28 @@ import Link from "next/link";
 import { getAllAd } from "@/lib/actions/ad.actions";
 import MenuSubmobile from "@/components/shared/MenuSubmobile";
 import Collection from "@/components/shared/Collection";
+import { createUser } from "@/lib/actions/user.actions";
 
 export default async function Home({ searchParams }: SearchParamProps) {
   const { sessionClaims } = auth();
   const userId = sessionClaims?.userId as string;
   const userName = sessionClaims?.userName as string;
   const userImage = sessionClaims?.userImage as string;
+
+  // const userr = {
+  //   clerkId: "jamba",
+  //   email: "nice@gmail.com",
+  //   username: "nive",
+  //   firstName: "okayy",
+  //   lastName: "last_name",
+  //   photo: "image_url",
+  //   status: "User", // Example value for status
+  // };
+  //  console.log("clerkId:" + id+" email:"+email_addresses[0].email_address+" username:"+username+" first_name:"+first_name+" last_name:"+last_name+" imageurl:"+image_url);
+  // console.log("Creating user with data:", userr);
+  // const newUser = await createUser(userr);
+  // console.log(newUser);
+
   const page = Number(searchParams?.page) || 1;
   const searchText = (searchParams?.query as string) || "";
   const sortby = (searchParams?.sortby as string) || "recommeded";

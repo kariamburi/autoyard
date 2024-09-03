@@ -6,7 +6,7 @@ export type CreateUserParams = {
   username: string
   email: string
   photo: string
-  status?: string
+  status: string
   businessname?:string
   aboutbusiness?:string
   businessaddress?:string

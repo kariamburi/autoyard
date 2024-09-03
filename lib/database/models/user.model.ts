@@ -25,7 +25,6 @@ export interface IUser extends Document {
   tiktok:string;
   verified:Verified[];
   imageUrl: string;
-
 }
 export interface Businesshours {
   openHour: string;
@@ -39,12 +38,12 @@ export interface Verified {
 }
 const BusinesshoursSchema = new Schema<Businesshours>({
   openHour: { type: String },
-  openMinute: { type: String },
-  closeHour: { type: String },
+  openMinute: { type: String},
+  closeHour: { type: String},
   closeMinute: { type: String},
 });
 const VerifiedSchema = new Schema<Verified>({
-  accountverified: { type: Boolean},
+  accountverified: { type: Boolean },
   verifieddate: { type: Date },
  
 });
@@ -52,27 +51,27 @@ const VerifiedSchema = new Schema<Verified>({
 const UserSchema = new Schema({
   clerkId: { type: String, unique: true },
   email: { type: String, unique: true },
-  username: { type: String ,unique: true },
-  firstName: { type: String },
+  username: { type: String, unique: true },
+  firstName: { type: String},
   lastName: {type: String },
-  photo: { type: String },
-  status: {type: String},
-  businessname: {type: String },
+  photo: { type: String},
+  status: {type: String },
+  businessname: {type: String},
   aboutbusiness: {type: String },
   businessaddress: {type: String },
   latitude: { type: String },
   longitude: { type: String },
-  businesshours: [BusinesshoursSchema],
-  businessworkingdays: { type: [String] },
+ // businesshours: [BusinesshoursSchema],
+ // businessworkingdays: { type: [String] },
   phone: { type: String },
   whatsapp: { type: String },
   website:{type: String},
-  facebook:{type: String},
+  facebook:{type: String },
   twitter:{type: String },
   instagram:{type: String },
-  tiktok:{type: String },
-  verified: [VerifiedSchema],
-  imageUrl:{type: String },
+  tiktok:{type: String},
+ // verified: [VerifiedSchema],
+  imageUrl:{type: String},
 })
 
 const User = models.User || model('User', UserSchema);

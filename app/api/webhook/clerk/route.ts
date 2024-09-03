@@ -59,10 +59,7 @@ export async function POST(req: Request) {
  
   if(eventType === 'user.created') {
     const { id, email_addresses, image_url, first_name, last_name, username } = evt.data;
-    if (!first_name || !last_name || !username || !id || !email_addresses[0].email_address) {
-      return new Response('Incomplete user data', { status: 400 });
-    }
-
+  
     const user:any = {
       clerkId: id,
       email: email_addresses[0].email_address,
@@ -70,6 +67,7 @@ export async function POST(req: Request) {
       firstName: first_name,
       lastName: last_name,
       photo: image_url,
+      status:"User",
     }
   //  console.log("clerkId:" + id+" email:"+email_addresses[0].email_address+" username:"+username+" first_name:"+first_name+" last_name:"+last_name+" imageurl:"+image_url);
     const newUser = await createUser(user);
