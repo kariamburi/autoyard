@@ -61,8 +61,8 @@ const UserSchema = new Schema({
   businessaddress: {type: String },
   latitude: { type: String },
   longitude: { type: String },
- // businesshours: [BusinesshoursSchema],
- // businessworkingdays: { type: [String] },
+  businesshours: [BusinesshoursSchema],
+  businessworkingdays: { type: [String] },
   phone: { type: String },
   whatsapp: { type: String },
   website:{type: String},
@@ -70,7 +70,7 @@ const UserSchema = new Schema({
   twitter:{type: String },
   instagram:{type: String },
   tiktok:{type: String},
- // verified: [VerifiedSchema],
+  verified: [VerifiedSchema],
   imageUrl:{type: String},
 })
 
