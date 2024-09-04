@@ -68,24 +68,19 @@ export async function POST(req: Request) {
       lastName: last_name,
       photo: image_url,
       status: "User",
+      verified: [{ accountverified: false, verifieddate: new Date() }],
     }
-    if (!user.clerkId) {
-      console.log("Clerk ID is missing");
-  }
-  console.log("okay");
-  //  console.log("clerkId:" + id+" email:"+email_addresses[0].email_address+" username:"+username+" first_name:"+first_name+" last_name:"+last_name+" imageurl:"+image_url);
+  
     const newUser = await createUser(user);
-    console.log("USERR:" + newUser);
-    console.log("response:" + newUser[0]);
-    if(newUser[0]) {
+    if(newUser) {
       await clerkClient.users.updateUserMetadata(id, {
         publicMetadata: {
-          userId: newUser[0]._id
+          userId: newUser._id
         }
       })
     }
 
-    return NextResponse.json({ message: 'OK', user: newUser[0] })
+    return NextResponse.json({ message: 'OK', user: newUser })
   }
 
   if (eventType === 'user.updated') {

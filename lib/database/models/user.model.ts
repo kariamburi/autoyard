@@ -1,78 +1,81 @@
-import { Schema, model, models } from "mongoose";
+import { Schema, model, models, Document } from "mongoose";
 
 export interface IUser extends Document {
   _id: string;
   clerkId: string;
   email: string;
-  username:string;
+  username: string;
   firstName: string;
   lastName: string;
   photo: string;
   status: string;
-  businessname:string;
-  aboutbusiness:string;
-  businessaddress:string;
-  latitude: string;
-  longitude: string;
-  businesshours:Businesshours[];
-  businessworkingdays:string[];
-  phone: string;
-  whatsapp:string;
-  website:string;
-  facebook:string;
-  twitter:string;
-  instagram:string;
-  tiktok:string;
-  verified:Verified[];
-  imageUrl: string;
+  businessname?: string;
+  aboutbusiness?: string;
+  businessaddress?: string;
+  latitude?: string;
+  longitude?: string;
+  businesshours?: Businesshours[];
+  businessworkingdays?: string[];
+  phone?: string;
+  whatsapp?: string;
+  website?: string;
+  facebook?: string;
+  twitter?: string;
+  instagram?: string;
+  tiktok?: string;
+  verified?: Verified[];
+  imageUrl?: string;
 }
+
 export interface Businesshours {
   openHour: string;
   openMinute: string;
   closeHour: string;
   closeMinute: string;
 }
+
 export interface Verified {
-  accountverified: boolean
-  verifieddate: Date
+  accountverified: boolean;
+  verifieddate: Date;
 }
+
 const BusinesshoursSchema = new Schema<Businesshours>({
-  openHour: { type: String },
-  openMinute: { type: String},
-  closeHour: { type: String},
-  closeMinute: { type: String},
+  openHour: { type: String, required: true },
+  openMinute: { type: String, required: true },
+  closeHour: { type: String, required: true },
+  closeMinute: { type: String, required: true },
 });
+
 const VerifiedSchema = new Schema<Verified>({
-  accountverified: { type: Boolean },
-  verifieddate: { type: Date },
- 
+  accountverified: { type: Boolean, required: true },
+  verifieddate: { type: Date, required: true },
 });
 
 const UserSchema = new Schema({
-  clerkId: { type: String, unique: true },
-  email: { type: String, unique: true },
-  username: { type: String, unique: true },
-  firstName: { type: String},
-  lastName: {type: String },
-  photo: { type: String},
-  status: {type: String },
-  businessname: {type: String},
-  aboutbusiness: {type: String },
-  businessaddress: {type: String },
-  latitude: { type: String },
-  longitude: { type: String },
-  businesshours: [BusinesshoursSchema],
-  businessworkingdays: { type: [String] },
-  phone: { type: String },
-  whatsapp: { type: String },
-  website:{type: String},
-  facebook:{type: String },
-  twitter:{type: String },
-  instagram:{type: String },
-  tiktok:{type: String},
-  verified: [VerifiedSchema],
-  imageUrl:{type: String},
-})
+  clerkId: { type: String, required: true, unique: true },
+  email: { type: String, required: true, unique: true },
+  username: { type: String, required: true, unique: true },
+  firstName: { type: String, required: true },
+  lastName: { type: String, required: true },
+  photo: { type: String, required: true },
+  status: { type: String, required: true },
+  businessname: { type: String }, // Optional
+  aboutbusiness: { type: String }, // Optional
+  businessaddress: { type: String }, // Optional
+  latitude: { type: String }, // Optional
+  longitude: { type: String }, // Optional
+  businesshours: { type: [BusinesshoursSchema], default: [] }, // Optional
+  businessworkingdays: { type: [String], default: [] }, // Optional
+  phone: { type: String }, // Optional
+  whatsapp: { type: String }, // Optional
+  website: { type: String }, // Optional
+  facebook: { type: String }, // Optional
+  twitter: { type: String }, // Optional
+  instagram: { type: String }, // Optional
+  tiktok: { type: String }, // Optional
+  verified: { type: [VerifiedSchema], default: [] }, // Optional
+  imageUrl: { type: String }, // Optional
+});
 
 const User = models.User || model('User', UserSchema);
 
