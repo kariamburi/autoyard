@@ -114,7 +114,7 @@ const ChatWindow: React.FC<ChatWindowProps> = ({
                     status: "",
                     firstName: "",
                     lastName: "",
-                    username: "",
+                    //username: "",
                     photo: "",
                   }}
                 />
@@ -144,7 +144,7 @@ const ChatWindow: React.FC<ChatWindowProps> = ({
                     status: "",
                     firstName: "",
                     lastName: "",
-                    username: "",
+                    //username: "",
                     photo: "",
                   }}
                 />

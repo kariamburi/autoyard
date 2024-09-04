@@ -237,7 +237,7 @@ const Chat = ({ senderName, senderId, senderImage }: sidebarProps) => {
                         status: "User",
                         firstName: recipientUidName,
                         lastName: "",
-                        username: "",
+                        // username: "",
                         photo: recipientUidImage,
                       }}
                     />
