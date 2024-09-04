@@ -22,9 +22,9 @@ export default function Header() {
       <div className="lg:mb-10 mx-auto md:my-auto py-2 lg:py-10 md:py-0 w-[90%] md:w-[40%] text-center">
         <div className="">
           <div className="mb-5 text-white">
-            Find anything in{" "}
+            Find all in{" "}
             <span className="bg-black text-white p-1 rounded-full">
-              <LocationOnIcon /> All Kenya
+              <LocationOnIcon /> Kenya
             </span>
           </div>
         </div>

@@ -461,10 +461,8 @@ const Storeads = async ({ params: { id }, searchParams }: SearchParamProps) => {
   // console.log("--------------------------------------" + Ads?.data);
   return (
     <>
-      <div className="bg-gradient-to-r from-emerald-800 to-emerald-950 z-10 top-0 fixed w-full">
-        <div className="p-2">
-          <Navbar userstatus="User" userId={userId ?? ""} />
-        </div>
+      <div className="z-10 top-0 fixed w-full">
+        <Navbar userstatus="User" userId={userId ?? ""} />
       </div>
       <div className="max-w-6xl mx-auto mt-[70px]">
         <div className="text-sm breadcrumbs p-0 hidden lg:inline">

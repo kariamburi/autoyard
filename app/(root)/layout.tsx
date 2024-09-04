@@ -25,43 +25,45 @@ export default async function RootLayout({
 
   //console.log(user.status);
   return (
-    <div>
-      <div className="sm:hidden fixed top-0 z-10 w-full bg-gradient-to-r from-emerald-800 to-emerald-950 p-3">
-        {user ? (
-          <Navbarhome userstatus={user.status} userId={userId} />
-        ) : (
-          <Navbarhome userstatus="User" userId="" />
-        )}
-      </div>
-      <div className="hidden sm:inline">
-        <div className="w-full bg-gradient-to-r from-emerald-800 to-emerald-950 p-3">
+    <div className="min-h-screen">
+      <div className="w-full h-full">
+        <div className="sm:hidden fixed top-0 z-10 w-full">
           {user ? (
             <Navbarhome userstatus={user.status} userId={userId} />
           ) : (
             <Navbarhome userstatus="User" userId="" />
           )}
-        </div>{" "}
-      </div>
-      <main className="flex-1">{children}</main>
-      <Toaster />
-      <div className="mt-5 w-full hidden lg:inline">
-        <Image
-          src="/footer-png-8.png"
-          alt=""
-          className="mx-auto"
-          layout="responsive" // Makes the image responsive
-          width={800}
-          height={50}
-        />
-      </div>
-      <footer className="bg-white">
-        <div className="hidden lg:inline">
-          <Footer />
         </div>
-        <div className="lg:hidden">
-          <BottomNavigation userId={userId} />
+        <div className="hidden sm:inline">
+          <div className="w-full">
+            {user ? (
+              <Navbarhome userstatus={user.status} userId={userId} />
+            ) : (
+              <Navbarhome userstatus="User" userId="" />
+            )}
+          </div>{" "}
         </div>
-      </footer>
+        <main className="flex-1">{children}</main>
+        <Toaster />
+        <div className="mt-5 w-full hidden lg:inline">
+          <Image
+            src="/footer-png-8.png"
+            alt=""
+            className="mx-auto"
+            layout="responsive" // Makes the image responsive
+            width={800}
+            height={50}
+          />
+        </div>
+        <footer className="bg-white">
+          <div className="hidden lg:inline">
+            <Footer />
+          </div>
+          <div className="lg:hidden">
+            <BottomNavigation userId={userId} />
+          </div>
+        </footer>
+      </div>
     </div>
   );
 }

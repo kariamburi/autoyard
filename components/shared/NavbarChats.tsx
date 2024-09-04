@@ -42,7 +42,7 @@ const NavbarChats = ({ recipient, userId }: sidebarProps) => {
   const isActive = pathname === "/";
 
   return (
-    <div className="flex p-1 gap-1 w-full">
+    <div className="flex p-2 lg:p-3 gap-1 w-full bg-gradient-to-b lg:bg-gradient-to-r from-emerald-800 to-emerald-950">
       <div className="flex-1">
         <div className="flex items-center">
           {!isActive && (

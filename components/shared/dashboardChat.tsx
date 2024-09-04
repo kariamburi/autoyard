@@ -104,10 +104,8 @@ const DashboardChat = ({
 
   return (
     <>
-      <div className="bg-gradient-to-r from-emerald-800 to-emerald-950 z-10 top-0 fixed w-full">
-        <div className="p-2">
-          <NavbarChats recipient={user} userId={recipientUid} />
-        </div>
+      <div className="z-10 top-0 fixed w-full">
+        <NavbarChats recipient={user} userId={recipientUid} />
       </div>
 
       <div className="max-w-6xl mx-auto flex mt-20 mb-0 p-1">

@@ -65,10 +65,8 @@ const create = async () => {
   if (!subscription && !packagesList) {
     return (
       <div className="flex-center h-screen w-full bg-[#ebf2f7] bg-dotted-pattern bg-cover bg-fixed bg-center">
-        <div className="bg-gradient-to-r from-emerald-800 to-emerald-950 top-0 z-10 fixed w-full">
-          <div className="p-2">
-            <Navbar userstatus="User" userId={userId || ""} />
-          </div>
+        <div className="top-0 z-10 fixed w-full">
+          <Navbar userstatus="User" userId={userId || ""} />
         </div>
         <div className="max-w-6xl mx-auto mt-20">
           <div className="flex gap-1 items-center">
@@ -86,10 +84,8 @@ const create = async () => {
   }
   return (
     <>
-      <div className="bg-gradient-to-r from-emerald-800 to-emerald-950 z-10 top-0 fixed w-full">
-        <div className="p-1">
-          <Navbar userstatus="User" userId={userId} />
-        </div>
+      <div className="z-10 top-0 fixed w-full">
+        <Navbar userstatus="User" userId={userId} />
       </div>
       <div className="mt-20">
         <Dashboard

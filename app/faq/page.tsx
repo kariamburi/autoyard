@@ -14,10 +14,8 @@ const Faq = async () => {
 
   return (
     <>
-      <div className="bg-gradient-to-r from-emerald-800 to-emerald-950 z-10 top-0 fixed w-full">
-        <div className="p-2">
-          <Navbar userstatus="User" userId={userId} />
-        </div>
+      <div className="z-10 top-0 fixed w-full">
+        <Navbar userstatus="User" userId={userId} />
       </div>
 
       <div className="max-w-3xl mx-auto flex mt-20 p-1">
