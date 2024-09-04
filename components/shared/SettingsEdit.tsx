@@ -113,17 +113,17 @@ const SettingsEdit = ({ user, type, userId }: setingsProp) => {
   }, []);
 
   const [countryCode, setCountryCode] = useState(
-    user?.phone.substring(0, 4) ?? "+254"
+    user?.phone ? user.phone.substring(0, 4) : "+254"
   ); // Default country code
-  const [phoneNumber, setPhoneNumber] = useState(
-    user?.phone.substring(user?.phone.length - 9) ?? ""
-  );
 
+  const [phoneNumber, setPhoneNumber] = useState(
+    user?.phone ? user.phone.substring(user.phone.length - 9) : ""
+  );
   const [countryCodeWhatsapp, setCountryCodeWhatsapp] = useState(
-    user?.whatsapp.substring(0, 4) ?? "+254"
+    user?.whatsapp ? user?.whatsapp.substring(0, 4) : "+254"
   ); // Default country code
   const [whatsappNumber, setWhatsappNumber] = useState(
-    user?.whatsapp.substring(user?.whatsapp.length - 9) ?? ""
+    user?.whatsapp ? user?.whatsapp.substring(user?.whatsapp.length - 9) : ""
   );
   const router = useRouter();
   const initialValues =
@@ -138,18 +138,20 @@ const SettingsEdit = ({ user, type, userId }: setingsProp) => {
   const [files, setFiles] = useState<File[]>([]);
   const { startUpload } = useUploadThing("imageUploader");
   const [startHour, setStartHour] = useState(
-    user?.businesshours[0]?.openHour ?? "09"
-  );
-  const [startMinute, setStartMinute] = useState(
-    user?.businesshours[0]?.openMinute ?? "00"
-  );
-  const [endHour, setEndHour] = useState(
-    user?.businesshours[0]?.closeHour ?? "17"
-  );
-  const [endMinute, setEndMinute] = useState(
-    user?.businesshours[0]?.closeMinute ?? "00"
+    user?.businesshours?.[0]?.openHour ?? "09"
   );
 
+  const [startMinute, setStartMinute] = useState(
+    user?.businesshours?.[0]?.openMinute ?? "00"
+  );
+
+  const [endHour, setEndHour] = useState(
+    user?.businesshours?.[0]?.closeHour ?? "17"
+  );
+
+  const [endMinute, setEndMinute] = useState(
+    user?.businesshours?.[0]?.closeMinute ?? "00"
+  );
   // 1. Define your form.
   const form = useForm<z.infer<typeof UserFormSchema>>({
     resolver: zodResolver(UserFormSchema),
