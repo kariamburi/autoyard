@@ -3,7 +3,7 @@ export type CreateUserParams = {
   clerkId: string
   firstName: string
   lastName: string
-  username: string
+ // username: string
   email: string
   photo: string
 }
@@ -12,7 +12,7 @@ export type CreateUserParamss = {
   clerkId: string
   firstName: string
   lastName: string
-  username: string
+ // username: string
   email: string
   photo: string
   status: string
@@ -47,7 +47,7 @@ export type UpdateUserParams = {
   status: string
   firstName: string
   lastName: string
-  username: string
+ // username: string
   photo: string
 
 }
@@ -55,7 +55,7 @@ export type UpdateUserSetingsParams = {
   user: {
   _id: string
   lastName: string
-  username: string
+  //username: string
   photo: string
   status: string
   businessname?:string
