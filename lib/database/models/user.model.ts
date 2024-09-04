@@ -23,7 +23,7 @@ export interface IUser extends Document {
   twitter?: string;
   instagram?: string;
   tiktok?: string;
-  verified?: Verified[];
+  verified: Verified[];
   imageUrl?: string;
 }
 
@@ -73,7 +73,7 @@ const UserSchema = new Schema({
   twitter: { type: String }, // Optional
   instagram: { type: String }, // Optional
   tiktok: { type: String }, // Optional
-  verified: { type: [VerifiedSchema], default: [] }, // Optional
+  verified: { type: [VerifiedSchema], required: true }, // Optional
   imageUrl: { type: String }, // Optional
 });
 

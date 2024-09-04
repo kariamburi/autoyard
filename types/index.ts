@@ -30,7 +30,7 @@ export type CreateUserParamss = {
   twitter?:string
   instagram?:string
   tiktok?:string
-  verified?:Verified[]
+  verified:Verified[]
   imageUrl?: string
 }
 export interface Businesshours {
