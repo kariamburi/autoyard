@@ -77,8 +77,8 @@ const Message = ({
                   className="w-8 h-8 rounded-full object-cover"
                   src={photoURL}
                   alt="avatar"
-                  width={16}
-                  height={16}
+                  width={200}
+                  height={200}
                 />
                 <div className="text-[12px] lg:text-xs text-black font-medium flex gap-5">
                   {message.name}
@@ -100,8 +100,8 @@ const Message = ({
                       src={message.imageUrl}
                       alt="Image"
                       className="mb-2 object-cover"
-                      width={16}
-                      height={16}
+                      width={900}
+                      height={500}
                     />
                   )}
                   <div className="text-sm lg:text-base w-[200px] lg:w-full">
@@ -119,8 +119,8 @@ const Message = ({
                   className="w-8 h-8 rounded-full object-cover"
                   src={message.avatar}
                   alt="Avatar"
-                  width={16}
-                  height={16}
+                  width={200}
+                  height={200}
                 />
                 <div className="text-[12px] lg:text-xs text-black font-medium flex gap-3">
                   {recipient.firstName} {recipient.lastName}
@@ -142,8 +142,8 @@ const Message = ({
                       src={message.imageUrl}
                       alt="Image"
                       className="mb-2 object-cover"
-                      width={16}
-                      height={16}
+                      width={900}
+                      height={500}
                     />
                   )}
                   <div className="text-sm lg:text-base w-[200px] lg:w-full">

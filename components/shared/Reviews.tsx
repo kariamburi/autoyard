@@ -5,6 +5,7 @@ import { deleteDoc, doc } from "firebase/firestore";
 import { db } from "@/lib/firebase";
 import { DeleteConfirmation } from "./DeleteConfirmation";
 import { DeleteReview } from "./DeleteReview";
+import Image from "next/image";
 import {
   HoverCard,
   HoverCardContent,
@@ -78,10 +79,12 @@ const Reviews = ({
       >
         <div className="">
           <div className="flex items-center gap-2">
-            <img
+            <Image
               className="w-8 h-8 rounded-full object-cover"
-              src={message.avatar}
+              src={photoURL}
               alt="avatar"
+              width={200}
+              height={200}
             />
             <div className="text-xs font-bold flex gap-3">{message.name}</div>
           </div>
