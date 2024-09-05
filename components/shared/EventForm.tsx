@@ -3734,13 +3734,6 @@ const AdForm = ({
                                         : pack.color,
                                   }}
                                 >
-                                  <Image
-                                    className="w-8 h-8 object-cover rounded-full"
-                                    src={pack.imageUrl}
-                                    alt="Menu Image"
-                                    width={8}
-                                    height={8}
-                                  />
                                   {pack.name}
                                 </div>
                                 <div className="p-3">
@@ -3853,7 +3846,7 @@ const AdForm = ({
                           })}
                       </div>
 
-                      <div className="p-2 flex flex-col justify-between items-center">
+                      <div className="p-2 flex flex-col md:flex-row justify-between items-center">
                         {/* Left-aligned buttons */}
                         <div className="flex flex-wrap justify-center md:justify-start items-center p-1">
                           <button
@@ -3908,7 +3901,7 @@ const AdForm = ({
                           </button>
                         </div>
 
-                        <div className="flex gap-1 justify-center items-center w-full">
+                        <div className="flex gap-1 mt-1 justify-center items-center w-full">
                           <label
                             htmlFor="color"
                             className="whitespace-nowrap p-3 font-bold leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"

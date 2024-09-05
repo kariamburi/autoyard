@@ -132,11 +132,6 @@ export default function Listpackages({
                     activePackage === pack ? "#4DCE7A" : pack.color,
                 }}
               >
-                <img
-                  className="w-8 h-8 object-cover rounded-full"
-                  src={pack.imageUrl}
-                  alt="Menu Image"
-                />
                 {pack.name}
               </div>
 
