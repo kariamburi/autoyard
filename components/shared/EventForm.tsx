@@ -3908,19 +3908,20 @@ const AdForm = ({
                           </button>
                         </div>
 
-                        {/* Right-aligned input field and button 
-                    <div className="flex items-center">
-                      <label
-                        htmlFor="color"
-                        className="whitespace-nowrap p-3 font-bold leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-                      ></label>
-                      <input
-                        type="text"
-                        value={priceInput}
-                        className="px-4 py-2 border border-gray-300 font-bold rounded-md mr-4"
-                      />
-                    </div>
-                    */}
+                        <div className="flex gap-1 justify-center items-center w-full">
+                          <label
+                            htmlFor="color"
+                            className="whitespace-nowrap p-3 font-bold leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                          >
+                            Charge Ksh
+                          </label>
+                          <input
+                            type="text"
+                            disabled
+                            value={priceInput}
+                            className="px-4 py-2 w-[200px] border border-gray-300 font-bold rounded-md mr-4"
+                          />
+                        </div>
                       </div>
                     </>
                   )}

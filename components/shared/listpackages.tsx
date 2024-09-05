@@ -207,8 +207,10 @@ export default function Listpackages({
           ))}
       </div>
       {/* Static div at the bottom */}
+
       <div className="fixed bottom-0 left-0 right-0 bg-[#F2FFF2] h-auto md:h-24 z-10 p-3 shadow-md flex flex-col md:flex-row justify-between items-center">
         {/* Left-aligned buttons */}
+
         <div className="flex flex-wrap justify-center md:justify-start items-center mb-4 md:mb-0">
           <button
             className={`mr-4 mb-2 md:mb-0 ${
@@ -263,7 +265,7 @@ export default function Listpackages({
         </div>
 
         {/* Right-aligned input field and button */}
-        <div className="flex gap-1 items-center w-full">
+        <div className="flex gap-1 justify-center items-center w-full">
           <label
             htmlFor="color"
             className="whitespace-nowrap p-3 font-bold leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
@@ -274,35 +276,22 @@ export default function Listpackages({
             type="text"
             value={priceInput}
             disabled
-            className="border p-1 w-[150px] border-gray-300 font-bold rounded-md "
+            className="border p-1 w-[150px] lg:w-[200px] border-gray-300 font-bold rounded-md "
           />
           <SignedIn>
-            {/* <Checkout
-              planId={packIdInput}
-              plan={packNameInput}
-              period={periodInput}
-              amount={parseFloat(priceInput)}
-              buyerId={userId}
-              phone={user.phone ?? ""}
-              firstName={user.firstName}
-              middleName={""}
-              lastName={user.lastName}
-              email={user.email}
-            />
-            */}
             <Button
               type="submit"
               onClick={() =>
                 handlepay(packIdInput, packNameInput, periodInput, priceInput)
               }
               role="link"
-              className="w-full rounded-full bg-[#000000] bg-cover"
+              className="w-[100px] rounded-full bg-[#000000] bg-cover"
             >
               Buy Now
             </Button>
           </SignedIn>
           <SignedOut>
-            <Button asChild className="rounded-full" size="lg">
+            <Button asChild className="rounded-full w-[100px]" size="lg">
               <Link href="/sign-in">Pay Now</Link>
             </Button>
           </SignedOut>
