@@ -3846,11 +3846,11 @@ const AdForm = ({
                           })}
                       </div>
 
-                      <div className="p-2 flex flex-col md:flex-row justify-between items-center">
+                      <div className="hidden lg:inline p-2 flex flex-col md:flex-row justify-between items-center">
                         {/* Left-aligned buttons */}
                         <div className="grid grid-cols-3 lg:grid-cols-5 w-full justify-between items-center p-1">
                           <button
-                            className={`mr-2 text-xs w-[70px] lg:w-[90px] lg:text-sm ${
+                            className={`mr-2 mb-2 text-xs w-[80px] lg:w-[90px] lg:text-sm ${
                               activeButton === 0
                                 ? "bg-gradient-to-b from-[#4DCE7A] to-[#30AF5B] text-white p-2 rounded-full"
                                 : "border border-[#30AF5B] text-[#30AF5B] rounded-full p-2"
@@ -3860,7 +3860,7 @@ const AdForm = ({
                             1 week
                           </button>
                           <button
-                            className={`mr-2 mb-2 text-xs w-[70px] lg:w-[90px] lg:text-sm ${
+                            className={`mr-2 mb-2 text-xs w-[80px] lg:w-[90px] lg:text-sm ${
                               activeButton === 1
                                 ? "bg-gradient-to-b from-[#4DCE7A] to-[#30AF5B] text-white p-2 rounded-full"
                                 : "border border-[#30AF5B] text-[#30AF5B] rounded-full p-2"
@@ -3890,7 +3890,7 @@ const AdForm = ({
                             6 months
                           </button>
                           <button
-                            className={`mr-2 mb-2 text-xs w-[70px] lg:w-[90px] lg:text-sm ${
+                            className={`mr-2 mb-2 text-xs w-[80px] lg:w-[90px] lg:text-sm ${
                               activeButton === 4
                                 ? "bg-gradient-to-b from-[#4DCE7A] to-[#30AF5B] text-white p-2 rounded-full"
                                 : "border border-[#30AF5B] text-[#30AF5B] rounded-full p-2"
