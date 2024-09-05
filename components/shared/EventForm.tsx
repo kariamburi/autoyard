@@ -3870,7 +3870,7 @@ const AdForm = ({
                             1 month
                           </button>
                           <button
-                            className={`mr-2 text-xs w-[70px] lg:w-[90px] lg:text-sm ${
+                            className={`mr-2 text-xs w-[80px] lg:w-[90px] lg:text-sm ${
                               activeButton === 2
                                 ? "bg-gradient-to-b from-[#4DCE7A] to-[#30AF5B] text-white p-2 rounded-full"
                                 : "border border-[#30AF5B] text-[#30AF5B] rounded-full p-2"
@@ -3880,7 +3880,7 @@ const AdForm = ({
                             3 months
                           </button>
                           <button
-                            className={`mr-2 text-xs w-[70px] lg:w-[90px] lg:text-sm ${
+                            className={`mr-2 text-xs w-[80px] lg:w-[90px] lg:text-sm ${
                               activeButton === 3
                                 ? "bg-gradient-to-b from-[#4DCE7A] to-[#30AF5B] text-white p-2 rounded-full"
                                 : "border border-[#30AF5B] text-[#30AF5B] rounded-full p-2"
