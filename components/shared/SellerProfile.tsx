@@ -50,6 +50,7 @@ import { getVerfiesfee } from "@/lib/actions/verifies.actions";
 import Verification from "./Verification";
 import { IUser } from "@/lib/database/models/user.model";
 import Image from "next/image";
+import EditOutlinedIcon from "@mui/icons-material/EditOutlined";
 type CollectionProps = {
   userId: string;
   loggedId: string;
@@ -105,7 +106,7 @@ const SellerProfile = ({ userId, loggedId, user }: CollectionProps) => {
   }
 
   return (
-    <div className="flex bg-white flex-col m-1 lg:m-0 items-center min-w-[300px] lg:max-w-[350px]">
+    <div className="flex bg-white flex-col m-1 items-center min-w-[300px] lg:max-w-[350px]">
       <div className="flex flex-col items-center rounded-t-lg w-full p-1 bg-emerald-700">
         <Link href={`/shop/${userId}`} className="no-underline font-bold m-1">
           <div className="w-16 h-16 p-1 rounded-full bg-white">
@@ -154,284 +155,320 @@ const SellerProfile = ({ userId, loggedId, user }: CollectionProps) => {
           <div className="">
             <h1 className="mt-5 p-0 font-bold">About Seller</h1>
           </div>
-          <div className="flex w-full gap-5 p-1 bg-gray-100 rounded-lg">
-            <Accordion type="single" collapsible className="w-full">
-              <AccordionItem value="item-2">
-                <AccordionTrigger>
-                  <p className="text-xs lg:text-sm">Show More...</p>
-                </AccordionTrigger>
-                <AccordionContent>
-                  <div className="p-0 rounded-[20px] m-2 shadow bg-white">
-                    {user.imageUrl && (
-                      <div className="flex h-50 w-full flex-1 justify-center">
-                        <Image
-                          src={user.imageUrl}
-                          alt="image"
-                          className="object-center rounded-t-[20px]"
-                          width={900}
-                          height={500}
-                        />
-                      </div>
-                    )}
-                    <div className="m-3 p-1">
-                      <div className="mb-5 md:flex-row">
-                        <div className="font-bold text-xs lg:text-sm">
-                          Business Name
+          {user.businessname.length > 0 ? (
+            <div className="flex w-full gap-5 p-1 bg-gray-100 rounded-lg">
+              <Accordion type="single" collapsible className="w-full">
+                <AccordionItem value="item-2">
+                  <AccordionTrigger>
+                    <p className="text-xs lg:text-sm">Show More...</p>
+                  </AccordionTrigger>
+                  <AccordionContent>
+                    <div className="p-0 rounded-[20px] m-2 shadow bg-white">
+                      {user.imageUrl && (
+                        <div className="flex h-50 w-full flex-1 justify-center">
+                          <Image
+                            src={user.imageUrl}
+                            alt="image"
+                            className="object-center rounded-t-[20px]"
+                            width={900}
+                            height={500}
+                          />
                         </div>
-                        <div className="lg:text-xs text-[10px]">
-                          {user.businessname}
-                        </div>
-                      </div>
-
-                      <div className="mb-5 md:flex-row">
-                        <div className="font-bold text-xs lg:text-sm">
-                          About Business
-                        </div>
-                        <div className="lg:text-xs text-[10px]">
-                          {user.aboutbusiness}
-                        </div>
-                      </div>
-
-                      <div className="mb-5 md:flex-row">
-                        <div className="font-bold text-xs lg:text-sm">
-                          Business Address
-                        </div>
-                        <div className="lg:text-xs text-[10px]">
-                          {user.businessaddress}
-                        </div>
-                      </div>
-                      {user.latitude && user.latitude && (
-                        <>
-                          <div className="bg-white p-0 text-l rounded-lg overflow-hidden">
-                            <div className="">
-                              <p className="text-xs lg:text-sm font-bold">
-                                Office Location
-                              </p>
-                              <p className="mb-1 lg:text-xs text-[10px]">
-                                <LocationOnIcon sx={{ fontSize: 20 }} /> GPS
-                                Location
-                              </p>
-                              <StreetmapOfice
-                                id={userId}
-                                name={user.businessname}
-                                address={user.businessaddress}
-                                imageUrl={user.imageUrl ?? user.photo}
-                                lat={user.latitude}
-                                lng={user.longitude}
-                              />
-                              <div className="justify-between flex w-full mb-5">
-                                <button
-                                  onClick={handleDirectionClick}
-                                  className="hover:bg-emerald-700 bg-[#30AF5B] text-white text-xs mt-2 p-2 rounded-lg shadow"
-                                >
-                                  <AssistantDirectionIcon
-                                    sx={{ marginRight: "5px" }}
-                                  />
-                                  Get Direction
-                                </button>
+                      )}
+                      <div className="m-3 p-1">
+                        {user.businessname && (
+                          <div className="mb-5 md:flex-row">
+                            <div className="font-bold text-xs lg:text-sm">
+                              Business Name
+                            </div>
+                            <div className="lg:text-xs text-[10px]">
+                              {user.businessname}
+                            </div>
+                          </div>
+                        )}
+                        {user.aboutbusiness && (
+                          <div className="mb-5 md:flex-row">
+                            <div className="font-bold text-xs lg:text-sm">
+                              About Business
+                            </div>
+                            <div className="lg:text-xs text-[10px]">
+                              {user.aboutbusiness}
+                            </div>
+                          </div>
+                        )}
+                        {user.businessaddress && (
+                          <div className="mb-5 md:flex-row">
+                            <div className="font-bold text-xs lg:text-sm">
+                              Business Address
+                            </div>
+                            <div className="lg:text-xs text-[10px]">
+                              {user.businessaddress}
+                            </div>
+                          </div>
+                        )}
+                        {user.latitude && user.latitude && (
+                          <>
+                            <div className="bg-white p-0 text-l rounded-lg overflow-hidden">
+                              <div className="">
+                                <p className="text-xs lg:text-sm font-bold">
+                                  Office Location
+                                </p>
+                                <p className="mb-1 lg:text-xs text-[10px]">
+                                  <LocationOnIcon sx={{ fontSize: 20 }} /> GPS
+                                  Location
+                                </p>
+                                <StreetmapOfice
+                                  id={userId}
+                                  name={user.businessname}
+                                  address={user.businessaddress}
+                                  imageUrl={user.imageUrl ?? user.photo}
+                                  lat={user.latitude}
+                                  lng={user.longitude}
+                                />
+                                <div className="justify-between flex w-full mb-5">
+                                  <button
+                                    onClick={handleDirectionClick}
+                                    className="hover:bg-emerald-700 bg-[#30AF5B] text-white text-xs mt-2 p-2 rounded-lg shadow"
+                                  >
+                                    <AssistantDirectionIcon
+                                      sx={{ marginRight: "5px" }}
+                                    />
+                                    Get Direction
+                                  </button>
+                                </div>
                               </div>
                             </div>
-                          </div>
-                        </>
-                      )}
-
-                      {user.businesshours && user.businesshours.length > 0 && (
-                        <>
-                          <div className="flex flex-col gap-5 mb-0 md:flex-row">
-                            <div>
-                              <>
-                                <div className="flex flex-col gap-5 mb-0 md:flex-row">
-                                  <div>
-                                    <label>
-                                      <p className="font-bold text-xs lg:text-sm">
-                                        Office Open Time:
-                                      </p>
-                                    </label>
-                                    <div className="flex flex-col gap-5 mb-5 md:flex-row text-[10px] lg:text-xs">
-                                      <select
-                                        className="bg-gray-100 p-1 border rounded-sm"
-                                        value={
-                                          user?.businesshours[0].openHour ?? ""
-                                        }
-                                      >
-                                        {Array.from(
-                                          { length: 24 },
-                                          (_, i) => i
-                                        ).map((hour) => (
-                                          <option
-                                            key={hour}
-                                            value={hour
-                                              .toString()
-                                              .padStart(2, "0")}
-                                          >
-                                            {hour.toString().padStart(2, "0")}
-                                          </option>
-                                        ))}
-                                      </select>
-                                      <select
-                                        className="bg-gray-100 p-1 border rounded-sm"
-                                        value={
-                                          user?.businesshours[0].openMinute ??
-                                          ""
-                                        }
-                                      >
-                                        {Array.from(
-                                          { length: 60 },
-                                          (_, i) => i
-                                        ).map((minute) => (
-                                          <option
-                                            key={minute}
-                                            value={minute
-                                              .toString()
-                                              .padStart(2, "0")}
-                                          >
-                                            {minute.toString().padStart(2, "0")}
-                                          </option>
-                                        ))}
-                                      </select>
-                                    </div>
-                                  </div>
-                                  <div>
-                                    <label>
-                                      {" "}
-                                      <p className="font-bold text-xs lg:text-sm">
-                                        Office Close Time:
-                                      </p>
-                                    </label>
-                                    <div className="flex flex-col gap-5 mb-0 md:flex-row text-[10px] lg:text-xs">
-                                      <select
-                                        className="bg-gray-100 p-1 border rounded-sm"
-                                        value={
-                                          user?.businesshours[0].closeHour ?? ""
-                                        }
-                                      >
-                                        {Array.from(
-                                          { length: 24 },
-                                          (_, i) => i
-                                        ).map((hour) => (
-                                          <option
-                                            key={hour}
-                                            value={hour
-                                              .toString()
-                                              .padStart(2, "0")}
-                                          >
-                                            {hour.toString().padStart(2, "0")}
-                                          </option>
-                                        ))}
-                                      </select>
-                                      <select
-                                        className="bg-gray-100 p-1 border rounded-sm"
-                                        value={
-                                          user?.businesshours[0].closeMinute ??
-                                          ""
-                                        }
-                                      >
-                                        {Array.from(
-                                          { length: 60 },
-                                          (_, i) => i
-                                        ).map((minute) => (
-                                          <option
-                                            key={minute}
-                                            value={minute
-                                              .toString()
-                                              .padStart(2, "0")}
-                                          >
-                                            {minute.toString().padStart(2, "0")}
-                                          </option>
-                                        ))}
-                                      </select>
-                                    </div>
-                                  </div>
-                                </div>
-                              </>
-                            </div>
-                          </div>
-                        </>
-                      )}
-
-                      <div className="flex flex-col gap-5 mb-5 md:flex-row">
-                        <div>
-                          <label>
-                            <p className="font-bold text-xs lg:text-sm">
-                              Office Working Days:
-                            </p>
-                          </label>
-
-                          <>
-                            <div className="flex text-[10px] gap-1 w-full items-center lg:text-xs">
-                              <input
-                                type="checkbox"
-                                checked={user?.businessworkingdays.includes(
-                                  "Sunday"
-                                )}
-                              />
-
-                              <label>Sunday</label>
-                            </div>
-                            <div className="flex text-[10px] gap-1 w-full items-center lg:text-xs">
-                              <input
-                                type="checkbox"
-                                checked={user?.businessworkingdays.includes(
-                                  "Monday"
-                                )}
-                              />
-                              <label>Monday</label>
-                            </div>
-                            <div className="flex text-[10px] gap-1 w-full items-center lg:text-xs">
-                              <input
-                                type="checkbox"
-                                checked={user?.businessworkingdays.includes(
-                                  "Tuesday"
-                                )}
-                              />
-                              <label>Tuesday</label>
-                            </div>
-                            <div className="flex text-[10px] gap-1 w-full items-center lg:text-xs">
-                              <input
-                                type="checkbox"
-                                checked={user?.businessworkingdays.includes(
-                                  "Wednesday"
-                                )}
-                              />
-                              <label>Wednesday</label>
-                            </div>
-                            <div className="flex text-[10px] gap-1 w-full items-center lg:text-xs">
-                              <input
-                                type="checkbox"
-                                checked={user?.businessworkingdays.includes(
-                                  "Thursday"
-                                )}
-                              />
-                              <label>Thursday</label>
-                            </div>
-                            <div className="flex text-[10px] gap-1 w-full items-center lg:text-xs">
-                              <input
-                                type="checkbox"
-                                checked={user?.businessworkingdays.includes(
-                                  "Friday"
-                                )}
-                              />
-                              <label>Friday</label>
-                            </div>
-                            <div className="flex text-[10px] gap-1 w-full items-center lg:text-xs">
-                              <input
-                                type="checkbox"
-                                checked={user?.businessworkingdays.includes(
-                                  "Saturday"
-                                )}
-                              />
-                              <label>Saturday</label>
-                            </div>
                           </>
-                        </div>
+                        )}
+
+                        {user.businesshours &&
+                          user.businesshours.length > 0 && (
+                            <>
+                              <div className="flex flex-col gap-5 mb-0 md:flex-row">
+                                <div>
+                                  <>
+                                    <div className="flex flex-col gap-5 mb-0 md:flex-row">
+                                      <div>
+                                        <label>
+                                          <p className="font-bold text-xs lg:text-sm">
+                                            Office Open Time:
+                                          </p>
+                                        </label>
+                                        <div className="flex flex-col gap-5 mb-5 md:flex-row text-[10px] lg:text-xs">
+                                          <select
+                                            className="bg-gray-100 p-1 border rounded-sm"
+                                            value={
+                                              user?.businesshours[0].openHour ??
+                                              ""
+                                            }
+                                          >
+                                            {Array.from(
+                                              { length: 24 },
+                                              (_, i) => i
+                                            ).map((hour) => (
+                                              <option
+                                                key={hour}
+                                                value={hour
+                                                  .toString()
+                                                  .padStart(2, "0")}
+                                              >
+                                                {hour
+                                                  .toString()
+                                                  .padStart(2, "0")}
+                                              </option>
+                                            ))}
+                                          </select>
+                                          <select
+                                            className="bg-gray-100 p-1 border rounded-sm"
+                                            value={
+                                              user?.businesshours[0]
+                                                .openMinute ?? ""
+                                            }
+                                          >
+                                            {Array.from(
+                                              { length: 60 },
+                                              (_, i) => i
+                                            ).map((minute) => (
+                                              <option
+                                                key={minute}
+                                                value={minute
+                                                  .toString()
+                                                  .padStart(2, "0")}
+                                              >
+                                                {minute
+                                                  .toString()
+                                                  .padStart(2, "0")}
+                                              </option>
+                                            ))}
+                                          </select>
+                                        </div>
+                                      </div>
+                                      <div>
+                                        <label>
+                                          {" "}
+                                          <p className="font-bold text-xs lg:text-sm">
+                                            Office Close Time:
+                                          </p>
+                                        </label>
+                                        <div className="flex flex-col gap-5 mb-0 md:flex-row text-[10px] lg:text-xs">
+                                          <select
+                                            className="bg-gray-100 p-1 border rounded-sm"
+                                            value={
+                                              user?.businesshours[0]
+                                                .closeHour ?? ""
+                                            }
+                                          >
+                                            {Array.from(
+                                              { length: 24 },
+                                              (_, i) => i
+                                            ).map((hour) => (
+                                              <option
+                                                key={hour}
+                                                value={hour
+                                                  .toString()
+                                                  .padStart(2, "0")}
+                                              >
+                                                {hour
+                                                  .toString()
+                                                  .padStart(2, "0")}
+                                              </option>
+                                            ))}
+                                          </select>
+                                          <select
+                                            className="bg-gray-100 p-1 border rounded-sm"
+                                            value={
+                                              user?.businesshours[0]
+                                                .closeMinute ?? ""
+                                            }
+                                          >
+                                            {Array.from(
+                                              { length: 60 },
+                                              (_, i) => i
+                                            ).map((minute) => (
+                                              <option
+                                                key={minute}
+                                                value={minute
+                                                  .toString()
+                                                  .padStart(2, "0")}
+                                              >
+                                                {minute
+                                                  .toString()
+                                                  .padStart(2, "0")}
+                                              </option>
+                                            ))}
+                                          </select>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </>
+                                </div>
+                              </div>
+                            </>
+                          )}
+
+                        {user.businesshours &&
+                          user.businessworkingdays.length > 0 && (
+                            <>
+                              <div className="flex flex-col gap-5 mb-5 md:flex-row">
+                                <div>
+                                  <label>
+                                    <p className="font-bold text-xs lg:text-sm">
+                                      Office Working Days:
+                                    </p>
+                                  </label>
+
+                                  <>
+                                    <div className="flex text-[10px] gap-1 w-full items-center lg:text-xs">
+                                      <input
+                                        type="checkbox"
+                                        checked={user?.businessworkingdays.includes(
+                                          "Sunday"
+                                        )}
+                                      />
+
+                                      <label>Sunday</label>
+                                    </div>
+                                    <div className="flex text-[10px] gap-1 w-full items-center lg:text-xs">
+                                      <input
+                                        type="checkbox"
+                                        checked={user?.businessworkingdays.includes(
+                                          "Monday"
+                                        )}
+                                      />
+                                      <label>Monday</label>
+                                    </div>
+                                    <div className="flex text-[10px] gap-1 w-full items-center lg:text-xs">
+                                      <input
+                                        type="checkbox"
+                                        checked={user?.businessworkingdays.includes(
+                                          "Tuesday"
+                                        )}
+                                      />
+                                      <label>Tuesday</label>
+                                    </div>
+                                    <div className="flex text-[10px] gap-1 w-full items-center lg:text-xs">
+                                      <input
+                                        type="checkbox"
+                                        checked={user?.businessworkingdays.includes(
+                                          "Wednesday"
+                                        )}
+                                      />
+                                      <label>Wednesday</label>
+                                    </div>
+                                    <div className="flex text-[10px] gap-1 w-full items-center lg:text-xs">
+                                      <input
+                                        type="checkbox"
+                                        checked={user?.businessworkingdays.includes(
+                                          "Thursday"
+                                        )}
+                                      />
+                                      <label>Thursday</label>
+                                    </div>
+                                    <div className="flex text-[10px] gap-1 w-full items-center lg:text-xs">
+                                      <input
+                                        type="checkbox"
+                                        checked={user?.businessworkingdays.includes(
+                                          "Friday"
+                                        )}
+                                      />
+                                      <label>Friday</label>
+                                    </div>
+                                    <div className="flex text-[10px] gap-1 w-full items-center lg:text-xs">
+                                      <input
+                                        type="checkbox"
+                                        checked={user?.businessworkingdays.includes(
+                                          "Saturday"
+                                        )}
+                                      />
+                                      <label>Saturday</label>
+                                    </div>
+                                  </>
+                                </div>
+                              </div>
+                            </>
+                          )}
                       </div>
                     </div>
+                  </AccordionContent>
+                </AccordionItem>
+              </Accordion>
+            </div>
+          ) : (
+            <>
+              {userId === loggedId && (
+                <div className="flex justify-between w-full p-1 items-center">
+                  <div>
+                    <a href={`/settings/`}>
+                      <button className="p-2 gap-1 text-xs bg-emerald-900 rounded-lg text-white  hover:bg-emerald-600">
+                        <EditOutlinedIcon sx={{ fontSize: 14 }} />
+                        Edit your Profile
+                      </button>
+                    </a>
                   </div>
-                </AccordionContent>
-              </AccordionItem>
-            </Accordion>
-          </div>
-
+                </div>
+              )}
+            </>
+          )}
           <div className="divider"></div>
           <div className="">
             <h1 className="mt-5 p-0 font-bold">Seller contacts</h1>
@@ -476,45 +513,48 @@ const SellerProfile = ({ userId, loggedId, user }: CollectionProps) => {
                 </SignedOut>
               </>
             )}
-            <SignedIn>
-              <TooltipProvider>
-                <Tooltip>
-                  <TooltipTrigger asChild>
-                    <a href={`/chat/${userId}`}>
-                      <button className="hover:bg-emerald-700 bg-[#30AF5B] text-white text-xs mt-2 p-2 rounded-lg shadow">
-                        <ChatBubbleOutlineOutlinedIcon
-                          sx={{ marginRight: "5px" }}
-                        />
-                        Message
-                      </button>
-                    </a>
-                  </TooltipTrigger>
-                  <TooltipContent>
-                    <p>Wheels Chat</p>
-                  </TooltipContent>
-                </Tooltip>
-              </TooltipProvider>
-            </SignedIn>
-            <SignedOut>
-              <TooltipProvider>
-                <Tooltip>
-                  <TooltipTrigger asChild>
-                    <a href={`/sign-in`}>
-                      <button className="hover:bg-emerald-700 bg-[#30AF5B] text-white text-xs mt-2 p-2 rounded-lg shadow">
-                        <ChatBubbleOutlineOutlinedIcon
-                          sx={{ marginRight: "5px" }}
-                        />
-                        Message
-                      </button>
-                    </a>
-                  </TooltipTrigger>
-                  <TooltipContent>
-                    <p>Wheels Chat</p>
-                  </TooltipContent>
-                </Tooltip>
-              </TooltipProvider>
-            </SignedOut>
-
+            {userId !== loggedId && (
+              <>
+                <SignedIn>
+                  <TooltipProvider>
+                    <Tooltip>
+                      <TooltipTrigger asChild>
+                        <a href={`/chat/${userId}`}>
+                          <button className="hover:bg-emerald-700 bg-[#30AF5B] text-white text-xs mt-2 p-2 rounded-lg shadow">
+                            <ChatBubbleOutlineOutlinedIcon
+                              sx={{ marginRight: "5px" }}
+                            />
+                            Message
+                          </button>
+                        </a>
+                      </TooltipTrigger>
+                      <TooltipContent>
+                        <p>AutoYard Chat</p>
+                      </TooltipContent>
+                    </Tooltip>
+                  </TooltipProvider>
+                </SignedIn>
+                <SignedOut>
+                  <TooltipProvider>
+                    <Tooltip>
+                      <TooltipTrigger asChild>
+                        <a href={`/sign-in`}>
+                          <button className="hover:bg-emerald-700 bg-[#30AF5B] text-white text-xs mt-2 p-2 rounded-lg shadow">
+                            <ChatBubbleOutlineOutlinedIcon
+                              sx={{ marginRight: "5px" }}
+                            />
+                            Message
+                          </button>
+                        </a>
+                      </TooltipTrigger>
+                      <TooltipContent>
+                        <p>AutoYard Chat</p>
+                      </TooltipContent>
+                    </Tooltip>
+                  </TooltipProvider>
+                </SignedOut>
+              </>
+            )}
             {user.whatsapp && (
               <>
                 {" "}

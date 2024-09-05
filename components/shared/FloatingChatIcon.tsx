@@ -13,10 +13,10 @@ const FloatingChatIcon: React.FC<FloatingChatIconProps> = ({
 }) => {
   return (
     <div
-      className="fixed bottom-10 right-5 bg-[#000000] w-16 h-16 flex justify-center items-center rounded-full cursor-pointer z-10"
+      className="fixed bottom-20 lg:bottom-10 right-1 lg:right-5 bg-[#000000] w-10 lg:w-16 h-10 lg:h-16 flex justify-center items-center rounded-full cursor-pointer z-10"
       onClick={onClick}
     >
-      <div className="w-8 h-8 flex text-[#000000] items-center justify-center rounded-full bg-white tooltip tooltip-bottom hover:cursor-pointer">
+      <div className="w-6 h-6 lg:w-8 lg:h-8 flex text-[#000000] items-center justify-center rounded-full bg-white tooltip tooltip-bottom hover:cursor-pointer">
         {isOpen === true ? (
           <>
             <KeyboardArrowDownOutlinedIcon />

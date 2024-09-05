@@ -112,7 +112,7 @@ export default function Listpackages({
 
   // console.log("USER: " + user);
   return (
-    <div className="container mx-auto mt-0 p-2 rounded-sm">
+    <div className="p-1 rounded-sm">
       <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 m-1 gap-1">
         {packagesList.length > 0 &&
           packagesList.map((pack, index: any) => (
@@ -262,7 +262,7 @@ export default function Listpackages({
         </div>
 
         {/* Right-aligned input field and button */}
-        <div className="flex gap-1 items-center">
+        <div className="flex gap-1 items-center w-full">
           <label
             htmlFor="color"
             className="whitespace-nowrap p-3 font-bold leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
@@ -273,7 +273,7 @@ export default function Listpackages({
             type="text"
             value={priceInput}
             disabled
-            className="border p-1 border-gray-300 font-bold rounded-md "
+            className="border p-1 w-[100px] border-gray-300 font-bold rounded-md "
           />
           <SignedIn>
             {/* <Checkout

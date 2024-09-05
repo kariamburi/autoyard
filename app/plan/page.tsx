@@ -73,9 +73,9 @@ const Packages = async () => {
             </div>
           </div>
           */}
-          <div className="rounded-lg border bg-white max-w-6xl mx-auto flex flex-col lg:flex-row mt-3">
-            <div className="lg:flex-1 bg-white p-5 ml-2 mr-5">
-              <section className="bg-grey-50 bg-dotted-pattern bg-cover bg-center py-0 md:py-0 rounded-sm">
+          <div className="w-full flex flex-col">
+            <div className="">
+              <section className="bg-bg-white p-1 rounded-lg">
                 <p className="text-[25px] font-bold">Plan</p>
                 <div className="wrapper flex">
                   <div className="text-center sm:text-left">

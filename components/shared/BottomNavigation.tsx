@@ -18,7 +18,7 @@ const BottomNavigation = ({ userId }: navprop) => {
 
   return (
     <nav className="fixed bottom-0 w-full bg-white shadow-md border-t border-gray-200">
-      <div className="flex justify-around py-2">
+      <div className="flex justify-around py-2 relative">
         <Link href="/" passHref>
           <div
             className={`flex flex-col items-center hover:text-emerald-400 ${
@@ -31,6 +31,7 @@ const BottomNavigation = ({ userId }: navprop) => {
             <span className="text-xs">Home</span>
           </div>
         </Link>
+
         <Link
           href={`/category?category=Vehicle&subcategory=${encodeURIComponent(
             "Cars, Vans & Pickups"
@@ -48,18 +49,16 @@ const BottomNavigation = ({ userId }: navprop) => {
             <span className="text-xs">Search</span>
           </div>
         </Link>
+
+        {/* Sell Button */}
         <Link href="/ads/create" passHref>
-          <div
-            className={`flex flex-col items-center hover:text-emerald-400 ${
-              isActive("/ads/create") ? "text-emerald-600" : "text-gray-600"
-            }`}
-          >
-            <span>
-              <AddCircleOutlineOutlinedIcon />
-            </span>
-            <span className="text-xs">Sell</span>
+          <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
+            <div className="flex justify-center items-center w-16 h-16 bg-emerald-600 text-white rounded-full shadow-lg hover:bg-emerald-700 active:bg-emerald-800 transition duration-200">
+              <AddCircleOutlineOutlinedIcon className="text-3xl" />
+            </div>
           </div>
         </Link>
+
         <Link href="/chat" passHref>
           <div
             className={`flex flex-col items-center hover:text-emerald-400 ${
@@ -73,6 +72,7 @@ const BottomNavigation = ({ userId }: navprop) => {
             <span className="text-xs">Chat</span>
           </div>
         </Link>
+
         <Link href="/settings" passHref>
           <div
             className={`flex flex-col items-center hover:text-emerald-400 ${
