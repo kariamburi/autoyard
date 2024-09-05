@@ -3848,7 +3848,7 @@ const AdForm = ({
 
                       <div className="p-2 flex flex-col md:flex-row justify-between items-center">
                         {/* Left-aligned buttons */}
-                        <div className="flex w-[300px] lg:w-full gap-1 justify-between items-center p-1">
+                        <div className="grid grid-cols-3 lg:grid-cols-5 w-full justify-between items-center p-1">
                           <button
                             className={`mr-2 text-xs w-[70px] lg:w-[90px] lg:text-sm ${
                               activeButton === 0
@@ -3901,7 +3901,7 @@ const AdForm = ({
                           </button>
                         </div>
 
-                        <div className="flex gap-1 mt-1 justify-center items-center w-full">
+                        <div className="flex gap-1 mt-1 justify-center items-center">
                           <label
                             htmlFor="color"
                             className="whitespace-nowrap p-3 font-bold leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"

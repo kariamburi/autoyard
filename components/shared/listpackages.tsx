@@ -206,7 +206,7 @@ export default function Listpackages({
       <div className="fixed bottom-0 left-0 right-0 bg-[#F2FFF2] h-auto md:h-24 z-10 p-3 shadow-md flex flex-col md:flex-row justify-between items-center">
         {/* Left-aligned buttons */}
 
-        <div className="flex w-[300px] lg:w-full gap-1 justify-between items-center mb-2 md:mb-0">
+        <div className="grid grid-cols-3 lg:grid-cols-5 w-full gap-1 justify-between items-center mb-2 md:mb-0">
           <button
             className={`mr-2 mb-2 text-xs w-[70px] lg:w-[90px] lg:text-sm  ${
               activeButton === 0
@@ -260,7 +260,7 @@ export default function Listpackages({
         </div>
 
         {/* Right-aligned input field and button */}
-        <div className="flex gap-1 justify-center items-center w-full">
+        <div className="flex gap-1 justify-center items-center">
           <label
             htmlFor="color"
             className="whitespace-nowrap p-3 font-bold leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
