@@ -206,7 +206,7 @@ export default function Listpackages({
       <div className="fixed bottom-0 left-0 right-0 bg-[#F2FFF2] h-auto md:h-24 z-10 p-3 shadow-md flex flex-col md:flex-row justify-between items-center">
         {/* Left-aligned buttons */}
 
-        <div className="flex flex-wrap justify-center md:justify-start items-center mb-4 md:mb-0">
+        <div className="flex gap-1 justify-between items-center mb-2 md:mb-0">
           <button
             className={`mr-4 mb-2 md:mb-0 ${
               activeButton === 0

@@ -3848,7 +3848,7 @@ const AdForm = ({
 
                       <div className="p-2 flex flex-col md:flex-row justify-between items-center">
                         {/* Left-aligned buttons */}
-                        <div className="flex flex-wrap justify-center md:justify-start items-center p-1">
+                        <div className="flex gap-1 justify-between items-center p-1">
                           <button
                             className={`mr-4 mb-2 md:mb-0 ${
                               activeButton === 0
