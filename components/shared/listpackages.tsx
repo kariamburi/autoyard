@@ -208,7 +208,7 @@ export default function Listpackages({
 
         <div className="flex gap-1 justify-between items-center mb-2 md:mb-0">
           <button
-            className={`mr-4 mb-2 md:mb-0 ${
+            className={`mr-2${
               activeButton === 0
                 ? "bg-gradient-to-b from-[#4DCE7A] to-[#30AF5B] text-white p-2 rounded-full"
                 : "border border-[#30AF5B] text-[#30AF5B] rounded-full p-2"
@@ -218,7 +218,7 @@ export default function Listpackages({
             1 week
           </button>
           <button
-            className={`mr-4 mb-2 md:mb-0 ${
+            className={`mr-2 text-sm w-[100px]${
               activeButton === 1
                 ? "bg-gradient-to-b from-[#4DCE7A] to-[#30AF5B] text-white p-2 rounded-full"
                 : "border border-[#30AF5B] text-[#30AF5B] rounded-full p-2"
@@ -228,7 +228,7 @@ export default function Listpackages({
             1 month
           </button>
           <button
-            className={`mr-4 mb-2 md:mb-0 ${
+            className={`mr-2 text-sm w-[100px] ${
               activeButton === 2
                 ? "bg-gradient-to-b from-[#4DCE7A] to-[#30AF5B] text-white p-2 rounded-full"
                 : "border border-[#30AF5B] text-[#30AF5B] rounded-full p-2"
@@ -238,7 +238,7 @@ export default function Listpackages({
             3 months
           </button>
           <button
-            className={`mr-4 mb-2 md:mb-0 ${
+            className={`mr-2 text-sm w-[100px] ${
               activeButton === 3
                 ? "bg-gradient-to-b from-[#4DCE7A] to-[#30AF5B] text-white p-2 rounded-full"
                 : "border border-[#30AF5B] text-[#30AF5B] rounded-full p-2"
@@ -248,7 +248,7 @@ export default function Listpackages({
             6 months
           </button>
           <button
-            className={`mr-4 mb-2 md:mb-0 ${
+            className={`mr-2 text-sm w-[100px] ${
               activeButton === 4
                 ? "bg-gradient-to-b from-[#4DCE7A] to-[#30AF5B] text-white p-2 rounded-full"
                 : "border border-[#30AF5B] text-[#30AF5B] rounded-full p-2"

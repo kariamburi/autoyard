@@ -95,7 +95,7 @@ export const UserFormSchema = z.object({
   longitude: z.string().optional(),
   businesshours: z.array(BusinesshoursSchema).optional(),
   businessworkingdays: z.array(z.string()).optional(),
-  phone: z.string().optional(),
+  phone: z.string(),
  whatsapp:z.string().optional(),
   website: z.string().url().optional(),
   facebook: z.string().url().optional(),

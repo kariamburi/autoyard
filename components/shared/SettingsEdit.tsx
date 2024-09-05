@@ -185,6 +185,7 @@ const SettingsEdit = ({ user, type, userId }: setingsProp) => {
 
           //  alert(uploadedImages[0].url);
         }
+        alert(countryCode + removeLeadingZero(phoneNumber));
         //form.setValue("phone", fullPhoneNumber); // Reset constituency value
         const updatedUser = await updateUserFromSettings({
           user: {
