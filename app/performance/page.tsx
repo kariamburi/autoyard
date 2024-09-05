@@ -44,7 +44,7 @@ const Settings = async () => {
         <div className="hidden lg:inline mr-5"></div>
 
         <div className="flex-1">
-          <div className="rounded-lg border bg-white max-w-6xl mx-auto lg:flex-row mt-0 p-1 justify-center">
+          <div className="rounded-lg h-screen border bg-white max-w-6xl mx-auto lg:flex-row mt-0 p-1 justify-center">
             <div className="privacy-policy p-6 bg-gray-50 text-gray-800">
               <h1 className="text-2xl font-bold mb-4">Performance</h1>
 

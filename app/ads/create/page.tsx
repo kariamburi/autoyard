@@ -87,7 +87,7 @@ const create = async () => {
       <div className="z-10 top-0 fixed w-full">
         <Navbar userstatus="User" userId={userId} />
       </div>
-      <div className="mt-20">
+      <div className="mt-20 mb-20 lg:mb-0">
         <Dashboard
           userId={userId}
           type="Create"

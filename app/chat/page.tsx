@@ -71,12 +71,12 @@ const pagechat = async () => {
               userId={recipientUid}
             />
           </div>*/}
-          <div className="rounded-lg max-w-6xl mx-auto flex flex-col p-0 mt-0">
+          <div className="rounded-lg mb-20 lg:mb-0 max-w-6xl mx-auto flex flex-col p-0 mt-0">
             <div className="lg:flex-1 p-0 ml-0 mr-0">
               <ScrollArea className="max-h-[400px] w-full bg-white rounded-md border p-4">
                 <div className="w-full items-center justify-center">
                   <span className="logo font-bold text-[25px] text-emerald-950">
-                    Wheels messanger
+                    AutoYard messanger
                   </span>
                   <div className="flex gap-1 items-center font-bold">
                     <PeopleOutlinedIcon />

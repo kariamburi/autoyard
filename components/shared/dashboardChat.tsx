@@ -151,7 +151,7 @@ const DashboardChat = ({
               </Accordion>
             </div>
           </div>
-          <div className="rounded-lg max-w-6xl mx-auto flex flex-col p-0 mt-0">
+          <div className="rounded-lg mb-20 lg:mb-0 max-w-6xl mx-auto flex flex-col p-0 mt-0">
             <span className="logo font-bold text-[25px] text-emerald-950">
               Chats
             </span>

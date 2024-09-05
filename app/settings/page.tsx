@@ -44,8 +44,8 @@ const Settings = async () => {
         <div className="hidden lg:inline mr-5"></div>
 
         <div className="flex-1">
-          <div className="rounded-lg border bg-white max-w-6xl mx-auto lg:flex-row mt-0 p-1 justify-center">
-            <section className="w-full bg-grey-50 bg-dotted-pattern bg-cover bg-center py-0 md:py-0 rounded-sm">
+          <div className="max-w-6xl mb-20 lg:mb-0 mx-auto justify-center">
+            <section className="w-full rounded-lg bg-white p-1">
               <div className="w-full flex flex-col">
                 <div className="flex text-lg gap-1 font-bold w-full">
                   <SettingsOutlinedIcon />
@@ -59,8 +59,6 @@ const Settings = async () => {
                 />
               </div>
             </section>
-
-            <div className="p-1 bg-white text-lg font-bold breadcrumbs mx-auto text-center relative rounded-md"></div>
 
             <SettingsEdit user={user} type="Update" userId={userId} />
             <Toaster />

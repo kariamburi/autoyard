@@ -273,7 +273,7 @@ export default function Listpackages({
             type="text"
             value={priceInput}
             disabled
-            className="border p-1 w-[100px] border-gray-300 font-bold rounded-md "
+            className="border p-1 w-[150px] border-gray-300 font-bold rounded-md "
           />
           <SignedIn>
             {/* <Checkout
