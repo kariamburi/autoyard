@@ -46,7 +46,6 @@ export type UpdateUserSetingsParams = {
   _id: string
   lastName: string
   photo: string
-  status: string
   businessname?:string
   aboutbusiness?:string
   businessaddress?:string

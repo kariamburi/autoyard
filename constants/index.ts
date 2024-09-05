@@ -1166,7 +1166,6 @@ export const VerifiesDefaultValues = {
 export const UserDefaultValues = {
   clerkId: '',
   email: '',
-  username: '',
   firstName: '',
   lastName: '',
   photo: '',
