@@ -175,7 +175,7 @@ export function FileUploader({
         <div className="font-semibold">Add Photo</div>
         <div>
           <small className="text-[#464b4f]">
-            Add at least 2 photos for this category
+            Add at least 3 photos for this category
           </small>
           <br />
           <small className="text-[#464b4f]">
