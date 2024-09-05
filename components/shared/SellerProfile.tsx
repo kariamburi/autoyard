@@ -155,7 +155,7 @@ const SellerProfile = ({ userId, loggedId, user }: CollectionProps) => {
           <div className="">
             <h1 className="mt-5 p-0 font-bold">About Seller</h1>
           </div>
-          {user.businessname.length > 0 ? (
+          {user?.businessname?.length > 0 ? (
             <div className="flex w-full gap-5 p-1 bg-gray-100 rounded-lg">
               <Accordion type="single" collapsible className="w-full">
                 <AccordionItem value="item-2">
@@ -164,10 +164,10 @@ const SellerProfile = ({ userId, loggedId, user }: CollectionProps) => {
                   </AccordionTrigger>
                   <AccordionContent>
                     <div className="p-0 rounded-[20px] m-2 shadow bg-white">
-                      {user.imageUrl && (
+                      {user?.imageUrl && (
                         <div className="flex h-50 w-full flex-1 justify-center">
                           <Image
-                            src={user.imageUrl}
+                            src={user?.imageUrl}
                             alt="image"
                             className="object-center rounded-t-[20px]"
                             width={900}
@@ -176,37 +176,37 @@ const SellerProfile = ({ userId, loggedId, user }: CollectionProps) => {
                         </div>
                       )}
                       <div className="m-3 p-1">
-                        {user.businessname && (
+                        {user?.businessname && (
                           <div className="mb-5 md:flex-row">
                             <div className="font-bold text-xs lg:text-sm">
                               Business Name
                             </div>
                             <div className="lg:text-xs text-[10px]">
-                              {user.businessname}
+                              {user?.businessname}
                             </div>
                           </div>
                         )}
-                        {user.aboutbusiness && (
+                        {user?.aboutbusiness && (
                           <div className="mb-5 md:flex-row">
                             <div className="font-bold text-xs lg:text-sm">
                               About Business
                             </div>
                             <div className="lg:text-xs text-[10px]">
-                              {user.aboutbusiness}
+                              {user?.aboutbusiness}
                             </div>
                           </div>
                         )}
-                        {user.businessaddress && (
+                        {user?.businessaddress && (
                           <div className="mb-5 md:flex-row">
                             <div className="font-bold text-xs lg:text-sm">
                               Business Address
                             </div>
                             <div className="lg:text-xs text-[10px]">
-                              {user.businessaddress}
+                              {user?.businessaddress}
                             </div>
                           </div>
                         )}
-                        {user.latitude && user.latitude && (
+                        {user?.latitude && user?.latitude && (
                           <>
                             <div className="bg-white p-0 text-l rounded-lg overflow-hidden">
                               <div className="">
@@ -219,11 +219,11 @@ const SellerProfile = ({ userId, loggedId, user }: CollectionProps) => {
                                 </p>
                                 <StreetmapOfice
                                   id={userId}
-                                  name={user.businessname}
-                                  address={user.businessaddress}
-                                  imageUrl={user.imageUrl ?? user.photo}
-                                  lat={user.latitude}
-                                  lng={user.longitude}
+                                  name={user?.businessname}
+                                  address={user?.businessaddress}
+                                  imageUrl={user?.imageUrl ?? user?.photo}
+                                  lat={user?.latitude}
+                                  lng={user?.longitude}
                                 />
                                 <div className="justify-between flex w-full mb-5">
                                   <button
@@ -241,8 +241,8 @@ const SellerProfile = ({ userId, loggedId, user }: CollectionProps) => {
                           </>
                         )}
 
-                        {user.businesshours &&
-                          user.businesshours.length > 0 && (
+                        {user?.businesshours &&
+                          user?.businesshours?.length > 0 && (
                             <>
                               <div className="flex flex-col gap-5 mb-0 md:flex-row">
                                 <div>
@@ -258,8 +258,8 @@ const SellerProfile = ({ userId, loggedId, user }: CollectionProps) => {
                                           <select
                                             className="bg-gray-100 p-1 border rounded-sm"
                                             value={
-                                              user?.businesshours[0].openHour ??
-                                              ""
+                                              user?.businesshours?.[0]
+                                                .openHour ?? ""
                                             }
                                           >
                                             {Array.from(
@@ -281,7 +281,7 @@ const SellerProfile = ({ userId, loggedId, user }: CollectionProps) => {
                                           <select
                                             className="bg-gray-100 p-1 border rounded-sm"
                                             value={
-                                              user?.businesshours[0]
+                                              user?.businesshours?.[0]
                                                 .openMinute ?? ""
                                             }
                                           >
@@ -314,7 +314,7 @@ const SellerProfile = ({ userId, loggedId, user }: CollectionProps) => {
                                           <select
                                             className="bg-gray-100 p-1 border rounded-sm"
                                             value={
-                                              user?.businesshours[0]
+                                              user?.businesshours?.[0]
                                                 .closeHour ?? ""
                                             }
                                           >
@@ -337,7 +337,7 @@ const SellerProfile = ({ userId, loggedId, user }: CollectionProps) => {
                                           <select
                                             className="bg-gray-100 p-1 border rounded-sm"
                                             value={
-                                              user?.businesshours[0]
+                                              user?.businesshours?.[0]
                                                 .closeMinute ?? ""
                                             }
                                           >
@@ -366,8 +366,8 @@ const SellerProfile = ({ userId, loggedId, user }: CollectionProps) => {
                             </>
                           )}
 
-                        {user.businesshours &&
-                          user.businessworkingdays.length > 0 && (
+                        {user?.businesshours &&
+                          user?.businessworkingdays?.length > 0 && (
                             <>
                               <div className="flex flex-col gap-5 mb-5 md:flex-row">
                                 <div>
@@ -381,7 +381,7 @@ const SellerProfile = ({ userId, loggedId, user }: CollectionProps) => {
                                     <div className="flex text-[10px] gap-1 w-full items-center lg:text-xs">
                                       <input
                                         type="checkbox"
-                                        checked={user?.businessworkingdays.includes(
+                                        checked={user?.businessworkingdays?.includes(
                                           "Sunday"
                                         )}
                                       />
@@ -391,7 +391,7 @@ const SellerProfile = ({ userId, loggedId, user }: CollectionProps) => {
                                     <div className="flex text-[10px] gap-1 w-full items-center lg:text-xs">
                                       <input
                                         type="checkbox"
-                                        checked={user?.businessworkingdays.includes(
+                                        checked={user?.businessworkingdays?.includes(
                                           "Monday"
                                         )}
                                       />
@@ -400,7 +400,7 @@ const SellerProfile = ({ userId, loggedId, user }: CollectionProps) => {
                                     <div className="flex text-[10px] gap-1 w-full items-center lg:text-xs">
                                       <input
                                         type="checkbox"
-                                        checked={user?.businessworkingdays.includes(
+                                        checked={user?.businessworkingdays?.includes(
                                           "Tuesday"
                                         )}
                                       />
@@ -409,7 +409,7 @@ const SellerProfile = ({ userId, loggedId, user }: CollectionProps) => {
                                     <div className="flex text-[10px] gap-1 w-full items-center lg:text-xs">
                                       <input
                                         type="checkbox"
-                                        checked={user?.businessworkingdays.includes(
+                                        checked={user?.businessworkingdays?.includes(
                                           "Wednesday"
                                         )}
                                       />
@@ -418,7 +418,7 @@ const SellerProfile = ({ userId, loggedId, user }: CollectionProps) => {
                                     <div className="flex text-[10px] gap-1 w-full items-center lg:text-xs">
                                       <input
                                         type="checkbox"
-                                        checked={user?.businessworkingdays.includes(
+                                        checked={user?.businessworkingdays?.includes(
                                           "Thursday"
                                         )}
                                       />
@@ -427,7 +427,7 @@ const SellerProfile = ({ userId, loggedId, user }: CollectionProps) => {
                                     <div className="flex text-[10px] gap-1 w-full items-center lg:text-xs">
                                       <input
                                         type="checkbox"
-                                        checked={user?.businessworkingdays.includes(
+                                        checked={user?.businessworkingdays?.includes(
                                           "Friday"
                                         )}
                                       />
@@ -436,7 +436,7 @@ const SellerProfile = ({ userId, loggedId, user }: CollectionProps) => {
                                     <div className="flex text-[10px] gap-1 w-full items-center lg:text-xs">
                                       <input
                                         type="checkbox"
-                                        checked={user?.businessworkingdays.includes(
+                                        checked={user?.businessworkingdays?.includes(
                                           "Saturday"
                                         )}
                                       />
@@ -474,7 +474,7 @@ const SellerProfile = ({ userId, loggedId, user }: CollectionProps) => {
             <h1 className="mt-5 p-0 font-bold">Seller contacts</h1>
           </div>
           <div className="justify-center flex w-full gap-1 p-0">
-            {user.phone && (
+            {user?.phone && (
               <>
                 <SignedIn>
                   <TooltipProvider>
@@ -485,7 +485,7 @@ const SellerProfile = ({ userId, loggedId, user }: CollectionProps) => {
                           onClick={handleShowPhoneClick}
                         >
                           <CallIcon sx={{ marginRight: "5px" }} />
-                          {showphone ? <>{user.phone}</> : <> Call</>}
+                          {showphone ? <>{user?.phone}</> : <> Call</>}
                         </button>
                       </TooltipTrigger>
                       <TooltipContent>
@@ -555,14 +555,14 @@ const SellerProfile = ({ userId, loggedId, user }: CollectionProps) => {
                 </SignedOut>
               </>
             )}
-            {user.whatsapp && (
+            {user?.whatsapp && (
               <>
                 {" "}
                 <SignedIn>
                   <TooltipProvider>
                     <Tooltip>
                       <TooltipTrigger asChild>
-                        <a href={`https://wa.me/${user.whatsapp}/`}>
+                        <a href={`https://wa.me/${user?.whatsapp}/`}>
                           <button className="hover:bg-emerald-700 bg-[#30AF5B] text-white text-xs mt-2 p-2 rounded-lg shadow">
                             <WhatsAppIcon sx={{ marginRight: "5px" }} />
                             WhatsApp
@@ -601,9 +601,9 @@ const SellerProfile = ({ userId, loggedId, user }: CollectionProps) => {
           </div>
           <div className="flex space-x-2">
             <div className="ml-1 justify-center gap-5 w-full">
-              {user.whatsapp && (
+              {user?.whatsapp && (
                 <Link
-                  href={`${user.facebook}`}
+                  href={`${user?.facebook}`}
                   className="no-underline font-boldm-1 mr-2"
                 >
                   <FontAwesomeIcon icon={faFacebook} className="text-2xl" />
@@ -612,7 +612,7 @@ const SellerProfile = ({ userId, loggedId, user }: CollectionProps) => {
 
               {user.twitter && (
                 <Link
-                  href={`${user.twitter}`}
+                  href={`${user?.twitter}`}
                   className="no-underline font-boldm-1 mr-2"
                 >
                   <FontAwesomeIcon icon={faTwitter} className="text-2xl" />
@@ -621,7 +621,7 @@ const SellerProfile = ({ userId, loggedId, user }: CollectionProps) => {
 
               {user.instagram && (
                 <Link
-                  href={`${user.instagram}`}
+                  href={`${user?.instagram}`}
                   className="no-underline font-boldm-1 mr-2"
                 >
                   <FontAwesomeIcon icon={faInstagram} className="text-2xl" />
@@ -629,7 +629,7 @@ const SellerProfile = ({ userId, loggedId, user }: CollectionProps) => {
               )}
               {user.tiktok && (
                 <Link
-                  href={`${user.tiktok}`}
+                  href={`${user?.tiktok}`}
                   className="no-underline font-boldm-1 mr-2"
                 >
                   <FontAwesomeIcon icon={faTiktok} className="text-2xl" />
@@ -638,7 +638,7 @@ const SellerProfile = ({ userId, loggedId, user }: CollectionProps) => {
 
               {user.website && (
                 <Link
-                  href={`${user.website}`}
+                  href={`${user?.website}`}
                   className="no-underline font-boldm-1 mr-2"
                 >
                   <FontAwesomeIcon icon={faChrome} className="text-2xl" />
