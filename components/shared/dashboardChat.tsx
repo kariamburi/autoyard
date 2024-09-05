@@ -114,7 +114,7 @@ const DashboardChat = ({
             <ScrollArea className="max-h-[400px] w-full bg-white rounded-md border p-4">
               <div className="w-full items-center justify-center">
                 <span className="logo font-bold text-[25px] text-emerald-950">
-                  Wheels messanger
+                  AutoYard messanger
                 </span>
                 <div className="flex gap-1 items-center font-bold">
                   <PeopleOutlinedIcon />
@@ -130,7 +130,7 @@ const DashboardChat = ({
           <div className="bg-white rounded-lg lg:hidden">
             <div className="text-sm mt-2 rounded-lg w-full bg-white p-2">
               <span className="logo font-bold text-[25px] text-emerald-950">
-                Wheels messanger
+                Messager
               </span>
               <Accordion type="single" collapsible className="w-full">
                 <AccordionItem value="item-1">

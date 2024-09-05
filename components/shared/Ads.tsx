@@ -266,7 +266,7 @@ export default function Ads({ ad, userId, userImage, userName }: CardProps) {
   };
   return (
     <>
-      <div className="m-1 space-y-0 lg:flex lg:space-x-5">
+      <div className="lg:m-1 space-y-0 lg:flex lg:space-x-5">
         <div className="lg:flex-1 border-t-8 border-emerald-950 bg-white rounded-lg">
           {/* Carousel */}
           <div className="relative">

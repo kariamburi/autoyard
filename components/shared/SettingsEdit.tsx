@@ -190,7 +190,12 @@ const SettingsEdit = ({ user, type, userId }: setingsProp) => {
           user: {
             ...values,
             imageUrl: uploadedImageUrl,
-            phone: countryCode + removeLeadingZero(phoneNumber),
+            phone: phoneNumber
+              ? countryCode + removeLeadingZero(phoneNumber)
+              : "",
+            whatsapp: whatsappNumber
+              ? countryCodeWhatsapp + removeLeadingZero(whatsappNumber)
+              : "",
             businesshours: [
               {
                 openHour: startHour,
@@ -658,7 +663,7 @@ const SettingsEdit = ({ user, type, userId }: setingsProp) => {
                           <FormControl>
                             <div className="flex w-full gap-1">
                               <select
-                                className="bg-gray-100 p-1 border ml-2 rounded-sm w-[200px]"
+                                className="bg-gray-100 p-1 border ml-2 rounded-sm w-[120px]"
                                 value={countryCode}
                                 onChange={handleCountryCodeChange}
                               >
@@ -759,7 +764,7 @@ const SettingsEdit = ({ user, type, userId }: setingsProp) => {
                           <FormControl>
                             <div className="flex w-full gap-1">
                               <select
-                                className="bg-gray-100 p-1 border ml-2 rounded-sm w-[200px]"
+                                className="bg-gray-100 p-1 border ml-2 rounded-sm w-[120px]"
                                 value={countryCodeWhatsapp}
                                 onChange={handleCountryCodeChangeWhatsapp}
                               >

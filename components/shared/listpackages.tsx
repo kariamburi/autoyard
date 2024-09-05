@@ -113,7 +113,7 @@ export default function Listpackages({
   // console.log("USER: " + user);
   return (
     <div className="p-1 rounded-sm">
-      <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 m-1 gap-1">
+      <div className="mb-20 grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 m-1 gap-1">
         {packagesList.length > 0 &&
           packagesList.map((pack, index: any) => (
             <div
@@ -126,9 +126,10 @@ export default function Listpackages({
               onClick={() => handleClick(pack)}
             >
               <div
-                className={`text-lg font-bold rounded-t-md text-white py-2 px-4 mb-4 flex flex-col items-center justify-center`}
+                className="text-lg font-bold rounded-t-md text-white py-2 px-4 mb-4 flex flex-col items-center justify-center"
                 style={{
-                  backgroundColor: pack.color,
+                  backgroundColor:
+                    activePackage === pack ? "#4DCE7A" : pack.color,
                 }}
               >
                 <img

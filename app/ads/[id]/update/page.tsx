@@ -93,7 +93,7 @@ const UpdateAd = async ({ params: { id } }: UpdateAdProps) => {
       <div className="z-10 top-0 fixed w-full">
         <Navbar userstatus="User" userId={userId} />
       </div>
-      <div className="mt-20">
+      <div className="mt-2">
         <Dashboard
           userId={userId}
           type="Update"

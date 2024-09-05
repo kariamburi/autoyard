@@ -43,7 +43,7 @@ const SendMessage = ({
     try {
       const userQuery = query(
         collection(db, "messages"),
-        where("uid", "==", "65d4a2ffec4c43cdc488ce0d"),
+        where("uid", "==", "66d85ef878ca361490642677"),
         where("recipientUid", "==", uid),
         where("text", "==", welcomeText)
       );
@@ -56,7 +56,7 @@ const SendMessage = ({
           name: "Support Team",
           avatar: "/customer.jpg",
           createdAt: serverTimestamp(),
-          uid: "65d4a2ffec4c43cdc488ce0d",
+          uid: "66d85ef878ca361490642677",
           recipientUid: uid,
           imageUrl,
           read,
