@@ -373,10 +373,6 @@ const AdForm = ({
       //    return;
       //  }
 
-      if (files.length < 3) {
-        setmessage("Please upload atleast 3 images");
-        return;
-      }
       if (files.length > 10) {
         setmessage("Please upload maximum of 10 images");
         return;
@@ -3845,9 +3841,9 @@ const AdForm = ({
                           })}
                       </div>
 
-                      <div className="flex p-1 flex-col w-full justify-between items-center">
+                      <div className="h-auto md:h-24 p-3 flex flex-col md:flex-row justify-between items-center">
                         {/* Left-aligned buttons */}
-                        <div className="grid grid-cols-3 lg:grid-cols-5 w-full justify-between items-center">
+                        <div className="flex flex-wrap justify-center md:justify-start items-center mb-4 md:mb-0">
                           <button
                             className={`mr-2 mb-2 text-xs w-[80px] lg:w-[90px] lg:text-sm ${
                               activeButton === 0
@@ -3900,7 +3896,7 @@ const AdForm = ({
                           </button>
                         </div>
 
-                        <div className="flex gap-1 justify-center items-center">
+                        {/*<div className="flex gap-1 justify-center items-center">
                           <label
                             htmlFor="color"
                             className="whitespace-nowrap p-3 font-bold leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
@@ -3914,6 +3910,7 @@ const AdForm = ({
                             className="px-4 py-2 w-[200px] border border-gray-300 font-bold rounded-md mr-4"
                           />
                         </div>
+                        */}
                       </div>
                     </>
                   )}

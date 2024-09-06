@@ -5,7 +5,7 @@ const youtubeRegex = /^(?:https?:\/\/)?(?:www\.)?(?:youtube\.com\/(?:[^\/\n\s]+\
 export const AdFormSchema = z.object({
   title: z.string().min(3, 'Title must be at least 3 characters'),
   description: z.string().min(3, 'Description must be at least 3 characters').max(400, 'Description must be less than 400 characters'),
-  imageUrls: z.array(z.string()).min(2, 'At least 2 images are required'), // Define imageUrls as an array of strings with minimum length 2
+  imageUrls: z.array(z.string()).min(3, 'At least 3 images are required'), // Define imageUrls as an array of strings with minimum length 2
   youtube: z.string().refine(value => value === "" || youtubeRegex.test(value), {
     message: "Invalid YouTube URL or video ID"
   }).optional(),
