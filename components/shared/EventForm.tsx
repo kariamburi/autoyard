@@ -977,32 +977,31 @@ const AdForm = ({
                     />
                     <FormField
                       control={form.control}
-                      name="vehiclecolor"
+                      name="vehicleBodyTypes"
                       render={({ field }) => (
                         <FormItem className="w-full">
                           <FormControl>
                             <div className="w-full overflow-hidden rounded-full px-4 py-2">
                               <Autocomplete
-                                id="vehiclecolor"
-                                options={vehicleColors}
-                                getOptionLabel={(option) => option}
+                                id="vehicleBodyTypes"
+                                options={vehicleBodyTypes}
+                                getOptionLabel={(option) => option.type}
                                 value={
-                                  vehicleColors.find(
-                                    (color) => color === field.value
+                                  vehicleBodyTypes.find(
+                                    (vc) => vc.type === field.value
                                   ) || null
                                 }
                                 onChange={(event, newValue) => {
-                                  field.onChange(newValue ? newValue : null);
+                                  field.onChange(
+                                    newValue ? newValue.type : null
+                                  );
                                 }}
                                 renderInput={(field) => (
-                                  <TextField
-                                    {...field}
-                                    label="Body color (Optional)*"
-                                  />
+                                  <TextField {...field} label="Body Type*" />
                                 )}
                               />
                               <div className="text-[#FF0000] text-sm">
-                                {errorvehiclecolor}
+                                {errorvehicleBodyTypes}
                               </div>
                             </div>
                           </FormControl>
@@ -1014,32 +1013,29 @@ const AdForm = ({
                   <div className="flex flex-col gap-5 md:flex-row">
                     <FormField
                       control={form.control}
-                      name="vehicleinteriorColor"
+                      name="vehicleFuelTypes"
                       render={({ field }) => (
                         <FormItem className="w-full">
                           <FormControl>
                             <div className="w-full overflow-hidden rounded-full px-4 py-2">
                               <Autocomplete
-                                id="vehicleinteriorColor"
-                                options={interiorVehicleColors}
+                                id="vehicleFuelTypes"
+                                options={vehicleFuelTypes}
                                 getOptionLabel={(option) => option}
                                 value={
-                                  interiorVehicleColors.find(
-                                    (ic) => ic === field.value
+                                  vehicleFuelTypes.find(
+                                    (vc) => vc === field.value
                                   ) || null
                                 }
                                 onChange={(event, newValue) => {
                                   field.onChange(newValue ? newValue : null);
                                 }}
                                 renderInput={(field) => (
-                                  <TextField
-                                    {...field}
-                                    label="Interior color (Optional)*"
-                                  />
+                                  <TextField {...field} label="Fuel Type*" />
                                 )}
                               />
                               <div className="text-[#FF0000] text-sm">
-                                {errorvehicleinteriorColor}
+                                {errorvehicleFuelTypes}
                               </div>
                             </div>
                           </FormControl>
@@ -1080,6 +1076,87 @@ const AdForm = ({
                       )}
                     />
                   </div>
+                  <div className="flex flex-col gap-5 md:flex-row">
+                    <FormField
+                      control={form.control}
+                      name="vehiclemileage"
+                      render={({ field }) => (
+                        <FormItem className="w-full">
+                          <FormControl>
+                            <div className="w-full overflow-hidden rounded-full px-4 py-2">
+                              <div className="flex gap-1 items-center justify-between">
+                                <TextField
+                                  {...field}
+                                  label="Mileage*"
+                                  className="w-full"
+                                />
+                                kilometers (KM)
+                              </div>
+                              <div className="text-[#FF0000] text-sm">
+                                {errorvehiclemileage}
+                              </div>
+                            </div>
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+                    <FormField
+                      control={form.control}
+                      name="vehicleEngineSizesCC"
+                      render={({ field }) => (
+                        <FormItem className="w-full">
+                          <FormControl>
+                            <div className="w-full overflow-hidden rounded-full px-4 py-2">
+                              <TextField
+                                {...field}
+                                label="Engine Size CC*"
+                                className="w-full"
+                              />
+
+                              <div className="text-[#FF0000] text-sm">
+                                {errorvehicleEngineSizesCC}
+                              </div>
+                            </div>
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+                    <FormField
+                      control={form.control}
+                      name="vehicleregistered"
+                      render={({ field }) => (
+                        <FormItem className="w-full">
+                          <FormControl>
+                            <div className="w-full overflow-hidden rounded-full px-4 py-2">
+                              <Autocomplete
+                                id="vehicleregistered"
+                                options={vehicleRegistered}
+                                getOptionLabel={(option) => option}
+                                value={
+                                  vehicleRegistered.find(
+                                    (vc) => vc === field.value
+                                  ) || null
+                                }
+                                onChange={(event, newValue) => {
+                                  field.onChange(newValue ? newValue : null);
+                                }}
+                                renderInput={(field) => (
+                                  <TextField {...field} label="Registered*" />
+                                )}
+                              />
+                              <div className="text-[#FF0000] text-sm">
+                                {errorvehicleregistered}
+                              </div>
+                            </div>
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+                  </div>
+
                   <div className="flex flex-col gap-5 md:flex-row">
                     <FormField
                       control={form.control}
@@ -1144,33 +1221,6 @@ const AdForm = ({
                               />
                               <div className="text-[#FF0000] text-sm">
                                 {errorvehicleTransmissions}
-                              </div>
-                            </div>
-                          </FormControl>
-                          <FormMessage />
-                        </FormItem>
-                      )}
-                    />
-                  </div>
-
-                  <div className="flex flex-col gap-5 md:flex-row">
-                    <FormField
-                      control={form.control}
-                      name="vehiclemileage"
-                      render={({ field }) => (
-                        <FormItem className="w-full">
-                          <FormControl>
-                            <div className="w-full overflow-hidden rounded-full px-4 py-2">
-                              <div className="flex gap-1 items-center justify-between">
-                                <TextField
-                                  {...field}
-                                  label="Mileage*"
-                                  className="w-full"
-                                />
-                                kilometers (KM)
-                              </div>
-                              <div className="text-[#FF0000] text-sm">
-                                {errorvehiclemileage}
                               </div>
                             </div>
                           </FormControl>
@@ -1262,86 +1312,18 @@ const AdForm = ({
                   <div className="flex flex-col gap-5 md:flex-row">
                     <FormField
                       control={form.control}
-                      name="vehicleregistered"
+                      name="vehiclecolor"
                       render={({ field }) => (
                         <FormItem className="w-full">
                           <FormControl>
                             <div className="w-full overflow-hidden rounded-full px-4 py-2">
                               <Autocomplete
-                                id="vehicleregistered"
-                                options={vehicleRegistered}
+                                id="vehiclecolor"
+                                options={vehicleColors}
                                 getOptionLabel={(option) => option}
                                 value={
-                                  vehicleRegistered.find(
-                                    (vc) => vc === field.value
-                                  ) || null
-                                }
-                                onChange={(event, newValue) => {
-                                  field.onChange(newValue ? newValue : null);
-                                }}
-                                renderInput={(field) => (
-                                  <TextField {...field} label="Registered*" />
-                                )}
-                              />
-                              <div className="text-[#FF0000] text-sm">
-                                {errorvehicleregistered}
-                              </div>
-                            </div>
-                          </FormControl>
-                          <FormMessage />
-                        </FormItem>
-                      )}
-                    />
-
-                    <FormField
-                      control={form.control}
-                      name="vehicleFuelTypes"
-                      render={({ field }) => (
-                        <FormItem className="w-full">
-                          <FormControl>
-                            <div className="w-full overflow-hidden rounded-full px-4 py-2">
-                              <Autocomplete
-                                id="vehicleFuelTypes"
-                                options={vehicleFuelTypes}
-                                getOptionLabel={(option) => option}
-                                value={
-                                  vehicleFuelTypes.find(
-                                    (vc) => vc === field.value
-                                  ) || null
-                                }
-                                onChange={(event, newValue) => {
-                                  field.onChange(newValue ? newValue : null);
-                                }}
-                                renderInput={(field) => (
-                                  <TextField {...field} label="Fuel Type*" />
-                                )}
-                              />
-                              <div className="text-[#FF0000] text-sm">
-                                {errorvehicleFuelTypes}
-                              </div>
-                            </div>
-                          </FormControl>
-                          <FormMessage />
-                        </FormItem>
-                      )}
-                    />
-                  </div>
-
-                  <div className="flex flex-col gap-5 md:flex-row">
-                    <FormField
-                      control={form.control}
-                      name="vehicleexchangeposible"
-                      render={({ field }) => (
-                        <FormItem className="w-full">
-                          <FormControl>
-                            <div className="w-full overflow-hidden rounded-full px-4 py-2">
-                              <Autocomplete
-                                id="vehicleexchangeposible"
-                                options={vehicleRegistered}
-                                getOptionLabel={(option) => option}
-                                value={
-                                  vehicleRegistered.find(
-                                    (vc) => vc === field.value
+                                  vehicleColors.find(
+                                    (color) => color === field.value
                                   ) || null
                                 }
                                 onChange={(event, newValue) => {
@@ -1350,12 +1332,12 @@ const AdForm = ({
                                 renderInput={(field) => (
                                   <TextField
                                     {...field}
-                                    label="Exchange possible (Optional)*"
+                                    label="Body color (Optional)*"
                                   />
                                 )}
                               />
                               <div className="text-[#FF0000] text-sm">
-                                {errorvehicleexchangeposible}
+                                {errorvehiclecolor}
                               </div>
                             </div>
                           </FormControl>
@@ -1363,34 +1345,34 @@ const AdForm = ({
                         </FormItem>
                       )}
                     />
-
                     <FormField
                       control={form.control}
-                      name="vehicleBodyTypes"
+                      name="vehicleinteriorColor"
                       render={({ field }) => (
                         <FormItem className="w-full">
                           <FormControl>
                             <div className="w-full overflow-hidden rounded-full px-4 py-2">
                               <Autocomplete
-                                id="vehicleBodyTypes"
-                                options={vehicleBodyTypes}
-                                getOptionLabel={(option) => option.type}
+                                id="vehicleinteriorColor"
+                                options={interiorVehicleColors}
+                                getOptionLabel={(option) => option}
                                 value={
-                                  vehicleBodyTypes.find(
-                                    (vc) => vc.type === field.value
+                                  interiorVehicleColors.find(
+                                    (ic) => ic === field.value
                                   ) || null
                                 }
                                 onChange={(event, newValue) => {
-                                  field.onChange(
-                                    newValue ? newValue.type : null
-                                  );
+                                  field.onChange(newValue ? newValue : null);
                                 }}
                                 renderInput={(field) => (
-                                  <TextField {...field} label="Body Type*" />
+                                  <TextField
+                                    {...field}
+                                    label="Interior color (Optional)*"
+                                  />
                                 )}
                               />
                               <div className="text-[#FF0000] text-sm">
-                                {errorvehicleBodyTypes}
+                                {errorvehicleinteriorColor}
                               </div>
                             </div>
                           </FormControl>
@@ -1438,19 +1420,32 @@ const AdForm = ({
                     />
                     <FormField
                       control={form.control}
-                      name="vehicleEngineSizesCC"
+                      name="vehicleexchangeposible"
                       render={({ field }) => (
                         <FormItem className="w-full">
                           <FormControl>
                             <div className="w-full overflow-hidden rounded-full px-4 py-2">
-                              <TextField
-                                {...field}
-                                label="Engine Size CC*"
-                                className="w-full"
+                              <Autocomplete
+                                id="vehicleexchangeposible"
+                                options={vehicleRegistered}
+                                getOptionLabel={(option) => option}
+                                value={
+                                  vehicleRegistered.find(
+                                    (vc) => vc === field.value
+                                  ) || null
+                                }
+                                onChange={(event, newValue) => {
+                                  field.onChange(newValue ? newValue : null);
+                                }}
+                                renderInput={(field) => (
+                                  <TextField
+                                    {...field}
+                                    label="Exchange possible (Optional)*"
+                                  />
+                                )}
                               />
-
                               <div className="text-[#FF0000] text-sm">
-                                {errorvehicleEngineSizesCC}
+                                {errorvehicleexchangeposible}
                               </div>
                             </div>
                           </FormControl>
@@ -1534,29 +1529,29 @@ const AdForm = ({
                   <div className="flex flex-col gap-5 md:flex-row">
                     <FormField
                       control={form.control}
-                      name="vehiclecolor"
+                      name="vehicleFuelTypes"
                       render={({ field }) => (
                         <FormItem className="w-full">
                           <FormControl>
                             <div className="w-full overflow-hidden rounded-full px-4 py-2">
                               <Autocomplete
-                                id="vehiclecolor"
-                                options={vehicleColors}
+                                id="vehicleFuelTypes"
+                                options={vehicleFuelTypes}
                                 getOptionLabel={(option) => option}
                                 value={
-                                  vehicleColors.find(
-                                    (color) => color === field.value
+                                  vehicleFuelTypes.find(
+                                    (vc) => vc === field.value
                                   ) || null
                                 }
                                 onChange={(event, newValue) => {
                                   field.onChange(newValue ? newValue : null);
                                 }}
                                 renderInput={(field) => (
-                                  <TextField {...field} label="Body color*" />
+                                  <TextField {...field} label="Fuel Type*" />
                                 )}
                               />
                               <div className="text-[#FF0000] text-sm">
-                                {errorvehiclecolor}
+                                {errorvehicleFuelTypes}
                               </div>
                             </div>
                           </FormControl>
@@ -1564,7 +1559,6 @@ const AdForm = ({
                         </FormItem>
                       )}
                     />
-
                     <FormField
                       control={form.control}
                       name="vehiclecondition"
@@ -1601,79 +1595,6 @@ const AdForm = ({
                   <div className="flex flex-col gap-5 md:flex-row">
                     <FormField
                       control={form.control}
-                      name="vehiclesecordCondition"
-                      render={({ field }) => (
-                        <FormItem className="w-full">
-                          <FormControl>
-                            <div className="w-full overflow-hidden rounded-full px-4 py-2">
-                              <Autocomplete
-                                id="vehiclesecordCondition"
-                                options={vehicleSecondConditions}
-                                getOptionLabel={(option) => option}
-                                value={
-                                  vehicleSecondConditions.find(
-                                    (ic) => ic === field.value
-                                  ) || null
-                                }
-                                onChange={(event, newValue) => {
-                                  field.onChange(newValue ? newValue : null);
-                                }}
-                                renderInput={(field) => (
-                                  <TextField
-                                    {...field}
-                                    label="Secord condition*"
-                                  />
-                                )}
-                              />
-                              <div className="text-[#FF0000] text-sm">
-                                {errorvehiclesecordCondition}
-                              </div>
-                            </div>
-                          </FormControl>
-                          <FormMessage />
-                        </FormItem>
-                      )}
-                    />
-                    <FormField
-                      control={form.control}
-                      name="vehicleTransmissions"
-                      render={({ field }) => (
-                        <FormItem className="w-full">
-                          <FormControl>
-                            <div className="w-full overflow-hidden rounded-full px-4 py-2">
-                              <Autocomplete
-                                id="vehicleTransmissions"
-                                options={vehicleTransmissions}
-                                getOptionLabel={(option) => option}
-                                value={
-                                  vehicleTransmissions.find(
-                                    (vc) => vc === field.value
-                                  ) || null
-                                }
-                                onChange={(event, newValue) => {
-                                  field.onChange(newValue ? newValue : null);
-                                }}
-                                renderInput={(field) => (
-                                  <TextField
-                                    {...field}
-                                    label="Transmissions*"
-                                  />
-                                )}
-                              />
-                              <div className="text-[#FF0000] text-sm">
-                                {errorvehicleTransmissions}
-                              </div>
-                            </div>
-                          </FormControl>
-                          <FormMessage />
-                        </FormItem>
-                      )}
-                    />
-                  </div>
-
-                  <div className="flex flex-col gap-5 md:flex-row">
-                    <FormField
-                      control={form.control}
                       name="vehicleregistered"
                       render={({ field }) => (
                         <FormItem className="w-full">
@@ -1704,20 +1625,57 @@ const AdForm = ({
                         </FormItem>
                       )}
                     />
-
                     <FormField
                       control={form.control}
-                      name="vehicleFuelTypes"
+                      name="vehiclesecordCondition"
                       render={({ field }) => (
                         <FormItem className="w-full">
                           <FormControl>
                             <div className="w-full overflow-hidden rounded-full px-4 py-2">
                               <Autocomplete
-                                id="vehicleFuelTypes"
-                                options={vehicleFuelTypes}
+                                id="vehiclesecordCondition"
+                                options={vehicleSecondConditions}
                                 getOptionLabel={(option) => option}
                                 value={
-                                  vehicleFuelTypes.find(
+                                  vehicleSecondConditions.find(
+                                    (ic) => ic === field.value
+                                  ) || null
+                                }
+                                onChange={(event, newValue) => {
+                                  field.onChange(newValue ? newValue : null);
+                                }}
+                                renderInput={(field) => (
+                                  <TextField
+                                    {...field}
+                                    label="Secord condition (Optional)*"
+                                  />
+                                )}
+                              />
+                              <div className="text-[#FF0000] text-sm">
+                                {errorvehiclesecordCondition}
+                              </div>
+                            </div>
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+                  </div>
+
+                  <div className="flex flex-col gap-5 md:flex-row">
+                    <FormField
+                      control={form.control}
+                      name="vehicleTransmissions"
+                      render={({ field }) => (
+                        <FormItem className="w-full">
+                          <FormControl>
+                            <div className="w-full overflow-hidden rounded-full px-4 py-2">
+                              <Autocomplete
+                                id="vehicleTransmissions"
+                                options={vehicleTransmissions}
+                                getOptionLabel={(option) => option}
+                                value={
+                                  vehicleTransmissions.find(
                                     (vc) => vc === field.value
                                   ) || null
                                 }
@@ -1725,11 +1683,49 @@ const AdForm = ({
                                   field.onChange(newValue ? newValue : null);
                                 }}
                                 renderInput={(field) => (
-                                  <TextField {...field} label="Fuel Type*" />
+                                  <TextField
+                                    {...field}
+                                    label="Transmissions (Optional)*"
+                                  />
                                 )}
                               />
                               <div className="text-[#FF0000] text-sm">
-                                {errorvehicleFuelTypes}
+                                {errorvehicleTransmissions}
+                              </div>
+                            </div>
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+                    <FormField
+                      control={form.control}
+                      name="vehiclecolor"
+                      render={({ field }) => (
+                        <FormItem className="w-full">
+                          <FormControl>
+                            <div className="w-full overflow-hidden rounded-full px-4 py-2">
+                              <Autocomplete
+                                id="vehiclecolor"
+                                options={vehicleColors}
+                                getOptionLabel={(option) => option}
+                                value={
+                                  vehicleColors.find(
+                                    (color) => color === field.value
+                                  ) || null
+                                }
+                                onChange={(event, newValue) => {
+                                  field.onChange(newValue ? newValue : null);
+                                }}
+                                renderInput={(field) => (
+                                  <TextField
+                                    {...field}
+                                    label="Body color (Optional)*"
+                                  />
+                                )}
+                              />
+                              <div className="text-[#FF0000] text-sm">
+                                {errorvehiclecolor}
                               </div>
                             </div>
                           </FormControl>
@@ -1760,7 +1756,7 @@ const AdForm = ({
                                 renderInput={(field) => (
                                   <TextField
                                     {...field}
-                                    label="Exchange possible*"
+                                    label="Exchange possible (Optional)*"
                                   />
                                 )}
                               />
@@ -1851,38 +1847,6 @@ const AdForm = ({
                   <div className="flex flex-col gap-5 md:flex-row">
                     <FormField
                       control={form.control}
-                      name="vehiclecondition"
-                      render={({ field }) => (
-                        <FormItem className="w-full">
-                          <FormControl>
-                            <div className="w-full overflow-hidden rounded-full px-4 py-2">
-                              <Autocomplete
-                                id="vehiclecondition"
-                                options={vehicleConditions}
-                                getOptionLabel={(option) => option}
-                                value={
-                                  vehicleConditions.find(
-                                    (vc) => vc === field.value
-                                  ) || null
-                                }
-                                onChange={(event, newValue) => {
-                                  field.onChange(newValue ? newValue : null);
-                                }}
-                                renderInput={(field) => (
-                                  <TextField {...field} label="Condition*" />
-                                )}
-                              />
-                              <div className="text-[#FF0000] text-sm">
-                                {errorvehiclecondition}
-                              </div>
-                            </div>
-                          </FormControl>
-                          <FormMessage />
-                        </FormItem>
-                      )}
-                    />
-                    <FormField
-                      control={form.control}
                       name="vehicleyear"
                       render={({ field }) => (
                         <FormItem className="w-full">
@@ -1916,6 +1880,39 @@ const AdForm = ({
                     />
                     <FormField
                       control={form.control}
+                      name="vehiclecondition"
+                      render={({ field }) => (
+                        <FormItem className="w-full">
+                          <FormControl>
+                            <div className="w-full overflow-hidden rounded-full px-4 py-2">
+                              <Autocomplete
+                                id="vehiclecondition"
+                                options={vehicleConditions}
+                                getOptionLabel={(option) => option}
+                                value={
+                                  vehicleConditions.find(
+                                    (vc) => vc === field.value
+                                  ) || null
+                                }
+                                onChange={(event, newValue) => {
+                                  field.onChange(newValue ? newValue : null);
+                                }}
+                                renderInput={(field) => (
+                                  <TextField {...field} label="Condition*" />
+                                )}
+                              />
+                              <div className="text-[#FF0000] text-sm">
+                                {errorvehiclecondition}
+                              </div>
+                            </div>
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+
+                    <FormField
+                      control={form.control}
                       name="vehicleexchangeposible"
                       render={({ field }) => (
                         <FormItem className="w-full">
@@ -1936,7 +1933,7 @@ const AdForm = ({
                                 renderInput={(field) => (
                                   <TextField
                                     {...field}
-                                    label="Exchange possible*"
+                                    label="Exchange possible (Optional)*"
                                   />
                                 )}
                               />
@@ -1989,19 +1986,17 @@ const AdForm = ({
                     />
                     <FormField
                       control={form.control}
-                      name="vehicleTransmissions"
+                      name="vehicleyear"
                       render={({ field }) => (
                         <FormItem className="w-full">
                           <FormControl>
                             <div className="w-full overflow-hidden rounded-full px-4 py-2">
                               <Autocomplete
-                                id="vehicleTransmissions"
-                                options={vehicleTransmissions}
+                                id="vehicleyear"
+                                options={years}
                                 getOptionLabel={(option) => option}
                                 value={
-                                  vehicleTransmissions.find(
-                                    (vc) => vc === field.value
-                                  ) || null
+                                  years.find((yr) => yr === field.value) || null
                                 }
                                 onChange={(event, newValue) => {
                                   field.onChange(newValue ? newValue : null);
@@ -2009,12 +2004,12 @@ const AdForm = ({
                                 renderInput={(field) => (
                                   <TextField
                                     {...field}
-                                    label="Transmissions*"
+                                    label="Manufacture year*"
                                   />
                                 )}
                               />
                               <div className="text-[#FF0000] text-sm">
-                                {errorvehicleTransmissions}
+                                {errorvehicleyear}
                               </div>
                             </div>
                           </FormControl>
@@ -2059,17 +2054,19 @@ const AdForm = ({
 
                     <FormField
                       control={form.control}
-                      name="vehicleyear"
+                      name="vehicleTransmissions"
                       render={({ field }) => (
                         <FormItem className="w-full">
                           <FormControl>
                             <div className="w-full overflow-hidden rounded-full px-4 py-2">
                               <Autocomplete
-                                id="vehicleyear"
-                                options={years}
+                                id="vehicleTransmissions"
+                                options={vehicleTransmissions}
                                 getOptionLabel={(option) => option}
                                 value={
-                                  years.find((yr) => yr === field.value) || null
+                                  vehicleTransmissions.find(
+                                    (vc) => vc === field.value
+                                  ) || null
                                 }
                                 onChange={(event, newValue) => {
                                   field.onChange(newValue ? newValue : null);
@@ -2077,12 +2074,12 @@ const AdForm = ({
                                 renderInput={(field) => (
                                   <TextField
                                     {...field}
-                                    label="Manufacture year*"
+                                    label="Transmissions (Optional)*"
                                   />
                                 )}
                               />
                               <div className="text-[#FF0000] text-sm">
-                                {errorvehicleyear}
+                                {errorvehicleTransmissions}
                               </div>
                             </div>
                           </FormControl>
@@ -2114,7 +2111,7 @@ const AdForm = ({
                                 renderInput={(field) => (
                                   <TextField
                                     {...field}
-                                    label="Exchange possible*"
+                                    label="Exchange possible (Optional)*"
                                   />
                                 )}
                               />
@@ -2147,7 +2144,10 @@ const AdForm = ({
                                   field.onChange(newValue ? newValue : null);
                                 }}
                                 renderInput={(field) => (
-                                  <TextField {...field} label="Body color*" />
+                                  <TextField
+                                    {...field}
+                                    label="Body color (Optional)*"
+                                  />
                                 )}
                               />
                               <div className="text-[#FF0000] text-sm">
@@ -2231,19 +2231,17 @@ const AdForm = ({
                   <div className="flex flex-col gap-5 md:flex-row">
                     <FormField
                       control={form.control}
-                      name="vehicleTransmissions"
+                      name="vehicleyear"
                       render={({ field }) => (
                         <FormItem className="w-full">
                           <FormControl>
                             <div className="w-full overflow-hidden rounded-full px-4 py-2">
                               <Autocomplete
-                                id="vehicleTransmissions"
-                                options={vehicleTransmissions}
+                                id="vehicleyear"
+                                options={years}
                                 getOptionLabel={(option) => option}
                                 value={
-                                  vehicleTransmissions.find(
-                                    (vc) => vc === field.value
-                                  ) || null
+                                  years.find((yr) => yr === field.value) || null
                                 }
                                 onChange={(event, newValue) => {
                                   field.onChange(newValue ? newValue : null);
@@ -2251,12 +2249,12 @@ const AdForm = ({
                                 renderInput={(field) => (
                                   <TextField
                                     {...field}
-                                    label="Transmissions*"
+                                    label="Manufacture year*"
                                   />
                                 )}
                               />
                               <div className="text-[#FF0000] text-sm">
-                                {errorvehicleTransmissions}
+                                {errorvehicleyear}
                               </div>
                             </div>
                           </FormControl>
@@ -2264,7 +2262,6 @@ const AdForm = ({
                         </FormItem>
                       )}
                     />
-
                     <FormField
                       control={form.control}
                       name="vehiclecondition"
@@ -2301,17 +2298,19 @@ const AdForm = ({
                   <div className="flex flex-col gap-5 md:flex-row">
                     <FormField
                       control={form.control}
-                      name="vehicleyear"
+                      name="vehicleTransmissions"
                       render={({ field }) => (
                         <FormItem className="w-full">
                           <FormControl>
                             <div className="w-full overflow-hidden rounded-full px-4 py-2">
                               <Autocomplete
-                                id="vehicleyear"
-                                options={years}
+                                id="vehicleTransmissions"
+                                options={vehicleTransmissions}
                                 getOptionLabel={(option) => option}
                                 value={
-                                  years.find((yr) => yr === field.value) || null
+                                  vehicleTransmissions.find(
+                                    (vc) => vc === field.value
+                                  ) || null
                                 }
                                 onChange={(event, newValue) => {
                                   field.onChange(newValue ? newValue : null);
@@ -2319,12 +2318,12 @@ const AdForm = ({
                                 renderInput={(field) => (
                                   <TextField
                                     {...field}
-                                    label="Manufacture year*"
+                                    label="Transmissions (Optional)*"
                                   />
                                 )}
                               />
                               <div className="text-[#FF0000] text-sm">
-                                {errorvehicleyear}
+                                {errorvehicleTransmissions}
                               </div>
                             </div>
                           </FormControl>
@@ -2332,7 +2331,6 @@ const AdForm = ({
                         </FormItem>
                       )}
                     />
-
                     <FormField
                       control={form.control}
                       name="vehicleexchangeposible"
@@ -2355,7 +2353,7 @@ const AdForm = ({
                                 renderInput={(field) => (
                                   <TextField
                                     {...field}
-                                    label="Exchange possible*"
+                                    label="Exchange possible (Optional)*"
                                   />
                                 )}
                               />
@@ -2598,7 +2596,7 @@ const AdForm = ({
                                 renderInput={(field) => (
                                   <TextField
                                     {...field}
-                                    label="Exchange possible*"
+                                    label="Exchange possible (Optional)*"
                                   />
                                 )}
                               />
