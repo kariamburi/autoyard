@@ -780,7 +780,7 @@ const AdForm = ({
           onSubmit={form.handleSubmit(onSubmit)}
           className="flex flex-col gap-1 mr-0 ml-0 lg:mr-20 lg:ml-20"
         >
-          <div className="p-0 rounded-sm m-1 shadow-lg bg-white">
+          <div className="lg:p-1 rounded-sm m-1 shadow-lg bg-white">
             <div className="flex flex-col">
               <section className="bg-grey-50 bg-dotted-pattern bg-cover bg-center mb-2 mt-2 rounded-sm">
                 <div className="wrapper flex items-center justify-center sm:justify-between">

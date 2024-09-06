@@ -497,6 +497,7 @@ export const vehicleSeats = [
 ];
 export const vehicleBodyTypes = [
   { type: "SUV" },
+  { type: "Saloon"},
   { type: "Hatchback" },
   { type: "Sedan" },
   { type: "Minivan" },
