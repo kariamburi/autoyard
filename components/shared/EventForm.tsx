@@ -800,16 +800,12 @@ const AdForm = ({
                   render={({ field }) => (
                     <FormItem className="w-[0px]">
                       <FormControl>
-                        <TextField
-                          {...field}
-                          type="hidden"
-                          value="65e5e7b50419f8e5bc016aaf"
-                        />
-
-                        {/*     <div className="w-full overflow-hidden rounded-full px-4 py-2">
+                        <div className="w-full overflow-hidden rounded-full px-4 py-2">
                           <Autocomplete
                             id="categoryId"
-                            options={categories}
+                            options={categories.filter(
+                              (category) => category.name === "Vehicle"
+                            )}
                             getOptionLabel={(option) => option.name}
                             value={
                               categories.find(
@@ -818,16 +814,16 @@ const AdForm = ({
                             }
                             onChange={(event, newValue) => {
                               field.onChange(newValue ? newValue._id : null);
-                              //SetselectedCategory(newValue?.name ?? "");
-                              form.setValue("subcategory", ""); // Reset constituency value
-                              form.getValues(); // Trigger re-render to update constituency options
+                              // Reset subcategory value
+                              form.setValue("subcategory", "");
+                              // Trigger re-render to update subcategory options
+                              form.getValues();
                             }}
                             renderInput={(field) => (
                               <TextField {...field} label="Select Category*" />
                             )}
                           />
                         </div>
-                        */}
                       </FormControl>
                       <FormMessage />
                     </FormItem>
@@ -847,7 +843,8 @@ const AdForm = ({
                               categories
                                 .find(
                                   (category) =>
-                                    category._id === "65e5e7b50419f8e5bc016aaf"
+                                    category._id ===
+                                    form.getValues("categoryId")
                                 )
                                 ?.subcategory.map((sub: any) => sub.title) || []
                             }
@@ -857,7 +854,10 @@ const AdForm = ({
                               SetselectedCategory(newValue);
                             }}
                             renderInput={(field) => (
-                              <TextField {...field} label="Select Category*" />
+                              <TextField
+                                {...field}
+                                label="Select Sub Category*"
+                              />
                             )}
                           />
                         </div>
