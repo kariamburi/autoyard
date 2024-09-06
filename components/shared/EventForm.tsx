@@ -798,7 +798,7 @@ const AdForm = ({
                   control={form.control}
                   name="categoryId"
                   render={({ field }) => (
-                    <FormItem className="w-[0px]">
+                    <FormItem className="w-full">
                       <FormControl>
                         <div className="w-full overflow-hidden rounded-full px-4 py-2">
                           <Autocomplete
