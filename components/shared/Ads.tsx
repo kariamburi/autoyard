@@ -502,6 +502,7 @@ export default function Ads({ ad, userId, userImage, userName }: CardProps) {
                 <div className="mb-2 md:flex-row">
                   <div className="text-emerald-950 text-sm">
                     {ad.vehiclemileage}
+                    {" KM"}
                   </div>
                   <div className="text-gray-500 text-xs">MILAGE</div>
                 </div>
