@@ -37,7 +37,7 @@ import {
   propertyType,
   truckMakes,
   truckTypes,
-  units,
+  //  units,
   vehicleBodyTypes,
   vehicleColors,
   vehicleConditions,
@@ -210,7 +210,7 @@ const AdForm = ({
   const [errorvehicleSeats, seterrorvehicleSeats] = useState("");
   const [errorvehicleEngineSizesCC, seterrorvehicleEngineSizesCC] =
     useState("");
-
+  const [errorTypes, seterrorTypes] = useState("");
   const [Adstatus_, setadstatus] = useState(adstatus);
   const [Priority_, setpriority] = useState(priority);
   const [ExpirationDate_, setexpirationDate] = useState(expirationDate);
@@ -243,124 +243,145 @@ const AdForm = ({
     try {
       if (
         form.getValues("make") === "" &&
-        SelectedCategory === "Cars, Vans & Pickups"
+        (SelectedCategory === "Cars, Vans & Pickups" ||
+          SelectedCategory === "Buses & Microbuses" ||
+          SelectedCategory === "Motorbikes,Tuktuks & Scooters" ||
+          SelectedCategory === "Heavy Equipment" ||
+          SelectedCategory === "Trucks & Trailers" ||
+          SelectedCategory === "Vehicle Parts & Accessories")
       ) {
-        seterrormake("Please! Select Vehicle Make");
+        seterrormake("Please! Select Make");
         return;
       }
       if (
         form.getValues("vehiclemodel") === "" &&
         SelectedCategory === "Cars, Vans & Pickups"
       ) {
-        seterrormodel("Please! Select Vehicle Model");
+        seterrormodel("Please! Select Model");
         return;
       }
 
       if (
         form.getValues("vehicleyear") === "" &&
-        SelectedCategory === "Cars, Vans & Pickups"
+        (SelectedCategory === "Cars, Vans & Pickups" ||
+          SelectedCategory === "Buses & Microbuses" ||
+          SelectedCategory === "Motorbikes,Tuktuks & Scooters" ||
+          SelectedCategory === "Heavy Equipment" ||
+          SelectedCategory === "Trucks & Trailers" ||
+          SelectedCategory === "Watercraft & Boats")
       ) {
-        seterrorvehicleyear("Please! Select Vehicle Year");
+        seterrorvehicleyear("Please! Select Year");
         return;
       }
       if (
-        form.getValues("vehiclecolor") === "" &&
-        SelectedCategory === "Cars, Vans & Pickups"
+        form.getValues("Types") === "" &&
+        (SelectedCategory === "Heavy Equipment" ||
+          SelectedCategory === "Trucks & Trailers" ||
+          SelectedCategory === "Vehicle Parts & Accessories" ||
+          SelectedCategory === "Watercraft & Boats")
       ) {
-        seterrorvehiclecolor("Please! Select Vehicle Color");
+        seterrorTypes("Please! Select Type");
         return;
       }
 
-      if (
-        form.getValues("vehicleinteriorColor") === "" &&
-        SelectedCategory === "Cars, Vans & Pickups"
-      ) {
-        seterrorvehicleinteriorColor("Please! Select Vehicle interior color");
-        return;
-      }
+      // if (
+      //  form.getValues("vehicleinteriorColor") === "" &&
+      //  SelectedCategory === "Cars, Vans & Pickups"
+      // ) {
+      //  seterrorvehicleinteriorColor("Please! Select Vehicle interior color");
+      // return;
+      // }
       if (
         form.getValues("vehiclecondition") === "" &&
-        SelectedCategory === "Cars, Vans & Pickups"
+        (SelectedCategory === "Cars, Vans & Pickups" ||
+          SelectedCategory === "Buses & Microbuses" ||
+          SelectedCategory === "Motorbikes,Tuktuks & Scooters" ||
+          SelectedCategory === "Heavy Equipment" ||
+          SelectedCategory === "Trucks & Trailers" ||
+          SelectedCategory === "Vehicle Parts & Accessories" ||
+          SelectedCategory === "Watercraft & Boats")
       ) {
-        seterrorvehiclecondition("Please! Select Vehicle condition");
+        seterrorvehiclecondition("Please! Select Condition");
         return;
       }
       //iiii
 
-      if (
-        form.getValues("vehiclesecordCondition") === "" &&
-        SelectedCategory === "Cars, Vans & Pickups"
-      ) {
-        seterrorvehiclesecordCondition(
-          "Please! Select Vehicle secord condition"
-        );
-        return;
-      }
-      if (
-        form.getValues("vehicleTransmissions") === "" &&
-        SelectedCategory === "Cars, Vans & Pickups"
-      ) {
-        seterrorvehicleTransmissions("Please! Select Vehicle Transmissions");
-        return;
-      }
+      // if (
+      // form.getValues("vehiclesecordCondition") === "" &&
+      // SelectedCategory === "Cars, Vans & Pickups"
+      //) {
+      //  seterrorvehiclesecordCondition(
+      // "Please! Select Vehicle secord condition"
+      // );
+      // return;
+      // }
+      //  if (
+      // form.getValues("vehicleTransmissions") === "" &&
+      //  SelectedCategory === "Cars, Vans & Pickups"
+      //) {
+      // seterrorvehicleTransmissions("Please! Select Vehicle Transmissions");
+      // return;
+      //}
       if (
         form.getValues("vehiclemileage") === "" &&
         SelectedCategory === "Cars, Vans & Pickups"
       ) {
-        seterrorvehiclemileage("Please! Select Vehicle mileage");
+        seterrorvehiclemileage("Please! Select Mileage");
         return;
       }
-      if (
-        form.getValues("vehiclekeyfeatures")?.length === 0 &&
-        SelectedCategory === "Cars, Vans & Pickups"
-      ) {
-        seterrorvehiclekeyfeatures("Please! Select Vehicle key features");
-        return;
-      }
-      if (
-        form.getValues("vehiclechassis") === "" &&
-        SelectedCategory === "Cars, Vans & Pickups"
-      ) {
-        seterrorvehiclechassis("Please! Select Vehicle VIN Chassis number");
-        return;
-      }
+      // if (
+      //   form.getValues("vehiclekeyfeatures")?.length === 0 &&
+      //  SelectedCategory === "Cars, Vans & Pickups"
+      // ) {
+      //   seterrorvehiclekeyfeatures("Please! Select Vehicle key features");
+      //  return;
+      // }
+      //  if (
+      //   form.getValues("vehiclechassis") === "" &&
+      //   SelectedCategory === "Cars, Vans & Pickups"
+      // ) {
+      //  seterrorvehiclechassis("Please! Select Vehicle VIN Chassis number");
+      //  return;
+      // }
       if (
         form.getValues("vehicleregistered") === "" &&
-        SelectedCategory === "Cars, Vans & Pickups"
+        (SelectedCategory === "Cars, Vans & Pickups" ||
+          SelectedCategory === "Buses & Microbuses")
       ) {
-        seterrorvehicleregistered("Please! Select Vehicle registration status");
+        seterrorvehicleregistered("Please! Select Registration status");
         return;
       }
-      if (
-        form.getValues("vehicleexchangeposible") === "" &&
-        SelectedCategory === "Cars, Vans & Pickups"
-      ) {
-        seterrorvehicleexchangeposible(
-          "Please! Select Vehicle exchange status"
-        );
-        return;
-      }
+      //  if (
+      //    form.getValues("vehicleexchangeposible") === "" &&
+      //    SelectedCategory === "Cars, Vans & Pickups"
+      //  ) {
+      //   seterrorvehicleexchangeposible(
+      //     "Please! Select Vehicle exchange status"
+      //   );
+      //  return;
+      //   }
       if (
         form.getValues("vehicleBodyTypes") === "" &&
         SelectedCategory === "Cars, Vans & Pickups"
       ) {
-        seterrorvehicleBodyTypes("Please! Select Vehicle body type");
+        seterrorvehicleBodyTypes("Please! Select body type");
         return;
       }
       if (
         form.getValues("vehicleFuelTypes") === "" &&
-        SelectedCategory === "Cars, Vans & Pickups"
+        (SelectedCategory === "Cars, Vans & Pickups" ||
+          SelectedCategory === "Buses & Microbuses")
       ) {
-        seterrorvehicleFuelTypes("Please! Select Vehicle Fuel Type");
+        seterrorvehicleFuelTypes("Please! Select Fuel Type");
         return;
       }
-      if (
-        form.getValues("vehicleSeats") === "" &&
-        SelectedCategory === "Cars, Vans & Pickups"
-      ) {
-        seterrorvehicleSeats("Please! Select Vehicle Seats No");
-        return;
-      }
+      // if (
+      //    form.getValues("vehicleSeats") === "" &&
+      //    SelectedCategory === "Cars, Vans & Pickups"
+      // ) {
+      //  seterrorvehicleSeats("Please! Select Vehicle Seats No");
+      //  return;
+      //  }
       if (
         form.getValues("vehicleEngineSizesCC") === "" &&
         SelectedCategory === "Cars, Vans & Pickups"
@@ -429,7 +450,8 @@ const AdForm = ({
             phone: countryCode + removeLeadingZero(phoneNumber),
             price: Number(form.getValues("price")),
             address: form.getValues("address"),
-            vehiclekeyfeatures: selectedfeaturesOptions,
+            vehiclekeyfeatures:
+              selectedfeaturesOptions.length > 0 ? selectedfeaturesOptions : [],
             vehicleEngineSizesCC: (
               form.getValues("vehicleEngineSizesCC")?.replace(/\s/g, "") ?? ""
             ).toUpperCase(),
@@ -490,7 +512,8 @@ const AdForm = ({
             ...values,
             phone: countryCode + removeLeadingZero(phoneNumber),
             price: Number(form.getValues("price")),
-            vehiclekeyfeatures: selectedfeaturesOptions,
+            vehiclekeyfeatures:
+              selectedfeaturesOptions.length > 0 ? selectedfeaturesOptions : [],
             vehicleEngineSizesCC: (
               form.getValues("vehicleEngineSizesCC")?.replace(/\s/g, "") ?? ""
             ).toUpperCase(),
@@ -972,7 +995,10 @@ const AdForm = ({
                                   field.onChange(newValue ? newValue : null);
                                 }}
                                 renderInput={(field) => (
-                                  <TextField {...field} label="Body color*" />
+                                  <TextField
+                                    {...field}
+                                    label="Body color (Optional)*"
+                                  />
                                 )}
                               />
                               <div className="text-[#FF0000] text-sm">
@@ -1008,7 +1034,7 @@ const AdForm = ({
                                 renderInput={(field) => (
                                   <TextField
                                     {...field}
-                                    label="Interior color*"
+                                    label="Interior color (Optional)*"
                                   />
                                 )}
                               />
@@ -1077,7 +1103,7 @@ const AdForm = ({
                                 renderInput={(field) => (
                                   <TextField
                                     {...field}
-                                    label="Secord condition*"
+                                    label="Secord condition (Optional)*"
                                   />
                                 )}
                               />
@@ -1112,7 +1138,7 @@ const AdForm = ({
                                 renderInput={(field) => (
                                   <TextField
                                     {...field}
-                                    label="Transmissions*"
+                                    label="Transmissions (Optional)*"
                                   />
                                 )}
                               />
@@ -1135,44 +1161,14 @@ const AdForm = ({
                         <FormItem className="w-full">
                           <FormControl>
                             <div className="w-full overflow-hidden rounded-full px-4 py-2">
-                              <TextField
-                                {...field}
-                                label="Mileage*"
-                                className="w-full"
-                              />
-                              <div className="text-[#FF0000] text-sm">
-                                {errorvehiclemileage}
+                              <div className="flex gap-1 items-center justify-between">
+                                <TextField
+                                  {...field}
+                                  label="Mileage*"
+                                  className="w-full"
+                                />
+                                kilometers (KM)
                               </div>
-                            </div>
-                          </FormControl>
-                          <FormMessage />
-                        </FormItem>
-                      )}
-                    />
-                    <FormField
-                      control={form.control}
-                      name="vehiclemileage"
-                      render={({ field }) => (
-                        <FormItem className="w-full">
-                          <FormControl>
-                            <div className="w-full overflow-hidden rounded-full px-4 py-2">
-                              <Autocomplete
-                                id="units"
-                                options={units}
-                                getOptionLabel={(option) => option}
-                                value={
-                                  units.find((vc) => vc === field.value) || null
-                                }
-                                onChange={(event, newValue) => {
-                                  field.onChange(newValue ? newValue : null);
-                                }}
-                                renderInput={(field) => (
-                                  <TextField
-                                    {...field}
-                                    label="Mileage Units*"
-                                  />
-                                )}
-                              />
                               <div className="text-[#FF0000] text-sm">
                                 {errorvehiclemileage}
                               </div>
@@ -1196,7 +1192,7 @@ const AdForm = ({
                                 <HoverCardTrigger>
                                   <TextField
                                     {...field}
-                                    label="Features*"
+                                    label="Features (Optional)*"
                                     className="w-full"
                                   />
                                 </HoverCardTrigger>
@@ -1248,7 +1244,7 @@ const AdForm = ({
                             <div className="w-full overflow-hidden rounded-full px-4 py-2">
                               <TextField
                                 {...field}
-                                label="VIN Chassis Number*"
+                                label="VIN Chassis Number (Optional)*"
                                 className="w-full"
                               />
 
@@ -1354,7 +1350,7 @@ const AdForm = ({
                                 renderInput={(field) => (
                                   <TextField
                                     {...field}
-                                    label="Exchange possible*"
+                                    label="Exchange possible (Optional)*"
                                   />
                                 )}
                               />
@@ -1425,7 +1421,10 @@ const AdForm = ({
                                   field.onChange(newValue ? newValue : null);
                                 }}
                                 renderInput={(field) => (
-                                  <TextField {...field} label="Seats*" />
+                                  <TextField
+                                    {...field}
+                                    label="Seats (Optional)*"
+                                  />
                                 )}
                               />
                               <div className="text-[#FF0000] text-sm">
@@ -1807,6 +1806,9 @@ const AdForm = ({
                                   <TextField {...field} label="Select Type*" />
                                 )}
                               />
+                              <div className="text-[#FF0000] text-sm">
+                                {errorTypes}
+                              </div>
                             </div>
                           </FormControl>
                           <FormMessage />
