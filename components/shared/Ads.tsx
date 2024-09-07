@@ -67,6 +67,8 @@ import {
 import SellerProfile from "./SellerProfile";
 import { addDoc, collection, serverTimestamp } from "firebase/firestore";
 import { db } from "@/lib/firebase";
+import Head from "next/head";
+import ChatButton from "./ChatButton ";
 
 type CardProps = {
   ad: IAd;
@@ -264,10 +266,26 @@ export default function Ads({ ad, userId, userImage, userName }: CardProps) {
       alert("Please enter a description of the abuse.");
     }
   };
+  const shareUrl = `https://autoyard.co.ke/ads/${ad._id}`;
+  const title = ad.title; // Replace with your product's title
+  const description = ad.description; // Replace with your product's description
+  const imageUrl = ad.imageUrls[0]; // Replace with your product's image URL
+
   return (
     <>
+      <Head>
+        <meta property="og:url" content={shareUrl} />
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content={title} />
+        <meta property="og:description" content={description} />
+        <meta property="og:image" content={imageUrl} />
+        <meta property="twitter:card" content="summary_large_image" />
+        <meta property="twitter:title" content={title} />
+        <meta property="twitter:description" content={description} />
+        <meta property="twitter:image" content={imageUrl} />
+      </Head>
       <div className="lg:m-1 space-y-0 lg:flex lg:space-x-5">
-        <div className="lg:flex-1 border-t-8 border-emerald-950 bg-white rounded-lg">
+        <div className="lg:flex-1 border-t-8 border-emerald-950 lg:bg-white rounded-lg">
           {/* Carousel */}
           <div className="relative">
             <Carousel
@@ -444,21 +462,36 @@ export default function Ads({ ad, userId, userImage, userName }: CardProps) {
 
           {/* Ad details */}
           <div className="m-5">
-            <p className="text-lg lg:text-2xl font-bold text-emerald-950">
-              {ad.title}
-            </p>
+            <div className="flex justify-between items-center w-full">
+              <p className="text-lg lg:text-2xl font-bold text-emerald-950">
+                {ad.title}
+              </p>
 
+              <div className="flex gap-1 items-center justify-center">
+                <div className="flex items-center">
+                  {ad.negotiable && (
+                    <div className="flex gap-1 text-[10px] text-emerald-700 font-bold bg-white rounded-lg p-1 justify-center border">
+                      Negotiable
+                      <CheckCircleIcon sx={{ fontSize: 14 }} />
+                    </div>
+                  )}
+                </div>
+                <span className="text-lg lg:text-xl font-bold w-min rounded-full p-1 text-emerald-950">
+                  {NGnaira.format(ad.price)}
+                </span>
+              </div>
+            </div>
             <div className="flex items-center justify-between space-x-2">
               <div className="flex gap-2">
-                <p className="text-gray-500 text-[10px] lg:text-sm">
+                <p className="text-gray-700 text-[10px] lg:text-sm">
                   <AccessTimeIcon sx={{ fontSize: 20 }} />
                   Posted {formattedCreatedAt}
                 </p>
-                <p className="text-gray-500 text-[10px] lg:text-sm">
+                <p className="text-gray-700 text-[10px] lg:text-sm">
                   <LocationOnIcon sx={{ fontSize: 20 }} /> {ad.address}
                 </p>
               </div>
-              <p className="text-gray-500 text-[10px] lg:text-sm">
+              <p className="text-gray-700 text-[10px] lg:text-sm">
                 <VisibilityIcon sx={{ fontSize: 20 }} /> {ad.views} Views
               </p>
             </div>
@@ -479,7 +512,7 @@ export default function Ads({ ad, userId, userImage, userName }: CardProps) {
               {ad.make && (
                 <div className="mb-2 md:flex-row">
                   <div className="text-emerald-950 text-sm">{ad.make}</div>
-                  <div className="text-gray-500 text-xs">MAKE</div>
+                  <div className="text-gray-600 text-xs">MAKE</div>
                 </div>
               )}
               {ad.vehiclemodel && (
@@ -487,7 +520,7 @@ export default function Ads({ ad, userId, userImage, userName }: CardProps) {
                   <div className="text-emerald-950 text-sm">
                     {ad.vehiclemodel}
                   </div>
-                  <div className="text-gray-500 text-xs">MODEL</div>
+                  <div className="text-gray-600 text-xs">MODEL</div>
                 </div>
               )}
               {ad.vehicleyear && (
@@ -495,7 +528,7 @@ export default function Ads({ ad, userId, userImage, userName }: CardProps) {
                   <div className="text-emerald-950 text-sm">
                     {ad.vehicleyear}
                   </div>
-                  <div className="text-gray-500 text-xs">YEAR</div>
+                  <div className="text-gray-600 text-xs">YEAR</div>
                 </div>
               )}
               {ad.vehiclemileage && (
@@ -504,7 +537,7 @@ export default function Ads({ ad, userId, userImage, userName }: CardProps) {
                     {ad.vehiclemileage}
                     {" KM"}
                   </div>
-                  <div className="text-gray-500 text-xs">MILAGE</div>
+                  <div className="text-gray-600 text-xs">MILAGE</div>
                 </div>
               )}
               {ad.vehicleTransmissions && (
@@ -512,7 +545,7 @@ export default function Ads({ ad, userId, userImage, userName }: CardProps) {
                   <div className="text-emerald-950 text-sm">
                     {ad.vehicleTransmissions}
                   </div>
-                  <div className="text-gray-500 text-xs">TRANSMISSION</div>
+                  <div className="text-gray-600 text-xs">TRANSMISSION</div>
                 </div>
               )}
               {ad.vehicleEngineSizesCC && (
@@ -520,7 +553,7 @@ export default function Ads({ ad, userId, userImage, userName }: CardProps) {
                   <div className="text-emerald-950 text-sm">
                     {ad.vehicleEngineSizesCC}
                   </div>
-                  <div className="text-gray-500 text-xs">ENGINE SIZE</div>
+                  <div className="text-gray-600 text-xs">ENGINE SIZE</div>
                 </div>
               )}
               {ad.vehicleFuelTypes && (
@@ -528,7 +561,7 @@ export default function Ads({ ad, userId, userImage, userName }: CardProps) {
                   <div className="text-emerald-950 text-sm">
                     {ad.vehicleFuelTypes}
                   </div>
-                  <div className="text-gray-500 text-xs">FUEL TYPE</div>
+                  <div className="text-gray-600 text-xs">FUEL TYPE</div>
                 </div>
               )}
               {ad.vehicleBodyTypes && (
@@ -536,7 +569,7 @@ export default function Ads({ ad, userId, userImage, userName }: CardProps) {
                   <div className="text-emerald-950 text-sm">
                     {ad.vehicleBodyTypes}
                   </div>
-                  <div className="text-gray-500 text-xs">BODY TYPE</div>
+                  <div className="text-gray-600 text-xs">BODY TYPE</div>
                 </div>
               )}
               {ad.vehiclecolor && (
@@ -544,7 +577,7 @@ export default function Ads({ ad, userId, userImage, userName }: CardProps) {
                   <div className="text-emerald-950 text-sm">
                     {ad.vehiclecolor}
                   </div>
-                  <div className="text-gray-500 text-xs">BODY COLOR</div>
+                  <div className="text-gray-600 text-xs">BODY COLOR</div>
                 </div>
               )}
               {ad.vehicleinteriorColor && (
@@ -552,7 +585,7 @@ export default function Ads({ ad, userId, userImage, userName }: CardProps) {
                   <div className="text-emerald-950 text-sm">
                     {ad.vehicleinteriorColor}
                   </div>
-                  <div className="text-gray-500 text-xs">INTERIOR COLOR</div>
+                  <div className="text-gray-600 text-xs">INTERIOR COLOR</div>
                 </div>
               )}
               {ad.vehicleSeats && (
@@ -560,7 +593,7 @@ export default function Ads({ ad, userId, userImage, userName }: CardProps) {
                   <div className="text-emerald-950 text-sm">
                     {ad.vehicleSeats}
                   </div>
-                  <div className="text-gray-500 text-xs">SEATS</div>
+                  <div className="text-gray-600 text-xs">SEATS</div>
                 </div>
               )}
               {ad.vehiclecondition && (
@@ -568,7 +601,7 @@ export default function Ads({ ad, userId, userImage, userName }: CardProps) {
                   <div className="text-emerald-950 text-sm">
                     {ad.vehiclecondition}
                   </div>
-                  <div className="text-gray-500 text-xs">CONDITION</div>
+                  <div className="text-gray-600 text-xs">CONDITION</div>
                 </div>
               )}
               {ad.vehiclesecordCondition && (
@@ -576,7 +609,7 @@ export default function Ads({ ad, userId, userImage, userName }: CardProps) {
                   <div className="text-emerald-950 text-sm">
                     {ad.vehiclesecordCondition}
                   </div>
-                  <div className="text-gray-500 text-xs">SECORD CONDITION</div>
+                  <div className="text-gray-600 text-xs">SECORD CONDITION</div>
                 </div>
               )}
               {ad.vehicleregistered && (
@@ -584,7 +617,7 @@ export default function Ads({ ad, userId, userImage, userName }: CardProps) {
                   <div className="text-emerald-950 text-sm">
                     {ad.vehicleregistered}
                   </div>
-                  <div className="text-gray-500 text-xs">REGISTERED</div>
+                  <div className="text-gray-600 text-xs">REGISTERED</div>
                 </div>
               )}
               {ad.vehicleexchangeposible && (
@@ -592,7 +625,7 @@ export default function Ads({ ad, userId, userImage, userName }: CardProps) {
                   <div className="text-emerald-950 text-sm">
                     {ad.vehicleexchangeposible}
                   </div>
-                  <div className="text-gray-500 text-xs">EXCHANGE POSSIBLE</div>
+                  <div className="text-gray-600 text-xs">EXCHANGE POSSIBLE</div>
                 </div>
               )}
               {ad.vehiclechassis && (
@@ -600,7 +633,7 @@ export default function Ads({ ad, userId, userImage, userName }: CardProps) {
                   <div className="text-emerald-950 text-sm">
                     {ad.vehiclechassis}
                   </div>
-                  <div className="text-gray-500 text-xs">VIN CHASSIS NO.</div>
+                  <div className="text-gray-600 text-xs">VIN CHASSIS NO.</div>
                 </div>
               )}
             </div>
@@ -612,7 +645,7 @@ export default function Ads({ ad, userId, userImage, userName }: CardProps) {
                 <div className="grid grid-cols-3 lg:grid-cols-5 w-full gap-1 mt-1">
                   {ad.vehiclekeyfeatures.map((feature) => (
                     <>
-                      <div className="flex flex-col items-center h-10 gap-2 text-[10px] lg:text-xs bg-[#ebf2f7] rounded-sm p-1 justify-center border">
+                      <div className="flex flex-col items-center h-10 gap-2 text-[10px] lg:text-xs bg-white lg:bg-[#ebf2f7] rounded-sm p-1 justify-center border">
                         {feature}
                       </div>
                     </>
@@ -633,33 +666,49 @@ export default function Ads({ ad, userId, userImage, userName }: CardProps) {
             <div className="flex justify-between w-full items-center">
               <div className="flex items-center space-x-2">
                 <FacebookShareButton
-                  url={"https://autoyard.co.ke/ads/" + ad._id + ""}
+                  url={shareUrl}
+                  quote={description} // Facebook uses 'quote' for description
+                  hashtag="#AutoYard" // Optionally add a hashtag
                 >
                   <FacebookIcon size={32} round />
                 </FacebookShareButton>
 
                 <RedditShareButton
-                  url={"https://autoyard.co.ke/ads/" + ad._id + ""}
+                  url={shareUrl}
+                  title={title} // Reddit uses 'title' for the shared post title
                 >
                   <RedditIcon size={32} round />
                 </RedditShareButton>
+
                 <WhatsappShareButton
-                  url={"https://autoyard.co.ke/ads/" + ad._id + ""}
+                  url={shareUrl}
+                  title={title} // WhatsApp uses 'title' as the shared message
+                  separator=": " // Separator between title and URL
                 >
                   <WhatsappIcon size={32} round />
                 </WhatsappShareButton>
+
                 <LinkedinShareButton
-                  url={"https://autoyard.co.ke/ads/" + ad._id + ""}
+                  url={shareUrl}
+                  title={title} // LinkedIn uses 'title' for the shared post title
+                  summary={description} // LinkedIn uses 'summary' for description
+                  source={shareUrl} // Optionally add the source URL
                 >
                   <LinkedinIcon size={32} round />
                 </LinkedinShareButton>
+
                 <TwitterShareButton
-                  url={"https://autoyard.co.ke/ads/" + ad._id + ""}
+                  url={shareUrl}
+                  title={title} // Twitter uses 'title' for the tweet content
+                  hashtags={["AutoYard"]} // Optionally add hashtags
                 >
                   <TwitterIcon size={32} round />
                 </TwitterShareButton>
+
                 <EmailShareButton
-                  url={"https://autoyard.co.ke/ads/" + ad._id + ""}
+                  url={shareUrl}
+                  subject={title} // Email uses 'subject' for the email subject
+                  body={description} // Email uses 'body' for the email content
                 >
                   <EmailIcon size={32} round />
                 </EmailShareButton>
@@ -705,9 +754,9 @@ export default function Ads({ ad, userId, userImage, userName }: CardProps) {
         </div>
 
         {/* Right panel */}
-        <div className="lg:w-[30%] lg:inline">
-          <div className="bg-white p-5 text-l rounded-lg overflow-hidden shadow-md">
-            <div className="flex flex-col items-center justify-center">
+        <div className="lg:w-[30%] p-1 lg:p-0">
+          <div className="hidden lg:inline">
+            <div className="bg-white p-5 text-l rounded-lg overflow-hidden shadow-md flex flex-col items-center">
               <span className="text-2xl font-bold w-min rounded-full px-4 py-1 text-emerald-950">
                 {NGnaira.format(ad.price)}
               </span>
@@ -721,11 +770,11 @@ export default function Ads({ ad, userId, userImage, userName }: CardProps) {
               </div>
             </div>
             <br />
-            <span className="m-0">
+            <span className="hidden m-0">
               <div className="justify-between flex w-full  gap-1">
                 <SignedIn>
                   <button
-                    className="hover:bg-emerald-700 bg-[#30AF5B] text-white text-xs mt-2 p-2 rounded-lg shadow"
+                    className="hover:bg-emerald-700 bg-[#000000] text-white text-xs mt-2 p-2 rounded-lg shadow"
                     onClick={handleShowPhoneClick}
                   >
                     <CallIcon sx={{ marginRight: "5px" }} />
@@ -734,7 +783,7 @@ export default function Ads({ ad, userId, userImage, userName }: CardProps) {
                 </SignedIn>
                 <SignedOut>
                   <a href={`/sign-in`}>
-                    <button className="hover:bg-emerald-700 bg-[#30AF5B] text-white text-xs mt-2 p-2 rounded-lg shadow">
+                    <button className="hover:bg-emerald-700 bg-[#000000] text-white text-xs mt-2 p-2 rounded-lg shadow">
                       <CallIcon sx={{ marginRight: "5px" }} />
                       Call
                     </button>
@@ -742,18 +791,26 @@ export default function Ads({ ad, userId, userImage, userName }: CardProps) {
                 </SignedOut>
 
                 <SignedIn>
-                  <a href={`/chat/${ad.organizer._id}`}>
-                    <button className="hover:bg-emerald-700 bg-[#30AF5B] text-white text-xs mt-2 p-2 rounded-lg shadow">
+                  <ChatButton
+                    ad={ad}
+                    userId={userId}
+                    userImage={userImage}
+                    userName={userName}
+                  />
+
+                  {/*    <a href={`/chat/${ad.organizer._id}`}>
+                    <button className="hover:bg-emerald-700 bg-[#000000] text-white text-xs mt-2 p-2 rounded-lg shadow">
                       <ChatBubbleOutlineOutlinedIcon
                         sx={{ marginRight: "5px" }}
                       />
                       Message
                     </button>
                   </a>
+                  */}
                 </SignedIn>
                 <SignedOut>
                   <a href={`/sign-in`}>
-                    <button className="hover:bg-emerald-700 bg-[#30AF5B] text-white text-xs mt-2 p-2 rounded-lg shadow">
+                    <button className="hover:bg-emerald-700 bg-[#000000] text-white text-xs mt-2 p-2 rounded-lg shadow">
                       <ChatBubbleOutlineOutlinedIcon
                         sx={{ marginRight: "5px" }}
                       />
@@ -766,7 +823,7 @@ export default function Ads({ ad, userId, userImage, userName }: CardProps) {
                   <>
                     <SignedIn>
                       <a href={`https://wa.me/${ad.organizer.whatsapp}/`}>
-                        <button className="hover:bg-emerald-700 bg-[#30AF5B] text-white text-xs mt-2 p-2 rounded-lg shadow">
+                        <button className="hover:bg-emerald-700 bg-[#000000] text-white text-xs mt-2 p-2 rounded-lg shadow">
                           <WhatsAppIcon sx={{ marginRight: "5px" }} />
                           WhatsApp
                         </button>
@@ -774,7 +831,7 @@ export default function Ads({ ad, userId, userImage, userName }: CardProps) {
                     </SignedIn>
                     <SignedOut>
                       <a href={`/sign-in`}>
-                        <button className="hover:bg-emerald-700 bg-[#30AF5B] text-white text-xs mt-2 p-2 rounded-lg shadow">
+                        <button className="hover:bg-emerald-700 bg-[#000000] text-white text-xs mt-2 p-2 rounded-lg shadow">
                           <WhatsAppIcon sx={{ marginRight: "5px" }} />
                           WhatsApp
                         </button>
@@ -787,10 +844,10 @@ export default function Ads({ ad, userId, userImage, userName }: CardProps) {
           </div>
 
           <br />
-          <div className="bg-white p-5 text-l rounded-lg overflow-hidden shadow-md">
+          <div className="lg:bg-white p-5 text-l rounded-lg overflow-hidden lg:shadow-md">
             <div className="">
-              <p className="mt-5 font-bold">Approximate Location</p>
-              <p className="text-gray-400 mb-1 text-xs lg:text-sm">
+              <p className="lg:mt-5 font-bold">Approximate Location</p>
+              <p className="text-gray-700 mb-1 text-xs lg:text-sm">
                 <LocationOnIcon sx={{ fontSize: 20 }} /> {ad.address}
               </p>
 
@@ -805,7 +862,7 @@ export default function Ads({ ad, userId, userImage, userName }: CardProps) {
               <div className="justify-between flex w-full">
                 <button
                   onClick={handleDirectionClick}
-                  className="hover:bg-emerald-700 bg-[#30AF5B] text-white text-xs mt-2 p-2 rounded-lg shadow"
+                  className="hover:bg-emerald-700 bg-[#000000] text-white text-xs mt-2 p-2 rounded-lg shadow"
                 >
                   <AssistantDirectionIcon sx={{ marginRight: "5px" }} />
                   Get Direction
@@ -815,8 +872,8 @@ export default function Ads({ ad, userId, userImage, userName }: CardProps) {
           </div>
 
           <br />
-          <div className="bg-white p-1 text-l rounded-lg overflow-hidden shadow-md">
-            <div className="">
+          <div className="hidden lg:inline">
+            <div className="bg-white p-1 text-l rounded-lg overflow-hidden shadow-md">
               <div className="flex flex-col">
                 <SellerProfile
                   userId={ad.organizer._id}
@@ -830,7 +887,7 @@ export default function Ads({ ad, userId, userImage, userName }: CardProps) {
             <div className="justify-between flex w-full"></div>
           </div>
 
-          <div className="bg-white p-5 text-sm mt-5 rounded-lg overflow-hidden shadow-md">
+          <div className="bg-white p-5 text-sm lg:mt-5 rounded-lg overflow-hidden lg:shadow-md">
             <div className="font-bold text-lg text-center">Safety tips</div>
 
             <ol>

@@ -230,7 +230,7 @@ const SellerProfile = ({ userId, loggedId, user }: CollectionProps) => {
                                   <div className="justify-between flex w-full mb-5">
                                     <button
                                       onClick={handleDirectionClick}
-                                      className="hover:bg-emerald-700 bg-[#30AF5B] text-white text-xs mt-2 p-2 rounded-lg shadow"
+                                      className="hover:bg-emerald-700 bg-[#000000] text-white text-xs mt-2 p-2 rounded-lg shadow"
                                     >
                                       <AssistantDirectionIcon
                                         sx={{ marginRight: "5px" }}
@@ -489,7 +489,7 @@ const SellerProfile = ({ userId, loggedId, user }: CollectionProps) => {
                     <Tooltip>
                       <TooltipTrigger asChild>
                         <button
-                          className="hover:bg-emerald-700 bg-[#30AF5B] text-white text-xs mt-2 p-2 rounded-lg shadow"
+                          className="hover:bg-[emerald-700] bg-[#000000] text-white text-xs mt-2 p-2 rounded-lg shadow"
                           onClick={handleShowPhoneClick}
                         >
                           <CallIcon sx={{ marginRight: "5px" }} />
@@ -507,7 +507,7 @@ const SellerProfile = ({ userId, loggedId, user }: CollectionProps) => {
                     <Tooltip>
                       <TooltipTrigger asChild>
                         <a href={`/sign-in`}>
-                          <button className="hover:bg-emerald-700 bg-[#30AF5B] text-white text-xs mt-2 p-2 rounded-lg shadow">
+                          <button className="hover:bg-emerald-700 bg-[#000000] text-white text-xs mt-2 p-2 rounded-lg shadow">
                             <CallIcon sx={{ marginRight: "5px" }} />
                             Call
                           </button>
@@ -528,7 +528,7 @@ const SellerProfile = ({ userId, loggedId, user }: CollectionProps) => {
                     <Tooltip>
                       <TooltipTrigger asChild>
                         <a href={`/chat/${userId}`}>
-                          <button className="hover:bg-emerald-700 bg-[#30AF5B] text-white text-xs mt-2 p-2 rounded-lg shadow">
+                          <button className="hover:bg-emerald-700 bg-[#000000] text-white text-xs mt-2 p-2 rounded-lg shadow">
                             <ChatBubbleOutlineOutlinedIcon
                               sx={{ marginRight: "5px" }}
                             />
@@ -547,7 +547,7 @@ const SellerProfile = ({ userId, loggedId, user }: CollectionProps) => {
                     <Tooltip>
                       <TooltipTrigger asChild>
                         <a href={`/sign-in`}>
-                          <button className="hover:bg-emerald-700 bg-[#30AF5B] text-white text-xs mt-2 p-2 rounded-lg shadow">
+                          <button className="hover:bg-emerald-700 bg-[#000000] text-white text-xs mt-2 p-2 rounded-lg shadow">
                             <ChatBubbleOutlineOutlinedIcon
                               sx={{ marginRight: "5px" }}
                             />
@@ -571,7 +571,7 @@ const SellerProfile = ({ userId, loggedId, user }: CollectionProps) => {
                     <Tooltip>
                       <TooltipTrigger asChild>
                         <a href={`https://wa.me/${user?.whatsapp}/`}>
-                          <button className="hover:bg-emerald-700 bg-[#30AF5B] text-white text-xs mt-2 p-2 rounded-lg shadow">
+                          <button className="hover:bg-emerald-700 bg-[#000000] text-white text-xs mt-2 p-2 rounded-lg shadow">
                             <WhatsAppIcon sx={{ marginRight: "5px" }} />
                             WhatsApp
                           </button>
@@ -588,7 +588,7 @@ const SellerProfile = ({ userId, loggedId, user }: CollectionProps) => {
                     <Tooltip>
                       <TooltipTrigger asChild>
                         <a href={`/sign-in`}>
-                          <button className="hover:bg-emerald-700 bg-[#30AF5B] text-white text-xs mt-2 p-2 rounded-lg shadow">
+                          <button className="hover:bg-emerald-700 bg-[#000000] text-white text-xs mt-2 p-2 rounded-lg shadow">
                             <WhatsAppIcon sx={{ marginRight: "5px" }} />
                             WhatsApp
                           </button>

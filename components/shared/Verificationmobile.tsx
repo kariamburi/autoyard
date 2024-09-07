@@ -10,14 +10,15 @@ import { format, isToday, isYesterday } from "date-fns";
 import { IUser } from "@/lib/database/models/user.model";
 import { getVerfiesfee } from "@/lib/actions/verifies.actions";
 import { useRouter } from "next/navigation";
+import ShowPopupmobile from "./ShowPopupmobile";
 
 interface SettingsProp {
-  user: IUser;
+  user: any;
   userId: string;
   isAdCreator: boolean;
 }
 
-const Verification: React.FC<SettingsProp> = ({
+const Verificationmobile: React.FC<SettingsProp> = ({
   user,
   userId,
   isAdCreator,
@@ -139,9 +140,9 @@ const Verification: React.FC<SettingsProp> = ({
   return (
     <div className="items-center justify-center">
       {user.verified && user?.verified[0]?.accountverified === true ? (
-        <ShowPopup
+        <ShowPopupmobile
           trigger={
-            <p className="text-[#30AF5B] p-1 bg-white rounded-full text-xs cursor-pointer hover:underline">
+            <p className="text-[#30AF5B] p-1 bg-emerald-200 rounded-full text-xs cursor-pointer hover:underline">
               <VerifiedUserOutlinedIcon sx={{ fontSize: 16 }} />
               Account Verified
             </p>
@@ -151,9 +152,9 @@ const Verification: React.FC<SettingsProp> = ({
       ) : (
         <>
           {isAdCreator ? (
-            <ShowPopup
+            <ShowPopupmobile
               trigger={
-                <p className="text-gray-600 p-1 bg-white rounded-full text-xs cursor-pointer hover:underline">
+                <p className="text-gray-600 p-1 bg-gray-100 rounded-full text-xs cursor-pointer hover:underline">
                   <ShieldOutlinedIcon sx={{ fontSize: 16 }} />
                   Account unverified
                 </p>
@@ -161,9 +162,9 @@ const Verification: React.FC<SettingsProp> = ({
               content={unverifiedContentAdCreator}
             />
           ) : (
-            <ShowPopup
+            <ShowPopupmobile
               trigger={
-                <p className="text-gray-600 p-1 bg-white rounded-full text-xs cursor-pointer hover:underline">
+                <p className="text-gray-600 p-1 bg-gray-100 rounded-full text-xs cursor-pointer hover:underline">
                   <ShieldOutlinedIcon sx={{ fontSize: 16 }} />
                   Account unverified
                 </p>
@@ -177,4 +178,4 @@ const Verification: React.FC<SettingsProp> = ({
   );
 };
 
-export default Verification;
+export default Verificationmobile;

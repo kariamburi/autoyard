@@ -13,6 +13,7 @@ import { auth } from "@clerk/nextjs/server";
 import { SearchParamProps } from "@/types";
 import BottomNavigation from "@/components/shared/BottomNavigation";
 import Footersub from "@/components/shared/Footersub";
+import Contact from "@/components/shared/contact";
 
 const Collection = dynamic(() => import("@/components/shared/Collection"), {
   ssr: false,
@@ -72,7 +73,7 @@ const AdDetails = async ({
       <div className="top-0 z-10 fixed w-full">
         <Navbar userstatus="User" userId={userId || ""} />
       </div>
-      <div className="max-w-6xl mx-auto mt-[50px] lg:mt-[70px]">
+      <div className="max-w-6xl mx-auto mt-[40px] lg:mt-[70px]">
         <div className="text-sm p-0 hidden lg:inline">
           <div className="flex">
             <div className="bg-white p-1 rounded-full mr-2">
@@ -169,6 +170,14 @@ const AdDetails = async ({
             <Footersub />
           </div>
         </footer>
+        <div className="fixed bottom-0 left-0 right-0 bg-[#F2FFF2] lg:bg-transparent h-auto md:h-24 z-10 p-3 shadow-md flex flex-col md:flex-row justify-between items-center">
+          <Contact
+            ad={ad}
+            userId={userId || ""}
+            userName={userName || ""}
+            userImage={userImage || ""}
+          />
+        </div>
       </div>
     </>
   );
