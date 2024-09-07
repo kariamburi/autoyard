@@ -107,7 +107,7 @@ const SellerProfileMobile = ({
           href={`/shop/${ad.organizer._id}`}
           className="no-underline font-bold m-1"
         >
-          <div className="w-12 h-12 rounded-full bg-white">
+          <div className="w-10 h-10 rounded-full bg-white">
             <Image
               className="w-full h-w-full rounded-full object-cover"
               src={ad.organizer.photo ?? "/avator.png"}
@@ -135,15 +135,9 @@ const SellerProfileMobile = ({
               View Seller Shop
             </p>
           </Link>
-
-          <Verificationmobile
-            user={ad.organizer}
-            userId={userId}
-            isAdCreator={isAdCreator}
-          />
         </div>
       </div>
-      <Ratingsmobile recipientUid={userId} />
+      {/* <Ratingsmobile recipientUid={userId} />*/}
     </div>
   );
 };

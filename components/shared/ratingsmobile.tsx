@@ -66,8 +66,8 @@ const Ratingsmobile = ({ recipientUid }: Ratingsprop) => {
   }, [recipientUid]);
 
   return (
-    <div className="text-[12px] flex flex-col items-center justify-center h-full">
-      <h1 className="p-0 text-[12px] font-bold">Ratings: {averangestar}</h1>
+    <div className="text-[12px] flex gap-1 items-center justify-center h-full">
+      <div className="text-[12px] font-bold"> {averangestar}</div>
       {averangestar < 1 && (
         <div className="w-[70px] items-center justify-center">
           <StarIcon sx={{ fontSize: 14 }} className="text-gray-400" />

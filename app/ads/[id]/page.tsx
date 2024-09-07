@@ -150,7 +150,7 @@ const AdDetails = async ({
           userImage={userImage || ""}
         />
         <h2 className="font-bold p-2 text-[30px]">Related Ads</h2>
-        <div className="p-1 mb-20 lg:mb-0">
+        <div className="p-1 mb-24 lg:mb-0">
           <Collection
             data={relatedAds?.data}
             emptyTitle="No Ads Found"

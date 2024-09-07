@@ -16,20 +16,6 @@ import CloseIcon from "@mui/icons-material/Close";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import WhatsAppIcon from "@mui/icons-material/WhatsApp";
-import {
-  FacebookShareButton,
-  FacebookIcon,
-  TwitterShareButton,
-  TwitterIcon,
-  EmailIcon,
-  EmailShareButton,
-  RedditShareButton,
-  RedditIcon,
-  WhatsappShareButton,
-  WhatsappIcon,
-  LinkedinShareButton,
-  LinkedinIcon,
-} from "next-share";
 
 import Link from "next/link";
 import { IAd } from "@/lib/database/models/ad.model";
@@ -69,6 +55,7 @@ import { addDoc, collection, serverTimestamp } from "firebase/firestore";
 import { db } from "@/lib/firebase";
 import Head from "next/head";
 import ChatButton from "./ChatButton ";
+import ShareAd from "./ShareAd";
 
 type CardProps = {
   ad: IAd;
@@ -266,24 +253,9 @@ export default function Ads({ ad, userId, userImage, userName }: CardProps) {
       alert("Please enter a description of the abuse.");
     }
   };
-  const shareUrl = `https://autoyard.co.ke/ads/${ad._id}`;
-  const title = ad.title; // Replace with your product's title
-  const description = ad.description; // Replace with your product's description
-  const imageUrl = ad.imageUrls[0]; // Replace with your product's image URL
 
   return (
     <>
-      <Head>
-        <meta property="og:url" content={shareUrl} />
-        <meta property="og:type" content="website" />
-        <meta property="og:title" content={title} />
-        <meta property="og:description" content={description} />
-        <meta property="og:image" content={imageUrl} />
-        <meta property="twitter:card" content="summary_large_image" />
-        <meta property="twitter:title" content={title} />
-        <meta property="twitter:description" content={description} />
-        <meta property="twitter:image" content={imageUrl} />
-      </Head>
       <div className="lg:m-1 space-y-0 lg:flex lg:space-x-5">
         <div className="lg:flex-1 border-t-8 border-emerald-950 lg:bg-white rounded-lg">
           {/* Carousel */}
@@ -462,11 +434,7 @@ export default function Ads({ ad, userId, userImage, userName }: CardProps) {
 
           {/* Ad details */}
           <div className="m-5">
-            <div className="flex justify-between items-center w-full">
-              <p className="text-lg lg:text-2xl font-bold text-emerald-950">
-                {ad.title}
-              </p>
-
+            <div className="lg:hidden flex justify-end mb-2 items-center w-full">
               <div className="flex gap-1 items-center justify-center">
                 <div className="flex items-center">
                   {ad.negotiable && (
@@ -481,7 +449,12 @@ export default function Ads({ ad, userId, userImage, userName }: CardProps) {
                 </span>
               </div>
             </div>
-            <div className="flex items-center justify-between space-x-2">
+            <div className="flex mb-2 items-center w-full">
+              <p className="text-lg lg:text-2xl font-bold text-emerald-950">
+                {ad.title}
+              </p>
+            </div>
+            <div className="flex mb-2 items-center justify-between space-x-2">
               <div className="flex gap-2">
                 <p className="text-gray-700 text-[10px] lg:text-sm">
                   <AccessTimeIcon sx={{ fontSize: 20 }} />
@@ -665,53 +638,7 @@ export default function Ads({ ad, userId, userImage, userName }: CardProps) {
             </h1>
             <div className="flex justify-between w-full items-center">
               <div className="flex items-center space-x-2">
-                <FacebookShareButton
-                  url={shareUrl}
-                  quote={description} // Facebook uses 'quote' for description
-                  hashtag="#AutoYard" // Optionally add a hashtag
-                >
-                  <FacebookIcon size={32} round />
-                </FacebookShareButton>
-
-                <RedditShareButton
-                  url={shareUrl}
-                  title={title} // Reddit uses 'title' for the shared post title
-                >
-                  <RedditIcon size={32} round />
-                </RedditShareButton>
-
-                <WhatsappShareButton
-                  url={shareUrl}
-                  title={title} // WhatsApp uses 'title' as the shared message
-                  separator=": " // Separator between title and URL
-                >
-                  <WhatsappIcon size={32} round />
-                </WhatsappShareButton>
-
-                <LinkedinShareButton
-                  url={shareUrl}
-                  title={title} // LinkedIn uses 'title' for the shared post title
-                  summary={description} // LinkedIn uses 'summary' for description
-                  source={shareUrl} // Optionally add the source URL
-                >
-                  <LinkedinIcon size={32} round />
-                </LinkedinShareButton>
-
-                <TwitterShareButton
-                  url={shareUrl}
-                  title={title} // Twitter uses 'title' for the tweet content
-                  hashtags={["AutoYard"]} // Optionally add hashtags
-                >
-                  <TwitterIcon size={32} round />
-                </TwitterShareButton>
-
-                <EmailShareButton
-                  url={shareUrl}
-                  subject={title} // Email uses 'subject' for the email subject
-                  body={description} // Email uses 'body' for the email content
-                >
-                  <EmailIcon size={32} round />
-                </EmailShareButton>
+                <ShareAd ad={ad} />
               </div>
 
               <button
@@ -844,7 +771,7 @@ export default function Ads({ ad, userId, userImage, userName }: CardProps) {
           </div>
 
           <br />
-          <div className="lg:bg-white p-5 text-l rounded-lg overflow-hidden lg:shadow-md">
+          <div className="bg-white p-5 text-l rounded-lg overflow-hidden lg:shadow-md">
             <div className="">
               <p className="lg:mt-5 font-bold">Approximate Location</p>
               <p className="text-gray-700 mb-1 text-xs lg:text-sm">
