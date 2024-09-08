@@ -14,6 +14,7 @@ import { SearchParamProps } from "@/types";
 import BottomNavigation from "@/components/shared/BottomNavigation";
 import Footersub from "@/components/shared/Footersub";
 import Contact from "@/components/shared/contact";
+import CollectionRelated from "@/components/shared/CollectionRelated";
 
 const Collection = dynamic(() => import("@/components/shared/Collection"), {
   ssr: false,
@@ -151,7 +152,7 @@ const AdDetails = async ({
         />
         <h2 className="font-bold p-2 text-[30px]">Related Ads</h2>
         <div className="p-1 mb-24 lg:mb-0">
-          <Collection
+          <CollectionRelated
             data={relatedAds?.data}
             emptyTitle="No Ads Found"
             emptyStateSubtext="Come back later"
