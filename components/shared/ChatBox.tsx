@@ -130,8 +130,8 @@ const ChatBox = ({
   // Call the function to update the read status of the message
 
   return (
-    <div className="">
-      <ScrollArea className="h-[400px] w-full  bg-white rounded-t-md border p-4">
+    <div className="h-full w-full">
+      <ScrollArea className="h-full w-full bg-white rounded-t-md border p-2">
         {messages.map((message: any) => (
           <>
             <Message

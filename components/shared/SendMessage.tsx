@@ -182,8 +182,8 @@ const SendMessage = ({
               src="/assets/icons/attach.png"
               alt="Attach"
               className="cursor-pointer"
-              width={16}
-              height={16}
+              width={50}
+              height={50}
             />
           </label>
           <input

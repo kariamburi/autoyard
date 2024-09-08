@@ -9,7 +9,7 @@ import { SignedIn } from "@clerk/nextjs";
 import Image from "next/image";
 import BottomNavigation from "@/components/shared/BottomNavigation";
 import Navbarhome from "@/components/shared/navbarhome";
-//import ChatWindow from "@/components/shared/ChatWindow";
+import ClientFCMHandler from "@/components/shared/ClientFCMHandler";
 
 export default async function RootLayout({
   children,
@@ -27,6 +27,7 @@ export default async function RootLayout({
   return (
     <div className="min-h-screen">
       <div className="w-full h-full">
+        <ClientFCMHandler /> {/* Add the client-side component */}
         <div className="sm:hidden fixed top-0 z-10 w-full">
           {user ? (
             <Navbarhome userstatus={user.status} userId={userId} />

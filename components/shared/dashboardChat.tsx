@@ -114,9 +114,9 @@ const DashboardChat = ({
             <ScrollArea className="max-h-[400px] w-full bg-white rounded-md border p-4">
               <div className="w-full items-center justify-center">
                 <span className="logo font-bold text-[25px] text-emerald-950">
-                  AutoYard messanger
+                  Messanger
                 </span>
-                <div className="flex gap-1 items-center font-bold">
+                <div className="flex gap-1 items-center">
                   <PeopleOutlinedIcon />
                   Latest Chats
                 </div>
@@ -126,8 +126,8 @@ const DashboardChat = ({
           </div>
         </div>
 
-        <div className="flex-1">
-          <div className="bg-white rounded-lg lg:hidden">
+        <div className="flex-1 h-screen w-full flex-col">
+          {/* <div className="bg-white rounded-lg lg:hidden">
             <div className="text-sm mt-2 rounded-lg w-full bg-white p-2">
               <span className="logo font-bold text-[25px] text-emerald-950">
                 Messager
@@ -151,11 +151,12 @@ const DashboardChat = ({
               </Accordion>
             </div>
           </div>
-          <div className="rounded-lg mb-20 lg:mb-0 max-w-6xl mx-auto flex flex-col p-0 mt-0">
-            <span className="logo font-bold text-[25px] text-emerald-950">
-              Chats
-            </span>
-            <div className="lg:flex-1 p-0 ml-0 mr-0">
+          */}
+          <span className="logo font-bold text-[25px] text-emerald-950">
+            Chats
+          </span>
+          <div className="rounded-lg mb-20 h-full lg:mb-0 max-w-6xl mx-auto flex flex-col p-0 mt-0">
+            <div className="h-full w-full flex flex-col">
               <ChatBox
                 displayName={senderName}
                 uid={senderId}
@@ -172,10 +173,10 @@ const DashboardChat = ({
                 recipientUid={recipientUid}
                 client={false}
               />
-              <Toaster />
             </div>
           </div>
         </div>
+        <Toaster />
       </div>
     </>
   );

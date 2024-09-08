@@ -113,7 +113,7 @@ const Sidebar = ({ userId }: sidebarProps) => {
   return (
     <div>
       {messages.length > 0 ? (
-        <div className="w-full max-w-md mx-auto bg-white shadow-md rounded-lg overflow-hidden">
+        <div className="w-full max-w-md mx-auto bg-white shadow-md rounded-lg">
           <ul className="divide-y divide-gray-200">
             {messages &&
               messages.map((messages, index) => {

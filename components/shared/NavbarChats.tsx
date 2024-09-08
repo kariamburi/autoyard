@@ -72,7 +72,7 @@ const NavbarChats = ({ recipient, userId }: sidebarProps) => {
                 width={26}
                 height={26}
               />
-              <div>
+              <div className="items-center justify-center">
                 <Link
                   href={`/shop/${userId}`}
                   className="no-underline font-boldm-1"
@@ -81,8 +81,6 @@ const NavbarChats = ({ recipient, userId }: sidebarProps) => {
                     {recipient.firstName} {recipient.lastName}
                   </span>
                 </Link>
-
-                <div className="text-xs text-gray-300">Active: Today</div>
               </div>
             </div>
           ) : (
