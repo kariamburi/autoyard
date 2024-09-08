@@ -121,7 +121,7 @@ const Sidebar = ({ userId }: sidebarProps) => {
                 <li
                   key={index}
                   onClick={() => handle(messages.uid, messages.recipientUid)}
-                  className={`p-4 flex items-center space-x-4 hover:bg-gray-100 ${
+                  className={`p-4 flex items-center space-x-4 hover:bg-gray-100 hover:cursor-pointer ${
                     isActive && "bg-emerald-100"
                   }`}
                 >

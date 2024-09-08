@@ -36,31 +36,6 @@ const Message = ({
   recipient,
 }: MessageProps) => {
   // Convert Timestamp to Date object
-  let formattedCreatedAt = "";
-  try {
-    const createdAtDate = new Date(message.createdAt.seconds * 1000); // Convert seconds to milliseconds
-
-    // Get today's date
-    const today = new Date();
-
-    // Check if the message was sent today
-    if (isToday(createdAtDate)) {
-      formattedCreatedAt = "Today " + format(createdAtDate, "HH:mm"); // Set as "Today"
-    } else if (isYesterday(createdAtDate)) {
-      // Check if the message was sent yesterday
-      formattedCreatedAt = "Yesterday " + format(createdAtDate, "HH:mm"); // Set as "Yesterday"
-    } else {
-      // Format the createdAt date with day, month, and year
-      formattedCreatedAt = format(createdAtDate, "dd-MM-yyyy"); // Format as 'day/month/year'
-    }
-
-    // Append hours and minutes if the message is not from today or yesterday
-    if (!isToday(createdAtDate) && !isYesterday(createdAtDate)) {
-      formattedCreatedAt += " " + format(createdAtDate, "HH:mm"); // Append hours and minutes
-    }
-  } catch {
-    // Handle error when formatting date
-  }
 
   //console.log(message);
   const truncateDescription = (title: string, maxLength: number) => {
@@ -92,7 +67,11 @@ const Message = ({
             <h4 className="font-semibold">{message.name}</h4>
             <p className="text-sm">{message.text}</p>
             <small className="text-gray-500">
-              {new Date(message.createdAt.seconds * 1000).toLocaleTimeString()}
+              {message.createdAt
+                ? new Date(
+                    message.createdAt.seconds * 1000
+                  ).toLocaleTimeString()
+                : "No date"}
             </small>
             {message.imageUrl && (
               <img

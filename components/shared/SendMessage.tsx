@@ -114,8 +114,8 @@ const SendMessage = ({
         imageUrl,
         read,
       });
-      // setValue("");
-      // setImg(null);
+      setValue("");
+      setImg(null);
     } catch (error) {
       console.error("Error adding document: ", error);
     }

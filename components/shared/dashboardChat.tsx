@@ -135,7 +135,7 @@ const DashboardChat = ({
               <Accordion type="single" collapsible className="w-full">
                 <AccordionItem value="item-1">
                   <AccordionTrigger>
-                    <div className="flex gap-1 items-center font-bold">
+                    <div className="flex gap-1 items-center">
                       <PeopleOutlinedIcon />
                       Latest Chats
                     </div>
