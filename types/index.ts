@@ -23,6 +23,7 @@ export type CreateUserParams = {
   tiktok?:string
   verified:Verified[]
   imageUrl?: string
+  fcmToken?: string
 }
 export interface Businesshours {
   openHour: string
@@ -40,6 +41,9 @@ export type UpdateUserParams = {
   lastName: string
   photo: string
 
+}
+export type UpdateUserToken = {
+  fcmToken: string
 }
 export type UpdateUserSetingsParams = {
   user: {

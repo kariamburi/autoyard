@@ -32,7 +32,7 @@ const UserButton = dynamic(
 );
 
 type sidebarProps = {
-  recipient: UpdateUserParams;
+  recipient: any;
   userId: string;
 };
 import AddCircleOutlineOutlinedIcon from "@mui/icons-material/AddCircleOutlineOutlined";

@@ -8,7 +8,7 @@ import Order from '@/lib/database/models/packages.model'
 import Event from '@/lib/database/models/ad.model'
 import { handleError } from '@/lib/utils'
 
-import { CreateUserParams, UpdateUserParams, UpdateUserSetingsParams } from '@/types'
+import { CreateUserParams, UpdateUserParams, UpdateUserSetingsParams, UpdateUserToken } from '@/types'
 import Verify from '../database/models/verifies.model'
 
 
@@ -56,6 +56,35 @@ export async function updateUser(clerkId: string, user: UpdateUserParams) {
     return JSON.parse(JSON.stringify(updatedUser))
   } catch (error) {
     handleError(error)
+  }
+}
+export async function updateUserToken(userId: string, user: UpdateUserToken) {
+  try {
+    await connectToDatabase();
+
+    // Find the user by ID
+    const existingUser = await User.findById(userId);
+
+    if (!existingUser) {
+      throw new Error("User not found");
+    }
+
+    // Check if the FCM token already exists
+    if (existingUser.token !== user.fcmToken) {
+      // Update the user's FCM token
+      existingUser.token = user.fcmToken;
+      // Save the updated user data
+      const updatedUser = await existingUser.save();
+
+      if (!updatedUser) throw new Error("User update failed");
+
+      return JSON.parse(JSON.stringify(updatedUser));
+    }
+
+    // If the token already exists, return the existing user data
+    return JSON.parse(JSON.stringify(existingUser));
+  } catch (error) {
+    handleError(error);
   }
 }
 export async function updateUserFromSettings({ user, path }: UpdateUserSetingsParams) {
