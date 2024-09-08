@@ -111,48 +111,52 @@ const Sidebar = ({ userId }: sidebarProps) => {
     updateRead(recipientUid, uid);
   };
   return (
-    <div className="w-full max-w-md mx-auto bg-white shadow-md rounded-lg overflow-hidden">
-      <ul className="divide-y divide-gray-200">
-        {messages &&
-          messages.map((messages, index) => {
-            const isActive = pathname === "/chat/" + messages.uid;
-            return (
-              <>
-                <li
-                  key={index}
-                  onClick={() => handle(messages.uid, messages.recipientUid)}
-                  className={`p-4 flex items-center space-x-4 hover:bg-gray-100 hover:cursor-pointer ${
-                    isActive && "bg-emerald-100"
-                  }`}
-                >
-                  <div className="flex-shrink-0">
-                    <img
-                      className="h-10 w-10 rounded-full"
-                      src={messages.avatar}
-                      alt={messages.name}
-                    />
-                  </div>
-                  <div className="flex-1 min-w-0">
-                    <p className="text-sm font-medium text-gray-900 truncate">
-                      {messages.name}
-                    </p>
+    <div>
+      {messages.length > 0 ? (
+        <div className="w-full max-w-md mx-auto bg-white shadow-md rounded-lg overflow-hidden">
+          <ul className="divide-y divide-gray-200">
+            {messages &&
+              messages.map((messages, index) => {
+                const isActive = pathname === "/chat/" + messages.uid;
+                return (
+                  <>
+                    <li
+                      key={index}
+                      onClick={() =>
+                        handle(messages.uid, messages.recipientUid)
+                      }
+                      className={`p-4 flex items-center space-x-4 hover:bg-gray-100 hover:cursor-pointer ${
+                        isActive && "bg-emerald-100"
+                      }`}
+                    >
+                      <div className="flex-shrink-0">
+                        <img
+                          className="h-10 w-10 rounded-full"
+                          src={messages.avatar}
+                          alt={messages.name}
+                        />
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <p className="text-sm font-medium text-gray-900 truncate">
+                          {messages.name}
+                        </p>
 
-                    <p className="flex gap-1 text-sm text-gray-500 truncate">
-                      {truncateTitle(messages.text, 30)}
-                      <UnreadmessagesPeruser
-                        uid={messages.uid}
-                        recipientUid={userId}
-                      />
-                    </p>
-                  </div>
-                  <div className="whitespace-nowrap text-sm text-gray-500">
-                    {new Date(
-                      messages.createdAt.seconds * 1000
-                    ).toLocaleTimeString()}
-                  </div>
-                </li>
+                        <p className="flex gap-1 text-sm text-gray-500 truncate">
+                          {truncateTitle(messages.text, 30)}
+                          <UnreadmessagesPeruser
+                            uid={messages.uid}
+                            recipientUid={userId}
+                          />
+                        </p>
+                      </div>
+                      <div className="whitespace-nowrap text-sm text-gray-500">
+                        {new Date(
+                          messages.createdAt.seconds * 1000
+                        ).toLocaleTimeString()}
+                      </div>
+                    </li>
 
-                {/*     <li
+                    {/*     <li
                 key={"/chat/" + messages.uid}
                 className={`${
                   isActive &&
@@ -187,10 +191,17 @@ const Sidebar = ({ userId }: sidebarProps) => {
                   </div>
                 </div>
               </li>*/}
-              </>
-            );
-          })}
-      </ul>
+                  </>
+                );
+              })}
+          </ul>
+        </div>
+      ) : (
+        <div className="flex-center wrapper min-h-[200px] w-f(ull flex-col gap-3 rounded-[14px] bg-grey-50 py-28 text-center">
+          <h3 className="font-bold text-[16px] lg:text-[25px]">No Chat</h3>
+          <p className="text-sm lg:p-regular-14">You have 0 messages</p>
+        </div>
+      )}
     </div>
   );
 };

@@ -74,7 +74,7 @@ const pagechat = async () => {
           <div className="rounded-lg mb-20 lg:mb-0 max-w-6xl mx-auto flex flex-col p-0 mt-0">
             <div className="lg:flex-1 p-0 ml-0 mr-0">
               <ScrollArea className="max-h-[400px] p-2">
-                <div className="w-full w-full bg-white rounded-lg items-center">
+                <div className="w-full w-full mb-2 bg-white rounded-lg items-center">
                   <span className="logo font-bold text-[25px] text-emerald-950">
                     Messanger
                   </span>
