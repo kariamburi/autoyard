@@ -648,7 +648,35 @@ export const vehicleColors = [
 
 export const vehicleModels = [
   { make: "Toyota", models: ["4Runner", "86", "Avalon", "C-HR", "Camry", "Corolla", "Corolla Cross", "GR Supra", "Highlander", "Land Cruiser", "Mirai", "Prius", "Rav4", "Sequoia", "Sienna", "Tacoma", "Tundra", "Venza", "Yaris"] },
-  { make: "Nissan", models: ["370Z", "Altima", "Armada", "Frontier", "GT-R", "Kicks", "Leaf", "Maxima", "Murano", "NV", "NV200", "Pathfinder", "Rogue", "Rogue Sport", "Sentra", "Titan", "Versa"] },
+  {
+    make: "Nissan",
+    models: [
+      "370Z",
+      "Altima",
+      "Armada",
+      "Frontier",
+      "GT-R",
+      "Kicks",
+      "Leaf",
+      "Maxima",
+      "Murano",
+      "NV",
+      "NV200",
+      "Pathfinder",
+      "Rogue",
+      "Rogue Sport",
+      "Sentra",
+      "Titan",
+      "Versa",
+      "Juke",        // Added model
+      "Xterra",      // Added model
+      "Quest",       // Added model
+      "Juke NISMO",  // Added model
+      "GT-R NISMO",  // Added model
+      "X-Trail"      // Added model
+    ]
+  }
+,  
   { make: "Mazda", models: ["CX-3", "CX-30", "CX-5", "CX-9", "MAZDA3", "MAZDA6", "MX-5 Miata"] },
   { make: "Subaru", models: ["Ascent", "BRZ", "Crosstrek", "Forester", "Impreza", "Legacy", "Outback", "WRX", "XV Crosstrek"] },
   { make: "Mercedes-Benz", models: ["A-Class", "C-Class", "CLA-Class", "CLS-Class", "E-Class", "G-Class", "GLA-Class", "GLB-Class", "GLC-Class", "GLE-Class", "GLS-Class", "S-Class", "SL-Class", "SLC-Class"] },

@@ -63,6 +63,12 @@ const Message = ({
   }
 
   //console.log(message);
+  const truncateDescription = (title: string, maxLength: number) => {
+    if (title.length > maxLength) {
+      return title.substring(0, maxLength) + "...";
+    }
+    return title;
+  };
   return (
     <div className="">
       <div className="chatbox max-h-96 overflow-y-auto p-4 bg-gray-50">
@@ -103,7 +109,9 @@ const Message = ({
             >
               {message.adTitle}
             </a>
-            <p className="text-sm text-gray-700">{message.adDescription}</p>
+            <p className="text-sm text-gray-700">
+              {truncateDescription(message.adDescription ?? "", 80)}
+            </p>
           </div>
         </div>
       </div>

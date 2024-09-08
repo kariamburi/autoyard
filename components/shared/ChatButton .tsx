@@ -40,7 +40,12 @@ const ChatButton = ({ ad, userId, userName, userImage }: chatProps) => {
       console.error("Error sending message: ", error);
     }
   };
-
+  const truncateDescription = (title: string, maxLength: number) => {
+    if (title.length > maxLength) {
+      return title.substring(0, maxLength) + "...";
+    }
+    return title;
+  };
   return (
     <>
       <button
@@ -54,7 +59,9 @@ const ChatButton = ({ ad, userId, userName, userImage }: chatProps) => {
         <div className="fixed inset-0 flex items-center justify-center bg-gray-800 bg-opacity-50 z-50">
           <div className="bg-white rounded-lg p-6 w-full max-w-md">
             <h3 className="text-lg font-semibold mb-4">{ad.title}</h3>
-            <p className="text-gray-700 mb-4">{ad.description}</p>
+            <p className="text-gray-700 mb-4">
+              {truncateDescription(ad?.description ?? "", 80)}
+            </p>
             <span className="text-[12px] lg:text-lg font-bold w-min rounded-full mt-1 text-emerald-950">
               {NGnaira.format(ad.price)}
             </span>
@@ -63,15 +70,6 @@ const ChatButton = ({ ad, userId, userName, userImage }: chatProps) => {
               alt={ad.title}
               className="w-full h-48 object-cover mb-4 rounded"
             />
-            <p className="text-blue-500 underline mb-4">
-              <a
-                href={`https://autoyard.co.ke/ads/${ad._id}`}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                View Ad
-              </a>
-            </p>
 
             <textarea
               value={message}

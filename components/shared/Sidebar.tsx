@@ -111,77 +111,87 @@ const Sidebar = ({ userId }: sidebarProps) => {
     updateRead(recipientUid, uid);
   };
   return (
-    <ul className="">
-      {messages &&
-        messages.map((messages) => {
-          //countUnreadmessages({ senderId: messages.uid });
-          const isActive = pathname === "/chat/" + messages.uid;
-          let formattedCreatedAt = "";
-          try {
-            const createdAtDate = new Date(messages.createdAt.seconds * 1000); // Convert seconds to milliseconds
-
-            // Get today's date
-            const today = new Date();
-
-            // Check if the message was sent today
-            if (isToday(createdAtDate)) {
-              formattedCreatedAt = "Today " + format(createdAtDate, "HH:mm"); // Set as "Today"
-            } else if (isYesterday(createdAtDate)) {
-              // Check if the message was sent yesterday
-              formattedCreatedAt =
-                "Yesterday " + format(createdAtDate, "HH:mm"); // Set as "Yesterday"
-            } else {
-              // Format the createdAt date with day, month, and year
-              formattedCreatedAt = format(createdAtDate, "dd-MM-yyyy"); // Format as 'day/month/year'
-            }
-
-            // Append hours and minutes if the message is not from today or yesterday
-            if (!isToday(createdAtDate) && !isYesterday(createdAtDate)) {
-              formattedCreatedAt += " " + format(createdAtDate, "HH:mm"); // Append hours and minutes
-            }
-          } catch {
-            // Handle error when formatting date
-          }
-
-          return (
-            <li
-              key={"/chat/" + messages.uid}
-              className={`${
-                isActive &&
-                "bg-gradient-to-b from-emerald-500 to-emerald-600 text-white rounded-sm"
-              } p-medium-16 whitespace-nowrap bg-emerald-50 rounded-sm`}
-            >
-              <div
-                onClick={() => handle(messages.uid, messages.recipientUid)}
-                className="hover:bg-emerald-100 hover:rounded-sm hover:text-emerald-600 p-3 mb-1 hover:cursor-pointer"
-              >
-                <div className="flex items-center gap-2">
-                  <span className="text-right my-auto">
-                    <Image
-                      className="w-8 h-8 rounded-full object-cover"
+    <div className="w-full max-w-md mx-auto bg-white shadow-md rounded-lg overflow-hidden">
+      <ul className="divide-y divide-gray-200">
+        {messages &&
+          messages.map((messages, index) => {
+            const isActive = pathname === "/chat/" + messages.uid;
+            return (
+              <>
+                <li
+                  key={index}
+                  onClick={() => handle(messages.uid, messages.recipientUid)}
+                  className={`p-4 flex items-center space-x-4 hover:bg-gray-100 ${
+                    isActive && "bg-emerald-100"
+                  }`}
+                >
+                  <div className="flex-shrink-0">
+                    <img
+                      className="h-10 w-10 rounded-full"
                       src={messages.avatar}
-                      alt="avatar"
-                      width={300}
-                      height={300}
-                    />
-                  </span>
-                  <div className="text-xs">{messages.name}</div>
-                </div>
-                <div className="text-xs flex w-full justify-between">
-                  <div className="flex gap-1 font-normal">
-                    {truncateTitle(messages.text, 15)}
-                    <UnreadmessagesPeruser
-                      uid={messages.uid}
-                      recipientUid={userId}
+                      alt={messages.name}
                     />
                   </div>
-                  <div className="font-normal">{formattedCreatedAt}</div>
+                  <div className="flex-1 min-w-0">
+                    <p className="text-sm font-medium text-gray-900 truncate">
+                      {messages.name}
+                    </p>
+
+                    <p className="flex gap-1 text-sm text-gray-500 truncate">
+                      {truncateTitle(messages.text, 30)}
+                      <UnreadmessagesPeruser
+                        uid={messages.uid}
+                        recipientUid={userId}
+                      />
+                    </p>
+                  </div>
+                  <div className="whitespace-nowrap text-sm text-gray-500">
+                    {new Date(
+                      messages.createdAt.seconds * 1000
+                    ).toLocaleTimeString()}
+                  </div>
+                </li>
+
+                {/*     <li
+                key={"/chat/" + messages.uid}
+                className={`${
+                  isActive &&
+                  "bg-gradient-to-b from-emerald-500 to-emerald-600 text-white rounded-sm"
+                } p-medium-16 whitespace-nowrap bg-emerald-50 rounded-sm`}
+              >
+                <div
+                  onClick={() => handle(messages.uid, messages.recipientUid)}
+                  className="hover:bg-emerald-100 hover:rounded-sm hover:text-emerald-600 p-3 mb-1 hover:cursor-pointer"
+                >
+                  <div className="flex items-center gap-2">
+                    <span className="text-right my-auto">
+                      <Image
+                        className="w-8 h-8 rounded-full object-cover"
+                        src={messages.avatar}
+                        alt="avatar"
+                        width={300}
+                        height={300}
+                      />
+                    </span>
+                    <div className="text-xs">{messages.name}</div>
+                  </div>
+                  <div className="text-xs flex w-full justify-between">
+                    <div className="flex gap-1 font-normal">
+                      {truncateTitle(messages.text, 15)}
+                      <UnreadmessagesPeruser
+                        uid={messages.uid}
+                        recipientUid={userId}
+                      />
+                    </div>
+                    <div className="font-normal">{formattedCreatedAt}</div>
+                  </div>
                 </div>
-              </div>
-            </li>
-          );
-        })}
-    </ul>
+              </li>*/}
+              </>
+            );
+          })}
+      </ul>
+    </div>
   );
 };
 
