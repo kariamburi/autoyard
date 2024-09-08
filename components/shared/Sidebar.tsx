@@ -161,8 +161,8 @@ const Sidebar = ({ userId }: sidebarProps) => {
                       className="w-8 h-8 rounded-full object-cover"
                       src={messages.avatar}
                       alt="avatar"
-                      width={8}
-                      height={8}
+                      width={300}
+                      height={300}
                     />
                   </span>
                   <div className="text-xs">{messages.name}</div>

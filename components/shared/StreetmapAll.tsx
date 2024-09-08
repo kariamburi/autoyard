@@ -59,8 +59,8 @@ const StreetmapAll = ({ data }: CardProps) => {
                 src="/assets/icons/mypin.png"
                 alt=""
                 className="w-12 h-12 object-cover"
-                width={12}
-                height={12}
+                width={50}
+                height={50}
               />
 
               <div className="flex flex-col">
@@ -84,8 +84,8 @@ const StreetmapAll = ({ data }: CardProps) => {
                     src={ad.imageUrls[0]}
                     alt=""
                     className="w-24 h-12 object-cover"
-                    width={24}
-                    height={12}
+                    width={900}
+                    height={500}
                   />
                 </Link>
                 <div className="flex flex-col">

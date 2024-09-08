@@ -84,11 +84,10 @@ export async function POST(req: Request) {
   }
 
   if (eventType === 'user.updated') {
-    const {id, image_url, first_name, last_name, username } = evt.data
+    const {id, image_url, first_name, last_name } = evt.data
     const user:any = {
       firstName: first_name,
       lastName: last_name,
-    //  username: username!,
       photo: image_url,
     }
 

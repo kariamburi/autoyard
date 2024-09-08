@@ -46,8 +46,8 @@ const StreetmapOfice = ({
               src={imageUrl}
               alt=""
               className="w-full h-12 object-cover"
-              width={24}
-              height={12}
+              width={900}
+              height={500}
             />
             <div className="flex flex-col">
               <div>{name}</div>

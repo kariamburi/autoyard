@@ -43,8 +43,8 @@ const Streetmap = ({ id, title, price, imageUrls, lat, lng }: CardProps) => {
               src={imageUrls[0]}
               alt=""
               className="w-24 h-12 object-cover"
-              width={24}
-              height={12}
+              width={900}
+              height={500}
             />
             <div className="flex flex-col">
               <div>{title}</div>
