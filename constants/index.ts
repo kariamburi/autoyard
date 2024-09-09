@@ -79,6 +79,11 @@ export const plans = [
 
 export const headerLinks = [
   {
+    label: 'Home',
+    route: '/',
+
+  },
+  {
     label: 'Sell',
     route: '/ads/create',
 

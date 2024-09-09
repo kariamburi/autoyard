@@ -77,7 +77,7 @@ const NavbarChats = ({ recipient, userId }: sidebarProps) => {
                   href={`/shop/${userId}`}
                   className="no-underline font-boldm-1"
                 >
-                  <span className="text-xs text-gray-100 cursor-pointer font-bold">
+                  <span className="text-gray-100 cursor-pointer font-bold">
                     {recipient.firstName} {recipient.lastName}
                   </span>
                 </Link>

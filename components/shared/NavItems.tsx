@@ -18,6 +18,7 @@ import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import DiamondIcon from "@mui/icons-material/Diamond";
 import SettingsIcon from "@mui/icons-material/Settings";
 import BookmarkIcon from "@mui/icons-material/Bookmark";
+import HomeIcon from "@mui/icons-material/Home";
 type NavItemsProps = {
   userstatus: string;
   userId: string;
@@ -47,6 +48,11 @@ const NavItems = ({ userstatus, userId }: NavItemsProps) => {
               >
                 <Link href={userId ? linki : "/sign-in"}>
                   <div className="flex hover:bg-slate-100 hover:rounded-full hover:text-emerald-600 p-3 mb-1 hover:cursor-pointer">
+                    {link.label === "Home" && (
+                      <span>
+                        <HomeIcon className="w-10 p-1 hover:text-white" />
+                      </span>
+                    )}
                     {link.label === "Sell" && (
                       <span>
                         <AddCircleOutlineOutlinedIcon className="w-10 p-1 hover:text-white" />

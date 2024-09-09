@@ -14,6 +14,7 @@ import { useEffect, useState } from "react";
 import CloseIcon from "@mui/icons-material/Close";
 import { useToast } from "@/components/ui/use-toast";
 import Image from "next/image";
+import AttachFileOutlinedIcon from "@mui/icons-material/AttachFileOutlined";
 type sidebarProps = {
   displayName: string;
   uid: string;
@@ -111,7 +112,7 @@ const SendMessage = ({
 
             <button
               type="submit"
-              className="text-sm p-3 lg:text-base bg-gradient-to-b from-emerald-800 to-emerald-900 text-white rounded-r-lg px-5"
+              className="text-sm p-3 lg:text-base bg-gradient-to-b from-emerald-800 to-emerald-900 text-white rounded-r-lg"
             >
               Send
             </button>
@@ -135,15 +136,12 @@ const SendMessage = ({
           </>
         )}
 
-        <div className="cursor-pointer relative p-2 ml-5 mr-5">
+        <div className="cursor-pointer relative p-2 lg:mr-5">
           <label htmlFor="file">
-            <Image
-              src="/assets/icons/attach.png"
-              alt="Attach"
-              className="cursor-pointer"
-              width={50}
-              height={50}
-            />
+            <div className="text-gray-700 p-1 cursor-pointer ">
+              {" "}
+              <AttachFileOutlinedIcon />
+            </div>
           </label>
           <input
             type="file"

@@ -100,8 +100,10 @@ const ReviewsBox = ({
         <>
           {" "}
           <ScrollArea className="h-screen w-full bg-white rounded-md border p-4">
-            {messages.map((message: any) => (
-              <>
+            {messages
+              .slice()
+              .reverse()
+              .map((message: any) => (
                 <Reviews
                   key={message.id}
                   message={message}
@@ -111,10 +113,7 @@ const ReviewsBox = ({
                   photoURL={photoURL}
                   recipient={recipient}
                 />
-              </>
-            ))}
-
-            <div ref={messagesEndRef}></div>
+              ))}
           </ScrollArea>
         </>
       ) : (
