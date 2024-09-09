@@ -74,21 +74,17 @@ const Reviews = ({
   //console.log(message);
   return (
     <div className="w-full">
-      <div
-        className={`flex items-start justify-start rounded-lg bg-gray-100 mb-2 p-3`}
-      >
-        <div className="">
-          <div className="flex items-center gap-2">
-            <Image
-              className="w-8 h-8 rounded-full object-cover"
-              src={photoURL}
-              alt="avatar"
-              width={200}
-              height={200}
-            />
-            <div className="text-xs font-bold flex gap-3">{message.name}</div>
-          </div>
-          <div className="text-xs items-center font-medium flex gap-3">
+      <div className="chatbox w-full">
+        <div className={`flex items-start mb-2 justify-start`}>
+          <img
+            src={photoURL}
+            alt="avatar"
+            className="w-10 h-10 rounded-full mr-3"
+          />
+          <div
+            className={`message-content w-full rounded-lg p-3 bg-green-100 text-left`}
+          >
+            <h4 className="font-semibold">{message.name}</h4>
             <div className="items-center flex gap-1">
               <p className="font-bold text-sm">{clickedStarsCount}</p>
               {message.starClicked &&
@@ -99,15 +95,22 @@ const Reviews = ({
                   />
                 ))}
             </div>
-            <div className="text-xs text-gray-500">{formattedCreatedAt}</div>
-          </div>
-          <div className="w-full">
-            <div className={`text-sm text-gray-700 mb-1`}>{message.text}</div>
-            {uid === message.uid && (
-              <>
-                <DeleteReview messageId={message.id} />
-              </>
-            )}
+            <p className="text-sm">{message.text}</p>
+            <div className="items-center flex justify-between">
+              <small className="text-gray-500">
+                {message.createdAt
+                  ? new Date(
+                      message.createdAt.seconds * 1000
+                    ).toLocaleTimeString()
+                  : "No date"}
+              </small>
+
+              {uid === message.uid && (
+                <div className="bg-red-100 shadow rounded-lg pt-1 pl-1 pr-1">
+                  <DeleteReview messageId={message.id} />
+                </div>
+              )}
+            </div>
           </div>
         </div>
       </div>

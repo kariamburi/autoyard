@@ -126,7 +126,7 @@ const pagechat = async ({ params: { id } }: chatProps) => {
             </div>
           </div>
 
-          <div className="p-0 rounded-lg bg-white items-center max-w-6xl mx-auto flex flex-col">
+          <div className="rounded-lg bg-white items-center max-w-6xl mx-auto flex flex-col">
             <span className="logo font-bold text-[25px] text-emerald-950">
               Customer feedback
             </span>

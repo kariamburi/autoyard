@@ -105,30 +105,36 @@ const SendMessage = ({
   return (
     <>
       {recipientUid !== uid && (
-        <div className="w-full lg:w-3/4 bg-[#ebf2f7] bottom-0 py-5 mt-0 mr-5">
-          <form onSubmit={handleSendMessage} className="px-0 containerWrap">
+        <div className="fixed bottom-0 left-0 right-0 bg-[#ebf2f7] h-auto z-10 p-0 shadow-md flex flex-col md:flex-row justify-end items-center">
+          <form
+            onSubmit={handleSendMessage}
+            className="flex flex-col w-full justify-end items-center"
+          >
             {recipientUid ? (
               <>
-                <div className="ml-1 lg:ml-0 text-lg">Rate Seller</div>
-                {starClicked.map((clicked, index) => (
-                  <StarIcon
-                    key={index}
-                    sx={{ fontSize: 36, color: clicked ? "orange" : "gray" }} // Change color based on clicked state
-                    onClick={() => handleStarClick(index)} // Call handleStarClick function on click
-                    className="ml-1 lg:ml-0 cursor-pointer mb-1"
-                  />
-                ))}
-                <div className="ml-1 lg:ml-0 w-full flex pr-5">
+                <div className="text-base font-bold">Rate Seller</div>
+                <div className="flex gap-2">
+                  {starClicked.map((clicked, index) => (
+                    <StarIcon
+                      key={index}
+                      sx={{ fontSize: 36, color: clicked ? "orange" : "gray" }} // Change color based on clicked state
+                      onClick={() => handleStarClick(index)} // Call handleStarClick function on click
+                      className="ml-1 lg:ml-0 cursor-pointer mb-1"
+                    />
+                  ))}
+                </div>
+
+                <div className="flex w-full p-1 justify-end">
                   <input
                     value={value}
                     onChange={(e) => setValue(e.target.value)}
-                    className="input w-full p-2 focus:outline-none bg-white rounded-r-none rounded-l-lg"
+                    className="input  max-w-[800px] w-full p-2 focus:outline-none bg-white rounded-r-none rounded-l-lg"
                     type="text"
                     placeholder="Write your review..."
                   />
                   <button
                     type="submit"
-                    className="w-auto bg-gradient-to-b from-emerald-800 to-emerald-900 text-white rounded-r-lg px-5 text-sm"
+                    className="p-3 bg-gradient-to-b from-emerald-800 to-emerald-900 text-white rounded-r-lg px-5 text-sm"
                   >
                     Send
                   </button>
@@ -137,14 +143,16 @@ const SendMessage = ({
             ) : (
               <>
                 <div className="text-lg">Rate Seller with Star</div>
-                {starClicked.map((clicked, index) => (
-                  <StarIcon
-                    key={index}
-                    sx={{ fontSize: 36, color: clicked ? "orange" : "gray" }} // Change color based on clicked state
-                    onClick={() => handleStarClick(index)} // Call handleStarClick function on click
-                    className="cursor-pointer"
-                  />
-                ))}
+                <div className="flex gap-2">
+                  {starClicked.map((clicked, index) => (
+                    <StarIcon
+                      key={index}
+                      sx={{ fontSize: 36, color: clicked ? "orange" : "gray" }} // Change color based on clicked state
+                      onClick={() => handleStarClick(index)} // Call handleStarClick function on click
+                      className="cursor-pointer"
+                    />
+                  ))}
+                </div>
                 <div className="w-full flex pr-5">
                   <input
                     value={value}

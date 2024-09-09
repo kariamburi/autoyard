@@ -30,6 +30,7 @@ const Ratingsmobile = ({ recipientUid }: Ratingsprop) => {
   const [clickedStarsCount, setClickedStarsCount] = useState<number>(0);
   const [messagesCount, setMessagesCount] = useState<number>(0);
   const [averangestar, setaverangestar] = useState<number>(0);
+
   useEffect(() => {
     const fetchMessages = () => {
       const messagesQuery = query(
@@ -67,7 +68,7 @@ const Ratingsmobile = ({ recipientUid }: Ratingsprop) => {
 
   return (
     <div className="text-[12px] flex gap-1 items-center justify-center h-full">
-      <div className="text-[12px] font-bold"> {averangestar}</div>
+      <div className="text-[12px] font-bold"> {averangestar.toFixed(1)}</div>
       {averangestar < 1 && (
         <div className="w-[70px] items-center justify-center">
           <StarIcon sx={{ fontSize: 14 }} className="text-gray-400" />
@@ -78,7 +79,7 @@ const Ratingsmobile = ({ recipientUid }: Ratingsprop) => {
         </div>
       )}
       {averangestar >= 1 && averangestar < 1.5 && (
-        <div className="w-[70px]">
+        <div className="w-[70px] items-center justify-center">
           <StarIcon sx={{ fontSize: 14 }} className="text-amber-400" />
           <StarIcon sx={{ fontSize: 14 }} className="text-gray-400" />
           <StarIcon sx={{ fontSize: 14 }} className="text-gray-400" />
@@ -87,7 +88,7 @@ const Ratingsmobile = ({ recipientUid }: Ratingsprop) => {
         </div>
       )}
       {averangestar >= 1.5 && averangestar < 2 && (
-        <div className="w-[70px]">
+        <div className="w-[70px] items-center justify-center">
           <StarIcon sx={{ fontSize: 14 }} className="text-amber-400" />
           <StarHalfIcon className="text-amber-400" />
           <StarIcon sx={{ fontSize: 14 }} className="text-gray-400" />
@@ -96,7 +97,7 @@ const Ratingsmobile = ({ recipientUid }: Ratingsprop) => {
         </div>
       )}
       {averangestar >= 2 && averangestar < 2.5 && (
-        <div className="w-[70px]">
+        <div className="w-[70px] items-center justify-center">
           <StarIcon sx={{ fontSize: 14 }} className="text-amber-400" />
           <StarIcon sx={{ fontSize: 14 }} className="text-amber-400" />
           <StarIcon sx={{ fontSize: 14 }} className="text-gray-400" />
@@ -105,7 +106,7 @@ const Ratingsmobile = ({ recipientUid }: Ratingsprop) => {
         </div>
       )}
       {averangestar >= 2.5 && averangestar < 3 && (
-        <div className="w-[70px]">
+        <div className="w-[70px] items-center justify-center">
           <StarIcon sx={{ fontSize: 14 }} className="text-amber-400" />
           <StarIcon sx={{ fontSize: 14 }} className="text-amber-400" />
           <StarHalfIcon sx={{ fontSize: 14 }} className="text-amber-400" />
@@ -114,7 +115,7 @@ const Ratingsmobile = ({ recipientUid }: Ratingsprop) => {
         </div>
       )}
       {averangestar >= 3 && averangestar < 3.5 && (
-        <div className="w-[70px]">
+        <div className="w-[70px] items-center justify-center">
           <StarIcon sx={{ fontSize: 14 }} className="text-amber-400" />
           <StarIcon sx={{ fontSize: 14 }} className="text-amber-400" />
           <StarIcon sx={{ fontSize: 14 }} className="text-amber-400" />
@@ -123,7 +124,7 @@ const Ratingsmobile = ({ recipientUid }: Ratingsprop) => {
         </div>
       )}
       {averangestar >= 3.5 && averangestar < 4 && (
-        <div className="w-[70px]">
+        <div className="w-[70px] items-center justify-center">
           <StarIcon sx={{ fontSize: 14 }} className="text-amber-400" />
           <StarIcon sx={{ fontSize: 14 }} className="text-amber-400" />
           <StarIcon sx={{ fontSize: 14 }} className="text-amber-400" />
@@ -132,7 +133,7 @@ const Ratingsmobile = ({ recipientUid }: Ratingsprop) => {
         </div>
       )}
       {averangestar >= 4 && averangestar < 4.5 && (
-        <div className="w-[70px]">
+        <div className="w-[70px] items-center justify-center">
           <StarIcon sx={{ fontSize: 14 }} className="text-amber-400" />
           <StarIcon sx={{ fontSize: 14 }} className="text-amber-400" />
           <StarIcon sx={{ fontSize: 14 }} className="text-amber-400" />
@@ -141,7 +142,7 @@ const Ratingsmobile = ({ recipientUid }: Ratingsprop) => {
         </div>
       )}
       {averangestar >= 4.5 && averangestar < 5 && (
-        <div className="w-[70px]">
+        <div className="w-[70px] items-center justify-center">
           <StarIcon sx={{ fontSize: 14 }} className="text-amber-400" />
           <StarIcon sx={{ fontSize: 14 }} className="text-amber-400" />
           <StarIcon sx={{ fontSize: 14 }} className="text-amber-400" />
@@ -150,7 +151,7 @@ const Ratingsmobile = ({ recipientUid }: Ratingsprop) => {
         </div>
       )}
       {averangestar >= 5 && (
-        <div className="w-[70px]">
+        <div className="w-[70px] items-center justify-center">
           <StarIcon sx={{ fontSize: 14 }} className="text-amber-400" />
           <StarIcon sx={{ fontSize: 14 }} className="text-amber-400" />
           <StarIcon sx={{ fontSize: 14 }} className="text-amber-400" />

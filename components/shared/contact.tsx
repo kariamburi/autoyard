@@ -33,7 +33,7 @@ const Contact = ({ ad, userId, userName, userImage }: chatProps) => {
           userId={userId}
           isAdCreator={isAdCreator}
         />
-        <Ratingsmobile recipientUid={userId} />
+        <Ratingsmobile recipientUid={ad.organizer._id} />
       </div>
       <div className="justify-between lg:justify-end flex w-full gap-1">
         <div className="lg:hidden flex gap-1 items-center p-1 w-full">

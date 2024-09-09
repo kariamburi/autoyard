@@ -69,7 +69,7 @@ const Ratings = ({ recipientUid }: Ratingsprop) => {
     <div className="flex flex-col items-center justify-center h-full">
       <h1 className="mt-2 p-0 text-base font-bold text-emerald-950">
         {" "}
-        Ratings: {averangestar}
+        Ratings: {averangestar.toFixed(1)}
       </h1>
       <Link
         href={`/reviews/${recipientUid}`}
@@ -79,7 +79,7 @@ const Ratings = ({ recipientUid }: Ratingsprop) => {
       </Link>
 
       {averangestar < 1 && (
-        <div>
+        <div className="items-center">
           <StarIcon className="text-gray-400" />
           <StarIcon className="text-gray-400" />
           <StarIcon className="text-gray-400" />
@@ -88,7 +88,7 @@ const Ratings = ({ recipientUid }: Ratingsprop) => {
         </div>
       )}
       {averangestar >= 1 && averangestar < 1.5 && (
-        <div>
+        <div className="items-center">
           <StarIcon className="text-amber-400" />
           <StarIcon className="text-gray-400" />
           <StarIcon className="text-gray-400" />
@@ -97,7 +97,7 @@ const Ratings = ({ recipientUid }: Ratingsprop) => {
         </div>
       )}
       {averangestar >= 1.5 && averangestar < 2 && (
-        <div>
+        <div className="items-center">
           <StarIcon className="text-amber-400" />
           <StarHalfIcon className="text-amber-400" />
           <StarIcon className="text-gray-400" />
@@ -106,7 +106,7 @@ const Ratings = ({ recipientUid }: Ratingsprop) => {
         </div>
       )}
       {averangestar >= 2 && averangestar < 2.5 && (
-        <div>
+        <div className="items-center">
           <StarIcon className="text-amber-400" />
           <StarIcon className="text-amber-400" />
           <StarIcon className="text-gray-400" />
@@ -115,7 +115,7 @@ const Ratings = ({ recipientUid }: Ratingsprop) => {
         </div>
       )}
       {averangestar >= 2.5 && averangestar < 3 && (
-        <div>
+        <div className="items-center">
           <StarIcon className="text-amber-400" />
           <StarIcon className="text-amber-400" />
           <StarHalfIcon className="text-amber-400" />
@@ -124,7 +124,7 @@ const Ratings = ({ recipientUid }: Ratingsprop) => {
         </div>
       )}
       {averangestar >= 3 && averangestar < 3.5 && (
-        <div>
+        <div className="items-center">
           <StarIcon className="text-amber-400" />
           <StarIcon className="text-amber-400" />
           <StarIcon className="text-amber-400" />
@@ -133,7 +133,7 @@ const Ratings = ({ recipientUid }: Ratingsprop) => {
         </div>
       )}
       {averangestar >= 3.5 && averangestar < 4 && (
-        <div>
+        <div className="items-center">
           <StarIcon className="text-amber-400" />
           <StarIcon className="text-amber-400" />
           <StarIcon className="text-amber-400" />
@@ -142,7 +142,7 @@ const Ratings = ({ recipientUid }: Ratingsprop) => {
         </div>
       )}
       {averangestar >= 4 && averangestar < 4.5 && (
-        <div>
+        <div className="items-center">
           <StarIcon className="text-amber-400" />
           <StarIcon className="text-amber-400" />
           <StarIcon className="text-amber-400" />
@@ -151,7 +151,7 @@ const Ratings = ({ recipientUid }: Ratingsprop) => {
         </div>
       )}
       {averangestar >= 4.5 && averangestar < 5 && (
-        <div>
+        <div className="items-center">
           <StarIcon className="text-amber-400" />
           <StarIcon className="text-amber-400" />
           <StarIcon className="text-amber-400" />
@@ -160,7 +160,7 @@ const Ratings = ({ recipientUid }: Ratingsprop) => {
         </div>
       )}
       {averangestar >= 5 && (
-        <div>
+        <div className="items-center">
           <StarIcon className="text-amber-400" />
           <StarIcon className="text-amber-400" />
           <StarIcon className="text-amber-400" />
