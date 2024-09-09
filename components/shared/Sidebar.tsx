@@ -142,7 +142,7 @@ const Sidebar = ({ userId }: sidebarProps) => {
                         </p>
 
                         <p className="flex gap-1 text-sm text-gray-500 truncate">
-                          {truncateTitle(messages.text, 30)}
+                          {truncateTitle(messages.text, 18)}
                           <UnreadmessagesPeruser
                             uid={messages.uid}
                             recipientUid={userId}
@@ -197,7 +197,7 @@ const Sidebar = ({ userId }: sidebarProps) => {
           </ul>
         </div>
       ) : (
-        <div className="flex-center wrapper min-h-[200px] w-f(ull flex-col gap-3 rounded-[14px] bg-grey-50 py-28 text-center">
+        <div className="p-3 flex-center wrapper min-h-[200px] w-f(ull flex-col gap-3 rounded-[14px] bg-grey-50 py-28 text-center">
           <h3 className="font-bold text-[16px] lg:text-[25px]">No Chat</h3>
           <p className="text-sm lg:p-regular-14">You have 0 messages</p>
         </div>

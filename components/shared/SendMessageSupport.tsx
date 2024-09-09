@@ -13,7 +13,6 @@ import React, { useCallback } from "react";
 import { useEffect, useState } from "react";
 import CloseIcon from "@mui/icons-material/Close";
 import { useToast } from "@/components/ui/use-toast";
-import Image from "next/image";
 type sidebarProps = {
   displayName: string;
   uid: string;
@@ -21,7 +20,7 @@ type sidebarProps = {
   recipientUid: string;
   client: boolean;
 };
-const SendMessage = ({
+const SendMessageSupport = ({
   uid,
   photoURL,
   displayName,
@@ -32,6 +31,51 @@ const SendMessage = ({
   const [image, setImg] = useState<File | null>(null);
   // const [recipientUid, setrecipientUid] = React.useState<string | null>(null);
   const { toast } = useToast();
+  const [check, setCheck] = useState(false);
+
+  const sendWelcomeMessage = useCallback(async () => {
+    const read = "1";
+    const imageUrl = "";
+    const welcomeText =
+      "Hello! Thank you for reaching out to our support team. We're here to assist you. Please feel free to ask any questions or let us know how we can help you today.";
+
+    try {
+      const userQuery = query(
+        collection(db, "messages"),
+        where("uid", "==", "66dd62d837607af83cabf551"),
+        where("recipientUid", "==", uid),
+        where("text", "==", welcomeText)
+      );
+
+      const userSnapshot = await getDocs(userQuery);
+
+      if (userSnapshot.empty) {
+        await addDoc(collection(db, "messages"), {
+          text: welcomeText,
+          name: "Support Team",
+          avatar: "/customer.jpg",
+          createdAt: serverTimestamp(),
+          uid: "66dd62d837607af83cabf551",
+          recipientUid: uid,
+          imageUrl,
+          read,
+        });
+      }
+    } catch (error) {
+      console.error("Error sending welcome message: ", error);
+    }
+  }, [recipientUid, uid]);
+  useEffect(() => {
+    if (client && recipientUid && uid && !check) {
+      const timer = setTimeout(() => {
+        setCheck(true);
+        sendWelcomeMessage();
+      }, 1000); // 3 seconds delay
+
+      // Clean up the timer if the component unmounts
+      return () => clearTimeout(timer);
+    }
+  }, []);
 
   const handleSendMessage = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -77,11 +121,8 @@ const SendMessage = ({
   };
 
   return (
-    <div className="fixed bottom-0 left-0 right-0 bg-[#ebf2f7] h-auto z-10 p-0 shadow-md flex flex-col md:flex-row justify-end items-center">
-      <form
-        onSubmit={handleSendMessage}
-        className="flex w-full justify-end items-center"
-      >
+    <div className="w-full p-1 bg-[#ebf2f7]">
+      <form onSubmit={handleSendMessage} className="px-0 containerWrap flex">
         {recipientUid ? (
           <>
             {image && (
@@ -92,7 +133,7 @@ const SendMessage = ({
                 >
                   <CloseIcon className="m-1" sx={{ fontSize: 24 }} />
                 </button>
-                <Image
+                <img
                   src={URL.createObjectURL(image)}
                   alt="image"
                   width={50}
@@ -104,14 +145,13 @@ const SendMessage = ({
             <input
               value={value}
               onChange={(e) => setValue(e.target.value)}
-              className="input max-w-[690px] w-full text-sm lg:text-base text-black p-3 focus:outline-none bg-white rounded-r-none rounded-l-lg"
+              className="input w-[210px] lg:w-full  text-sm text-black p-2 focus:outline-none bg-white rounded-r-none rounded-l-lg"
               type="text"
               placeholder="Enter your message..."
             />
-
             <button
               type="submit"
-              className="text-sm p-3 lg:text-base bg-gradient-to-b from-emerald-800 to-emerald-900 text-white rounded-r-lg px-5"
+              className="w-auto bg-gradient-to-b from-emerald-800 to-emerald-900 text-white rounded-r-lg px-5 text-sm"
             >
               Send
             </button>
@@ -121,14 +161,14 @@ const SendMessage = ({
             <input
               value={value}
               disabled
-              className="input w-full p-2 text-sm lg:text-base text-black focus:outline-none bg-white rounded-r-none rounded-l-lg"
+              className="input w-full p-2 text-black focus:outline-none bg-white rounded-r-none rounded-l-lg"
               type="text"
               placeholder="Enter your message..."
             />
             <button
               type="submit"
               disabled
-              className="w-auto text-sm lg:text-base bg-gradient-to-b from-emerald-800 to-emerald-900 text-white rounded-r-lg px-5 text-sm"
+              className="w-auto bg-gradient-to-b from-emerald-800 to-emerald-900 text-white rounded-r-lg px-5 text-sm"
             >
               Send
             </button>
@@ -137,12 +177,10 @@ const SendMessage = ({
 
         <div className="cursor-pointer relative p-2 ml-5 mr-5">
           <label htmlFor="file">
-            <Image
-              src="/assets/icons/attach.png"
+            <img
+              src="../assets/icons/attach.png"
               alt="Attach"
               className="cursor-pointer"
-              width={50}
-              height={50}
             />
           </label>
           <input
@@ -157,4 +195,4 @@ const SendMessage = ({
   );
 };
 
-export default SendMessage;
+export default SendMessageSupport;

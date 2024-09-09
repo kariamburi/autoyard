@@ -8,6 +8,7 @@ import FloatingChatIcon from "./FloatingChatIcon";
 import ChatWindow from "./ChatWindow";
 
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 //import Card from './Card'
 //import Pagination from './Pagination'
 
@@ -41,7 +42,8 @@ const Collection = ({
   const toggleChat = () => {
     setChatOpen(!isChatOpen);
   };
-
+  const pathname = usePathname();
+  const isAdCreator = pathname === "/ads/";
   return (
     <div>
       {data.length > 0 ? (
@@ -88,7 +90,7 @@ const Collection = ({
             senderId={userId}
             senderName={userName}
             senderImage={userImage}
-            recipientUid={"65d4a2ffec4c43cdc488ce0d"}
+            recipientUid={"66dd62d837607af83cabf551"}
           />
         </>
       )}

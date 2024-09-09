@@ -48,11 +48,11 @@ const pagechat = async () => {
     );
   }
   return (
-    <>
+    <div className="h-full w-full">
       <div className="fixed z-10 top-0 w-full">
         <Navbar userstatus="User" userId={recipientUid} />
       </div>
-      <div className="max-w-6xl mx-auto h-screen flex mt-20 mb-0 p-1">
+      <div className="w-full lg:max-w-6xl lg:mx-auto h-full flex mt-[50px] lg:mt-20 mb-0 p-1">
         <div className="hidden lg:inline mr-5">
           <div className="bg-white w-full rounded-lg p-1">
             <SellerProfile
@@ -74,7 +74,7 @@ const pagechat = async () => {
           <div className="rounded-lg mb-20 h-full lg:mb-0 max-w-6xl mx-auto flex flex-col">
             <div className="lg:flex-1">
               <ScrollArea className="w-full p-2">
-                <div className="w-full w-full mb-2 bg-white rounded-lg items-center">
+                <div className="w-full p-1 w-full mb-2 bg-white rounded-lg items-center">
                   <span className="logo font-bold text-[25px] text-emerald-950">
                     Messanger
                   </span>
@@ -98,7 +98,7 @@ const pagechat = async () => {
           <BottomNavigation userId={senderId} />
         </div>
       </footer>
-    </>
+    </div>
   );
 };
 

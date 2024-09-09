@@ -11,6 +11,7 @@ import { getAllAd } from "@/lib/actions/ad.actions";
 import MenuSubmobile from "@/components/shared/MenuSubmobile";
 import Collection from "@/components/shared/Collection";
 import { createUser } from "@/lib/actions/user.actions";
+import { getfcmTokenFromCookie } from "@/lib/actions/cookies";
 
 export default async function Home({ searchParams }: SearchParamProps) {
   const { sessionClaims } = auth();
@@ -112,6 +113,7 @@ export default async function Home({ searchParams }: SearchParamProps) {
     page,
     limit: 20,
   });
+
   if (!Ads || !categoryList) {
     return (
       <div>

@@ -27,7 +27,6 @@ export default async function RootLayout({
   return (
     <div className="min-h-screen">
       <div className="w-full h-full">
-        <ClientFCMHandler /> {/* Add the client-side component */}
         <div className="sm:hidden fixed top-0 z-10 w-full">
           {user ? (
             <Navbarhome userstatus={user.status} userId={userId} />

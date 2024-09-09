@@ -103,16 +103,16 @@ const DashboardChat = ({
   };
 
   return (
-    <>
+    <div className="w-full">
       <div className="z-10 top-0 fixed w-full">
         <NavbarChats recipient={user} userId={recipientUid} />
       </div>
 
-      <div className="max-w-6xl mx-auto flex mt-20 mb-0 p-1">
+      <div className="max-w-6xl mx-auto flex mt-[50px] lg:mt-[60px] mb-0 p-1">
         <div className="hidden lg:inline mr-5">
-          <div className="bg-white w-full rounded-lg p-0">
-            <ScrollArea className="max-h-[400px] w-full bg-white rounded-md border p-4">
-              <div className="w-full items-center justify-center">
+          <div className="bg-white w-full p-0">
+            <ScrollArea className="max-h-[400px] w-full bg-white rounded-md border p-0">
+              <div className="p-1 w-full items-center w-[350px] justify-center">
                 <span className="logo font-bold text-[25px] text-emerald-950">
                   Messanger
                 </span>
@@ -126,37 +126,12 @@ const DashboardChat = ({
           </div>
         </div>
 
-        <div className="flex-1 h-screen w-full flex-col">
-          {/* <div className="bg-white rounded-lg lg:hidden">
-            <div className="text-sm mt-2 rounded-lg w-full bg-white p-2">
-              <span className="logo font-bold text-[25px] text-emerald-950">
-                Messager
-              </span>
-              <Accordion type="single" collapsible className="w-full">
-                <AccordionItem value="item-1">
-                  <AccordionTrigger>
-                    <div className="flex gap-1 items-center">
-                      <PeopleOutlinedIcon />
-                      Latest Chats
-                    </div>
-                  </AccordionTrigger>
-                  <AccordionContent>
-                    <div className="w-full">
-                      <ScrollArea className="max-h-[400px] w-full rounded-md border p-1">
-                        <Sidebar userId={senderId} />
-                      </ScrollArea>
-                    </div>
-                  </AccordionContent>
-                </AccordionItem>
-              </Accordion>
-            </div>
-          </div>
-          */}
+        <div className="flex-1 w-full flex-col">
           <span className="logo font-bold text-[25px] text-emerald-950">
             Chats
           </span>
-          <div className="rounded-lg mb-20 h-full lg:mb-0 max-w-6xl mx-auto flex flex-col p-0 mt-0">
-            <div className="h-full w-full flex flex-col">
+          <div className="rounded-lg mb-20 lg:mb-0 max-w-6xl mx-auto flex flex-col p-0 mt-0">
+            <div className="w-full flex flex-col">
               <ChatBox
                 displayName={senderName}
                 uid={senderId}
@@ -178,7 +153,7 @@ const DashboardChat = ({
         </div>
         <Toaster />
       </div>
-    </>
+    </div>
   );
 };
 

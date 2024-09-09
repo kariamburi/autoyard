@@ -8,7 +8,7 @@ import ChatOutlinedIcon from "@mui/icons-material/ChatOutlined";
 import ContactSupportOutlinedIcon from "@mui/icons-material/ContactSupportOutlined";
 import Image from "next/image";
 import { UserButton } from "@clerk/nextjs";
-import SendMessage from "./SendMessage";
+import SendMessageSupport from "./SendMessageSupport";
 import HelpBox from "./HelpBox";
 
 interface ChatWindowProps {
@@ -119,7 +119,7 @@ const ChatWindow: React.FC<ChatWindowProps> = ({
                   }}
                 />
 
-                <SendMessage
+                <SendMessageSupport
                   displayName={senderName}
                   uid={senderId}
                   recipientUid={recipientUid}
