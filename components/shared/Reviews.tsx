@@ -82,7 +82,7 @@ const Reviews = ({
             className="w-10 h-10 rounded-full mr-3"
           />
           <div
-            className={`message-content w-full rounded-lg p-3 bg-green-100 text-left`}
+            className={`message-content w-full rounded-lg p-3 bg-blue-100 text-left`}
           >
             <h4 className="font-semibold">{message.name}</h4>
             <div className="items-center flex gap-1">

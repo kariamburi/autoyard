@@ -80,7 +80,7 @@ const SendMessage = ({
     <div className="fixed bottom-0 left-0 right-0 bg-[#ebf2f7] h-auto z-10 p-0 shadow-md flex flex-col md:flex-row justify-end items-center">
       <form
         onSubmit={handleSendMessage}
-        className="flex w-full justify-end items-center"
+        className="flex w-full p-1 justify-end items-center"
       >
         {recipientUid ? (
           <>

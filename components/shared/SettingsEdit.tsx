@@ -292,7 +292,10 @@ const SettingsEdit = ({ user, type, userId }: setingsProp) => {
   }
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="flex flex-col">
+      <form
+        onSubmit={form.handleSubmit(onSubmit)}
+        className="p-1 flex flex-col"
+      >
         <Accordion type="single" collapsible className="w-full">
           <AccordionItem value="item-1">
             <AccordionTrigger>Personal Details</AccordionTrigger>

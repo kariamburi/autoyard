@@ -107,7 +107,7 @@ const SellerProfile = ({ userId, loggedId, user }: CollectionProps) => {
 
   return (
     <div className="flex bg-white flex-col m-1 items-center min-w-[300px] lg:max-w-[350px]">
-      <div className="flex flex-col items-center rounded-t-lg w-full p-1 bg-emerald-700">
+      <div className="flex flex-col items-center rounded-t-lg w-full p-1 bg-green-100">
         <Link href={`/shop/${userId}`} className="no-underline font-bold m-1">
           <div className="w-16 h-16 p-1 rounded-full bg-white">
             <Image
@@ -120,13 +120,13 @@ const SellerProfile = ({ userId, loggedId, user }: CollectionProps) => {
           </div>
         </Link>
         <Link href={`/shop/${userId}`} className="no-underline font-boldm-1">
-          <p className="p-medium-14 md:p-medium-16 text-white">
+          <p className="text-lg font-bold text-black">
             {user.firstName} {user.lastName}
           </p>
         </Link>
         {isActive === false && (
-          <Link href={`/shop/${userId}`} className="no-underline font-boldm-1">
-            <p className="p-medium-14 md:p-medium-16 text-emerald-100 hover:text-white hover:underline">
+          <Link href={`/shop/${userId}`} className="no-underline m-1">
+            <p className="text-green-800 hover:text-green-500 hover:underline">
               View Seller Shop
             </p>
           </Link>
