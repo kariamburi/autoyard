@@ -17,7 +17,7 @@ const BottomNavigation = ({ userId }: navprop) => {
   const isActive = (path: string) => pathname === path;
 
   return (
-    <nav className="fixed bottom-0 w-full bg-white shadow-md border-t border-gray-200">
+    <nav className="fixed bottom-0 z-10 w-full bg-white shadow-md border-t border-gray-200">
       <div className="flex justify-around py-2 relative">
         <Link href="/" passHref>
           <div
