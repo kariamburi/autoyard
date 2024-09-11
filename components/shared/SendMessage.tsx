@@ -15,6 +15,8 @@ import CloseIcon from "@mui/icons-material/Close";
 import { useToast } from "@/components/ui/use-toast";
 import Image from "next/image";
 import AttachFileOutlinedIcon from "@mui/icons-material/AttachFileOutlined";
+import Zoom from "react-medium-image-zoom";
+import "react-medium-image-zoom/dist/styles.css";
 type sidebarProps = {
   displayName: string;
   uid: string;
@@ -93,13 +95,15 @@ const SendMessage = ({
                 >
                   <CloseIcon className="m-1" sx={{ fontSize: 24 }} />
                 </button>
-                <Image
-                  src={URL.createObjectURL(image)}
-                  alt="image"
-                  width={50}
-                  height={50}
-                  className="w-full object-center rounded-lg"
-                />
+                <Zoom>
+                  <Image
+                    src={URL.createObjectURL(image)}
+                    alt="image"
+                    width={50}
+                    height={50}
+                    className="w-full object-center rounded-lg"
+                  />
+                </Zoom>
               </div>
             )}
             <input

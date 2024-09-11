@@ -270,13 +270,15 @@ export default function Ads({ ad, userId, userImage, userName }: CardProps) {
               <CarouselContent>
                 {ad.imageUrls.map((image: string, index: number) => (
                   <CarouselItem key={index}>
-                    <Image
-                      src={image}
-                      alt={`Image ${index + 1}`}
-                      className="bg-[#000000] object-cover cursor-pointer"
-                      width={800} // Adjust the width as needed
-                      height={500} // Adjust the height as needed
-                    />
+                    <Zoom>
+                      <Image
+                        src={image}
+                        alt={`Image ${index + 1}`}
+                        className="bg-[#000000] object-cover cursor-pointer"
+                        width={800} // Adjust the width as needed
+                        height={500} // Adjust the height as needed
+                      />
+                    </Zoom>
                   </CarouselItem>
                 ))}
               </CarouselContent>

@@ -54,6 +54,8 @@ import EditOutlinedIcon from "@mui/icons-material/EditOutlined";
 import { IAd } from "@/lib/database/models/ad.model";
 import Ratingsmobile from "./ratingsmobile";
 import Verificationmobile from "./Verificationmobile";
+import Zoom from "react-medium-image-zoom";
+import "react-medium-image-zoom/dist/styles.css";
 type chatProps = {
   userId: string;
   userName: string;
@@ -108,13 +110,15 @@ const SellerProfileMobile = ({
           className="no-underline font-bold m-1"
         >
           <div className="w-10 h-10 rounded-full bg-white">
-            <Image
-              className="w-full h-w-full rounded-full object-cover"
-              src={ad.organizer.photo ?? "/avator.png"}
-              alt="Avator"
-              width={200}
-              height={200}
-            />
+            <Zoom>
+              <Image
+                className="w-full h-w-full rounded-full object-cover"
+                src={ad.organizer.photo ?? "/avator.png"}
+                alt="Avator"
+                width={200}
+                height={200}
+              />
+            </Zoom>
           </div>
         </Link>
         <div className="flex flex-col">

@@ -9,7 +9,8 @@ import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { UTApi } from "uploadthing/server";
 import { deleteSingleImage } from "@/lib/actions/ad.actions";
 import { ScrollArea, ScrollBar } from "../ui/scroll-area";
-
+import Zoom from "react-medium-image-zoom";
+import "react-medium-image-zoom/dist/styles.css";
 type FileUploaderProps = {
   onFieldChange: (urls: string[]) => void;
   imageUrls: string[];
@@ -194,13 +195,15 @@ export function FileUploader({
                   key={index}
                   className="relative rounded-sm shadow-sm p-1 bg-white w-20 h-20 lg:w-40 lg:h-40 flex-shrink-0"
                 >
-                  <img
-                    src={url}
-                    alt={`image-${index}`}
-                    className="w-full h-full object-cover object-center rounded-sm"
-                    width={77}
-                    height={77}
-                  />
+                  <Zoom>
+                    <img
+                      src={url}
+                      alt={`image-${index}`}
+                      className="w-full h-full object-cover object-center rounded-sm"
+                      width={77}
+                      height={77}
+                    />
+                  </Zoom>
                   <div
                     onClick={() => handleRemoveImage(index)}
                     className="absolute top-0 right-0 rounded-xl bg-white p-1 shadow-sm"

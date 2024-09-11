@@ -75,14 +75,17 @@ const Message = ({
                 : "No date"}
             </small>
             {message.imageUrl && (
-              <Zoom>
-                <img
-                  src={message.imageUrl}
-                  alt="ad image"
-                  className="mt-2 rounded-lg cursor-pointer"
-                />
-              </Zoom>
+              <div className="bg-black">
+                <Zoom>
+                  <img
+                    src={message.imageUrl}
+                    alt="ad image"
+                    className="mt-2 rounded-lg cursor-pointer"
+                  />
+                </Zoom>
+              </div>
             )}
+
             <a
               href={message.adUrl}
               target="_blank"

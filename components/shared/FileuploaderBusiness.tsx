@@ -6,6 +6,8 @@ import { generateClientDropzoneAccept } from "uploadthing/client";
 import { Button } from "@/components/ui/button";
 import { convertFileToUrl } from "@/lib/utils";
 import Image from "next/image";
+import Zoom from "react-medium-image-zoom";
+import "react-medium-image-zoom/dist/styles.css";
 type FileUploaderProps = {
   onFieldChange: (url: string) => void;
   imageUrl: string;
@@ -36,13 +38,15 @@ export function FileuploaderBusiness({
 
       {imageUrl ? (
         <div className="flex h-50 w-full flex-1 justify-center ">
-          <Image
-            src={imageUrl}
-            alt="image"
-            className="object-center w-full h-full"
-            width={900}
-            height={500}
-          />
+          <Zoom>
+            <Image
+              src={imageUrl}
+              alt="image"
+              className="object-center w-full h-full"
+              width={900}
+              height={500}
+            />
+          </Zoom>
         </div>
       ) : (
         <div className="flex-center flex-col py-5 text-grey-500">
