@@ -1,7 +1,8 @@
 //import { UserAuth } from "../context/AuthContext";
 
 import { UpdateUserParams } from "@/types";
-
+import Zoom from "react-medium-image-zoom";
+import "react-medium-image-zoom/dist/styles.css";
 import { format, isToday, isYesterday } from "date-fns";
 import Image from "next/image";
 interface MessageProps {
@@ -74,11 +75,13 @@ const Message = ({
                 : "No date"}
             </small>
             {message.imageUrl && (
-              <img
-                src={message.imageUrl}
-                alt="ad image"
-                className="mt-2 rounded-lg"
-              />
+              <Zoom>
+                <img
+                  src={message.imageUrl}
+                  alt="ad image"
+                  className="mt-2 rounded-lg cursor-pointer"
+                />
+              </Zoom>
             )}
             <a
               href={message.adUrl}
@@ -94,101 +97,6 @@ const Message = ({
           </div>
         </div>
       </div>
-
-      {/* 
-      <div
-        className={`flex items-start justify-${
-          message.uid === uid ? "end" : "start"
-        }`}
-      >
-        <div className="flex-shrink-0 mr-2">
-          {message.uid === uid ? (
-            // If the message is sent by the current user, display the user's avatar
-            <>
-              {" "}
-              <div className="flex items-center gap-2">
-                <Image
-                  className="w-8 h-8 rounded-full object-cover"
-                  src={photoURL}
-                  alt="avatar"
-                  width={200}
-                  height={200}
-                />
-                <div className="text-[12px] lg:text-xs text-black font-medium flex gap-5">
-                  {message.name}
-                  <div className="text-[12px] lg:text-xs text-gray-500">
-                    {formattedCreatedAt}
-                  </div>
-                </div>
-              </div>
-              <div className="flex flex-col">
-                <div
-                  className={`max-w-xs mx-2 my-1 p-3 rounded-lg  ${
-                    message.uid === uid
-                      ? "bg-emerald-500 text-white"
-                      : "bg-gray-200 text-gray-700"
-                  }`}
-                >
-                  {message.imageUrl && (
-                    <Image
-                      src={message.imageUrl}
-                      alt="Image"
-                      className="mb-2 object-cover"
-                      width={900}
-                      height={500}
-                    />
-                  )}
-                  <div className="text-sm lg:text-base w-[200px] lg:w-full">
-                    {message.text}
-                  </div>
-                </div>
-              </div>
-            </>
-          ) : (
-            // If the message is sent by someone else, display the recipient's avatar
-            <>
-              {" "}
-              <div className="flex items-center gap-2">
-                <Image
-                  className="w-8 h-8 rounded-full object-cover"
-                  src={message.avatar}
-                  alt="Avatar"
-                  width={200}
-                  height={200}
-                />
-                <div className="text-[12px] lg:text-xs text-black font-medium flex gap-3">
-                  {recipient.firstName} {recipient.lastName}
-                  <div className="text-[12px] lg:text-xs text-gray-500">
-                    {formattedCreatedAt}
-                  </div>
-                </div>
-              </div>
-              <div className="flex flex-col mr-2">
-                <div
-                  className={`max-w-xs mx-2 my-1 p-3 rounded-lg  ${
-                    message.uid === uid
-                      ? "bg-blue-500 text-white"
-                      : "bg-gray-200 text-gray-700"
-                  }`}
-                >
-                  {message.imageUrl && (
-                    <Image
-                      src={message.imageUrl}
-                      alt="Image"
-                      className="mb-2 object-cover"
-                      width={900}
-                      height={500}
-                    />
-                  )}
-                  <div className="text-sm lg:text-base w-[200px] lg:w-full">
-                    {message.text}
-                  </div>
-                </div>
-              </div>
-            </>
-          )}
-        </div>
-      </div>*/}
     </div>
   );
 };
