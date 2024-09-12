@@ -61,6 +61,7 @@ import { useRouter } from "next/navigation";
 import Autocomplete from "@mui/material/Autocomplete";
 import TextField from "@mui/material/TextField";
 import YouTubeIcon from "@mui/icons-material/YouTube";
+
 import GooglePlacesAutocomplete, {
   geocodeByAddress,
   getLatLng,
@@ -80,24 +81,7 @@ import { ScrollArea } from "../ui/scroll-area";
 import Link from "next/link";
 import { FileUploaderMobile } from "./FileUploaderMobile";
 import dynamic from "next/dynamic";
-// Dynamically import ReactQuill to avoid SSR issues
-import "react-quill/dist/quill.snow.css"; // Import the styles
-const ReactQuill = dynamic(() => import("react-quill"), {
-  ssr: false,
-  loading: () => (
-    <div>
-      <div className="w-full mt-10 h-full flex flex-col items-center justify-center">
-        <Image
-          src="/assets/icons/loading2.gif"
-          alt="loading"
-          width={40}
-          height={40}
-          unoptimized
-        />
-      </div>
-    </div>
-  ),
-});
+
 type Package = {
   imageUrl: string;
   name: string;
