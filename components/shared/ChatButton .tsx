@@ -86,7 +86,7 @@ const ChatButton = ({ ad, userId, userName, userImage }: chatProps) => {
         daysRemaining > 0
       ) {
         const response = await sendSMS(phoneNumber, message, adTitle, adUrl);
-        if (response == "success") {
+        if (response === "success") {
           console.log("sms sent successfully");
         } else {
           console.error("Failed to send sms");
@@ -98,7 +98,7 @@ const ChatButton = ({ ad, userId, userName, userImage }: chatProps) => {
         adTitle,
         adUrl
       );
-      if (responseemail == "success") {
+      if (responseemail === "success") {
         console.log("Email sent successfully");
       } else {
         console.error("Failed to send email");
