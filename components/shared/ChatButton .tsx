@@ -7,11 +7,13 @@ import { IUser } from "@/lib/database/models/user.model";
 import ChatBubbleOutlineOutlinedIcon from "@mui/icons-material/ChatBubbleOutlineOutlined";
 import { NGnaira } from "@/lib/help";
 import { getData } from "@/lib/actions/transactionstatus";
+import { sendSMS } from "@/lib/actions/sendSMS";
+import { sendEmail } from "@/lib/actions/sendEmail";
 type chatProps = {
   userId: string;
   userName: string;
   userImage: string;
-  ad: IAd;
+  ad: any;
 };
 const ChatButton = ({ ad, userId, userName, userImage }: chatProps) => {
   const [isOpen, setIsOpen] = useState(false);
