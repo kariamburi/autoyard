@@ -34,13 +34,14 @@ const ChatButton = ({ ad, userId, userName, userImage }: chatProps) => {
         read,
       });
       // Send notification email
+
       const emailResponse = await fetch("/lib/sendEmail", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          recipientEmail: ad.organizer.email, // recipient's email
+          recipientEmail: ad.organizer.email || "default-email@example.com", // recipient's email
           phoneNumber: ad.phone, // recipient's phone number
           message, // inquiry message
           adTitle: ad.title,
