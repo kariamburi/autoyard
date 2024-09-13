@@ -3,7 +3,7 @@
 
 import axios from 'axios';
 import nodemailer from 'nodemailer';
-export async function Sendemail(recipientEmail: string, phoneNumber:string, message:string,adTitle: string, adUrl:string) {
+export async function sendemail(recipientEmail: string, phoneNumber:string, message:string,adTitle: string, adUrl:string) {
  
    
   let transporter = nodemailer.createTransport({
