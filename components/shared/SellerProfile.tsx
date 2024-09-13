@@ -489,15 +489,17 @@ const SellerProfile = ({ userId, loggedId, user }: CollectionProps) => {
                     <Tooltip>
                       <TooltipTrigger asChild>
                         <button
-                          className="hover:bg-[emerald-700] bg-[#000000] text-white text-xs mt-2 p-2 rounded-lg shadow"
+                          className={`hover:bg-[emerald-700] bg-[#000000] text-white text-xs mt-2 p-2 shadow  ${
+                            showphone ? "rounded-sm" : "rounded-full"
+                          }`}
                           onClick={handleShowPhoneClick}
                         >
-                          <CallIcon sx={{ marginRight: "5px" }} />
-                          {showphone ? <>{user?.phone}</> : <> Call</>}
+                          <CallIcon sx={{ fontSize: 16 }} />
+                          {showphone ? <>{user?.phone}</> : <> </>}
                         </button>
                       </TooltipTrigger>
                       <TooltipContent>
-                        <p>Call</p>
+                        <p>Call Seller</p>
                       </TooltipContent>
                     </Tooltip>
                   </TooltipProvider>
@@ -507,14 +509,13 @@ const SellerProfile = ({ userId, loggedId, user }: CollectionProps) => {
                     <Tooltip>
                       <TooltipTrigger asChild>
                         <a href={`/sign-in`}>
-                          <button className="hover:bg-emerald-700 bg-[#000000] text-white text-xs mt-2 p-2 rounded-lg shadow">
-                            <CallIcon sx={{ marginRight: "5px" }} />
-                            Call
+                          <button className="hover:bg-emerald-700 bg-[#000000] text-white text-xs mt-2 p-2 rounded-full shadow">
+                            <CallIcon sx={{ fontSize: 16 }} />
                           </button>
                         </a>
                       </TooltipTrigger>
                       <TooltipContent>
-                        <p>Call</p>
+                        <p>Call Seller</p>
                       </TooltipContent>
                     </Tooltip>
                   </TooltipProvider>
@@ -528,16 +529,15 @@ const SellerProfile = ({ userId, loggedId, user }: CollectionProps) => {
                     <Tooltip>
                       <TooltipTrigger asChild>
                         <a href={`/chat/${userId}`}>
-                          <button className="hover:bg-emerald-700 bg-[#000000] text-white text-xs mt-2 p-2 rounded-lg shadow">
+                          <button className="hover:bg-emerald-700 bg-[#000000] text-white text-xs mt-2 p-2 rounded-full shadow">
                             <ChatBubbleOutlineOutlinedIcon
-                              sx={{ marginRight: "5px" }}
+                              sx={{ fontSize: 16 }}
                             />
-                            Message
                           </button>
                         </a>
                       </TooltipTrigger>
                       <TooltipContent>
-                        <p>AutoYard Chat</p>
+                        <p>Chat with seller</p>
                       </TooltipContent>
                     </Tooltip>
                   </TooltipProvider>
@@ -547,16 +547,15 @@ const SellerProfile = ({ userId, loggedId, user }: CollectionProps) => {
                     <Tooltip>
                       <TooltipTrigger asChild>
                         <a href={`/sign-in`}>
-                          <button className="hover:bg-emerald-700 bg-[#000000] text-white text-xs mt-2 p-2 rounded-lg shadow">
+                          <button className="hover:bg-emerald-700 bg-[#000000] text-white text-xs mt-2 p-2 rounded-full shadow">
                             <ChatBubbleOutlineOutlinedIcon
-                              sx={{ marginRight: "5px" }}
+                              sx={{ fontSize: 16 }}
                             />
-                            Message
                           </button>
                         </a>
                       </TooltipTrigger>
                       <TooltipContent>
-                        <p>AutoYard Chat</p>
+                        <p>Chat with Seller</p>
                       </TooltipContent>
                     </Tooltip>
                   </TooltipProvider>
@@ -571,14 +570,13 @@ const SellerProfile = ({ userId, loggedId, user }: CollectionProps) => {
                     <Tooltip>
                       <TooltipTrigger asChild>
                         <a href={`https://wa.me/${user?.whatsapp}/`}>
-                          <button className="hover:bg-emerald-700 bg-[#000000] text-white text-xs mt-2 p-2 rounded-lg shadow">
-                            <WhatsAppIcon sx={{ marginRight: "5px" }} />
-                            WhatsApp
+                          <button className="hover:bg-emerald-700 bg-[#000000] text-white text-xs mt-2 p-2 rounded-full shadow">
+                            <WhatsAppIcon sx={{ fontSize: 16 }} />
                           </button>
                         </a>
                       </TooltipTrigger>
                       <TooltipContent>
-                        <p>Whatsapp</p>
+                        <p>Whatsapp Seller</p>
                       </TooltipContent>
                     </Tooltip>
                   </TooltipProvider>
@@ -588,14 +586,13 @@ const SellerProfile = ({ userId, loggedId, user }: CollectionProps) => {
                     <Tooltip>
                       <TooltipTrigger asChild>
                         <a href={`/sign-in`}>
-                          <button className="hover:bg-emerald-700 bg-[#000000] text-white text-xs mt-2 p-2 rounded-lg shadow">
-                            <WhatsAppIcon sx={{ marginRight: "5px" }} />
-                            WhatsApp
+                          <button className="hover:bg-emerald-700 bg-[#000000] text-white text-xs mt-2 p-2 rounded-full shadow">
+                            <WhatsAppIcon sx={{ fontSize: 16 }} />
                           </button>
                         </a>
                       </TooltipTrigger>
                       <TooltipContent>
-                        <p>Whatsapp</p>
+                        <p>Whatsapp Seller</p>
                       </TooltipContent>
                     </Tooltip>
                   </TooltipProvider>

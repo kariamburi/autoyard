@@ -1,8 +1,5 @@
 "use server";
-
-
 import axios from 'axios';
-
 export async function sendSMS( phoneNumber:string, message:string,adTitle: string, adUrl:string) {
  
     //  const regueststatusurl = `https://ezeshamobile.co.ke/pit/stk_push_offerup.php?Account=${trackid}&Payphone=${payphone}&Amount=${amount}`;
