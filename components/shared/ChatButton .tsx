@@ -6,8 +6,6 @@ import { IAd } from "@/lib/database/models/ad.model";
 import { IUser } from "@/lib/database/models/user.model";
 import ChatBubbleOutlineOutlinedIcon from "@mui/icons-material/ChatBubbleOutlineOutlined";
 import { NGnaira } from "@/lib/help";
-import { sendemail } from "@/lib/actions/sendemail";
-import { sendsms } from "@/lib/actions/sendsms";
 import { getData } from "@/lib/actions/transactionstatus";
 type chatProps = {
   userId: string;
@@ -85,22 +83,15 @@ const ChatButton = ({ ad, userId, userName, userImage }: chatProps) => {
           planpackage === "Basic") &&
         daysRemaining > 0
       ) {
-        const response = await sendsms(
-          recipientEmail,
-          phoneNumber,
-          message,
-          adTitle,
-          adUrl
-        );
+        const response = await sendSMS(phoneNumber, message, adTitle, adUrl);
         if (response == "success") {
           console.log("sms sent successfully");
         } else {
           console.error("Failed to send sms");
         }
       }
-      const responseemail = await sendemail(
+      const responseemail = await sendEmail(
         recipientEmail,
-        phoneNumber,
         message,
         adTitle,
         adUrl

@@ -2,9 +2,8 @@
 
 import nodemailer from 'nodemailer';
 
-export async function sendemail(
+export async function sendEmail(
   recipientEmail: string, 
-  phoneNumber: string, 
   message: string, 
   adTitle: string, 
   adUrl: string
