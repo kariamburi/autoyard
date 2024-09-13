@@ -34,26 +34,28 @@ const ChatButton = ({ ad, userId, userName, userImage }: chatProps) => {
         read,
       });
       // Send notification email
+      if (ad.organizer.email) {
+        const emailResponse = await fetch("/lib/sendEmail", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            recipientEmail: ad?.organizer?.email, // recipient's email
+            phoneNumber: ad.phone, // recipient's phone number
+            message, // inquiry message
+            adTitle: ad.title,
+            adUrl: `https://autoyard.co.ke/ads/${ad._id}`,
+          }),
+        });
 
-      const emailResponse = await fetch("/lib/sendEmail", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          recipientEmail: ad?.organizer?.email ?? "default-email@example.com", // recipient's email
-          phoneNumber: ad.phone, // recipient's phone number
-          message, // inquiry message
-          adTitle: ad.title,
-          adUrl: `https://autoyard.co.ke/ads/${ad._id}`,
-        }),
-      });
-
-      if (emailResponse.ok) {
-        console.log("Email sent successfully");
-      } else {
-        console.error("Failed to send email");
+        if (emailResponse.ok) {
+          console.log("Email sent successfully");
+        } else {
+          console.error("Failed to send email");
+        }
       }
+
       setMessage(""); // Clear the message input
       setIsOpen(false); // Close the popup
     } catch (error) {

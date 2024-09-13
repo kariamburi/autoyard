@@ -33,7 +33,7 @@ const getCategoryByName = async (name: string) => {
 
 const populateAd = (query: any) => {
   return query
-    .populate({ path: 'organizer', model: User, select: '_id clerkId firstName lastName photo businessname aboutbusiness businessaddress latitude longitude businesshours businessworkingdays phone email whatsapp website facebook twitter instagram tiktok imageUrl verified fcmToken' })
+    .populate({ path: 'organizer', model: User, select: '_id clerkId email firstName lastName photo businessname aboutbusiness businessaddress latitude longitude businesshours businessworkingdays phone whatsapp website facebook twitter instagram tiktok imageUrl verified fcmToken' })
     .populate({ path: 'category', model: Category, select: '_id name' })
     .populate({ path: 'plan', model: Packages, select: '_id name color imageUrl' })
 }
