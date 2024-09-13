@@ -41,7 +41,7 @@ const ChatButton = ({ ad, userId, userName, userImage }: chatProps) => {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          recipientEmail: ad.organizer.email || "default-email@example.com", // recipient's email
+          recipientEmail: ad?.organizer?.email ?? "default-email@example.com", // recipient's email
           phoneNumber: ad.phone, // recipient's phone number
           message, // inquiry message
           adTitle: ad.title,

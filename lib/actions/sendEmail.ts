@@ -8,11 +8,11 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     // Nodemailer transporter configuration
     let transporter = nodemailer.createTransport({
       host: 'mail.autoyard.co.ke', // your SMTP host
-      port: 587, // or 465 if SSL
-      secure: false, // true for 465, false for other ports
+      port: 465, // or 465 if SSL
+      secure: true, // true for 465, false for other ports
       auth: {
         user: 'support@autoyard.co.ke', // your email address
-        pass: 'your-email-password', // your email password
+        pass: 'KmPE+_0yZpCaiT/Y', // your email password
       },
     });
 
