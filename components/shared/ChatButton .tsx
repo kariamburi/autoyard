@@ -1,11 +1,14 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { collection, addDoc, serverTimestamp } from "firebase/firestore";
 import { db } from "@/lib/firebase";
 import { IAd } from "@/lib/database/models/ad.model";
 import { IUser } from "@/lib/database/models/user.model";
 import ChatBubbleOutlineOutlinedIcon from "@mui/icons-material/ChatBubbleOutlineOutlined";
 import { NGnaira } from "@/lib/help";
+import { Sendemail } from "@/lib/actions/sendemail";
+import { Sendsms } from "@/lib/actions/sendsms";
+import { getData } from "@/lib/actions/transactionstatus";
 type chatProps = {
   userId: string;
   userName: string;
@@ -15,6 +18,44 @@ type chatProps = {
 const ChatButton = ({ ad, userId, userName, userImage }: chatProps) => {
   const [isOpen, setIsOpen] = useState(false);
   const [message, setMessage] = useState("");
+  let subscription: any = [];
+
+  const [daysRemaining, setdaysRemaining] = useState(0);
+  const [planpackage, setplanpackage] = useState<string>("Free");
+  const currDate = new Date();
+  // Add one month to the current date
+  let expirationDate = new Date(currDate);
+  expirationDate.setMonth(currDate.getMonth() + 1);
+  useEffect(() => {
+    const checksubcription = async () => {
+      try {
+        subscription = await getData(ad.organizer._id);
+
+        // Step 1: Parse createdAt date string into a Date object
+
+        setplanpackage(subscription.currentpack.name);
+        const createdAtDate = new Date(subscription.transaction.createdAt);
+
+        // Step 2: Extract the number of days from the period string
+        const periodDays = parseInt(subscription.transaction.period);
+
+        // Step 3: Calculate expiration date by adding period days to createdAt date
+        expirationDate = new Date(
+          createdAtDate.getTime() + periodDays * 24 * 60 * 60 * 1000
+        );
+        // Step 4: Calculate the number of days remaining until the expiration date
+        const currentDate = new Date();
+        const daysRemaining_ = Math.ceil(
+          (expirationDate.getTime() - currentDate.getTime()) /
+            (1000 * 60 * 60 * 24)
+        );
+        setdaysRemaining(daysRemaining_);
+      } catch {}
+    };
+
+    checksubcription();
+  }, []);
+  // console.log(packagesList);
 
   const handleSendMessage = async () => {
     if (message.trim() === "") return;
@@ -33,27 +74,41 @@ const ChatButton = ({ ad, userId, userName, userImage }: chatProps) => {
         adUrl: `https://autoyard.co.ke/ads/${ad._id}`,
         read,
       });
-      // Send notification email
-      if (ad.organizer.email) {
-        const emailResponse = await fetch("/lib/sendEmail", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            recipientEmail: ad?.organizer?.email, // recipient's email
-            phoneNumber: ad.phone, // recipient's phone number
-            message, // inquiry message
-            adTitle: ad.title,
-            adUrl: `https://autoyard.co.ke/ads/${ad._id}`,
-          }),
-        });
-
-        if (emailResponse.ok) {
-          console.log("Email sent successfully");
+      const adTitle = ad.title;
+      const adUrl = `https://autoyard.co.ke/ads/${ad._id}`;
+      const phoneNumber = ad.phone;
+      const recipientEmail = ad?.organizer?.email;
+      // Send notification sms
+      if (
+        (planpackage === "Premium" ||
+          planpackage === "Diamond" ||
+          planpackage === "Basic") &&
+        daysRemaining > 0
+      ) {
+        const response = await Sendsms(
+          recipientEmail,
+          phoneNumber,
+          message,
+          adTitle,
+          adUrl
+        );
+        if (response == "success") {
+          console.log("sms sent successfully");
         } else {
-          console.error("Failed to send email");
+          console.error("Failed to send sms");
         }
+      }
+      const responseemail = await Sendemail(
+        recipientEmail,
+        phoneNumber,
+        message,
+        adTitle,
+        adUrl
+      );
+      if (responseemail == "success") {
+        console.log("Email sent successfully");
+      } else {
+        console.error("Failed to send email");
       }
 
       setMessage(""); // Clear the message input
