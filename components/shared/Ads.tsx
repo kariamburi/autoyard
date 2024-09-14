@@ -98,6 +98,7 @@ export default function Ads({ ad, userId, userImage, userName }: CardProps) {
   const [api2, setApi2] = React.useState<CarouselApi>();
   const [current, setCurrent] = React.useState(0);
   const [count, setCount] = React.useState(0);
+  const [totalSlides, setTotalSlides] = useState(ad.imageUrls.length); // Set total number of slides
 
   React.useEffect(() => {
     if (!api) {
@@ -169,15 +170,6 @@ export default function Ads({ ad, userId, userImage, userName }: CardProps) {
       plugin.current.play();
       setAutoplayEnabled(true);
     }
-  };
-  const [currentSlide, setCurrentSlide] = useState(1); // Initially set to first slide
-  const [totalSlides, setTotalSlides] = useState(ad.imageUrls.length); // Set total number of slides
-  const setApi3 = (api3: any) => {
-    if (!api3) {
-      return;
-    }
-    setTotalSlides(api3.scrollSnapList().length);
-    setCurrentSlide(api3.selectedScrollSnap() + 1);
   };
 
   const handleDirectionClick = () => {
@@ -274,7 +266,7 @@ export default function Ads({ ad, userId, userImage, userName }: CardProps) {
                       <Image
                         src={image}
                         alt={`Image ${index + 1}`}
-                        className="bg-[#000000] h-[500px] lg:h-[450px] object-cover cursor-pointer"
+                        className="bg-[#000000] h-[400px] lg:h-[450px] object-cover cursor-pointer"
                         width={800} // Adjust the width as needed
                         height={500} // Adjust the height as needed
                       />
@@ -402,7 +394,7 @@ export default function Ads({ ad, userId, userImage, userName }: CardProps) {
                   <CloseIcon className="text-white m-0" />
                 </button>
                 <div className="relative flex flex-row flex-wrap justify-center">
-                  <Carousel setApi={setApi3} className="w-full">
+                  <Carousel setApi={setApi} className="w-full">
                     <CarouselContent>
                       {ad.imageUrls.map((image: string, index: number) => (
                         <CarouselItem
@@ -426,7 +418,7 @@ export default function Ads({ ad, userId, userImage, userName }: CardProps) {
                     <CarouselNext className="md:h-10 md:w-10 lg:h-20 lg:w-20 mr-20 font-bold border-0 bg-white bg-opacity-40 text-white p-2" />
                   </Carousel>
                   <div className="p-1 text-center text-white text-sm text-muted-foreground z-10 mt">
-                    Slide {currentSlide} of {totalSlides}
+                    Slide {current} of {totalSlides}
                   </div>
                 </div>
                 {/* Close button with CloseIcon */}

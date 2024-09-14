@@ -667,7 +667,7 @@ const SettingsEdit = ({ user, type, userId }: setingsProp) => {
                           <FormControl>
                             <div className="flex w-full gap-1">
                               <select
-                                className="bg-gray-100 p-1 border ml-2 rounded-sm w-[120px]"
+                                className="bg-gray-100 text-sm lg:text-base p-1 border ml-2 rounded-sm w-[120px]"
                                 value={countryCode}
                                 onChange={handleCountryCodeChange}
                               >
@@ -768,7 +768,7 @@ const SettingsEdit = ({ user, type, userId }: setingsProp) => {
                           <FormControl>
                             <div className="flex w-full gap-1">
                               <select
-                                className="bg-gray-100 p-1 border ml-2 rounded-sm w-[120px]"
+                                className="bg-gray-100 p-1 text-sm lg:text-base border ml-2 rounded-sm w-[120px]"
                                 value={countryCodeWhatsapp}
                                 onChange={handleCountryCodeChangeWhatsapp}
                               >
