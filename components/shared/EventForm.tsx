@@ -52,7 +52,6 @@ import {
 } from "@/constants";
 import "react-datepicker/dist/react-datepicker.css";
 import { useEffect, useState } from "react";
-import { FileUploader } from "./FileUploader";
 import Image from "next/image";
 import { Checkbox } from "../ui/checkbox";
 import { useUploadThing } from "@/lib/uploadthing";
@@ -79,8 +78,7 @@ import {
 } from "../ui/hover-card";
 import { ScrollArea } from "../ui/scroll-area";
 import Link from "next/link";
-import { FileUploaderMobile } from "./FileUploaderMobile";
-import dynamic from "next/dynamic";
+import { FileUploader } from "./FileUploader";
 
 type Package = {
   imageUrl: string;

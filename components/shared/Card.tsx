@@ -122,14 +122,14 @@ const Card = ({ ad, hasOrderLink, hidePrice, userId }: CardProps) => {
         </div>
         <div className="w-full flex justify-end  absolute top-2/3 left-1/2 transform -translate-x-1/2 p-1 rounded-full">
           <div
-            className="w-8 h-8 p-1 mt-[-10px] shadow-lg flex items-center justify-center rounded-full bg-white text-emerald-500 tooltip tooltip-bottom hover:text-[#2BBF4E] hover:cursor-pointer"
+            className="w-8 h-8 p-1 mt-[-20px] shadow-lg flex items-center justify-center rounded-full bg-white text-emerald-500 tooltip tooltip-bottom hover:text-[#2BBF4E] hover:cursor-pointer"
             data-tip="Bookmark"
             onClick={() => handle(ad._id)}
           >
             <TooltipProvider>
               <Tooltip>
                 <TooltipTrigger asChild>
-                  <BookmarkIcon />
+                  <BookmarkIcon sx={{ fontSize: 16 }} />
                 </TooltipTrigger>
                 <TooltipContent>
                   <p> Save Ad</p>
@@ -171,17 +171,17 @@ const Card = ({ ad, hasOrderLink, hidePrice, userId }: CardProps) => {
         </div>
         <div className="flex justify-between w-full gap-1 p-1">
           {ad.vehiclecondition && (
-            <div className="flex gap-2 text-[8px] lg:text-xs bg-[#ebf2f7] rounded-lg p-1 justify-center border">
+            <div className="flex gap-2 text-[10px] lg:text-xs bg-[#ebf2f7] rounded-lg p-1 justify-center border">
               {ad.vehiclecondition}
             </div>
           )}
           {ad.vehicleTransmissions && (
-            <div className="flex gap-2 text-[8px] lg:text-xs bg-[#ebf2f7] rounded-lg p-1 justify-center border">
+            <div className="flex gap-2 text-[10px] lg:text-xs bg-[#ebf2f7] rounded-lg p-1 justify-center border">
               {ad.vehicleTransmissions}
             </div>
           )}
           {ad.vehicleEngineSizesCC && (
-            <div className="flex gap-2 text-[8px] lg:text-xs bg-[#ebf2f7] rounded-lg p-1 justify-center border">
+            <div className="flex gap-2 text-[10px] lg:text-xs bg-[#ebf2f7] rounded-lg p-1 justify-center border">
               {ad.vehicleEngineSizesCC}
             </div>
           )}

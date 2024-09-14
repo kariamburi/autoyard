@@ -274,7 +274,7 @@ export default function Ads({ ad, userId, userImage, userName }: CardProps) {
                       <Image
                         src={image}
                         alt={`Image ${index + 1}`}
-                        className="bg-[#000000] object-cover cursor-pointer"
+                        className="bg-[#000000] h-[500px] lg:h-[450px] object-cover cursor-pointer"
                         width={800} // Adjust the width as needed
                         height={500} // Adjust the height as needed
                       />
@@ -446,7 +446,7 @@ export default function Ads({ ad, userId, userImage, userName }: CardProps) {
                     </div>
                   )}
                 </div>
-                <span className="text-lg lg:text-xl font-bold w-min rounded-full p-1 text-emerald-950">
+                <span className="text-lg lg:text-xl font-bold w-min rounded-full p-1 text-emerald-700">
                   {NGnaira.format(ad.price)}
                 </span>
               </div>
@@ -620,7 +620,7 @@ export default function Ads({ ad, userId, userImage, userName }: CardProps) {
                 <div className="grid grid-cols-3 lg:grid-cols-5 w-full gap-1 mt-1">
                   {ad.vehiclekeyfeatures.map((feature) => (
                     <>
-                      <div className="flex flex-col items-center h-10 gap-2 text-xs bg-white lg:bg-[#ebf2f7] rounded-sm p-1 justify-center border">
+                      <div className="flex flex-col items-center h-10 gap-2 text-[12px] lg:text-xs bg-white lg:bg-[#ebf2f7] rounded-sm p-1 justify-center border">
                         {feature}
                       </div>
                     </>
@@ -848,7 +848,7 @@ export default function Ads({ ad, userId, userImage, userName }: CardProps) {
 
               <li>
                 <div className="gap-2 mt-2 text-sm">
-                  <p className="font-bold flex gap-2 text-xs lg:text-sm">
+                  <p className="font-bold flex gap-2 text-sm">
                     <CheckCircleIcon sx={{ fontSize: 14 }} /> Meet in Safe
                     Locations
                   </p>

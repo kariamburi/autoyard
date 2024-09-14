@@ -106,7 +106,7 @@ const HorizontalCard = ({ userId, ad, isAdCreator }: CardProps) => {
               <TooltipProvider>
                 <Tooltip>
                   <TooltipTrigger asChild>
-                    <BookmarkIcon />
+                    <BookmarkIcon sx={{ fontSize: 16 }} />
                   </TooltipTrigger>
                   <TooltipContent>
                     <p> Save Ad</p>
