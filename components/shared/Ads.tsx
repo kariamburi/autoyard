@@ -483,7 +483,7 @@ export default function Ads({ ad, userId, userImage, userName }: CardProps) {
               </>
             )}
             <div className="divider"></div>
-            <div className="grid grid-cols-3 lg:grid-cols-5 w-full gap-1 mt-2">
+            <div className="grid grid-cols-3 lg:grid-cols-5 w-full gap-1 mt-4">
               {ad.make && (
                 <div className="mb-2 md:flex-row">
                   <div className="text-emerald-950 text-sm">{ad.make}</div>
@@ -620,7 +620,7 @@ export default function Ads({ ad, userId, userImage, userName }: CardProps) {
                 <div className="grid grid-cols-3 lg:grid-cols-5 w-full gap-1 mt-1">
                   {ad.vehiclekeyfeatures.map((feature) => (
                     <>
-                      <div className="flex flex-col items-center h-10 gap-2 text-[10px] lg:text-xs bg-white lg:bg-[#ebf2f7] rounded-sm p-1 justify-center border">
+                      <div className="flex flex-col items-center h-10 gap-2 text-xs bg-white lg:bg-[#ebf2f7] rounded-sm p-1 justify-center border">
                         {feature}
                       </div>
                     </>
@@ -630,12 +630,10 @@ export default function Ads({ ad, userId, userImage, userName }: CardProps) {
             )}
             <div className="divider"></div>
             <p className="mt-5 font-bold text-emerald-950">Description</p>
-            <p className="my-1 text-text-emerald-950 text-sm lg:text-base">
-              {ad.description}
-            </p>
+            <p className="my-1 text-text-emerald-950">{ad.description}</p>
 
             <div className="divider"></div>
-            <h1 className="mt-5 p-0 font-bold text-emerald-950 text-sm">
+            <h1 className="mt-5 p-0 font-bold text-emerald-950">
               Share this Ad on Social media
             </h1>
             <div className="flex justify-between w-full items-center">
@@ -645,7 +643,7 @@ export default function Ads({ ad, userId, userImage, userName }: CardProps) {
 
               <button
                 onClick={handleOpenPopup}
-                className="mt-2 mb-2 p-1 gap-1 text-xs text-emerald-900 rounded-sm bg-white ring-1 ring-emerald-900 hover:bg-emerald-100"
+                className="mt-2 mb-2 p-1 gap-1 text-sm text-emerald-900 rounded-sm bg-white ring-1 ring-emerald-900 hover:bg-emerald-100"
               >
                 Report Abuse
               </button>
@@ -776,7 +774,7 @@ export default function Ads({ ad, userId, userImage, userName }: CardProps) {
           <div className="bg-white p-5 text-l rounded-lg overflow-hidden lg:shadow-md">
             <div className="">
               <p className="lg:mt-5 font-bold">Approximate Location</p>
-              <p className="text-gray-700 mb-1 text-xs lg:text-sm">
+              <p className="text-gray-700 mb-1 text-sm">
                 <LocationOnIcon sx={{ fontSize: 20 }} /> {ad.address}
               </p>
 
@@ -821,8 +819,8 @@ export default function Ads({ ad, userId, userImage, userName }: CardProps) {
 
             <ol>
               <li>
-                <div className="text-xs lg:text-sm">
-                  <p className="font-bold flex gap-2 text-xs lg:text-sm">
+                <div className="text-sm">
+                  <p className="font-bold flex gap-2 text-sm">
                     <CheckCircleIcon sx={{ fontSize: 14 }} />
                     Research the Seller
                   </p>
@@ -835,8 +833,8 @@ export default function Ads({ ad, userId, userImage, userName }: CardProps) {
               </li>
 
               <li>
-                <div className="mt-2 gap-2 text-xs lg:text-sm">
-                  <p className="font-bold flex gap-2 text-xs lg:text-sm">
+                <div className="mt-2 gap-2 text-sm">
+                  <p className="font-bold flex gap-2 text-sm">
                     <CheckCircleIcon sx={{ fontSize: 14 }} /> Inspect the
                     Vehicle
                   </p>
@@ -849,7 +847,7 @@ export default function Ads({ ad, userId, userImage, userName }: CardProps) {
               </li>
 
               <li>
-                <div className="gap-2 mt-2 text-xs lg:text-sm">
+                <div className="gap-2 mt-2 text-sm">
                   <p className="font-bold flex gap-2 text-xs lg:text-sm">
                     <CheckCircleIcon sx={{ fontSize: 14 }} /> Meet in Safe
                     Locations

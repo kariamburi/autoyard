@@ -11,75 +11,11 @@ import { deleteSingleImage } from "@/lib/actions/ad.actions";
 import { ScrollArea, ScrollBar } from "../ui/scroll-area";
 import Zoom from "react-medium-image-zoom";
 import "react-medium-image-zoom/dist/styles.css";
-
 type FileUploaderProps = {
   onFieldChange: (urls: string[]) => void;
   imageUrls: string[];
   userName: string;
   setFiles: Dispatch<SetStateAction<File[]>>;
-};
-
-// Function to resize image
-const resizeImage = (
-  file: File,
-  maxWidth: number,
-  maxHeight: number
-): Promise<File> => {
-  return new Promise((resolve, reject) => {
-    const img = new Image();
-    const reader = new FileReader();
-
-    reader.onload = (e) => {
-      const result = e.target?.result;
-      if (typeof result === "string") {
-        img.src = result;
-      } else {
-        reject(new Error("Failed to read file"));
-      }
-    };
-
-    img.onload = () => {
-      const canvas = document.createElement("canvas");
-      const ctx = canvas.getContext("2d");
-
-      if (!ctx) {
-        reject(new Error("Failed to get canvas context"));
-        return;
-      }
-
-      let width = img.width;
-      let height = img.height;
-
-      // Calculate new dimensions while maintaining aspect ratio
-      if (width > maxWidth) {
-        height = Math.round((height * maxWidth) / width);
-        width = maxWidth;
-      }
-      if (height > maxHeight) {
-        width = Math.round((width * maxHeight) / height);
-        height = maxHeight;
-      }
-
-      canvas.width = width;
-      canvas.height = height;
-
-      ctx.drawImage(img, 0, 0, width, height);
-
-      canvas.toBlob((blob) => {
-        if (blob) {
-          const resizedFile = new File([blob], file.name, { type: file.type });
-          resolve(resizedFile);
-        } else {
-          reject(new Error("Failed to create blob"));
-        }
-      }, file.type);
-    };
-
-    img.onerror = (error) => reject(error);
-    reader.onerror = (error) => reject(error);
-
-    reader.readAsDataURL(file);
-  });
 };
 
 const applyWatermark = (
@@ -234,7 +170,7 @@ export function FileUploader({
       const urls = processedFiles.map((file: File) => convertFileToUrl(file));
       onFieldChange([...imageUrls, ...urls]);
     },
-    [imageUrls, setFiles, onFieldChange, userName]
+    [imageUrls, setFiles, onFieldChange]
   );
 
   const [showAlert, setShowAlert] = useState(false);
