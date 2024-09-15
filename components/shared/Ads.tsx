@@ -392,8 +392,8 @@ export default function Ads({ ad, userId, userImage, userName }: CardProps) {
                   </CarouselItem>
                 ))}
               </CarouselContent>
-              <CarouselPrevious className="md:h-10 md:w-10 lg:h-10 lg:w-10 ml-10 font-bold text-grey border-2 bg-[#ebf2f7] bg-opacity-80 p-2" />
-              <CarouselNext className="md:h-10 md:w-10 lg:h-10 lg:w-10 mr-10 font-bold bg-[#ebf2f7] border-2 bg-opacity-80 text-grey p-2" />
+              <CarouselPrevious className="md:h-10 md:w-10 lg:h-10 lg:w-10 ml-10 font-bold text-white border-2 bg-black bg-opacity-80 p-2" />
+              <CarouselNext className="md:h-10 md:w-10 lg:h-10 lg:w-10 mr-10 font-bold bg-black border-2 bg-opacity-80 text-white p-2" />
             </Carousel>
           </div>
           {/* Popup for displaying all images */}

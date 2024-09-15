@@ -746,7 +746,7 @@ const SettingsEdit = ({ user, type, userId }: setingsProp) => {
 
                               <TextField
                                 {...field}
-                                label="Enter phone number"
+                                label="Phone number"
                                 type="tel"
                                 value={phoneNumber}
                                 onChange={handleInputChange}
@@ -847,7 +847,7 @@ const SettingsEdit = ({ user, type, userId }: setingsProp) => {
 
                               <TextField
                                 {...field}
-                                label="Whatsapp phone number"
+                                label="Whatsapp number"
                                 type="tel"
                                 value={whatsappNumber}
                                 onChange={handleInputChangeWhatsapp}

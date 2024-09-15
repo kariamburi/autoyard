@@ -53,7 +53,7 @@ import {
   yesno,
 } from "@/constants";
 import "react-datepicker/dist/react-datepicker.css";
-import { useEffect, useState } from "react";
+import { startTransition, useEffect, useState } from "react";
 import Image from "next/image";
 import { Checkbox } from "../ui/checkbox";
 import { useUploadThing } from "@/lib/uploadthing";
@@ -62,7 +62,17 @@ import { useRouter } from "next/navigation";
 import Autocomplete from "@mui/material/Autocomplete";
 import TextField from "@mui/material/TextField";
 import YouTubeIcon from "@mui/icons-material/YouTube";
-
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "@/components/ui/alert-dialog";
 import GooglePlacesAutocomplete, {
   geocodeByAddress,
   getLatLng,
@@ -81,6 +91,13 @@ import {
 import { ScrollArea } from "../ui/scroll-area";
 import Link from "next/link";
 import { FileUploader } from "./FileUploader";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
+import { addModelToMake } from "./addModelToMake";
 
 type Package = {
   imageUrl: string;
@@ -840,6 +857,19 @@ const AdForm = ({
   const togglePopup = () => {
     setShowPop((prev) => !prev);
   };
+
+  const [newModel, setNewModel] = useState("");
+  const [newmake, setNewMake] = useState("");
+  const handleAddModel = () => {
+    if (newmake) {
+      const formattedModel =
+        newModel.charAt(0).toUpperCase() + newModel.slice(1).toLowerCase();
+
+      addModelToMake(newmake, formattedModel);
+      form.setValue("vehiclemodel", formattedModel);
+    }
+  };
+
   return (
     <>
       <Form {...form}>
@@ -860,25 +890,23 @@ const AdForm = ({
                   </div>
                 </div>
               </section>
-              <div className="flex flex-col gap-5 md:flex-row">
-                <FormField
-                  control={form.control}
-                  name="categoryId"
-                  render={({ field }) => (
-                    <FormItem className="w-full">
-                      <FormControl>
-                        <div className="w-full overflow-hidden rounded-full px-4 py-2">
-                          {loading ? (
-                            <div className="flex justify-center items-center h-[56px]">
-                              <div className="flex gap-1 items-center">
-                                <CircularProgress
-                                  sx={{ color: "black" }}
-                                  size={30}
-                                />
-                                Loading categories...
-                              </div>
-                            </div>
-                          ) : (
+
+              {loading ? (
+                <div className="flex justify-center items-center h-[56px]">
+                  <div className="flex gap-1 items-center">
+                    <CircularProgress sx={{ color: "black" }} size={30} />
+                    Loading categories...
+                  </div>
+                </div>
+              ) : (
+                <div className="flex flex-col gap-5 md:flex-row">
+                  <FormField
+                    control={form.control}
+                    name="categoryId"
+                    render={({ field }) => (
+                      <FormItem className="w-full">
+                        <FormControl>
+                          <div className="w-full overflow-hidden rounded-full px-4 py-2">
                             <Autocomplete
                               id="categoryId"
                               options={categories.filter(
@@ -904,51 +932,52 @@ const AdForm = ({
                                 />
                               )}
                             />
-                          )}
-                        </div>
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
+                          </div>
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
 
-                <FormField
-                  control={form.control}
-                  name="subcategory"
-                  render={({ field }) => (
-                    <FormItem className="w-full">
-                      <FormControl>
-                        <div className="w-full overflow-hidden rounded-full px-4 py-2">
-                          <Autocomplete
-                            id="subcategory"
-                            options={
-                              categories
-                                .find(
-                                  (category) =>
-                                    category._id ===
-                                    form.getValues("categoryId")
-                                )
-                                ?.subcategory.map((sub: any) => sub.title) || []
-                            }
-                            value={field.value}
-                            onChange={(event, newValue) => {
-                              field.onChange(newValue);
-                              SetselectedCategory(newValue);
-                            }}
-                            renderInput={(field) => (
-                              <TextField
-                                {...field}
-                                label="Select Sub Category*"
-                              />
-                            )}
-                          />
-                        </div>
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-              </div>
+                  <FormField
+                    control={form.control}
+                    name="subcategory"
+                    render={({ field }) => (
+                      <FormItem className="w-full">
+                        <FormControl>
+                          <div className="w-full overflow-hidden rounded-full px-4 py-2">
+                            <Autocomplete
+                              id="subcategory"
+                              options={
+                                categories
+                                  .find(
+                                    (category) =>
+                                      category._id ===
+                                      form.getValues("categoryId")
+                                  )
+                                  ?.subcategory.map((sub: any) => sub.title) ||
+                                []
+                              }
+                              value={field.value}
+                              onChange={(event, newValue) => {
+                                field.onChange(newValue);
+                                SetselectedCategory(newValue);
+                              }}
+                              renderInput={(field) => (
+                                <TextField
+                                  {...field}
+                                  label="Select Sub Category*"
+                                />
+                              )}
+                            />
+                          </div>
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                </div>
+              )}
 
               {SelectedCategory === "Cars, Vans & Pickups" && (
                 <>
@@ -973,6 +1002,7 @@ const AdForm = ({
                                   field.onChange(
                                     newValue ? newValue.make : null
                                   );
+                                  setNewMake(newValue ? newValue?.make : "");
                                   form.setValue("vehiclemodel", ""); // Reset constituency value
                                   form.getValues(); // Trigger re-render to update constituency options
                                 }}
@@ -996,26 +1026,77 @@ const AdForm = ({
                       render={({ field }) => (
                         <FormItem className="w-full">
                           <FormControl>
-                            <div className="w-full overflow-hidden rounded-full px-4 py-2">
-                              <Autocomplete
-                                id="vehiclemodel"
-                                options={
-                                  vehicleModels.find(
-                                    (vehicle) =>
-                                      vehicle.make === form.getValues("make")
-                                  )?.models || []
-                                }
-                                value={field.value}
-                                onChange={(event, newValue) => {
-                                  field.onChange(newValue);
-                                }}
-                                renderInput={(field) => (
-                                  <TextField {...field} label="Model*" />
-                                )}
-                              />
-                              <div className="text-[#FF0000] text-sm">
-                                {errormodel}
+                            <div className="flex w-full overflow-hidden rounded-full items-center">
+                              <div className="w-full overflow-hidden rounded-full p-4 py-2">
+                                <Autocomplete
+                                  id="vehiclemodel"
+                                  options={
+                                    vehicleModels.find(
+                                      (vehicle) =>
+                                        vehicle.make === form.getValues("make")
+                                    )?.models || []
+                                  }
+                                  value={field.value}
+                                  //freeSolo // This allows users to type a custom model
+                                  onChange={(event, newValue) => {
+                                    field.onChange(newValue);
+                                  }}
+                                  renderInput={(params) => (
+                                    <TextField {...params} label="Model*" />
+                                  )}
+                                />
+
+                                <div className="text-[#FF0000] text-sm">
+                                  {errormodel}
+                                </div>
                               </div>
+                              {form.getValues("make") && (
+                                <AlertDialog>
+                                  <AlertDialogTrigger className="">
+                                    <TooltipProvider>
+                                      <Tooltip>
+                                        <TooltipTrigger asChild>
+                                          <div className="bg-black rounded-sm flex w-[80px] text-xs p-1 text-white hover:bg-green-500 mr-4">
+                                            Add new
+                                          </div>
+                                        </TooltipTrigger>
+                                        <TooltipContent>
+                                          <p>Add new model if missing!</p>
+                                        </TooltipContent>
+                                      </Tooltip>
+                                    </TooltipProvider>
+                                  </AlertDialogTrigger>
+                                  <AlertDialogContent className="bg-white">
+                                    <AlertDialogHeader>
+                                      <AlertDialogTitle>
+                                        New {form.getValues("make")} model
+                                      </AlertDialogTitle>
+                                      <AlertDialogDescription>
+                                        <Input
+                                          type="text"
+                                          placeholder="Model name"
+                                          className="input-field mt-3"
+                                          onChange={(e) =>
+                                            setNewModel(e.target.value)
+                                          }
+                                        />
+                                      </AlertDialogDescription>
+                                    </AlertDialogHeader>
+                                    <AlertDialogFooter>
+                                      <AlertDialogCancel>
+                                        Cancel
+                                      </AlertDialogCancel>
+                                      <AlertDialogAction
+                                        onClick={() =>
+                                          startTransition(handleAddModel)
+                                        }
+                                      >
+                                        Add
+                                      </AlertDialogAction>
+                                    </AlertDialogFooter>
+                                  </AlertDialogContent>
+                                </AlertDialog>
+                              )}
                             </div>
                           </FormControl>
                           <FormMessage />
@@ -1337,7 +1418,7 @@ const AdForm = ({
                                   <div className="flex justify-end">
                                     <button
                                       onClick={togglePopup}
-                                      className="text-gray-600 hover:text-gray-800 font-bold text-sm"
+                                      className="text-gray-600 hover:text-gray-800 font-bold text-sm p-2"
                                     >
                                       X
                                     </button>
@@ -1346,7 +1427,7 @@ const AdForm = ({
                                     {vehicleFeatures.map((option) => (
                                       <div
                                         key={option}
-                                        className="flex w-full gap-2"
+                                        className="flex w-full gap-2 p-2"
                                       >
                                         <input
                                           className="cursor-pointer"
