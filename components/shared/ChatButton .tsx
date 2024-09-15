@@ -5,61 +5,56 @@ import { db } from "@/lib/firebase";
 import { IAd } from "@/lib/database/models/ad.model";
 import { IUser } from "@/lib/database/models/user.model";
 import ChatBubbleOutlineOutlinedIcon from "@mui/icons-material/ChatBubbleOutlineOutlined";
-import { NGnaira } from "@/lib/help";
+import { formatKsh } from "@/lib/help";
 import { getData } from "@/lib/actions/transactionstatus";
 import { sendEmail } from "@/lib/actions/sendEmail";
 import { sendSMS } from "@/lib/actions/sendsmsnow";
+import CircularProgress from "@mui/material/CircularProgress";
+
 type chatProps = {
   userId: string;
   userName: string;
   userImage: string;
   ad: any;
 };
+
 const ChatButton = ({ ad, userId, userName, userImage }: chatProps) => {
   const [isOpen, setIsOpen] = useState(false);
   const [message, setMessage] = useState("");
+  const [isSending, setIsSending] = useState(false); // New state for sending status
   let subscription: any = [];
 
   const [daysRemaining, setdaysRemaining] = useState(0);
   const [planpackage, setplanpackage] = useState<string>("Free");
-  const currDate = new Date();
-  // Add one month to the current date
-  let expirationDate = new Date(currDate);
-  expirationDate.setMonth(currDate.getMonth() + 1);
+
   useEffect(() => {
-    const checksubcription = async () => {
+    const checkSubscription = async () => {
       try {
         subscription = await getData(ad.organizer._id);
-
-        // Step 1: Parse createdAt date string into a Date object
-
         setplanpackage(subscription.currentpack.name);
         const createdAtDate = new Date(subscription.transaction.createdAt);
-
-        // Step 2: Extract the number of days from the period string
         const periodDays = parseInt(subscription.transaction.period);
-
-        // Step 3: Calculate expiration date by adding period days to createdAt date
-        expirationDate = new Date(
+        const expirationDate = new Date(
           createdAtDate.getTime() + periodDays * 24 * 60 * 60 * 1000
         );
-        // Step 4: Calculate the number of days remaining until the expiration date
         const currentDate = new Date();
         const daysRemaining_ = Math.ceil(
           (expirationDate.getTime() - currentDate.getTime()) /
             (1000 * 60 * 60 * 24)
         );
         setdaysRemaining(daysRemaining_);
-      } catch {}
+      } catch (error) {
+        console.error("Error checking subscription: ", error);
+      }
     };
-
-    checksubcription();
-  }, []);
-  // console.log(packagesList);
+    checkSubscription();
+  }, [ad.organizer._id]);
 
   const handleSendMessage = async () => {
     if (message.trim() === "") return;
-    const read = "1";
+
+    setIsSending(true); // Disable the button and show progress
+
     try {
       await addDoc(collection(db, "messages"), {
         text: message,
@@ -72,50 +67,42 @@ const ChatButton = ({ ad, userId, userName, userImage }: chatProps) => {
         adTitle: ad.title,
         adDescription: ad.description,
         adUrl: `https://autoyard.co.ke/ads/${ad._id}`,
-        read,
+        read: "1",
       });
+
       const adTitle = ad.title;
       const adUrl = `https://autoyard.co.ke/ads/${ad._id}`;
       const phoneNumber = ad.phone;
       const recipientEmail = ad?.organizer?.email;
-      // Send notification sms
+
+      // Send notification SMS and email
       if (
         (planpackage === "Premium" ||
           planpackage === "Diamond" ||
           planpackage === "Basic") &&
         daysRemaining > 0
       ) {
-        const response = await sendSMS(phoneNumber, message, adTitle, adUrl);
-        if (response === "success") {
-          console.log("sms sent successfully");
-        } else {
-          console.error("Failed to send sms");
-        }
+        await sendSMS(phoneNumber, message, adTitle, adUrl);
       }
-      const responseemail = await sendEmail(
-        recipientEmail,
-        message,
-        adTitle,
-        adUrl
-      );
-      if (responseemail === "success") {
-        console.log("Email sent successfully");
-      } else {
-        console.error("Failed to send email");
+
+      if (
+        (planpackage === "Premium" ||
+          planpackage === "Diamond" ||
+          planpackage === "Basic") &&
+        daysRemaining > 0
+      ) {
+        await sendEmail(recipientEmail, message, adTitle, adUrl);
       }
 
       setMessage(""); // Clear the message input
       setIsOpen(false); // Close the popup
     } catch (error) {
       console.error("Error sending message: ", error);
+    } finally {
+      setIsSending(false); // Re-enable the button and hide progress
     }
   };
-  const truncateDescription = (title: string, maxLength: number) => {
-    if (title.length > maxLength) {
-      return title.substring(0, maxLength) + "...";
-    }
-    return title;
-  };
+
   return (
     <>
       <button
@@ -130,10 +117,12 @@ const ChatButton = ({ ad, userId, userName, userImage }: chatProps) => {
           <div className="bg-white rounded-lg p-6 w-full max-w-md">
             <h3 className="text-lg font-semibold mb-4">{ad.title}</h3>
             <p className="text-gray-700 mb-4">
-              {truncateDescription(ad?.description ?? "", 80)}
+              {ad.description.length > 80
+                ? `${ad.description.substring(0, 80)}...`
+                : ad.description}
             </p>
             <span className="text-[12px] lg:text-lg font-bold w-min rounded-full mt-1 text-emerald-950">
-              {NGnaira.format(ad.price)}
+              {formatKsh(ad.price)}
             </span>
             <img
               src={ad.imageUrls[0]}
@@ -146,18 +135,28 @@ const ChatButton = ({ ad, userId, userName, userImage }: chatProps) => {
               onChange={(e) => setMessage(e.target.value)}
               placeholder="Write your inquiry here..."
               className="w-full p-2 border rounded mb-4 focus:outline-none focus:ring-2 focus:ring-blue-600"
+              disabled={isSending} // Disable textarea while sending
             />
 
             <div className="flex justify-end">
               <button
                 onClick={handleSendMessage}
-                className="px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700 focus:outline-none mr-2"
+                className={`px-4 py-2 text-white rounded hover:bg-green-700 focus:outline-none mr-2  ${
+                  isSending ? "bg-green-200" : "bg-green-600"
+                }`}
+                disabled={isSending} // Disable button while sending
               >
-                Send Inquiry
+                <div className="flex gap-1 items-center">
+                  {isSending && (
+                    <CircularProgress sx={{ color: "white" }} size={30} />
+                  )}
+                  {isSending ? "Sending..." : "Send Inquiry"}
+                </div>
               </button>
               <button
                 onClick={() => setIsOpen(false)}
                 className="px-4 py-2 bg-gray-600 text-white rounded hover:bg-gray-700 focus:outline-none"
+                disabled={isSending} // Disable close button while sending
               >
                 Close
               </button>

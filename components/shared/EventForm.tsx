@@ -15,6 +15,8 @@ import {
 import { Input } from "@/components/ui/input";
 import { IAd } from "@/lib/database/models/ad.model";
 import { AdFormSchema } from "@/lib/validator";
+import CircularProgress from "@mui/material/CircularProgress";
+
 import {
   AdDefaultValues,
   BusesMake,
@@ -304,13 +306,13 @@ const AdForm = ({
       // seterrorvehicleTransmissions("Please! Select Vehicle Transmissions");
       // return;
       //}
-      if (
-        form.getValues("vehiclemileage") === "" &&
-        SelectedCategory === "Cars, Vans & Pickups"
-      ) {
-        seterrorvehiclemileage("Please! Select Mileage");
-        return;
-      }
+      // if (
+      //   form.getValues("vehiclemileage") === "" &&
+      //   SelectedCategory === "Cars, Vans & Pickups"
+      // ) {
+      //   seterrorvehiclemileage("Please! Select Mileage");
+      //   return;
+      //   }
       // if (
       //   form.getValues("vehiclekeyfeatures")?.length === 0 &&
       //  SelectedCategory === "Cars, Vans & Pickups"
@@ -541,6 +543,84 @@ const AdForm = ({
   //     ? packagesList[0].name
   //     : packagesList[1].name
   //);
+
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    // Simulate fetching categories from the database
+
+    const getCategories = async () => {
+      try {
+        const categoryList = await getAllCategories();
+
+        categoryList && setCategories(categoryList as ICategory[]);
+      } catch (error) {
+        console.error("Error fetching categories:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    getCategories();
+    const youtubeRegex =
+      /^(?:https?:\/\/)?(?:www\.)?(?:youtube\.com\/(?:[^\/\n\s]+\/\S+\/|(?:v|e(?:mbed)?)\/|\S*?[?&]v=)|youtu\.be\/)([a-zA-Z0-9_-]{11})/;
+
+    function extractYouTubeVideoId(url: string) {
+      const match = url.match(youtubeRegex);
+      if (match && match[1]) {
+        return match[1]; // Return the video ID
+      } else {
+        return null; // Not a YouTube URL or invalid URL
+      }
+    }
+    if (type === "Update") {
+      if (ad?.youtube) {
+        const videoId = extractYouTubeVideoId(ad.youtube);
+        if (!videoId) {
+          form.setValue(
+            "youtube",
+            "https://www.youtube.com/watch?v=" + ad.youtube
+          ); // lat value
+          // console.log("YouTube Video ID:", videoId);
+        }
+      }
+      if (ad?.address) {
+        form.setValue("address", ad?.address); // Reset constituency value
+        setAddress(ad?.address);
+      }
+      if (ad?.latitude) {
+        form.setValue("latitude", ad?.latitude); // lat value
+      }
+      if (ad?.longitude) {
+        form.setValue("longitude", ad?.longitude); // longitude value
+      }
+      if (ad?.category) {
+        form.setValue("categoryId", ad?.category._id); // longitude value
+      }
+      if (ad?._id) {
+        sessionStorage.setItem("id", ad?._id);
+      }
+      if (ad?.title) {
+        sessionStorage.setItem("title", ad?.title);
+      }
+      if (ad?.description) {
+        sessionStorage.setItem("description", ad?.description);
+      }
+      //if (ad?.price) {
+      //  form.setValue("price", ad?.price.toString()); // longitude value
+      //}
+    }
+    (listed > 0 && packname === "Free"
+      ? packagesList[0]
+      : packagesList[1]
+    ).price.forEach((price: any, index: number) => {
+      if (index === activeButton) {
+        setPriceInput(price.amount);
+        setPeriodInput(price.period);
+      }
+    });
+  }, []);
+
   useEffect(() => {
     const getCategories = async () => {
       const categoryList = await getAllCategories();
@@ -755,6 +835,11 @@ const AdForm = ({
     });
     //}
   };
+  const [showPop, setShowPop] = useState(false);
+
+  const togglePopup = () => {
+    setShowPop((prev) => !prev);
+  };
   return (
     <>
       <Form {...form}>
@@ -775,7 +860,7 @@ const AdForm = ({
                   </div>
                 </div>
               </section>
-              <div className="flex flex-col md:flex-row">
+              <div className="flex flex-col gap-5 md:flex-row">
                 <FormField
                   control={form.control}
                   name="categoryId"
@@ -783,28 +868,43 @@ const AdForm = ({
                     <FormItem className="w-full">
                       <FormControl>
                         <div className="w-full overflow-hidden rounded-full px-4 py-2">
-                          <Autocomplete
-                            id="categoryId"
-                            options={categories.filter(
-                              (category) => category.name === "Vehicle"
-                            )}
-                            getOptionLabel={(option) => option.name}
-                            value={
-                              categories.find(
-                                (category) => category._id === field.value
-                              ) || null
-                            }
-                            onChange={(event, newValue) => {
-                              field.onChange(newValue ? newValue._id : null);
-                              // Reset subcategory value
-                              form.setValue("subcategory", "");
-                              // Trigger re-render to update subcategory options
-                              form.getValues();
-                            }}
-                            renderInput={(field) => (
-                              <TextField {...field} label="Select Category*" />
-                            )}
-                          />
+                          {loading ? (
+                            <div className="flex justify-center items-center h-[56px]">
+                              <div className="flex gap-1 items-center">
+                                <CircularProgress
+                                  sx={{ color: "black" }}
+                                  size={30}
+                                />
+                                Loading categories...
+                              </div>
+                            </div>
+                          ) : (
+                            <Autocomplete
+                              id="categoryId"
+                              options={categories.filter(
+                                (category) => category.name === "Vehicle"
+                              )}
+                              getOptionLabel={(option) => option.name}
+                              value={
+                                categories.find(
+                                  (category) => category._id === field.value
+                                ) || null
+                              }
+                              onChange={(event, newValue) => {
+                                field.onChange(newValue ? newValue._id : null);
+                                // Reset subcategory value
+                                form.setValue("subcategory", "");
+                                // Trigger re-render to update subcategory options
+                                form.getValues();
+                              }}
+                              renderInput={(params) => (
+                                <TextField
+                                  {...params}
+                                  label="Select Category*"
+                                />
+                              )}
+                            />
+                          )}
                         </div>
                       </FormControl>
                       <FormMessage />
@@ -1061,21 +1161,29 @@ const AdForm = ({
                   <div className="flex flex-col gap-5 md:flex-row">
                     <FormField
                       control={form.control}
-                      name="vehiclemileage"
+                      name="vehicleregistered"
                       render={({ field }) => (
                         <FormItem className="w-full">
                           <FormControl>
                             <div className="w-full overflow-hidden rounded-full px-4 py-2">
-                              <div className="flex gap-1 items-center justify-between">
-                                <TextField
-                                  {...field}
-                                  label="Mileage*"
-                                  className="w-full"
-                                />
-                                kilometers (KM)
-                              </div>
+                              <Autocomplete
+                                id="vehicleregistered"
+                                options={vehicleRegistered}
+                                getOptionLabel={(option) => option}
+                                value={
+                                  vehicleRegistered.find(
+                                    (vc) => vc === field.value
+                                  ) || null
+                                }
+                                onChange={(event, newValue) => {
+                                  field.onChange(newValue ? newValue : null);
+                                }}
+                                renderInput={(field) => (
+                                  <TextField {...field} label="Registered*" />
+                                )}
+                              />
                               <div className="text-[#FF0000] text-sm">
-                                {errorvehiclemileage}
+                                {errorvehicleregistered}
                               </div>
                             </div>
                           </FormControl>
@@ -1107,29 +1215,21 @@ const AdForm = ({
                     />
                     <FormField
                       control={form.control}
-                      name="vehicleregistered"
+                      name="vehiclemileage"
                       render={({ field }) => (
                         <FormItem className="w-full">
                           <FormControl>
                             <div className="w-full overflow-hidden rounded-full px-4 py-2">
-                              <Autocomplete
-                                id="vehicleregistered"
-                                options={vehicleRegistered}
-                                getOptionLabel={(option) => option}
-                                value={
-                                  vehicleRegistered.find(
-                                    (vc) => vc === field.value
-                                  ) || null
-                                }
-                                onChange={(event, newValue) => {
-                                  field.onChange(newValue ? newValue : null);
-                                }}
-                                renderInput={(field) => (
-                                  <TextField {...field} label="Registered*" />
-                                )}
-                              />
+                              <div className="flex gap-1 items-center justify-between">
+                                <TextField
+                                  {...field}
+                                  label="Mileage (Optional)*"
+                                  className="w-full"
+                                />
+                                kilometers (KM)
+                              </div>
                               <div className="text-[#FF0000] text-sm">
-                                {errorvehicleregistered}
+                                {errorvehiclemileage}
                               </div>
                             </div>
                           </FormControl>
@@ -1220,43 +1320,51 @@ const AdForm = ({
                         <FormItem className="w-full">
                           <FormControl>
                             <div className="w-full overflow-hidden px-4 py-2">
-                              <HoverCard>
-                                <HoverCardTrigger>
-                                  <TextField
-                                    {...field}
-                                    label="Features (Optional)*"
-                                    className="w-full"
-                                  />
-                                </HoverCardTrigger>
-                                <HoverCardContent className="">
-                                  <ScrollArea className="h-[200px] w-full  bg-white rounded-md border p-1">
+                              {/* Trigger for Pop-up */}
+                              <div className="cursor-pointer">
+                                <TextField
+                                  {...field}
+                                  multiline
+                                  label="Features (Optional)*"
+                                  onClick={togglePopup}
+                                  className="w-full"
+                                />
+                              </div>
+
+                              {/* Custom Popup Content */}
+                              {showPop && (
+                                <div className="absolute z-10 w-[300px] shadow-lg bg-white rounded-md border p-1 mt-2">
+                                  <div className="flex justify-end">
+                                    <button
+                                      onClick={togglePopup}
+                                      className="text-gray-600 hover:text-gray-800 font-bold text-sm"
+                                    >
+                                      X
+                                    </button>
+                                  </div>
+                                  <ScrollArea className="h-[200px] w-full">
                                     {vehicleFeatures.map((option) => (
-                                      <>
-                                        <div
-                                          key={option}
-                                          className="flex w-full gap-2"
-                                        >
-                                          <input
-                                            className="cursor-pointer"
-                                            type="checkbox"
-                                            value={option}
-                                            checked={selectedfeaturesOptions.includes(
-                                              option
-                                            )}
-                                            onChange={() =>
-                                              handleFeaturesToggle(option)
-                                            }
-                                          />
-                                          <div className="text-sm">
-                                            {" "}
-                                            {option}
-                                          </div>
-                                        </div>
-                                      </>
+                                      <div
+                                        key={option}
+                                        className="flex w-full gap-2"
+                                      >
+                                        <input
+                                          className="cursor-pointer"
+                                          type="checkbox"
+                                          value={option}
+                                          checked={selectedfeaturesOptions.includes(
+                                            option
+                                          )}
+                                          onChange={() =>
+                                            handleFeaturesToggle(option)
+                                          }
+                                        />
+                                        <div className="text-sm">{option}</div>
+                                      </div>
                                     ))}
                                   </ScrollArea>
-                                </HoverCardContent>
-                              </HoverCard>
+                                </div>
+                              )}
                               <div className="text-[#FF0000] text-sm">
                                 {errorvehiclekeyfeatures}
                               </div>
@@ -2939,6 +3047,7 @@ const AdForm = ({
                                   <TextField
                                     {...field}
                                     label="Amenities*"
+                                    disabled
                                     className="w-full"
                                   />
                                 </HoverCardTrigger>
@@ -3484,7 +3593,7 @@ const AdForm = ({
                       <FormControl>
                         <div className="flex w-full gap-1">
                           <select
-                            className="bg-gray-100 text-sm lg:text-base p-1 border rounded-sm w-[120px]"
+                            className="bg-gray-100 text-sm lg:text-base p-1 border rounded-sm w-[120px] lg:w-[200px]"
                             value={countryCode}
                             onChange={handleCountryCodeChange}
                           >
@@ -3907,7 +4016,12 @@ const AdForm = ({
             disabled={form.formState.isSubmitting}
             className="button col-span-2 w-full"
           >
-            {form.formState.isSubmitting ? "Submitting..." : `${type} Ad `}
+            <div className="flex gap-1 items-center">
+              {form.formState.isSubmitting && (
+                <CircularProgress sx={{ color: "white" }} size={30} />
+              )}
+              {form.formState.isSubmitting ? "Submitting..." : `${type} Ad `}
+            </div>
           </Button>
         </form>
       </Form>

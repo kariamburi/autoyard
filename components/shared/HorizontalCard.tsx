@@ -3,7 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 import { DeleteConfirmation } from "./DeleteConfirmation";
-import { NGnaira } from "@/lib/help";
+import { formatKsh } from "@/lib/help";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 import PhotoCameraFrontIcon from "@mui/icons-material/PhotoCameraFront";
 import YouTubeIcon from "@mui/icons-material/YouTube";
@@ -160,7 +160,7 @@ const HorizontalCard = ({ userId, ad, isAdCreator }: CardProps) => {
             <div className="flex justify-between items-center w-full">
               <Link href={`/ads/${ad._id}`} className="no-underline">
                 <span className="text-emerald-950 font-bold text-[12px] lg:text-lg w-min rounded-full text-green-60">
-                  {NGnaira.format(ad.price)}
+                  {formatKsh(ad.price)}
                 </span>
               </Link>
               {ad.adstatus && (
@@ -181,7 +181,7 @@ const HorizontalCard = ({ userId, ad, isAdCreator }: CardProps) => {
             <div className="flex items-center">
               <Link href={`/ads/${ad._id}`} className="no-underline">
                 <span className="text-emerald-950 text-[12px] font-bold lg:text-lg w-min rounded-full text-green-60">
-                  {NGnaira.format(ad.price)}
+                  {formatKsh(ad.price)}
                 </span>
               </Link>
             </div>

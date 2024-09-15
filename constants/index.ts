@@ -657,8 +657,10 @@ export const vehicleModels = [
     make: "Nissan",
     models: [
       "370Z",
+      "Sylphy",
       "Altima",
       "Armada",
+      "Note",
       "Frontier",
       "GT-R",
       "Kicks",

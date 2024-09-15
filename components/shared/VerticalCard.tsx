@@ -3,7 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 import { DeleteConfirmation } from "./DeleteConfirmation";
-import { NGnaira } from "@/lib/help";
+import { formatKsh } from "@/lib/help";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 import YouTubeIcon from "@mui/icons-material/YouTube";
 import VerifiedUserOutlinedIcon from "@mui/icons-material/VerifiedUserOutlined";
@@ -103,7 +103,7 @@ const VerticalCard = ({ userId, ad, isAdCreator }: CardProps) => {
         </div>
       )}
       <div className="flex min-h-[80px] lg:items-center flex-col p-1">
-        <div className="w-full flex justify-between absolute top-1/2 left-1/2 transform -translate-x-1/2 p-1 rounded-full">
+        <div className="w-full mt-[-10px] flex justify-between absolute top-1/2 left-1/2 transform -translate-x-1/2 p-1 rounded-full">
           <div className="gap-1 cursor-pointer bg-[#000000] bg-opacity-70 text-[10px] lg:text-xs text-white flex rounded-lg p-1 shadow-sm transition-all">
             <LocalSeeOutlinedIcon sx={{ fontSize: 16, cursor: "pointer" }} />
             {ad.imageUrls.length}
@@ -144,7 +144,7 @@ const VerticalCard = ({ userId, ad, isAdCreator }: CardProps) => {
           <div className="flex justify-between items-center w-full p-1">
             <Link href={`/ads/${ad._id}`} className="no-underline">
               <span className="text-emerald-950 text-[12px] lg:text-lg font-bold w-min rounded-full text-green-60">
-                {NGnaira.format(ad.price)}
+                {formatKsh(ad.price)}
               </span>
             </Link>
             {ad.adstatus && (
@@ -165,7 +165,7 @@ const VerticalCard = ({ userId, ad, isAdCreator }: CardProps) => {
           <div className="flex items-center p-1">
             <Link href={`/ads/${ad._id}`} className="no-underline">
               <span className="text-emerald-950 font-bold text-[12px] lg:text-lg w-min rounded-full text-green-60">
-                {NGnaira.format(ad.price)}
+                {formatKsh(ad.price)}
               </span>
             </Link>
           </div>

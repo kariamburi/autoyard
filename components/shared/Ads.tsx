@@ -1,5 +1,5 @@
 "use client";
-import { NGnaira } from "@/lib/help";
+import { formatKsh } from "@/lib/help";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 import YouTubeIcon from "@mui/icons-material/YouTube";
 import { useEffect, useState } from "react";
@@ -42,6 +42,8 @@ import PlayCircleFilledWhiteOutlinedIcon from "@mui/icons-material/PlayCircleFil
 import dynamic from "next/dynamic";
 import Skeleton from "@mui/material/Skeleton";
 import { updateview } from "@/lib/actions/ad.actions";
+import CircularProgress from "@mui/material/CircularProgress";
+
 import {
   Carousel,
   CarouselApi,
@@ -245,6 +247,7 @@ export default function Ads({ ad, userId, userImage, userName }: CardProps) {
       alert("Please enter a description of the abuse.");
     }
   };
+  const [imageLoading, setImageLoading] = useState<number | null>(null);
 
   return (
     <>
@@ -255,20 +258,30 @@ export default function Ads({ ad, userId, userImage, userName }: CardProps) {
             <Carousel
               setApi={setApi}
               plugins={[plugin.current as any]}
-              // onMouseEnter={handleMouseEnter}
-              // onMouseLeave={handleMouseLeave}
               className="w-full"
             >
               <CarouselContent>
                 {ad.imageUrls.map((image: string, index: number) => (
                   <CarouselItem key={index}>
                     <Zoom>
+                      {/* Show a loader while the image is loading */}
+                      {imageLoading === index && (
+                        <div className="flex justify-center items-center h-[400px] lg:h-[450px] bg-gray-200">
+                          <CircularProgress />
+                        </div>
+                      )}
                       <Image
                         src={image}
                         alt={`Image ${index + 1}`}
-                        className="bg-[#000000] h-[400px] lg:h-[450px] object-cover cursor-pointer"
+                        className={`bg-[#000000] h-[400px] lg:h-[450px] object-cover cursor-pointer ${
+                          imageLoading === index ? "hidden" : ""
+                        }`}
                         width={800} // Adjust the width as needed
                         height={500} // Adjust the height as needed
+                        onLoad={() => setImageLoading(null)} // Hide loader when image loads
+                        onLoadingComplete={() => setImageLoading(null)} // Handle load complete
+                        onError={() => setImageLoading(null)} // Handle error
+                        onLoadStart={() => setImageLoading(index)} // Show loader on image load start
                       />
                     </Zoom>
                   </CarouselItem>
@@ -439,7 +452,7 @@ export default function Ads({ ad, userId, userImage, userName }: CardProps) {
                   )}
                 </div>
                 <span className="text-lg lg:text-xl font-bold w-min rounded-full p-1 text-emerald-700">
-                  {NGnaira.format(ad.price)}
+                  {formatKsh(ad.price)}
                 </span>
               </div>
             </div>
@@ -676,8 +689,8 @@ export default function Ads({ ad, userId, userImage, userName }: CardProps) {
         <div className="lg:w-[30%] p-1 lg:p-0">
           <div className="hidden lg:inline">
             <div className="bg-white p-5 text-l rounded-lg overflow-hidden shadow-md flex flex-col items-center">
-              <span className="text-2xl font-bold w-min rounded-full px-4 py-1 text-emerald-950">
-                {NGnaira.format(ad.price)}
+              <span className="flex gap-1 text-2xl font-bold w-min rounded-full px-4 py-1 text-emerald-950">
+                {formatKsh(ad.price)}
               </span>
               <div className="flex items-center">
                 {ad.negotiable && (

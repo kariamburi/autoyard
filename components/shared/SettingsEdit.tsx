@@ -3,6 +3,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
 import { Button } from "@/components/ui/button";
+import CircularProgress from "@mui/material/CircularProgress";
 
 import {
   Form,
@@ -970,7 +971,12 @@ const SettingsEdit = ({ user, type, userId }: setingsProp) => {
           disabled={form.formState.isSubmitting}
           className="button col-span-2 w-full"
         >
-          {form.formState.isSubmitting ? "Submitting..." : `${type} User `}
+          <div className="flex gap-1 items-center">
+            {form.formState.isSubmitting && (
+              <CircularProgress sx={{ color: "white" }} size={30} />
+            )}
+            {form.formState.isSubmitting ? "Submitting..." : `${type} User `}
+          </div>
         </Button>
       </form>
     </Form>

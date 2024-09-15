@@ -464,7 +464,7 @@ const Storeads = async ({ params: { id }, searchParams }: SearchParamProps) => {
       <div className="z-10 top-0 fixed w-full">
         <Navbar userstatus="User" userId={userId ?? ""} />
       </div>
-      <div className="max-w-6xl mx-auto mt-[50px]">
+      <div className="max-w-6xl mx-auto mt-[50px] lg:mt-[70px]">
         <div className="text-sm breadcrumbs p-0 hidden lg:inline">
           <div className="flex">
             <div className="bg-white p-2 rounded-full mr-2">
