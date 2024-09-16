@@ -874,15 +874,15 @@ CollectionProps) => {
                     </TooltipProvider>
                   </div>
                 </div>
-                <div className="rounded-lg p-1 flex items-center">
+                <div className="rounded-lg p-1 z-5 flex items-center">
                   <div className="text-[#30AF5B]">
                     <SwapVertIcon />
                   </div>
                   <Select onValueChange={handleSortChange}>
-                    <SelectTrigger className="w-[180px] z-5">
+                    <SelectTrigger className="w-[180px]">
                       <SelectValue placeholder="Sort By" />
                     </SelectTrigger>
-                    <SelectContent className="z-5">
+                    <SelectContent>
                       <SelectGroup>
                         <SelectItem value="recommeded">
                           Recommended first
