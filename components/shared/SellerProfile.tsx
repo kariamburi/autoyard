@@ -137,14 +137,14 @@ const SellerProfile = ({ userId, loggedId, user }: CollectionProps) => {
       {userId === loggedId && (
         <div className="flex justify-between w-full p-1 items-center">
           <div>
-            {" "}
             <a href={`/settings/`}>
-              <button className="p-1 gap-1 text-xs text-emerald-900 rounded-full bg-white ring-1 ring-emerald-900 hover:bg-emerald-100">
-                <SettingsIcon sx={{ fontSize: 14 }} />
-                Settings
+              <button className="p-2 gap-1 text-xs bg-emerald-900 rounded-lg text-white  hover:bg-emerald-600">
+                <EditOutlinedIcon sx={{ fontSize: 14 }} />
+                Edit your Profile
               </button>
             </a>
           </div>
+
           <Share userId={userId} />
         </div>
       )}
@@ -458,7 +458,7 @@ const SellerProfile = ({ userId, loggedId, user }: CollectionProps) => {
             </>
           ) : (
             <>
-              {userId === loggedId && (
+              {/*     {userId === loggedId && (
                 <div className="flex justify-center w-full p-1 items-center">
                   <div>
                     <a href={`/settings/`}>
@@ -469,7 +469,7 @@ const SellerProfile = ({ userId, loggedId, user }: CollectionProps) => {
                     </a>
                   </div>
                 </div>
-              )}
+              )}*/}
             </>
           )}
           <div className="divider"></div>

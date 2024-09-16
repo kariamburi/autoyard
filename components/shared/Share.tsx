@@ -44,7 +44,7 @@ const Share: React.FC<shareProps> = ({ userId }) => {
     <div className="relative inline-block">
       <button
         onClick={toggleDropdown}
-        className="p-1 gap-1 text-xs text-emerald-900 rounded-full bg-white ring-1 ring-emerald-900 hover:bg-emerald-100"
+        className="p-1 gap-1 text-xs text-emerald-900 rounded-lg bg-white ring-1 ring-emerald-900 hover:bg-emerald-100"
       >
         <ShareOutlinedIcon sx={{ fontSize: 14 }} />
         Share

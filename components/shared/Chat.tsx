@@ -99,9 +99,10 @@ const Chat = ({ senderName, senderId, senderImage }: sidebarProps) => {
                   return (
                     <li
                       key={message.uid}
-                      className={`p-4 flex items-center space-x-4 hover:bg-gray-100 hover:cursor-pointer ${
-                        isActive ? "bg-emerald-100" : ""
-                      }`}
+                      className={`${
+                        isActive &&
+                        "bg-gradient-to-b from-emerald-900 to-emerald-950 text-white"
+                      } rounded-sm`}
                     >
                       <div
                         onClick={() =>
@@ -169,9 +170,10 @@ const Chat = ({ senderName, senderId, senderImage }: sidebarProps) => {
                   return (
                     <li
                       key={message.uid}
-                      className={`p-4 flex items-center space-x-4 hover:bg-gray-100 hover:cursor-pointer ${
-                        isActive ? "bg-emerald-100" : ""
-                      }`}
+                      className={`${
+                        isActive &&
+                        "bg-gradient-to-b from-emerald-900 to-emerald-950 text-white"
+                      } rounded-sm`}
                     >
                       <div
                         onClick={() =>

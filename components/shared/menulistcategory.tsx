@@ -24,11 +24,11 @@ export default function Menulistcategory({ categoryList }: MobileProps) {
               <div className="flex flex-col items-center justify-center">
                 <a href={"/" + category.name}>
                   <Image
-                    className="w-full h-16 rounded-full"
+                    className="w-16 h-16 rounded-full"
                     src={category.imageUrl}
                     alt="Menu Image"
-                    width={16}
-                    height={16}
+                    width={200}
+                    height={200}
                   />
                 </a>
 
