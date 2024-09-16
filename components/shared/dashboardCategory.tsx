@@ -243,6 +243,7 @@ CollectionProps) => {
       setQuery(selectedOption);
       router.push(newUrl, { scroll: false });
     }
+    setActiveButton(1);
   };
 
   const handlePrice = (index: number, min: string, max: string) => {
