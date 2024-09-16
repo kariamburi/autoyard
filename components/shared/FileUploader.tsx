@@ -11,6 +11,7 @@ import { deleteSingleImage } from "@/lib/actions/ad.actions";
 import { ScrollArea, ScrollBar } from "../ui/scroll-area";
 import Zoom from "react-medium-image-zoom";
 import "react-medium-image-zoom/dist/styles.css";
+import { useToast } from "@/components/ui/use-toast";
 type FileUploaderProps = {
   onFieldChange: (urls: string[]) => void;
   imageUrls: string[];
@@ -108,19 +109,59 @@ export function FileUploader({
   onFieldChange,
   setFiles,
 }: FileUploaderProps) {
+  const { toast } = useToast();
+
   const onDrop = useCallback(
     async (acceptedFiles: File[]) => {
       const filteredFiles = acceptedFiles.filter((file) => {
+        const isScreenshot =
+          /screenshot/i.test(file.name) || /Screen\s?Shot/i.test(file.name);
+        if (isScreenshot) {
+          setmessage(
+            `${file.name} appears to be a screenshot and will not be uploaded.`
+          );
+          //  setShowAlert(true);
+          toast({
+            variant: "destructive",
+            title: "Failed!",
+            description: showmessage,
+            duration: 5000,
+          });
+          return false;
+        }
+
         if (imageUrls.includes(convertFileToUrl(file))) {
           setmessage(`${file.name} has already been uploaded.`);
-          setShowAlert(true);
+          //  setShowAlert(true);
+          toast({
+            variant: "destructive",
+            title: "Failed!",
+            description: showmessage,
+            duration: 5000,
+          });
+          return false;
+        }
+
+        if (imageUrls.includes(convertFileToUrl(file))) {
+          setmessage(`${file.name} has already been uploaded.`);
+          toast({
+            variant: "destructive",
+            title: "Failed!",
+            description: showmessage,
+            duration: 5000,
+          });
           return false;
         }
         if (file.size > 5 * 1024 * 1024) {
           setmessage(
             `${file.name} exceeds the 5MB limit and will not be uploaded.`
           );
-          setShowAlert(true);
+          toast({
+            variant: "destructive",
+            title: "Failed!",
+            description: showmessage,
+            duration: 5000,
+          });
           return false;
         }
         return true;
@@ -243,13 +284,6 @@ export function FileUploader({
           Supported formats are .jpg, .gif .svg and .png, 5MB max
         </small>
       </div>
-
-      {showAlert && (
-        <Alert variant="destructive">
-          <AlertTitle>Error</AlertTitle>
-          <AlertDescription>{showmessage}</AlertDescription>
-        </Alert>
-      )}
     </div>
   );
 }
