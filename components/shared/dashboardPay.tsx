@@ -5,6 +5,7 @@ import React, { useEffect, useState } from "react";
 import { Requestcheckpayment } from "@/lib/actions/checkpayment";
 import { useToast } from "../ui/use-toast";
 import { useRouter } from "next/navigation";
+import { formatKsh } from "@/lib/help";
 
 type payProps = {
   userId: string;
@@ -159,7 +160,7 @@ const DashboardPay = ({ userId, trans }: payProps) => {
               <div className="gap-1 h-[450px] mt-2 items-center w-full rounded-lg">
                 <div className="">
                   <div className="flex flex-col items-center">
-                    <div className="flex flex-col border shadow-lg rounded-lg bg-gray-100 p-2 mb-2 w-full h-[400px]">
+                    <div className="flex flex-col rounded-lg bg-white p-2 mb-2 w-full">
                       <div className="flex justify-between w-full items-center">
                         <div className="flex gap-1 items-center">
                           <div className="font-bold text-grey-900 font-bold p-2">
@@ -173,10 +174,10 @@ const DashboardPay = ({ userId, trans }: payProps) => {
 
                       <div className="p-1">
                         <div className="flex justify-between w-full items-center">
-                          <div className="flex gap-1 text-xs items-center">
+                          <div className="flex gap-1 text-[12px] lg:text-xs items-center">
                             Order Tracking Id:
                           </div>
-                          <div className="flex text-xs font-bold items-center">
+                          <div className="flex text-[12px] lg:text-xs font-bold items-center">
                             {trans[0].orderTrackingId}
                           </div>
                         </div>
@@ -184,10 +185,10 @@ const DashboardPay = ({ userId, trans }: payProps) => {
                         {trans[0].plan === "Verification" ? (
                           <>
                             <div className="flex justify-between w-full items-center">
-                              <div className="flex gap-1 text-xs items-center">
+                              <div className="flex gap-1 text-[12px] lg:text-xs items-center">
                                 Description:
                               </div>
-                              <div className="flex text-xs font-bold items-center">
+                              <div className="flex text-[12px] lg:text-xs font-bold items-center">
                                 One-time Account verification fee
                               </div>
                             </div>
@@ -195,30 +196,30 @@ const DashboardPay = ({ userId, trans }: payProps) => {
                         ) : (
                           <>
                             <div className="flex justify-between w-full items-center">
-                              <div className="flex gap-1 text-xs items-center">
+                              <div className="flex gap-1 text-[12px] lg:text-xs items-center">
                                 Period:
                               </div>
-                              <div className="flex text-xs font-bold items-center">
+                              <div className="flex text-[12px] lg:text-xs font-bold items-center">
                                 {trans[0].period}
                               </div>
                             </div>
                             <div className="flex justify-between w-full items-center">
-                              <div className="flex text-xs gap-1 items-center">
+                              <div className="flex text-[12px] lg:text-xs gap-1 items-center">
                                 Allawable Ads:
                               </div>
-                              <div className="flex text-xs font-bold items-center">
+                              <div className="flex text-[12px] lg:text-xs font-bold items-center">
                                 {trans[0].planId.list}
                               </div>
                             </div>
                           </>
                         )}
                         <div className="flex justify-between w-full items-center">
-                          <div className="flex gap-1 text-xs items-center">
+                          <div className="flex gap-1 text-[12px] lg:text-xs items-center">
                             Status:
                           </div>
                           <div className="flex items-center">
                             <div
-                              className={`flex flex-col text-xs p-1 text-white justify-center items-center w-[70px] rounded-full ${
+                              className={`flex flex-col text-[12px] lg:text-xs p-1 text-white justify-center items-center w-[70px] rounded-full ${
                                 pay === "Pending"
                                   ? "bg-yellow-600"
                                   : pay === "Failed"
@@ -241,8 +242,8 @@ const DashboardPay = ({ userId, trans }: payProps) => {
                               </div>
                             </div>
                             <div className="flex items-center">
-                              <div className="text-green-600 font-bold p-2">
-                                KES {trans[0].amount.toFixed(2)}
+                              <div className="text-black font-bold p-2">
+                                {formatKsh(trans[0].amount)}
                               </div>
                             </div>
                           </div>

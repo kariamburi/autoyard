@@ -42,8 +42,8 @@ export default function Menulistpackages({ packagesList }: packProps) {
                   className="w-8 h-8 object-cover rounded-full"
                   src={pack.imageUrl}
                   alt="Menu Image"
-                  height={8}
-                  width={8}
+                  height={200}
+                  width={200}
                 />
                 {pack.name}
               </div>

@@ -276,7 +276,7 @@ const HomeDashboard = ({ userId, userName, userImage }: homeProps) => {
             <div className="p-2 rounded-lg bg-white max-w-6xl mx-auto flex flex-col lg:flex-row mt-3">
               <div className="flex flex-col border shadow-lg rounded-lg bg-gray-100 p-2 mb-2 w-full">
                 <p className="font-bold text-[25px]">History</p>
-                <div className="grid grid-cols-6 text-grey-600 text-xs text-[#000000] rounded-t-lg p-1 text-white">
+                <div className="grid grid-cols-6 text-grey-600 text-xs text-[#000000] rounded-t-lg p-1">
                   <div className="justify-center items-center flex flex-col">
                     Status
                   </div>

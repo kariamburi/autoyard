@@ -99,10 +99,9 @@ const Chat = ({ senderName, senderId, senderImage }: sidebarProps) => {
                   return (
                     <li
                       key={message.uid}
-                      className={`${
-                        isActive &&
-                        "bg-gradient-to-b from-emerald-900 to-emerald-950 text-white"
-                      } rounded-sm`}
+                      className={`p-4 flex items-center space-x-4 hover:bg-gray-100 hover:cursor-pointer ${
+                        isActive ? "bg-emerald-100" : ""
+                      }`}
                     >
                       <div
                         onClick={() =>
@@ -170,10 +169,9 @@ const Chat = ({ senderName, senderId, senderImage }: sidebarProps) => {
                   return (
                     <li
                       key={message.uid}
-                      className={`${
-                        isActive &&
-                        "bg-gradient-to-b from-emerald-900 to-emerald-950 text-white"
-                      } rounded-sm`}
+                      className={`p-4 flex items-center space-x-4 hover:bg-gray-100 hover:cursor-pointer ${
+                        isActive ? "bg-emerald-100" : ""
+                      }`}
                     >
                       <div
                         onClick={() =>
@@ -208,6 +206,7 @@ const Chat = ({ senderName, senderId, senderImage }: sidebarProps) => {
               </ul>
             </div>
           </div>
+
           <div className="p-1">
             <div className="flex justify-between bg-emerald-800 text-white p-2 rounded-t-lg">
               <div className="flex items-center gap-2">
@@ -223,34 +222,29 @@ const Chat = ({ senderName, senderId, senderImage }: sidebarProps) => {
                 <h3 className="font-bold text-lg">{recipientUidName}</h3>
               </div>
             </div>
-            <div className="bg-gray-100 text-white flex flex-col">
-              <div className="w-full flex p-1">
-                <div className="flex-1">
-                  <div className="bg-gray-100 max-w-6xl mx-auto flex flex-col p-2 mt-0 rounded-lg">
-                    <ChatBox
-                      displayName={senderName}
-                      uid={senderId}
-                      recipientUid={recipientUid}
-                      client={false}
-                      photoURL={senderImage}
-                      recipient={{
-                        status: "User",
-                        firstName: recipientUidName,
-                        lastName: "",
-                        // username: "",
-                        photo: recipientUidImage,
-                      }}
-                    />
-                    <SendMessage
-                      displayName={senderName}
-                      uid={senderId}
-                      recipientUid={recipientUid}
-                      client={false}
-                      photoURL={senderImage}
-                    />
-                  </div>
-                </div>
-              </div>
+
+            <div className="flex-1">
+              <ChatBox
+                displayName={senderName}
+                uid={senderId}
+                recipientUid={recipientUid}
+                client={false}
+                photoURL={senderImage}
+                recipient={{
+                  status: "User",
+                  firstName: recipientUidName,
+                  lastName: "",
+                  // username: "",
+                  photo: recipientUidImage,
+                }}
+              />
+              <SendMessage
+                displayName={senderName}
+                uid={senderId}
+                recipientUid={recipientUid}
+                client={false}
+                photoURL={senderImage}
+              />
             </div>
           </div>
         </div>
