@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, Dispatch, SetStateAction } from "react";
+import { useCallback, Dispatch, SetStateAction, useState } from "react";
 import { useDropzone } from "@uploadthing/react/hooks";
 import { generateClientDropzoneAccept } from "uploadthing/client";
 import { Button } from "@/components/ui/button";
@@ -8,6 +8,7 @@ import { convertFileToUrl } from "@/lib/utils";
 import Image from "next/image";
 import Zoom from "react-medium-image-zoom";
 import "react-medium-image-zoom/dist/styles.css";
+import { useToast } from "@/components/ui/use-toast";
 type FileUploaderProps = {
   onFieldChange: (url: string) => void;
   imageUrl: string;
@@ -19,7 +20,41 @@ export function FileuploaderBusiness({
   onFieldChange,
   setFiles,
 }: FileUploaderProps) {
-  const onDrop = useCallback((acceptedFiles: File[]) => {
+  const { toast } = useToast();
+  const [showmessage, setmessage] = useState("");
+  const onDrop = useCallback(async (acceptedFiles: File[]) => {
+    const filteredFiles = acceptedFiles.filter((file) => {
+      const isScreenshot =
+        /screenshot/i.test(file.name) || /Screen\s?Shot/i.test(file.name);
+      if (isScreenshot) {
+        setmessage(
+          `${file.name} appears to be a screenshot and will not be uploaded.`
+        );
+        //  setShowAlert(true);
+        toast({
+          variant: "destructive",
+          title: "Failed!",
+          description: showmessage,
+          duration: 5000,
+        });
+        return false;
+      }
+
+      if (file.size > 5 * 1024 * 1024) {
+        setmessage(
+          `${file.name} exceeds the 5MB limit and will not be uploaded.`
+        );
+        toast({
+          variant: "destructive",
+          title: "Failed!",
+          description: showmessage,
+          duration: 5000,
+        });
+        return false;
+      }
+      return true;
+    });
+
     setFiles(acceptedFiles);
     onFieldChange(convertFileToUrl(acceptedFiles[0]));
   }, []);

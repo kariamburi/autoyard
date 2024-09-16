@@ -110,7 +110,8 @@ export function FileUploader({
   setFiles,
 }: FileUploaderProps) {
   const { toast } = useToast();
-
+  const [showAlert, setShowAlert] = useState(false);
+  const [showmessage, setmessage] = useState("");
   const onDrop = useCallback(
     async (acceptedFiles: File[]) => {
       const filteredFiles = acceptedFiles.filter((file) => {
@@ -142,16 +143,6 @@ export function FileUploader({
           return false;
         }
 
-        if (imageUrls.includes(convertFileToUrl(file))) {
-          setmessage(`${file.name} has already been uploaded.`);
-          toast({
-            variant: "destructive",
-            title: "Failed!",
-            description: showmessage,
-            duration: 5000,
-          });
-          return false;
-        }
         if (file.size > 5 * 1024 * 1024) {
           setmessage(
             `${file.name} exceeds the 5MB limit and will not be uploaded.`
@@ -189,8 +180,6 @@ export function FileUploader({
     [imageUrls, setFiles, onFieldChange]
   );
 
-  const [showAlert, setShowAlert] = useState(false);
-  const [showmessage, setmessage] = useState("");
   const { getRootProps, getInputProps } = useDropzone({
     onDrop,
     accept: generateClientDropzoneAccept(["image/*"]),
