@@ -225,29 +225,27 @@ const Chat = ({ senderName, senderId, senderImage }: sidebarProps) => {
               </div>
             </div>
 
-            <div className="flex-1">
-              <ChatBox
-                displayName={senderName}
-                uid={senderId}
-                recipientUid={recipientUid}
-                client={false}
-                photoURL={senderImage}
-                recipient={{
-                  status: "User",
-                  firstName: recipientUidName,
-                  lastName: "",
-                  // username: "",
-                  photo: recipientUidImage,
-                }}
-              />
-              <SendMessage
-                displayName={senderName}
-                uid={senderId}
-                recipientUid={recipientUid}
-                client={false}
-                photoURL={senderImage}
-              />
-            </div>
+            <ChatBox
+              displayName={senderName}
+              uid={senderId}
+              recipientUid={recipientUid}
+              client={false}
+              photoURL={senderImage}
+              recipient={{
+                status: "User",
+                firstName: recipientUidName,
+                lastName: "",
+                // username: "",
+                photo: recipientUidImage,
+              }}
+            />
+            <SendMessage
+              displayName={senderName}
+              uid={senderId}
+              recipientUid={recipientUid}
+              client={false}
+              photoURL={senderImage}
+            />
           </div>
         </div>
       </div>
