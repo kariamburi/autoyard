@@ -372,6 +372,7 @@ const Storeads = async ({ params: { id }, searchParams }: SearchParamProps) => {
   }
 
   if (sortby === "nearby" && longitude && latitude) {
+    console.log("nearby");
     Ads = await getListingsNearLocation({
       query: searchText,
       sortby: sortby,
@@ -414,7 +415,9 @@ const Storeads = async ({ params: { id }, searchParams }: SearchParamProps) => {
       page: 1,
       limit: 20,
     });
+    console.log(Ads);
   } else {
+    console.log(sortby);
     Ads = await getAllAd({
       query: searchText,
       sortby: sortby,
@@ -457,6 +460,7 @@ const Storeads = async ({ params: { id }, searchParams }: SearchParamProps) => {
       page: 1,
       limit: 20,
     });
+    console.log(Ads);
   }
   // console.log("--------------------------------------" + Ads?.data);
   return (

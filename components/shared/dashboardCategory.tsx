@@ -224,20 +224,15 @@ CollectionProps) => {
   const searchParams = useSearchParams();
 
   const handleSortChange = (selectedOption: string) => {
-    // Do something with the selected sorting option
-    // Example: If "lowest" option is selected, perform some action
     if (selectedOption === "nearby") {
       getCurrentLocation(selectedOption);
     } else {
-      console.log("Selected sorting option:", selectedOption);
-      setQuery(selectedOption);
       let newUrl = "";
-
-      if (querysort) {
+      if (selectedOption) {
         newUrl = formUrlQuery({
           params: searchParams.toString(),
           key: "sortby",
-          value: querysort,
+          value: selectedOption,
         });
       } else {
         newUrl = removeKeysFromQuery({
@@ -245,7 +240,7 @@ CollectionProps) => {
           keysToRemove: ["sortby"],
         });
       }
-
+      setQuery(selectedOption);
       router.push(newUrl, { scroll: false });
     }
   };
@@ -884,10 +879,10 @@ CollectionProps) => {
                     <SwapVertIcon />
                   </div>
                   <Select onValueChange={handleSortChange}>
-                    <SelectTrigger className="w-[180px]">
+                    <SelectTrigger className="w-[180px] z-5">
                       <SelectValue placeholder="Sort By" />
                     </SelectTrigger>
-                    <SelectContent>
+                    <SelectContent className="z-5">
                       <SelectGroup>
                         <SelectItem value="recommeded">
                           Recommended first

@@ -310,38 +310,6 @@ if(sortby==="recommeded"){
 }
 
 
-export async function getListingsNearLocationD() {
-  try {
-    await connectToDatabase();
-    const categoryId="65e5e91c0419f8e5bc016ac7"; 
-    const minPrice=50;
-    const maxPrice=20000000;
-    const maxDistance = 2 * 1000 * 1.6;
-    const coordinates = [36.825892, -1.284999];
-
-    const query = {
-      geometry: {
-        $near: {
-          $geometry: {
-            type: "Point",
-            coordinates: coordinates,
-          },
-          $maxDistance: maxDistance, // in meters
-        },
-      }
-    };
-
-   
-
-    const ads = await Ad.find(query);
-    return JSON.parse(JSON.stringify(ads));
-  } catch (error) {
-    console.error("Error:", error);
-    throw error;
-  }
-}
-
-
 export async function getListingsNearLocation({ query, limit = 20, page, category, subcategory, sortby,make,vehiclemodel,yearfrom,yearto,Price,vehiclecolor,vehiclecondition,longitude,latitude,vehicleTransmissions,vehicleFuelTypes,vehicleBodyTypes,vehicleEngineSizesCC,vehicleSeats,vehicleregistered,vehicleexchangeposible,vehiclesecordCondition,vehicleyear,Types,bedrooms,bathrooms,furnishing,amenities,toilets,parking,status,area,landuse,propertysecurity,floors,estatename,houseclass}: GetAllAdsParams) {
   try {
   await connectToDatabase()
@@ -401,10 +369,18 @@ const priceCondition = minPrice && maxPrice ? { price: { $gte: parseInt(minPrice
   }
 ]);
 //console.log(ads)
-const AdCount = await Ad.countDocuments(conditions)
+ // Step 2: Populate the aggregated results
+ const populatedAds = await Ad.populate(ads, [
+  { path: 'organizer', model: User, select: '_id clerkId email firstName lastName photo businessname aboutbusiness businessaddress latitude longitude businesshours businessworkingdays phone whatsapp website facebook twitter instagram tiktok imageUrl verified fcmToken' },
+  { path: 'category', model: Category, select: '_id name' },
+  { path: 'plan', model: Packages, select: '_id name color imageUrl' }
+]);
+
+const AdCount = await Ad.countDocuments(conditions);
+//const AdCount = await Ad.countDocuments(conditions)
    
 return {
-  data: JSON.parse(JSON.stringify(ads)),
+  data: JSON.parse(JSON.stringify(populatedAds)),
   totalPages: Math.ceil(AdCount / limit),
 }
   }
