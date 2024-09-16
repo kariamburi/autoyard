@@ -12,7 +12,7 @@ const Packages = async () => {
   const userId = sessionClaims?.userId as string;
   const user = await getUserById(userId);
   const packagesList = await getAllPackages();
-  let daysRemaining = 0;
+  let daysRemaining = 5;
   let planpackage = "Free";
   let subscription: any = [];
   //console.log("-------" + user);
