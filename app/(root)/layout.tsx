@@ -10,6 +10,7 @@ import Image from "next/image";
 import BottomNavigation from "@/components/shared/BottomNavigation";
 import Navbarhome from "@/components/shared/navbarhome";
 import ClientFCMHandler from "@/components/shared/ClientFCMHandler";
+import Head from "next/head";
 
 export default async function RootLayout({
   children,
@@ -26,6 +27,20 @@ export default async function RootLayout({
   //console.log(user.status);
   return (
     <div className="min-h-screen">
+      <Head>
+        <title>AutoYard</title>
+        <meta
+          name="description"
+          content="AutoYard | Where Every Ride Finds a Buyer"
+        />
+        <meta property="og:title" content="AutoYard" />
+        <meta
+          property="og:description"
+          content="Welcome to AutoYard.co.ke, Kenya's premier online marketplace for buying and selling vehicles. Whether you're in the market for a car, motorbike, bus, pickup, or even heavy-duty and agricultural machinery, we provide a trusted platform that connects buyers and sellers across the country."
+        />
+        <meta property="og:image" content="/assets/images/logo.png" />
+        <meta property="og:url" content="https://autoyard.co.ke" />
+      </Head>
       <div className="w-full h-full">
         <div className="sm:hidden fixed top-0 z-10 w-full">
           {user ? (
