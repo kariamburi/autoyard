@@ -26,11 +26,14 @@ const ChatButton = ({ ad, userId, userName, userImage }: chatProps) => {
 
   const [daysRemaining, setdaysRemaining] = useState(0);
   const [planpackage, setplanpackage] = useState<string>("Free");
-
+  const [sendsms, setsendsms] = useState(false);
+  const [sendemail, setsendemail] = useState(false);
   useEffect(() => {
     const checkSubscription = async () => {
       try {
         subscription = await getData(ad.organizer._id);
+        setsendsms(subscription.currentpack.features[5].checked);
+        setsendemail(subscription.currentpack.features[6].checked);
         setplanpackage(subscription.currentpack.name);
         const createdAtDate = new Date(subscription.transaction.createdAt);
         const periodDays = parseInt(subscription.transaction.period);
@@ -76,21 +79,11 @@ const ChatButton = ({ ad, userId, userName, userImage }: chatProps) => {
       const recipientEmail = ad?.organizer?.email;
 
       // Send notification SMS and email
-      if (
-        (planpackage === "Premium" ||
-          planpackage === "Diamond" ||
-          planpackage === "Basic") &&
-        daysRemaining > 0
-      ) {
+
+      if (sendsms && daysRemaining > 0) {
         await sendSMS(phoneNumber, message, adTitle, adUrl);
       }
-
-      if (
-        (planpackage === "Premium" ||
-          planpackage === "Diamond" ||
-          planpackage === "Basic") &&
-        daysRemaining > 0
-      ) {
+      if (sendemail && daysRemaining > 0) {
         await sendEmail(recipientEmail, message, adTitle, adUrl);
       }
 

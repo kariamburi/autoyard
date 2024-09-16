@@ -40,6 +40,7 @@ export default async function RootLayout({
         />
         <meta property="og:image" content="/assets/images/logo.png" />
         <meta property="og:url" content="https://autoyard.co.ke" />
+        
       </Head>
       <div className="w-full h-full">
         <div className="sm:hidden fixed top-0 z-10 w-full">
