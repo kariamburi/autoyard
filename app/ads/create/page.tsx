@@ -7,6 +7,7 @@ import { getAllPackages } from "@/lib/actions/packages.actions";
 import BottomNavigation from "@/components/shared/BottomNavigation";
 import Footer from "@/components/shared/Footer";
 import Footersub from "@/components/shared/Footersub";
+import { Toaster } from "@/components/ui/toaster";
 const create = async () => {
   const { sessionClaims } = auth();
   const userId = sessionClaims?.userId as string;
@@ -101,6 +102,7 @@ const create = async () => {
           priority={priority}
           adstatus={adstatus}
         />
+        <Toaster />
       </div>
       <footer>
         <div className="hidden lg:inline">

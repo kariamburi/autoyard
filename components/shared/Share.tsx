@@ -52,7 +52,7 @@ const Share: React.FC<shareProps> = ({ userId }) => {
       {isOpen && (
         <div className="absolute text-emerald-900 right-0 mt-2 w-48 bg-white rounded-md shadow-lg z-10">
           <div className="flex items-center justify-between text-white p-1">
-            <h3 className="text-sm text-emerald-900">Share you shop link</h3>
+            <h3 className="text-sm text-emerald-900">Share your shop link</h3>
 
             <div onClick={toggleDropdown} className="cursor-pointer text-white">
               <CloseOutlinedIcon />
