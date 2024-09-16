@@ -81,9 +81,9 @@ const myads = async ({ params: { id }, searchParams }: SearchParamProps) => {
   } catch {}
   if (!organizedAds || !user) {
     return (
-      <div className="flex-center h-screen w-full bg-[#ebf2f7] bg-dotted-pattern bg-cover bg-fixed bg-center">
-        <div className="flex gap-1 items-center">
-          <Image
+      <div className="flex items-center justify-center h-screen w-full bg-[#ebf2f7] bg-dotted-pattern bg-cover bg-fixed bg-center">
+        <div className="flex gap-1 items-center justify-center">
+          <img
             src="/assets/icons/loading.gif"
             alt="edit"
             width={60}

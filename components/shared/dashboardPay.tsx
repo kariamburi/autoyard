@@ -182,7 +182,16 @@ const DashboardPay = ({ userId, trans }: payProps) => {
                         </div>
 
                         {trans[0].plan === "Verification" ? (
-                          <></>
+                          <>
+                            <div className="flex justify-between w-full items-center">
+                              <div className="flex gap-1 text-xs items-center">
+                                Description:
+                              </div>
+                              <div className="flex text-xs font-bold items-center">
+                                One-time Account verification fee
+                              </div>
+                            </div>
+                          </>
                         ) : (
                           <>
                             <div className="flex justify-between w-full items-center">

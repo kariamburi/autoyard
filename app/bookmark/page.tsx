@@ -22,8 +22,8 @@ const myads = async ({ params: { id }, searchParams }: SearchParamProps) => {
   // console.log(bookmark?.data[0].adId);
   if (!bookmark || !user) {
     return (
-      <div className="flex-center h-screen w-full bg-[#ebf2f7] bg-dotted-pattern bg-cover bg-fixed bg-center">
-        <div className="flex gap-1 items-center">
+      <div className="flex items-center justify-center h-screen w-full bg-[#ebf2f7] bg-dotted-pattern bg-cover bg-fixed bg-center">
+        <div className="flex gap-1 items-center justify-center">
           <img
             src="/assets/icons/loading.gif"
             alt="edit"

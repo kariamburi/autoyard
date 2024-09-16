@@ -51,8 +51,8 @@ const DashboardCategory = dynamic(
   {
     ssr: false,
     loading: () => (
-      <div className="flex-center h-screen w-full bg-[#ebf2f7] bg-dotted-pattern bg-cover bg-fixed bg-center">
-        <div className="flex gap-1 items-center justify-center w-full">
+      <div className="flex items-center justify-center h-screen w-full bg-[#ebf2f7] bg-dotted-pattern bg-cover bg-fixed bg-center">
+        <div className="flex gap-1 items-center justify-center">
           <img
             src="/assets/icons/loading.gif"
             alt="edit"
