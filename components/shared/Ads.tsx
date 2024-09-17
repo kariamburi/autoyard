@@ -247,12 +247,13 @@ export default function Ads({ ad, userId, userImage, userName }: CardProps) {
       alert("Please enter a description of the abuse.");
     }
   };
-  const [imageLoading, setImageLoading] = useState<number | null>(null);
-
+  const [isLoading, setIsLoading] = useState(true);
+  const [isLoadingsmall, setIsLoadingsmall] = useState(true);
+  const [isLoadingpopup, setIsLoadingpopup] = useState(true);
   return (
     <>
       <div className="lg:m-1 space-y-0 lg:flex lg:space-x-5">
-        <div className="lg:flex-1 border-t-8 border-emerald-950 lg:bg-white rounded-lg">
+        <div className="lg:flex-1 border-t-8 border-emerald-700 lg:bg-white rounded-lg">
           {/* Carousel */}
           <div className="relative">
             <Carousel
@@ -263,27 +264,27 @@ export default function Ads({ ad, userId, userImage, userName }: CardProps) {
               <CarouselContent>
                 {ad.imageUrls.map((image: string, index: number) => (
                   <CarouselItem key={index}>
-                    <Zoom>
-                      {/* Show a loader while the image is loading */}
-                      {imageLoading === index && (
-                        <div className="flex justify-center items-center h-[400px] lg:h-[450px] bg-gray-200">
-                          <CircularProgress />
+                    <div className="relative">
+                      {isLoading && (
+                        <div className="absolute inset-0 flex items-center justify-center bg-[#000000] bg-opacity-50">
+                          {/* Spinner or loading animation */}
+                          <div className="w-8 h-8 border-4 border-t-4 border-gray-300 border-t-green-500 rounded-full animate-spin"></div>
                         </div>
                       )}
-                      <Image
-                        src={image}
-                        alt={`Image ${index + 1}`}
-                        className={`bg-[#000000] h-[400px] lg:h-[450px] object-cover cursor-pointer ${
-                          imageLoading === index ? "hidden" : ""
-                        }`}
-                        width={800} // Adjust the width as needed
-                        height={500} // Adjust the height as needed
-                        onLoad={() => setImageLoading(null)} // Hide loader when image loads
-                        onLoadingComplete={() => setImageLoading(null)} // Handle load complete
-                        onError={() => setImageLoading(null)} // Handle error
-                        onLoadStart={() => setImageLoading(index)} // Show loader on image load start
-                      />
-                    </Zoom>
+                      <Zoom>
+                        <Image
+                          src={image}
+                          alt={`Image ${index + 1}`}
+                          width={800} // Adjust the width as needed
+                          height={500} // Adjust the height as needed
+                          className={`bg-[#000000] h-[400px] lg:h-[450px] object-cover cursor-pointer ${
+                            isLoading ? "opacity-0" : "opacity-100"
+                          } transition-opacity duration-300`}
+                          onLoadingComplete={() => setIsLoading(false)}
+                          placeholder="empty" // Optional: you can use "empty" if you want a placeholder before loading
+                        />
+                      </Zoom>
+                    </div>
                   </CarouselItem>
                 ))}
               </CarouselContent>
@@ -380,13 +381,26 @@ export default function Ads({ ad, userId, userImage, userName }: CardProps) {
                       className="p-0 w-full rounded-lg"
                     >
                       <span key={index} onClick={() => handleImageClick(index)}>
-                        <Image
-                          src={image}
-                          alt="AdImage"
-                          className="h-[100px] rounded-lg bg-opacity-40 object-cover cursor-pointer border-2 border-transparent hover:border-emerald-500"
-                          width={244} // Adjust width to match the `w-36` Tailwind class
-                          height={196} // Adjust height to match the `h-24` Tailwind class
-                        />
+                        <div className="relative">
+                          {isLoadingsmall && (
+                            <div className="absolute inset-0 flex items-center justify-center bg-[#000000] bg-opacity-50">
+                              {/* Spinner or loading animation */}
+                              <div className="w-8 h-8 border-4 border-t-4 border-gray-300 border-t-green-500 rounded-full animate-spin"></div>
+                            </div>
+                          )}
+
+                          <Image
+                            src={image}
+                            alt={`Image ${index + 1}`}
+                            width={244} // Adjust width to match the `w-36` Tailwind class
+                            height={196} // Adjust height to match the `h-24` Tailwind class
+                            className={`h-[100px] rounded-lg bg-opacity-40 object-cover cursor-pointer border-2 border-transparent hover:border-emerald-500 ${
+                              isLoadingsmall ? "opacity-0" : "opacity-100"
+                            } transition-opacity duration-300`}
+                            onLoadingComplete={() => setIsLoadingsmall(false)}
+                            placeholder="empty" // Optional: you can use "empty" if you want a placeholder before loading
+                          />
+                        </div>
                       </span>
                     </div>
                   </CarouselItem>
@@ -414,16 +428,30 @@ export default function Ads({ ad, userId, userImage, userName }: CardProps) {
                           key={index}
                           className="relative flex flex-row flex-wrap justify-center"
                         >
-                          <Zoom>
-                            <Image
-                              src={image}
-                              alt={`Image ${index + 1}`}
-                              className="object-cover"
-                              width={900} // Max width of the image
-                              height={200} // Height of the image
-                              style={{ maxWidth: "100%", marginLeft: "0%" }} // Apply additional styles as needed
-                            />
-                          </Zoom>
+                          <div className="relative">
+                            {isLoadingpopup && (
+                              <div className="absolute inset-0 flex items-center justify-center bg-[#000000] bg-opacity-50">
+                                {/* Spinner or loading animation */}
+                                <div className="w-8 h-8 border-4 border-t-4 border-gray-300 border-t-green-500 rounded-full animate-spin"></div>
+                              </div>
+                            )}
+                            <Zoom>
+                              <Image
+                                src={image}
+                                alt={`Image ${index + 1}`}
+                                width={900} // Max width of the image
+                                height={200} // Height of the image
+                                style={{ maxWidth: "100%", marginLeft: "0%" }}
+                                className={`object-cover ${
+                                  isLoadingpopup ? "opacity-0" : "opacity-100"
+                                } transition-opacity duration-300`}
+                                onLoadingComplete={() =>
+                                  setIsLoadingpopup(false)
+                                }
+                                placeholder="empty" // Optional: you can use "empty" if you want a placeholder before loading
+                              />
+                            </Zoom>
+                          </div>
                         </CarouselItem>
                       ))}
                     </CarouselContent>

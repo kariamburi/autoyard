@@ -51,6 +51,8 @@ import Verification from "./Verification";
 import { IUser } from "@/lib/database/models/user.model";
 import Image from "next/image";
 import EditOutlinedIcon from "@mui/icons-material/EditOutlined";
+import Zoom from "react-medium-image-zoom";
+import "react-medium-image-zoom/dist/styles.css";
 type CollectionProps = {
   userId: string;
   loggedId: string;
@@ -104,7 +106,7 @@ const SellerProfile = ({ userId, loggedId, user }: CollectionProps) => {
   } catch {
     // Handle error when formatting date
   }
-
+  const [isLoading, setIsLoading] = useState(true);
   return (
     <div className="flex bg-white flex-col m-1 items-center min-w-[300px] lg:max-w-[350px]">
       <div className="flex flex-col items-center rounded-t-lg w-full p-1 bg-green-100">
@@ -168,13 +170,27 @@ const SellerProfile = ({ userId, loggedId, user }: CollectionProps) => {
                       <div className="p-0 rounded-[20px] m-2 shadow bg-white">
                         {user?.imageUrl && (
                           <div className="flex h-50 w-full flex-1 justify-center">
-                            <Image
-                              src={user?.imageUrl}
-                              alt="image"
-                              className="object-center rounded-t-[20px]"
-                              width={900}
-                              height={500}
-                            />
+                            <div className="relative">
+                              {isLoading && (
+                                <div className="absolute inset-0 flex items-center justify-center bg-[#000000] bg-opacity-50">
+                                  {/* Spinner or loading animation */}
+                                  <div className="w-8 h-8 border-4 border-t-4 border-gray-300 border-t-green-500 rounded-full animate-spin"></div>
+                                </div>
+                              )}
+                              <Zoom>
+                                <Image
+                                  src={user?.imageUrl}
+                                  alt="image"
+                                  width={900}
+                                  height={500}
+                                  className={`object-center rounded-t-[20px] ${
+                                    isLoading ? "opacity-0" : "opacity-100"
+                                  } transition-opacity duration-300`}
+                                  onLoadingComplete={() => setIsLoading(false)}
+                                  placeholder="empty" // Optional: you can use "empty" if you want a placeholder before loading
+                                />
+                              </Zoom>
+                            </div>
                           </div>
                         )}
                         <div className="m-3 p-1">

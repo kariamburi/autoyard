@@ -10,7 +10,7 @@ import { getData } from "@/lib/actions/transactionstatus";
 import { sendEmail } from "@/lib/actions/sendEmail";
 import { sendSMS } from "@/lib/actions/sendsmsnow";
 import CircularProgress from "@mui/material/CircularProgress";
-
+import Image from "next/image";
 type chatProps = {
   userId: string;
   userName: string;
@@ -114,15 +114,17 @@ const ChatButton = ({ ad, userId, userName, userImage }: chatProps) => {
                 ? `${ad.description.substring(0, 80)}...`
                 : ad.description}
             </p>
-            <span className="text-[12px] lg:text-lg font-bold w-min rounded-full mt-1 text-emerald-950">
+            <span className="text-sm lg:text-lg font-bold w-min rounded-full mt-1 text-emerald-950">
               {formatKsh(ad.price)}
             </span>
-            <img
+
+            <Image
               src={ad.imageUrls[0]}
               alt={ad.title}
               className="w-full h-48 object-cover mb-4 rounded"
+              width={800} // Adjust width as needed
+              height={300} // Adjust height as needed
             />
-
             <textarea
               value={message}
               onChange={(e) => setMessage(e.target.value)}

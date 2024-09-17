@@ -12,6 +12,7 @@ import { ScrollArea, ScrollBar } from "../ui/scroll-area";
 import Zoom from "react-medium-image-zoom";
 import "react-medium-image-zoom/dist/styles.css";
 import { useToast } from "@/components/ui/use-toast";
+
 type FileUploaderProps = {
   onFieldChange: (urls: string[]) => void;
   imageUrls: string[];

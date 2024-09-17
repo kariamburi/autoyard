@@ -5,6 +5,7 @@ import Zoom from "react-medium-image-zoom";
 import "react-medium-image-zoom/dist/styles.css";
 import { format, isToday, isYesterday } from "date-fns";
 import Image from "next/image";
+import { useState } from "react";
 interface MessageProps {
   message: {
     uid: string;
@@ -45,6 +46,7 @@ const Message = ({
     }
     return title;
   };
+  const [isLoading, setIsLoading] = useState(true);
   return (
     <div className="">
       <div className="chatbox p-4 bg-gray-50">
@@ -53,10 +55,12 @@ const Message = ({
             message.uid === uid ? "justify-end" : "justify-start"
           }`}
         >
-          <img
+          <Image
             src={message.avatar}
             alt="avatar"
             className="w-10 h-10 rounded-full mr-3"
+            height={200}
+            width={200}
           />
           <div
             className={`message-content max-w-xs rounded-lg p-3 ${
@@ -75,12 +79,24 @@ const Message = ({
                 : "No date"}
             </small>
             {message.imageUrl && (
-              <div className="bg-black">
+              <div className="relative">
+                {isLoading && (
+                  <div className="absolute inset-0 flex items-center justify-center bg-[#000000] bg-opacity-50">
+                    {/* Spinner or loading animation */}
+                    <div className="w-8 h-8 border-4 border-t-4 border-gray-300 border-t-green-500 rounded-full animate-spin"></div>
+                  </div>
+                )}
                 <Zoom>
-                  <img
-                    src={message.imageUrl}
-                    alt="ad image"
-                    className="mt-2 rounded-lg cursor-pointer"
+                  <Image
+                    src={message.imageUrl} // Image URL coming from the message object
+                    alt="ad image" // Alt text for accessibility
+                    width={500} // Replace with actual width of the image
+                    height={300} // Replace with actual height of the image
+                    className={`mt-2 rounded-lg cursor-pointer ${
+                      isLoading ? "opacity-0" : "opacity-100"
+                    } transition-opacity duration-300`}
+                    onLoadingComplete={() => setIsLoading(false)}
+                    placeholder="empty" // Optional: you can use "empty" if you want a placeholder before loading
                   />
                 </Zoom>
               </div>
