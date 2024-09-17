@@ -174,7 +174,7 @@ const VerticalCard = ({ userId, ad, isAdCreator }: CardProps) => {
           href={`/ads/${ad._id}`}
           className="no-underline text-[12px] lg:text-sm"
         >
-          {truncateTitle(ad.title, 30)}
+          {truncateTitle(ad.title, 25)}
           {/* Change 20 to your desired character limit */}
         </Link>
         {ad.calcDistance && (
@@ -184,11 +184,11 @@ const VerticalCard = ({ userId, ad, isAdCreator }: CardProps) => {
         )}
         <div className="text-gray-500 text-[12px] hidden lg:inline">
           <LocationOnIcon sx={{ fontSize: 14 }} />
-          {truncateaddress(ad.address, 40)}
+          {truncateaddress(ad.address, 35)}
         </div>
         <div className="text-gray-500 text-[10px] lg:hidden">
           <LocationOnIcon sx={{ fontSize: 14 }} />
-          {truncateaddress(ad.address, 30)}
+          {truncateaddress(ad.address, 25)}
         </div>
         <div className="flex justify-between w-full gap-1 p-1">
           {ad.vehiclecondition && (
