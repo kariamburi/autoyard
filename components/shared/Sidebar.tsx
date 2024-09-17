@@ -16,6 +16,7 @@ import UnreadmessagesPeruser from "./UnreadmessagesPeruser";
 import Image from "next/image";
 import Skeleton from "@mui/material/Skeleton";
 import { ScrollArea } from "../ui/scroll-area";
+import { format, isToday, isYesterday } from "date-fns";
 type sidebarProps = {
   userId: string;
 };
@@ -117,6 +118,24 @@ const Sidebar = ({ userId }: sidebarProps) => {
               <ul className="divide-y divide-gray-200">
                 {messages.map((message, index) => {
                   const isActive = pathname === "/chat/" + message.uid;
+                  let formattedCreatedAt = "";
+                  try {
+                    const createdAtDate = new Date(
+                      message.createdAt.seconds * 1000
+                    );
+                    if (isToday(createdAtDate)) {
+                      formattedCreatedAt =
+                        "Today " + format(createdAtDate, "HH:mm");
+                    } else if (isYesterday(createdAtDate)) {
+                      formattedCreatedAt =
+                        "Yesterday " + format(createdAtDate, "HH:mm");
+                    } else {
+                      formattedCreatedAt = format(
+                        createdAtDate,
+                        "dd-MM-yyyy HH:mm"
+                      );
+                    }
+                  } catch {}
                   return (
                     <li
                       key={index}
@@ -147,9 +166,7 @@ const Sidebar = ({ userId }: sidebarProps) => {
                         </p>
                       </div>
                       <div className="whitespace-nowrap text-sm text-gray-500">
-                        {new Date(
-                          message.createdAt.seconds * 1000
-                        ).toLocaleTimeString()}
+                        {formattedCreatedAt}
                       </div>
                     </li>
                   );
