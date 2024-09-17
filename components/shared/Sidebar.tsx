@@ -14,6 +14,7 @@ import CircularProgress from "@mui/material/CircularProgress";
 import { db } from "@/lib/firebase";
 import UnreadmessagesPeruser from "./UnreadmessagesPeruser";
 import Image from "next/image";
+import Skeleton from "@mui/material/Skeleton";
 type sidebarProps = {
   userId: string;
 };
@@ -69,6 +70,8 @@ const Sidebar = ({ userId }: sidebarProps) => {
       } catch (error) {
         console.error("Error getting last messages:", error);
         return [];
+      } finally {
+        setLoading(false);
       }
     };
 
@@ -91,56 +94,80 @@ const Sidebar = ({ userId }: sidebarProps) => {
   return (
     <div>
       {loading ? (
-        <div className="flex justify-center items-center h-64">
-          <div className="flex gap-1 items-center">
+        <div className="flex justify-center items-center">
+          {/* <div className="flex gap-1 items-center">
             <CircularProgress sx={{ color: "black" }} size={30} />
             Loading chats...
           </div>
+          */}
+          <div className="flex flex-col justify-center">
+            <Skeleton
+              variant="rectangular"
+              animation="wave"
+              //  height={50}
+              className="rounded-sm w-[350px] h-36 mb-1"
+            />
+            <Skeleton
+              variant="rectangular"
+              animation="wave"
+              //height={50}
+              className="rounded-sm w-[350px] h-36 mb-1"
+            />
+          </div>
         </div>
-      ) : (
-        <div className="w-full max-w-md mx-auto bg-white shadow-md rounded-lg">
-          <ul className="divide-y divide-gray-200">
-            {messages.map((message, index) => {
-              const isActive = pathname === "/chat/" + message.uid;
-              return (
-                <li
-                  key={index}
-                  onClick={() => handle(message.uid, message.recipientUid)}
-                  className={`p-4 flex items-center space-x-4 hover:bg-gray-100 hover:cursor-pointer ${
-                    isActive ? "bg-emerald-100" : ""
-                  }`}
-                >
-                  <div className="flex-shrink-0">
-                    <Image
-                      className="h-10 w-10 rounded-full"
-                      src={message.avatar}
-                      alt={message.name}
-                      height={200}
-                      width={200}
-                    />
-                  </div>
-                  <div className="flex-1 min-w-0">
-                    <p className="text-sm font-medium text-gray-900 truncate">
-                      {message.name}
-                    </p>
-                    <p className="flex gap-1 text-sm text-gray-500 truncate">
-                      {truncateTitle(message.text, 18)}
-                      <UnreadmessagesPeruser
-                        uid={message.uid}
-                        recipientUid={userId}
+      ) : messages.length > 0 ? (
+        <>
+          <div className="w-full max-w-md mx-auto bg-white shadow-md rounded-lg">
+            <ul className="divide-y divide-gray-200">
+              {messages.map((message, index) => {
+                const isActive = pathname === "/chat/" + message.uid;
+                return (
+                  <li
+                    key={index}
+                    onClick={() => handle(message.uid, message.recipientUid)}
+                    className={`p-4 flex items-center space-x-4 hover:bg-gray-100 hover:cursor-pointer ${
+                      isActive ? "bg-emerald-100" : ""
+                    }`}
+                  >
+                    <div className="flex-shrink-0">
+                      <Image
+                        className="h-10 w-10 rounded-full"
+                        src={message.avatar}
+                        alt={message.name}
+                        height={200}
+                        width={200}
                       />
-                    </p>
-                  </div>
-                  <div className="whitespace-nowrap text-sm text-gray-500">
-                    {new Date(
-                      message.createdAt.seconds * 1000
-                    ).toLocaleTimeString()}
-                  </div>
-                </li>
-              );
-            })}
-          </ul>
-        </div>
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <p className="text-sm font-medium text-gray-900 truncate">
+                        {message.name}
+                      </p>
+                      <p className="flex gap-1 text-sm text-gray-500 truncate">
+                        {truncateTitle(message.text, 18)}
+                        <UnreadmessagesPeruser
+                          uid={message.uid}
+                          recipientUid={userId}
+                        />
+                      </p>
+                    </div>
+                    <div className="whitespace-nowrap text-sm text-gray-500">
+                      {new Date(
+                        message.createdAt.seconds * 1000
+                      ).toLocaleTimeString()}
+                    </div>
+                  </li>
+                );
+              })}
+            </ul>
+          </div>
+        </>
+      ) : (
+        <>
+          <div className="flex-center wrapper min-h-[200px] w-full flex-col gap-3 rounded-[14px] bg-grey-50 py-28 text-center">
+            <h3 className="font-bold text-[16px] lg:text-[25px]">No Chat</h3>
+            <p className="text-sm lg:p-regular-14">You have (0) messages</p>
+          </div>
+        </>
       )}
     </div>
   );
