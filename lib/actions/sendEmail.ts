@@ -9,8 +9,8 @@ export async function sendEmail(
 
   let transporter = nodemailer.createTransport({
     host: process.env.SMTP_HOST, // your SMTP host
-    port: 465, // or 465 if SSL
-    secure: true, // true for 465, false for other ports
+    port: 587, // or 465 if SSL
+    secure: false, // true for 465, false for other ports
     auth: {
       user: process.env.SMTP_USER, // your email address
       pass: process.env.SMTP_PASS, // your email password
@@ -19,7 +19,7 @@ export async function sendEmail(
 
   // Compose the email
   let mailOptions = {
-    from: '"Autoyard Support" <support@autoyard.co.ke>', // sender address
+    from: '"Autoyard Notification" <no-reply@autoyard.co.ke>', // sender address
     to: recipientEmail, // recipient email
     subject: 'New Inquiry on Your Ad', // subject line
     text: `You have a new inquiry on your ad titled "${adTitle}".\n\nMessage: ${message}\n\nView the ad here: ${adUrl}`, // plain text body
