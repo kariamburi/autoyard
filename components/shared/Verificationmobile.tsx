@@ -142,7 +142,7 @@ const Verificationmobile: React.FC<SettingsProp> = ({
       {user.verified && user?.verified[0]?.accountverified === true ? (
         <ShowPopupmobile
           trigger={
-            <p className="text-[#30AF5B] p-1 bg-emerald-200 rounded-full text-xs cursor-pointer hover:underline">
+            <p className="text-white p-1 bg-[#30AF5B] rounded-sm text-xs cursor-pointer hover:underline">
               <VerifiedUserOutlinedIcon sx={{ fontSize: 16 }} />
               Account Verified
             </p>
@@ -154,7 +154,7 @@ const Verificationmobile: React.FC<SettingsProp> = ({
           {isAdCreator ? (
             <ShowPopupmobile
               trigger={
-                <p className="text-gray-600 p-1 bg-white rounded-full text-xs cursor-pointer hover:underline">
+                <p className="text-gray-600 p-1 bg-white rounded-sm text-xs cursor-pointer hover:underline">
                   <ShieldOutlinedIcon sx={{ fontSize: 16 }} />
                   Account unverified
                 </p>
@@ -164,7 +164,7 @@ const Verificationmobile: React.FC<SettingsProp> = ({
           ) : (
             <ShowPopupmobile
               trigger={
-                <p className="text-gray-600 p-1 bg-white rounded-full text-xs cursor-pointer hover:underline">
+                <p className="text-gray-600 p-1 bg-white rounded-sm text-xs cursor-pointer hover:underline">
                   <ShieldOutlinedIcon sx={{ fontSize: 16 }} />
                   Account unverified
                 </p>

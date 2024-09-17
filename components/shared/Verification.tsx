@@ -141,7 +141,7 @@ const Verification: React.FC<SettingsProp> = ({
       {user.verified && user?.verified[0]?.accountverified === true ? (
         <ShowPopup
           trigger={
-            <p className="text-[#30AF5B] p-1 bg-white rounded-full text-xs cursor-pointer hover:underline">
+            <p className="text-white p-1 bg-[#30AF5B] rounded-sm text-xs cursor-pointer hover:underline">
               <VerifiedUserOutlinedIcon sx={{ fontSize: 16 }} />
               Account Verified
             </p>
@@ -153,7 +153,7 @@ const Verification: React.FC<SettingsProp> = ({
           {isAdCreator ? (
             <ShowPopup
               trigger={
-                <p className="text-gray-600 p-1 bg-white rounded-full text-xs cursor-pointer hover:underline">
+                <p className="text-gray-600 p-1 bg-white rounded-sm text-xs cursor-pointer hover:underline">
                   <ShieldOutlinedIcon sx={{ fontSize: 16 }} />
                   Account unverified
                 </p>
@@ -163,7 +163,7 @@ const Verification: React.FC<SettingsProp> = ({
           ) : (
             <ShowPopup
               trigger={
-                <p className="text-gray-600 p-1 bg-white rounded-full text-xs cursor-pointer hover:underline">
+                <p className="text-gray-600 p-1 bg-white rounded-sm text-xs cursor-pointer hover:underline">
                   <ShieldOutlinedIcon sx={{ fontSize: 16 }} />
                   Account unverified
                 </p>

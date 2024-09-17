@@ -13,7 +13,7 @@ import { useRouter, usePathname } from "next/navigation";
 import CircularProgress from "@mui/material/CircularProgress";
 import { db } from "@/lib/firebase";
 import UnreadmessagesPeruser from "./UnreadmessagesPeruser";
-
+import Image from "next/image";
 type sidebarProps = {
   userId: string;
 };
@@ -53,30 +53,28 @@ const Sidebar = ({ userId }: sidebarProps) => {
           orderBy("createdAt", "desc")
         );
         const querySnapshot = await getDocs(messagesQuery);
-
         querySnapshot.forEach((doc) => {
           const message = doc.data();
           if (message.recipientUid === userId) {
             if (
-              !lastMessages[message.recipientUid] ||
+              !lastMessages[message.uid] ||
               message.createdAt.seconds >
-                lastMessages[message.recipientUid].createdAt.seconds
+                lastMessages[message.uid].createdAt.seconds
             ) {
-              lastMessages[message.recipientUid] = message;
+              lastMessages[message.uid] = message;
             }
           }
         });
-
-        setMessages(Object.values(lastMessages));
+        return Object.values(lastMessages);
       } catch (error) {
         console.error("Error getting last messages:", error);
-        setMessages([]); // Ensure messages is set to an empty array in case of error
-      } finally {
-        setLoading(false);
+        return [];
       }
     };
 
-    getLastMessagesInConversations();
+    getLastMessagesInConversations().then((lastMessages) => {
+      setMessages(lastMessages);
+    });
   }, [userId]);
 
   const truncateTitle = (title: string, maxLength: number) => {
@@ -113,10 +111,12 @@ const Sidebar = ({ userId }: sidebarProps) => {
                   }`}
                 >
                   <div className="flex-shrink-0">
-                    <img
+                    <Image
                       className="h-10 w-10 rounded-full"
                       src={message.avatar}
                       alt={message.name}
+                      height={200}
+                      width={200}
                     />
                   </div>
                   <div className="flex-1 min-w-0">
