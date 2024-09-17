@@ -66,7 +66,7 @@ const Chat = ({ senderName, senderId, senderImage }: sidebarProps) => {
 
   return (
     <div className="w-full flex flex-col items-center">
-      <div className="w-full flex p-1">
+      <div className="w-full flex p-1 mb-20">
         <div className="hidden lg:inline mr-5">
           <div className="w-full bg-gray-200 w-[300px] rounded-lg p-0">
             <div className="max-h-[500px] w-full rounded-md p-2 overflow-y-auto">
@@ -209,7 +209,7 @@ const Chat = ({ senderName, senderId, senderImage }: sidebarProps) => {
             </div>
           </div>
 
-          <div className="p-1 mb-20">
+          <div className="p-1">
             <div className="flex justify-between bg-emerald-800 text-white p-2 rounded-t-lg">
               <div className="flex items-center gap-2">
                 {recipientUidImage && (

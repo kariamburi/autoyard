@@ -15,6 +15,7 @@ import { db } from "@/lib/firebase";
 import UnreadmessagesPeruser from "./UnreadmessagesPeruser";
 import Image from "next/image";
 import Skeleton from "@mui/material/Skeleton";
+import { ScrollArea } from "../ui/scroll-area";
 type sidebarProps = {
   userId: string;
 };
@@ -105,60 +106,56 @@ const Sidebar = ({ userId }: sidebarProps) => {
               variant="rectangular"
               animation="wave"
               //  height={50}
-              className="rounded-sm w-[350px] h-36 mb-1"
-            />
-            <Skeleton
-              variant="rectangular"
-              animation="wave"
-              //height={50}
-              className="rounded-sm w-[350px] h-36 mb-1"
+              className="rounded-sm w-[350px] h-64 mb-1"
             />
           </div>
         </div>
       ) : messages.length > 0 ? (
         <>
           <div className="w-full max-w-md mx-auto bg-white shadow-md rounded-lg">
-            <ul className="divide-y divide-gray-200">
-              {messages.map((message, index) => {
-                const isActive = pathname === "/chat/" + message.uid;
-                return (
-                  <li
-                    key={index}
-                    onClick={() => handle(message.uid, message.recipientUid)}
-                    className={`p-4 flex items-center space-x-4 hover:bg-gray-100 hover:cursor-pointer ${
-                      isActive ? "bg-emerald-100" : ""
-                    }`}
-                  >
-                    <div className="flex-shrink-0">
-                      <Image
-                        className="h-10 w-10 rounded-full"
-                        src={message.avatar}
-                        alt={message.name}
-                        height={200}
-                        width={200}
-                      />
-                    </div>
-                    <div className="flex-1 min-w-0">
-                      <p className="text-sm font-medium text-gray-900 truncate">
-                        {message.name}
-                      </p>
-                      <p className="flex gap-1 text-sm text-gray-500 truncate">
-                        {truncateTitle(message.text, 18)}
-                        <UnreadmessagesPeruser
-                          uid={message.uid}
-                          recipientUid={userId}
+            <ScrollArea className="h-[72vh] w-full p-2">
+              <ul className="divide-y divide-gray-200">
+                {messages.map((message, index) => {
+                  const isActive = pathname === "/chat/" + message.uid;
+                  return (
+                    <li
+                      key={index}
+                      onClick={() => handle(message.uid, message.recipientUid)}
+                      className={`p-4 flex items-center space-x-4 hover:bg-gray-100 hover:cursor-pointer ${
+                        isActive ? "bg-emerald-100" : ""
+                      }`}
+                    >
+                      <div className="flex-shrink-0">
+                        <Image
+                          className="h-10 w-10 rounded-full"
+                          src={message.avatar}
+                          alt={message.name}
+                          height={200}
+                          width={200}
                         />
-                      </p>
-                    </div>
-                    <div className="whitespace-nowrap text-sm text-gray-500">
-                      {new Date(
-                        message.createdAt.seconds * 1000
-                      ).toLocaleTimeString()}
-                    </div>
-                  </li>
-                );
-              })}
-            </ul>
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <p className="text-sm font-medium text-gray-900 truncate">
+                          {message.name}
+                        </p>
+                        <p className="flex gap-1 text-sm text-gray-500 truncate">
+                          {truncateTitle(message.text, 18)}
+                          <UnreadmessagesPeruser
+                            uid={message.uid}
+                            recipientUid={userId}
+                          />
+                        </p>
+                      </div>
+                      <div className="whitespace-nowrap text-sm text-gray-500">
+                        {new Date(
+                          message.createdAt.seconds * 1000
+                        ).toLocaleTimeString()}
+                      </div>
+                    </li>
+                  );
+                })}
+              </ul>
+            </ScrollArea>
           </div>
         </>
       ) : (
