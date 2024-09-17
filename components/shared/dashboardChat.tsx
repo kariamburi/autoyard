@@ -111,18 +111,16 @@ const DashboardChat = ({
       <div className="max-w-6xl mx-auto flex mt-[50px] lg:mt-[60px] mb-0 p-1">
         <div className="hidden lg:inline mr-5">
           <div className="bg-white w-full p-0">
-            <ScrollArea className="max-h-[400px] w-[310px] bg-white rounded-md border p-0">
-              <div className="p-1 w-full items-center justify-center">
-                <span className="logo font-bold text-[25px] text-emerald-950">
-                  Messanger
-                </span>
-                <div className="flex gap-1 items-center">
-                  <PeopleOutlinedIcon />
-                  Latest Chats
-                </div>
+            <div className="p-1 w-full items-center justify-center">
+              <span className="logo font-bold text-[25px] text-emerald-950">
+                Messanger
+              </span>
+              <div className="flex gap-1 items-center">
+                <PeopleOutlinedIcon />
+                Latest Chats
               </div>
-              <Sidebar userId={senderId} />
-            </ScrollArea>
+            </div>
+            <Sidebar userId={senderId} />
           </div>
         </div>
 

@@ -49,7 +49,7 @@ const Message = ({
   const [isLoading, setIsLoading] = useState(true);
   return (
     <div className="">
-      <div className="chatbox p-4 bg-gray-50">
+      <div className="chatbox p-4">
         <div
           className={`flex items-start mb-4 ${
             message.uid === uid ? "justify-end" : "justify-start"
