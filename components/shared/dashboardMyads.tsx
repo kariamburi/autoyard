@@ -16,7 +16,11 @@ import {
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
-import { formUrlQuery, removeKeysFromQuery } from "@/lib/utils";
+import {
+  formUrlQuery,
+  formUrlQuerymultiple,
+  removeKeysFromQuery,
+} from "@/lib/utils";
 import dynamic from "next/dynamic";
 import Skeleton from "@mui/material/Skeleton";
 import { IUser } from "@/lib/database/models/user.model";
@@ -126,14 +130,71 @@ CollectionProps) => {
   }, [query, searchParams, router]);
 
   const handleSortChange = (selectedOption: string) => {
-    // Do something with the selected sorting option
-    console.log("Selected sorting option:", selectedOption);
-    setQuery(selectedOption);
-    // Example: If "lowest" option is selected, perform some action
-    if (selectedOption === "lowest") {
-      // Perform your action here
+    if (selectedOption === "nearby") {
+      getCurrentLocation(selectedOption);
+    } else {
+      let newUrl = "";
+      if (selectedOption) {
+        newUrl = formUrlQuery({
+          params: searchParams.toString(),
+          key: "sortby",
+          value: selectedOption,
+        });
+      } else {
+        newUrl = removeKeysFromQuery({
+          params: searchParams.toString(),
+          keysToRemove: ["sortby"],
+        });
+      }
+      setQuery(selectedOption);
+      router.push(newUrl, { scroll: false });
     }
+    //  setActiveButton(1);
   };
+
+  function getCurrentLocation(selectedOption: string) {
+    // Check if geolocation is supported by the browser
+    if ("geolocation" in navigator) {
+      // Request permission to access user's location
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          // Success callback, position object contains coordinates
+          const latitude = position.coords.latitude;
+          const longitude = position.coords.longitude;
+
+          let newUrl = "";
+
+          if (latitude && longitude) {
+            newUrl = formUrlQuerymultiple({
+              params: searchParams.toString(),
+              updates: {
+                latitude: latitude.toString(),
+                longitude: longitude.toString(),
+                sortby: selectedOption,
+              },
+            });
+            setQuery(selectedOption);
+          } else {
+            newUrl = removeKeysFromQuery({
+              params: searchParams.toString(),
+              keysToRemove: ["sortby"],
+            });
+          }
+
+          router.push(newUrl, { scroll: false });
+        },
+        (error) => {
+          // Error callback, handle errors here
+          console.error("Error getting location:", error.message);
+          alert("error: " + error.message.toString());
+        }
+      );
+    } else {
+      // Geolocation not supported by the browser
+      console.error("Geolocation is not supported by this browser.");
+      alert("Geolocation is not supported by this browser. ");
+    }
+  }
 
   return (
     <>
