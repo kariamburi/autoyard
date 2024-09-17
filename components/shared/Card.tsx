@@ -148,11 +148,16 @@ const Card = ({ ad, hasOrderLink, hidePrice, userId }: CardProps) => {
           </div>
         )}
 
-        <Link
-          href={`/ads/${ad._id}`}
-          className="no-underline text-[12px] lg:text-sm"
-        >
-          {truncateTitle(ad.title, 25)}
+        <Link href={`/ads/${ad._id}`} className="no-underline">
+          <div className="text-gray-500 text-sm hidden lg:inline">
+            <LocationOnIcon sx={{ fontSize: 14 }} />
+            {truncateTitle(ad.title, 35)}
+          </div>
+          <div className="text-gray-500 text-[12px] lg:hidden">
+            <LocationOnIcon sx={{ fontSize: 14 }} />
+            {truncateTitle(ad.title, 20)}
+          </div>
+
           {/* Change 20 to your desired character limit */}
         </Link>
         {ad.calcDistance && (
