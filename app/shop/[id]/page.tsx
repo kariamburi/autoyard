@@ -11,6 +11,7 @@ import { auth } from "@clerk/nextjs/server";
 import Image from "next/image";
 import DashboardMyads from "@/components/shared/dashboardMyads";
 import Footersub from "@/components/shared/Footersub";
+import { Toaster } from "@/components/ui/toaster";
 
 const myads = async ({ params: { id }, searchParams }: SearchParamProps) => {
   const { sessionClaims } = auth();
