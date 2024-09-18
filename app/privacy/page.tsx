@@ -283,8 +283,11 @@ const Privacy = async () => {
           </div>
         </div>
       </div>
-      <Footersub />
-      <BottomNavigation />
+      <footer>
+        <div>
+          <Footersub />
+        </div>
+      </footer>
     </>
   );
 };
