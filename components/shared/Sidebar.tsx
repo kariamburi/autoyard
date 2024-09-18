@@ -108,7 +108,7 @@ const Sidebar = ({ userId }: sidebarProps) => {
                 variant="rectangular"
                 animation="wave"
                 //  height={50}
-                className="rounded-sm w-36 h-36"
+                className="rounded-sm w-8 h-36"
               />
               <Skeleton
                 variant="rectangular"
@@ -122,7 +122,7 @@ const Sidebar = ({ userId }: sidebarProps) => {
                 variant="rectangular"
                 animation="wave"
                 //  height={50}
-                className="rounded-sm w-36 h-36"
+                className="rounded-sm w-8 h-36"
               />
               <Skeleton
                 variant="rectangular"

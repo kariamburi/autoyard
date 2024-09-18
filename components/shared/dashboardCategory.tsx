@@ -445,13 +445,22 @@ CollectionProps) => {
                     />
                   </div>
 
-                  <div
-                    onClick={togglePopup}
-                    className="flex cursor-pointer text-sm bg-[#000000] hover:bg-emerald-600 text-white rounded-sm p-1 justify-between items-center"
-                  >
-                    <SortOutlinedIcon />
-                    Filter
-                  </div>
+                  <TooltipProvider>
+                    <Tooltip>
+                      <TooltipTrigger asChild>
+                        <div
+                          onClick={togglePopup}
+                          className="flex cursor-pointer text-sm bg-[#000000] hover:bg-emerald-600 text-white rounded-sm p-1 justify-between items-center"
+                        >
+                          <SortOutlinedIcon />
+                          Filter
+                        </div>
+                      </TooltipTrigger>
+                      <TooltipContent>
+                        <p>Advanced Filter</p>
+                      </TooltipContent>
+                    </Tooltip>
+                  </TooltipProvider>
                 </section>
                 {showPopup && (
                   <div className="bg-black bg-opacity-70 fixed top-0 left-0 w-full h-screen flex justify-center items-center z-50">
