@@ -16,7 +16,7 @@ const About = async () => {
   return (
     <>
       <Head>
-        <title>About AutoYard | Kenya's Leading Vehicle Marketplace</title>
+        <title>About AutoYard | Kenya&apos;s Leading Vehicle Marketplace</title>
         <meta
           name="description"
           content="Learn about AutoYard.co.ke, Kenya's premier platform for buying and selling vehicles. From cars to heavy-duty machinery, we connect buyers and sellers nationwide."
