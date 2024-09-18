@@ -9,6 +9,7 @@ import Image from "next/image";
 import BottomNavigation from "@/components/shared/BottomNavigation";
 import Footersub from "@/components/shared/Footersub";
 import Head from "next/head";
+
 const Privacy = async () => {
   const { sessionClaims } = auth();
   const userId = sessionClaims?.userId as string;
@@ -216,58 +217,76 @@ const Privacy = async () => {
               </ul>
 
               <h2 className="text-xl font-semibold mt-6 mb-2">
-                6. Third-Party Links
+                6. Account Deletion Policy
               </h2>
 
               <p className="mb-4">
-                Our website may contain links to third-party websites. We are
-                not responsible for the privacy practices or content of these
-                third-party sites. We encourage you to review the privacy
-                policies of any third-party sites you visit.
+                If you choose to delete your account, please note the following:
               </p>
+              <ul className="list-disc list-inside ml-6 mb-4">
+                <li>
+                  Your account information and data will be permanently deleted
+                  and cannot be recovered.
+                </li>
+                <li>
+                  You will no longer have access to any data or content
+                  associated with your account.
+                </li>
+                <li>
+                  Any vehicle listings you have posted will be removed from the
+                  website.
+                </li>
+                <li>
+                  To delete your account: Go to "Manage Account" in your account
+                  settings. Select the "Security" tab. Click on the "Delete
+                  Account" button.
+                </li>
+                <li>
+                  Please contact our support team if you need assistance with
+                  account deletion.
+                </li>
+              </ul>
 
               <h2 className="text-xl font-semibold mt-6 mb-2">
                 7. Changes to This Privacy Policy
               </h2>
 
               <p className="mb-4">
-                We may update our Privacy Policy from time to time. We will
+                We may update this Privacy Policy from time to time. We will
                 notify you of any changes by posting the new Privacy Policy on
-                this page and updating the &quot;Last Updated &quot; date at the
-                bottom of this section. You are advised to review this Privacy
-                Policy periodically for any changes.
+                our website. You are advised to review this Privacy Policy
+                periodically for any changes. Changes to this Privacy Policy are
+                effective when they are posted on this page.
               </p>
 
               <h2 className="text-xl font-semibold mt-6 mb-2">8. Contact Us</h2>
 
-              <p className="mb-2">
+              <p className="mb-4">
                 If you have any questions about this Privacy Policy, please
                 contact us at:
               </p>
-              <p className="mb-2">
-                Email:{" "}
-                <a
-                  href="mailto:support@AutoYard.co.ke"
-                  className="text-emerald-600 hover:underline"
-                >
-                  support@AutoYard.co.ke
-                </a>
-              </p>
-              <p className="mb-4">
-                Address: AutoYard.co.ke, 1195-20300 Nyahururu, Kenya
-              </p>
+              <ul className="list-disc list-inside ml-6 mb-4">
+                <li>
+                  Email:{" "}
+                  <a href="mailto:support@autoyard.co.ke">
+                    support@autoyard.co.ke
+                  </a>
+                </li>
+                <li>Address: AutoYard, [Your Address], Kenya</li>
+              </ul>
 
-              <p className="italic">Last Updated: 08/29/2024</p>
+              <p className="mb-4">
+                Thank you for visiting AutoYard.co.ke and reviewing our Privacy
+                Policy.
+              </p>
             </div>
           </div>
         </div>
       </div>
-      <footer>
-        <div>
-          <Footersub />
-        </div>
-      </footer>
+      <Footersub />
+      <BottomNavigation />
     </>
   );
 };
+
 export default Privacy;
