@@ -237,9 +237,9 @@ const Privacy = async () => {
                   website.
                 </li>
                 <li>
-                  To delete your account: Go to "Manage Account" in your account
-                  settings. Select the "Security" tab. Click on the "Delete
-                  Account" button.
+                  To delete your account: Go to &quot;Manage Account &quot; in
+                  your account settings. Select the &quot;Security&quot; tab.
+                  Click on the &quot;Delete Account&quot; button.
                 </li>
                 <li>
                   Please contact our support team if you need assistance with
@@ -272,7 +272,6 @@ const Privacy = async () => {
                     support@autoyard.co.ke
                   </a>
                 </li>
-                <li>Address: AutoYard, [Your Address], Kenya</li>
               </ul>
 
               <p className="mb-4">
