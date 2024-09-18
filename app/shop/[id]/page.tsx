@@ -119,6 +119,7 @@ const myads = async ({ params: { id }, searchParams }: SearchParamProps) => {
           urlParamName="adsPage"
           totalPages={organizedAds?.totalPages}
         />
+        <Toaster />
       </div>
       <footer>
         <Footersub />

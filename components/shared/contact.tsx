@@ -12,6 +12,7 @@ import Image from "next/image";
 import SellerProfileMobile from "./SellerProfileMobile";
 import Verificationmobile from "./Verificationmobile";
 import Ratingsmobile from "./ratingsmobile";
+import { updatecalls, updatewhatsapp } from "@/lib/actions/ad.actions";
 type chatProps = {
   userId: string;
   userName: string;
@@ -20,10 +21,30 @@ type chatProps = {
 };
 const Contact = ({ ad, userId, userName, userImage }: chatProps) => {
   const [showphone, setshowphone] = useState(false);
-  const handleShowPhoneClick = (e: any) => {
+  const handleShowPhoneClick = async (e: any) => {
     setshowphone(true);
+    const calls = (Number(ad.calls ?? "0") + 1).toString();
+    const _id = ad._id;
+    await updatecalls({
+      _id,
+      calls,
+      path: `/ads/${ad._id}`,
+    });
     window.location.href = `tel:${ad.phone}`;
   };
+
+  const handlewhatsappClick = async (e: any) => {
+    setshowphone(true);
+    const whatsapp = (Number(ad.whatsapp ?? "0") + 1).toString();
+    const _id = ad._id;
+    await updatewhatsapp({
+      _id,
+      whatsapp,
+      path: `/ads/${ad._id}`,
+    });
+    window.location.href = `https://wa.me/${ad.organizer.whatsapp}/`;
+  };
+
   const isAdCreator = userId === ad.organizer._id;
   return (
     <div className="w-full">
@@ -90,13 +111,14 @@ const Contact = ({ ad, userId, userName, userImage }: chatProps) => {
           {ad.organizer.whatsapp && (
             <>
               <SignedIn>
-                <a href={`https://wa.me/${ad.organizer.whatsapp}/`}>
-                  <button className="hover:bg-emerald-700 bg-[#30AF5B] text-white text-xs mt-2 p-2 rounded-lg shadow">
-                    <WhatsAppIcon sx={{ marginRight: "5px" }} />
+                <button
+                  onClick={handlewhatsappClick}
+                  className="hover:bg-emerald-700 bg-[#30AF5B] text-white text-xs mt-2 p-2 rounded-lg shadow"
+                >
+                  <WhatsAppIcon sx={{ marginRight: "5px" }} />
 
-                    <div className="hidden lg:inline">WhatsApp</div>
-                  </button>
-                </a>
+                  <div className="hidden lg:inline">WhatsApp</div>
+                </button>
               </SignedIn>
               <SignedOut>
                 <a href={`/sign-in`}>

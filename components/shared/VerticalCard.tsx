@@ -9,7 +9,7 @@ import YouTubeIcon from "@mui/icons-material/YouTube";
 import VerifiedUserOutlinedIcon from "@mui/icons-material/VerifiedUserOutlined";
 import { usePathname } from "next/navigation";
 import { useToast } from "../ui/use-toast";
-import { createBookmark } from "@/lib/actions/bookmark.actions";
+import { createBookmark, deleteBookmark } from "@/lib/actions/bookmark.actions";
 import BookmarkIcon from "@mui/icons-material/Bookmark";
 import LocalSeeOutlinedIcon from "@mui/icons-material/LocalSeeOutlined";
 import {
@@ -55,6 +55,23 @@ const VerticalCard = ({ userId, ad, isAdCreator }: CardProps) => {
         description: newBookmark,
         duration: 5000,
         className: "bg-[#30AF5B] text-white",
+      });
+    }
+  };
+  const handledeletebk = async (id: string) => {
+    const delBookmark = await deleteBookmark({
+      bookmark: {
+        userBId: userId,
+        adId: id,
+      },
+      path: pathname,
+    });
+    if (delBookmark) {
+      toast({
+        variant: "destructive",
+        title: "Deleted!",
+        description: delBookmark,
+        duration: 5000,
       });
     }
   };
@@ -131,15 +148,39 @@ const VerticalCard = ({ userId, ad, isAdCreator }: CardProps) => {
                   <TooltipTrigger asChild>
                     <BookmarkIcon sx={{ fontSize: 16 }} />
                   </TooltipTrigger>
-                  <TooltipContent>
-                    <p> Save Ad</p>
+                  <TooltipContent side="left">
+                    <p className="text-sm"> Save Ad</p>
                   </TooltipContent>
                 </Tooltip>
               </TooltipProvider>
             </div>
           </div>
         )}
-
+        {isbookmark && (
+          <div className="w-full flex justify-end  absolute top-2/3 left-1/2 transform -translate-x-1/2 p-1 rounded-full">
+            <div
+              className="w-8 h-8 p-1 mt-[-20px] shadow-lg flex items-center justify-center rounded-full bg-red-100 text-emerald-500 tooltip tooltip-bottom hover:text-[#2BBF4E] hover:cursor-pointer"
+              data-tip="Bookmark"
+              onClick={() => handledeletebk(ad._id)}
+            >
+              <TooltipProvider>
+                <Tooltip>
+                  <TooltipTrigger asChild>
+                    <Image
+                      src="/assets/icons/delete.svg"
+                      alt="edit"
+                      width={20}
+                      height={20}
+                    />
+                  </TooltipTrigger>
+                  <TooltipContent side="left">
+                    <p className="text-sm"> Delete Ad</p>
+                  </TooltipContent>
+                </Tooltip>
+              </TooltipProvider>
+            </div>
+          </div>
+        )}
         {isAdCreator ? (
           <div className="flex justify-between items-center w-full p-1">
             <Link href={`/ads/${ad._id}`} className="no-underline">

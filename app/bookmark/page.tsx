@@ -12,6 +12,7 @@ import dynamic from "next/dynamic";
 import Skeleton from "@mui/material/Skeleton";
 import { getallBookmarkByuserId } from "@/lib/actions/bookmark.actions";
 import DashboardBookmark from "@/components/shared/dashboardBookmark";
+import { Toaster } from "@/components/ui/toaster";
 
 const myads = async ({ params: { id }, searchParams }: SearchParamProps) => {
   const { sessionClaims } = auth();
@@ -55,6 +56,7 @@ const myads = async ({ params: { id }, searchParams }: SearchParamProps) => {
           urlParamName="adsPage"
           totalPages={bookmark?.totalPages}
         />
+        <Toaster />
       </div>
     </>
   );

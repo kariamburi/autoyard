@@ -18,7 +18,7 @@ import {
 } from "../ui/tooltip";
 import { usePathname } from "next/navigation";
 import { useToast } from "../ui/use-toast";
-import { createBookmark } from "@/lib/actions/bookmark.actions";
+import { createBookmark, deleteBookmark } from "@/lib/actions/bookmark.actions";
 type CardProps = {
   userId: string;
   ad: IAd;
@@ -50,6 +50,23 @@ const HorizontalCard = ({ userId, ad, isAdCreator }: CardProps) => {
         description: newBookmark,
         duration: 5000,
         className: "bg-[#30AF5B] text-white",
+      });
+    }
+  };
+  const handledeletebk = async (id: string) => {
+    const delBookmark = await deleteBookmark({
+      bookmark: {
+        userBId: userId,
+        adId: id,
+      },
+      path: pathname,
+    });
+    if (delBookmark) {
+      toast({
+        variant: "destructive",
+        title: "Deleted!",
+        description: delBookmark,
+        duration: 5000,
       });
     }
   };
@@ -109,13 +126,37 @@ const HorizontalCard = ({ userId, ad, isAdCreator }: CardProps) => {
                     <BookmarkIcon sx={{ fontSize: 16 }} />
                   </TooltipTrigger>
                   <TooltipContent>
-                    <p> Save Ad</p>
+                    <p className="text-sm"> Save Ad</p>
                   </TooltipContent>
                 </Tooltip>
               </TooltipProvider>
             </div>
           )}
-
+          {isbookmark && (
+            <div className="w-full flex justify-end  absolute top-2/3 left-1/2 transform -translate-x-1/2 p-1 rounded-full">
+              <div
+                className="w-8 h-8 p-1 mt-[-20px] shadow-lg flex items-center justify-center rounded-full bg-red-100 text-emerald-500 tooltip tooltip-bottom hover:text-[#2BBF4E] hover:cursor-pointer"
+                data-tip="Bookmark"
+                onClick={() => handledeletebk(ad._id)}
+              >
+                <TooltipProvider>
+                  <Tooltip>
+                    <TooltipTrigger asChild>
+                      <Image
+                        src="/assets/icons/delete.svg"
+                        alt="edit"
+                        width={20}
+                        height={20}
+                      />
+                    </TooltipTrigger>
+                    <TooltipContent>
+                      <p className="text-sm"> Delete Ad</p>
+                    </TooltipContent>
+                  </Tooltip>
+                </TooltipProvider>
+              </div>
+            </div>
+          )}
           <div className="ml-1 mb-1 z-5 bottom-0 gap-1 absolute bg-gray-800 bg-opacity-70 text-xs text-white right-50 top-100 flex rounded-lg p-1 shadow-sm transition-all">
             <LocalSeeOutlinedIcon sx={{ fontSize: 16 }} />
             {ad.imageUrls.length}

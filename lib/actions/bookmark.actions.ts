@@ -23,8 +23,10 @@ const populateAd = (query: any) => {
 export const createBookmark = async ({ bookmark, path}: CreateBookmarkParams) => {
   try {
     await connectToDatabase();
-    const conditions = { adId: bookmark.adId }
-    const book = await Bookmark.find(conditions);
+    const conditions = { adId: bookmark.adId };
+    const book = await Bookmark.findOne(conditions);  // Use findOne to find a single matching document
+    
+    console.log("book: "+book)
     let newBookmark={}
     let response="Ad aleardy Saved to Bookmark"
     if(!book){
@@ -38,6 +40,7 @@ export const createBookmark = async ({ bookmark, path}: CreateBookmarkParams) =>
     handleError(error)
   }
 }
+
 // GET ONE Ad BY ID
 export async function getBookmarkById(_id: string) {
   try {
@@ -84,3 +87,22 @@ export async function deletePackage({ _id, path }: DeleteBookmarkParams) {
 }
 
 
+// Function to delete a bookmark
+export const deleteBookmark = async ({ bookmark, path }: CreateBookmarkParams) => {
+  try {
+    await connectToDatabase();
+    const conditions = { adId: bookmark.adId };
+    const book = await Bookmark.findOne(conditions); // Find the matching bookmark
+    
+    let response = "Bookmark not found";
+    if (book) {
+      await Bookmark.deleteOne(conditions); // Delete the bookmark if it exists
+      response = "Bookmark deleted successfully";
+    }
+    
+    revalidatePath(path); // Revalidate the path to update cache
+    return response;
+  } catch (error) {
+    handleError(error); // Handle any errors
+  }
+};

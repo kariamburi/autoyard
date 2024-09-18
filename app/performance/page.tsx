@@ -1,34 +1,95 @@
 import Navbar from "@/components/shared/navbar";
-import SettingsEdit from "@/components/shared/SettingsEdit";
-import { getUserById } from "@/lib/actions/user.actions";
-import { Toaster } from "@/components/ui/toaster";
-import SettingsOutlinedIcon from "@mui/icons-material/SettingsOutlined";
 import { auth } from "@clerk/nextjs/server";
-import Verification from "@/components/shared/Verification";
-import Image from "next/image";
-import BottomNavigation from "@/components/shared/BottomNavigation";
 import Footersub from "@/components/shared/Footersub";
-const Settings = async () => {
+import { getAdByUser } from "@/lib/actions/ad.actions";
+import { SearchParamProps } from "@/types";
+//import DashboardMyads from "@/components/shared/dashboardMyads";
+import { getData } from "@/lib/actions/transactionstatus";
+import { getUserById } from "@/lib/actions/user.actions";
+import Image from "next/image";
+import { Toaster } from "@/components/ui/toaster";
+import DashboardPerformance from "@/components/shared/dashboardPerfomance";
+const Performance = async ({
+  params: { id },
+  searchParams,
+}: SearchParamProps) => {
   const { sessionClaims } = auth();
-  const userId = sessionClaims?.userId as string;
+  const myId = sessionClaims?.userId as string;
+  let userId = id;
+  const adsPage = Number(searchParams?.adsPage) || 1;
+  const sortby = (searchParams?.query as string) || "recommeded";
+  const isAdCreator = myId === userId;
+  const organizedAds = await getAdByUser({
+    userId,
+    page: adsPage,
+    sortby: sortby,
+    myshop: isAdCreator,
+  });
+
   const user = await getUserById(userId);
-  const isAdCreator = true;
-  if (!user) {
+
+  let subscription: any = [];
+  let daysRemaining = 0;
+  let remainingads = 0;
+  let listed = 0;
+  let planpackage = "Free";
+  let planId = "65fa7d3fb20de072ea107223";
+  let priority = 0;
+  let adstatus = "Pending";
+  let color = "#000000";
+  const currDate = new Date();
+  // Add one month to the current date
+  let expirationDate = new Date(currDate);
+  expirationDate.setMonth(currDate.getMonth() + 1);
+
+  // const packagesList = await getAllPackages();
+  console.log(organizedAds);
+  try {
+    subscription = await getData(userId);
+    //console.log(subscription);
+    // Step 1: Parse createdAt date string into a Date object
+    listed = subscription.ads;
+
+    remainingads = Number(subscription.currentpack.list) - listed;
+    priority = Number(subscription.currentpack.priority);
+    color = subscription.currentpack.color;
+    planpackage = subscription.currentpack.name;
+    try {
+      const createdAtDate = new Date(subscription.transaction.createdAt);
+      planId = subscription.transaction.planId;
+      // Step 2: Extract the number of days from the period string
+      const periodDays = parseInt(subscription.transaction.period);
+
+      // Step 3: Calculate expiration date by adding period days to createdAt date
+      expirationDate = new Date(
+        createdAtDate.getTime() + periodDays * 24 * 60 * 60 * 1000
+      );
+      // Step 4: Calculate the number of days remaining until the expiration date
+      const currentDate = new Date();
+      daysRemaining = Math.ceil(
+        (expirationDate.getTime() - currentDate.getTime()) /
+          (1000 * 60 * 60 * 24)
+      );
+    } catch {}
+
+    if (
+      (daysRemaining > 0 && remainingads > 0) ||
+      (remainingads > 0 && planpackage === "Free")
+    ) {
+      adstatus = "Active";
+    }
+  } catch {}
+  if (!organizedAds || !user) {
     return (
-      <div className="flex-center h-screen w-full bg-[#ebf2f7] bg-dotted-pattern bg-cover bg-fixed bg-center">
-        <div className="top-0 z-10 fixed w-full">
-          <Navbar userstatus="User" userId={userId || ""} />
-        </div>
-        <div className="max-w-6xl mx-auto mt-20">
-          <div className="flex gap-1 items-center">
-            <Image
-              src="/assets/icons/loading.gif"
-              alt="edit"
-              width={60}
-              height={60}
-            />
-            Loading...
-          </div>
+      <div className="flex items-center justify-center h-screen w-full bg-[#ebf2f7] bg-dotted-pattern bg-cover bg-fixed bg-center">
+        <div className="flex gap-1 items-center justify-center">
+          <img
+            src="/assets/icons/loading.gif"
+            alt="edit"
+            width={60}
+            height={60}
+          />
+          Loading...
         </div>
       </div>
     );
@@ -37,28 +98,32 @@ const Settings = async () => {
   return (
     <>
       <div className="z-10 top-0 fixed w-full">
-        <Navbar userstatus="User" userId={userId} />
+        <Navbar userstatus="User" userId={myId} />
       </div>
-
-      <div className="max-w-3xl mx-auto flex mt-20 p-1">
-        <div className="hidden lg:inline mr-5"></div>
-
-        <div className="flex-1">
-          <div className="rounded-lg h-screen border bg-white max-w-6xl mx-auto lg:flex-row mt-0 p-1 justify-center">
-            <div className="privacy-policy p-6 bg-gray-50 text-gray-800">
-              <h1 className="text-2xl font-bold mb-4">Performance</h1>
-
-              <p className="mb-4">No results yet</p>
-            </div>
-          </div>
-        </div>
+      <div className="mt-[70px]">
+        <DashboardPerformance
+          userId={userId}
+          loggedId={myId}
+          isAdCreator={isAdCreator}
+          user={user}
+          daysRemaining={daysRemaining}
+          packname={planpackage}
+          color={color}
+          data={organizedAds?.data}
+          emptyTitle="No ads have been created yet"
+          emptyStateSubtext="Go create some now"
+          collectionType="Ads_Organized"
+          limit={3}
+          page={adsPage}
+          urlParamName="adsPage"
+          totalPages={organizedAds?.totalPages}
+        />
+        <Toaster />
       </div>
       <footer>
-        <div>
-          <Footersub />
-        </div>
+        <Footersub />
       </footer>
     </>
   );
 };
-export default Settings;
+export default Performance;

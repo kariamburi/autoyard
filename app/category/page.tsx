@@ -581,6 +581,7 @@ const Storeads = async ({ params: { id }, searchParams }: SearchParamProps) => {
           AdsCountPerarea={AdsCountPerarea}
           AdsCountPerpropertysecurity={AdsCountPerpropertysecurity}
         />
+        <Toaster />
       </div>
       <footer>
         <div className="hidden lg:inline">

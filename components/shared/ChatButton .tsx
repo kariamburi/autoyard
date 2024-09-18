@@ -11,6 +11,7 @@ import { sendEmail } from "@/lib/actions/sendEmail";
 import { sendSMS } from "@/lib/actions/sendsmsnow";
 import CircularProgress from "@mui/material/CircularProgress";
 import Image from "next/image";
+import { updateinquiries } from "@/lib/actions/ad.actions";
 type chatProps = {
   userId: string;
   userName: string;
@@ -86,6 +87,14 @@ const ChatButton = ({ ad, userId, userName, userImage }: chatProps) => {
       if (sendemail && daysRemaining > 0) {
         await sendEmail(recipientEmail, message, adTitle, adUrl);
       }
+
+      const inquiries = (Number(ad.inquiries ?? "0") + 1).toString();
+      const _id = ad._id;
+      await updateinquiries({
+        _id,
+        inquiries,
+        path: `/ads/${ad._id}`,
+      });
 
       setMessage(""); // Clear the message input
       setIsOpen(false); // Close the popup

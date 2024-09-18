@@ -64,6 +64,9 @@ export interface IAd extends Document {
 priority:number;
 expirely:Date;
 adstatus:string;
+inquiries:string;
+whatsapp:string;
+calls:string;
 }
 export interface Verified {
   accountverified: boolean 
@@ -128,7 +131,10 @@ const AdSchema = new Schema({
   plan: { type: Schema.Types.ObjectId, ref: 'Packages' },
   priority:{ type: Number },
   expirely:{ type: Date },
-  adstatus:{type: String}
+  adstatus:{type: String},
+  inquiries:{ type: String },
+  whatsapp:{ type: String },
+  calls:{ type: String }
 })
 
 const Ad = models.Ad || model('Ad', AdSchema);

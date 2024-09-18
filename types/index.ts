@@ -412,6 +412,9 @@ export type Ad = {
   priority:number
   expirely:Date
   adstatus:string
+  inquiries:string
+whatsapp:string
+calls:string
 }
 export interface Subcategory {
   title: string;
@@ -552,6 +555,24 @@ export type UpdateVideoParams = {
 export type UpdateViewsParams = {
   _id: string; // object File
   views: string;
+  path: string;
+ 
+};
+export type UpdateCallsParams = {
+  _id: string; // object File
+  calls: string;
+  path: string;
+ 
+};
+export type UpdateWhatsappParams = {
+  _id: string; // object File
+  whatsapp: string;
+  path: string;
+ 
+};
+export type UpdateInquiriesParams = {
+  _id: string; // object File
+  inquiries: string;
   path: string;
  
 };

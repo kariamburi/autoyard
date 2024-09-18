@@ -34,52 +34,7 @@ const DashboardBookmark = ({
   urlParamName,
 }: // Accept the onSortChange prop
 CollectionProps) => {
-  const [activeButton, setActiveButton] = useState(0);
   const [isVertical, setisVertical] = useState(true);
-  const handleButtonClick = (index: number) => {
-    setActiveButton(index);
-    if (index === 0) {
-      setisVertical(true);
-    } else {
-      setisVertical(false);
-    }
-  };
-
-  const [query, setQuery] = useState("");
-  const router = useRouter();
-  const searchParams = useSearchParams();
-  useEffect(() => {
-    const delayDebounceFn = setTimeout(() => {
-      let newUrl = "";
-
-      if (query) {
-        newUrl = formUrlQuery({
-          params: searchParams.toString(),
-          key: "query",
-          value: query,
-        });
-      } else {
-        newUrl = removeKeysFromQuery({
-          params: searchParams.toString(),
-          keysToRemove: ["query"],
-        });
-      }
-
-      router.push(newUrl, { scroll: false });
-    }, 300);
-
-    return () => clearTimeout(delayDebounceFn);
-  }, [query]);
-
-  const handleSortChange = (selectedOption: string) => {
-    // Do something with the selected sorting option
-    console.log("Selected sorting option:", selectedOption);
-    setQuery(selectedOption);
-    // Example: If "lowest" option is selected, perform some action
-    if (selectedOption === "lowest") {
-      // Perform your action here
-    }
-  };
 
   return (
     <>

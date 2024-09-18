@@ -20,6 +20,9 @@ import {
   deleteImageParams,
   UpdateVideoParams,
   UpdateViewsParams,
+  UpdateCallsParams,
+  UpdateInquiriesParams,
+  UpdateWhatsappParams,
 } from '@/types'
 import Transaction from '../database/models/transaction.model'
 import { Model } from 'mongoose'
@@ -150,6 +153,75 @@ export async function updateview({ _id, views, path }: UpdateViewsParams) {
 
     // Return the updated category
     return JSON.parse(JSON.stringify(updateAdViews));
+  } catch (error) {
+    handleError(error);
+    // Handle error appropriately (e.g., throw or return error response)
+    throw error;
+  }
+}
+// UPDATE
+export async function updatecalls({ _id, calls, path }: UpdateCallsParams) {
+  try {
+    await connectToDatabase();
+    
+    // Find the category by its ID and update the name field only
+    const updateAdCalls = await Ad.findByIdAndUpdate(
+      _id,
+      { calls }, // Update only the name field
+      { new: true }
+    );
+    
+    // Revalidate the path (assuming it's a separate function)
+    revalidatePath(path);
+
+    // Return the updated category
+    return JSON.parse(JSON.stringify(updateAdCalls));
+  } catch (error) {
+    handleError(error);
+    // Handle error appropriately (e.g., throw or return error response)
+    throw error;
+  }
+}
+// UPDATE
+export async function updatewhatsapp({ _id, whatsapp, path }: UpdateWhatsappParams) {
+  try {
+    await connectToDatabase();
+    
+    // Find the category by its ID and update the name field only
+    const updateAdwhatsapp = await Ad.findByIdAndUpdate(
+      _id,
+      { whatsapp }, // Update only the name field
+      { new: true }
+    );
+    
+    // Revalidate the path (assuming it's a separate function)
+    revalidatePath(path);
+
+    // Return the updated category
+    return JSON.parse(JSON.stringify(updateAdwhatsapp));
+  } catch (error) {
+    handleError(error);
+    // Handle error appropriately (e.g., throw or return error response)
+    throw error;
+  }
+}
+// UPDATE
+export async function updateinquiries({ _id, inquiries, path }: UpdateInquiriesParams) {
+  try {
+    await connectToDatabase();
+    
+    // Find the category by its ID and update the name field only
+    const updateAdinquiries = await Ad.findByIdAndUpdate(
+      _id,
+      { inquiries }, // Update only the name field
+      { new: true }
+    );
+    
+    // Revalidate the path (assuming it's a separate function)
+    revalidatePath(path);
+
+    // Return the updated category
+    return JSON.parse(JSON.stringify(updateAdinquiries));
   } catch (error) {
     handleError(error);
     // Handle error appropriately (e.g., throw or return error response)

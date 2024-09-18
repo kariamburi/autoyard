@@ -16,7 +16,7 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "../ui/tooltip";
-import { createBookmark } from "@/lib/actions/bookmark.actions";
+import { createBookmark, deleteBookmark } from "@/lib/actions/bookmark.actions";
 import { usePathname } from "next/navigation";
 import { useToast } from "../ui/use-toast";
 type CardProps = {
@@ -59,6 +59,7 @@ const Card = ({ ad, hasOrderLink, hidePrice, userId }: CardProps) => {
       });
     }
   };
+
   //console.log(ad.imageUrls);
   return (
     <div className="group relative flex min-h-[300px] w-full max-w-[400px] flex-col overflow-hidden rounded-xl bg-white shadow-md transition-all hover:shadow-lg md:min-h-[300px]">
@@ -131,8 +132,8 @@ const Card = ({ ad, hasOrderLink, hidePrice, userId }: CardProps) => {
                 <TooltipTrigger asChild>
                   <BookmarkIcon sx={{ fontSize: 16 }} />
                 </TooltipTrigger>
-                <TooltipContent>
-                  <p> Save Ad</p>
+                <TooltipContent side="left">
+                  <p className="text-sm"> Save Ad</p>
                 </TooltipContent>
               </Tooltip>
             </TooltipProvider>
