@@ -8,12 +8,52 @@ import Verification from "@/components/shared/Verification";
 import Image from "next/image";
 import BottomNavigation from "@/components/shared/BottomNavigation";
 import Footersub from "@/components/shared/Footersub";
+import Head from "next/head";
 const Faq = async () => {
   const { sessionClaims } = auth();
   const userId = sessionClaims?.userId as string;
 
   return (
     <>
+      <Head>
+        <title>Frequently Asked Questions | AutoYard.co.ke</title>
+        <meta
+          name="description"
+          content="Find answers to common questions about using AutoYard.co.ke, including how to post a vehicle, contact sellers, and more."
+        />
+        <meta
+          name="keywords"
+          content="AutoYard, FAQ, frequently asked questions, vehicle marketplace, car sales, post a vehicle, contact seller"
+        />
+        <meta
+          property="og:title"
+          content="Frequently Asked Questions | AutoYard.co.ke"
+        />
+        <meta
+          property="og:description"
+          content="Get help with common questions about posting vehicles, contacting sellers, and managing your listings on AutoYard.co.ke."
+        />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://www.autoyard.co.ke/faq" />
+        <meta
+          property="og:image"
+          content="https://www.autoyard.co.ke/assets/images/faq-cover.jpg"
+        />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta
+          name="twitter:title"
+          content="Frequently Asked Questions | AutoYard.co.ke"
+        />
+        <meta
+          name="twitter:description"
+          content="Find answers to your questions about posting vehicles and using AutoYard.co.ke. Learn more about our marketplace."
+        />
+        <meta
+          name="twitter:image"
+          content="https://www.autoyard.co.ke/assets/images/faq-cover.jpg"
+        />
+        <link rel="canonical" href="https://www.autoyard.co.ke/faq" />
+      </Head>
       <div className="z-10 top-0 fixed w-full">
         <Navbar userstatus="User" userId={userId} />
       </div>

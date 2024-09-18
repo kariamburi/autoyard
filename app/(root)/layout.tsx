@@ -28,20 +28,30 @@ export default async function RootLayout({
   return (
     <div className="min-h-screen">
       <Head>
-        <title>AutoYard</title>
+        <title>AutoYard | Buy and Sell Vehicles in Kenya</title>
         <meta
           name="description"
-          content="AutoYard | Where Every Ride Finds a Buyer"
+          content="AutoYard.co.ke is Kenya's leading online vehicle marketplace. Buy or sell cars, motorbikes, buses, pickups, heavy-duty machinery, and more with ease."
         />
-        <meta property="og:title" content="AutoYard" />
+        <meta
+          property="og:title"
+          content="AutoYard | Buy and Sell Vehicles in Kenya"
+        />
         <meta
           property="og:description"
-          content="Welcome to AutoYard.co.ke, Kenya's premier online marketplace for buying and selling vehicles. Whether you're in the market for a car, motorbike, bus, pickup, or even heavy-duty and agricultural machinery, we provide a trusted platform that connects buyers and sellers across the country."
+          content="Welcome to AutoYard.co.ke, the trusted platform for buying and selling vehicles across Kenya. Find your perfect ride or sell your vehicle today!"
         />
         <meta property="og:image" content="/assets/images/logo.png" />
         <meta property="og:url" content="https://autoyard.co.ke" />
-        
+        <meta property="og:type" content="website" />
+        <meta
+          name="keywords"
+          content="AutoYard, buy vehicles, sell vehicles, cars, motorbikes, buses, machinery, Kenya"
+        />
+        <meta name="author" content="AutoYard" />
+        <link rel="canonical" href="https://autoyard.co.ke" />
       </Head>
+
       <div className="w-full h-full">
         <div className="sm:hidden fixed top-0 z-10 w-full">
           {user ? (

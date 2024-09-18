@@ -8,12 +8,46 @@ import Verification from "@/components/shared/Verification";
 import Image from "next/image";
 import BottomNavigation from "@/components/shared/BottomNavigation";
 import Footersub from "@/components/shared/Footersub";
+import Head from "next/head";
 const Safety = async () => {
   const { sessionClaims } = auth();
   const userId = sessionClaims?.userId as string;
 
   return (
     <>
+      <Head>
+        <title>Safety Tips | AutoYard.co.ke</title>
+        <meta
+          name="description"
+          content="Stay safe while buying or selling vehicles on AutoYard.co.ke. Follow our safety tips to protect yourself and ensure a secure transaction."
+        />
+        <meta
+          name="keywords"
+          content="AutoYard, safety tips, vehicle buying, vehicle selling, secure transactions, online marketplace safety, AutoYard safety"
+        />
+        <meta property="og:title" content="Safety Tips | AutoYard.co.ke" />
+        <meta
+          property="og:description"
+          content="Follow these important safety tips to protect yourself when buying or selling a vehicle on AutoYard.co.ke."
+        />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://www.autoyard.co.ke/safety" />
+        <meta
+          property="og:image"
+          content="https://www.autoyard.co.ke/assets/images/safety-tips-cover.jpg"
+        />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Safety Tips | AutoYard.co.ke" />
+        <meta
+          name="twitter:description"
+          content="Learn how to stay safe while buying or selling vehicles on AutoYard.co.ke with our safety guidelines."
+        />
+        <meta
+          name="twitter:image"
+          content="https://www.autoyard.co.ke/assets/images/safety-tips-cover.jpg"
+        />
+        <link rel="canonical" href="https://www.autoyard.co.ke/safety" />
+      </Head>
       <div className="z-10 top-0 fixed w-full">
         <Navbar userstatus="User" userId={userId} />
       </div>

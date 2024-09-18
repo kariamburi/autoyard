@@ -41,7 +41,7 @@ export async function updateRead(recipientUid: string, uid: string) {
   });
 }
 
-const Sidebar = ({ userId }: sidebarProps) => {
+const Sidebarmain = ({ userId }: sidebarProps) => {
   const [messages, setMessages] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
   const router = useRouter();
@@ -136,7 +136,7 @@ const Sidebar = ({ userId }: sidebarProps) => {
       ) : messages.length > 0 ? (
         <>
           <div className="w-full max-w-md mx-auto bg-white shadow-md rounded-lg">
-            <ScrollArea className="h-[72vh] w-full p-2">
+            <ScrollArea className="h-full w-full p-2">
               <ul className="divide-y divide-gray-200">
                 {messages.map((message, index) => {
                   const isActive = pathname === "/chat/" + message.uid;
@@ -209,4 +209,4 @@ const Sidebar = ({ userId }: sidebarProps) => {
   );
 };
 
-export default Sidebar;
+export default Sidebarmain;

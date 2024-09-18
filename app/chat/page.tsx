@@ -17,6 +17,7 @@ import Sidebar from "@/components/shared/Sidebar";
 import PeopleOutlinedIcon from "@mui/icons-material/PeopleOutlined";
 import Footersub from "@/components/shared/Footersub";
 import BottomNavigation from "@/components/shared/BottomNavigation";
+import Sidebarmain from "@/components/shared/Sidebarmain";
 const pagechat = async () => {
   const { sessionClaims } = auth();
   const senderId = sessionClaims?.userId as string;
@@ -73,18 +74,17 @@ const pagechat = async () => {
           </div>*/}
           <div className="rounded-lg mb-20 h-full lg:mb-0 max-w-6xl mx-auto flex flex-col">
             <div className="lg:flex-1">
-              <ScrollArea className="w-full p-2">
-                <div className="w-full p-1 w-full mb-2 bg-white rounded-lg items-center">
-                  <span className="logo font-bold text-[25px] text-emerald-950">
-                    Messanger
-                  </span>
-                  <div className="flex gap-1 items-center">
-                    <PeopleOutlinedIcon />
-                    Latest Chats
-                  </div>
+              <div className="w-full p-1 w-full mb-2 bg-white rounded-lg items-center">
+                <span className="logo font-bold text-[25px] text-emerald-950">
+                  Messanger
+                </span>
+                <div className="flex gap-1 items-center">
+                  <PeopleOutlinedIcon />
+                  Latest Chats
                 </div>
-                <Sidebar userId={senderId} />
-              </ScrollArea>
+              </div>
+              <Sidebarmain userId={senderId} />
+
               <Toaster />
             </div>
           </div>

@@ -8,12 +8,53 @@ import Verification from "@/components/shared/Verification";
 import Image from "next/image";
 import BottomNavigation from "@/components/shared/BottomNavigation";
 import Footersub from "@/components/shared/Footersub";
+import Head from "next/head";
 const Terms = async () => {
   const { sessionClaims } = auth();
   const userId = sessionClaims?.userId as string;
 
   return (
     <>
+      <Head>
+        <title>Terms and Conditions | AutoYard.co.ke</title>
+        <meta
+          name="description"
+          content="Read the terms and conditions for using AutoYard.co.ke, our vehicle marketplace. By accessing the site, you agree to be bound by these terms."
+        />
+        <meta
+          name="keywords"
+          content="AutoYard, terms and conditions, vehicle marketplace, online car sales, AutoYard terms"
+        />
+        <meta
+          property="og:title"
+          content="Terms and Conditions | AutoYard.co.ke"
+        />
+        <meta
+          property="og:description"
+          content="Understand the terms and conditions for using AutoYard.co.ke, your trusted vehicle marketplace in Kenya."
+        />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://www.autoyard.co.ke/terms" />
+        <meta
+          property="og:image"
+          content="https://www.autoyard.co.ke/assets/images/terms-and-conditions-cover.jpg"
+        />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta
+          name="twitter:title"
+          content="Terms and Conditions | AutoYard.co.ke"
+        />
+        <meta
+          name="twitter:description"
+          content="Review the terms and conditions for using AutoYard.co.ke. Learn more about our policies, user obligations, and legal guidelines."
+        />
+        <meta
+          name="twitter:image"
+          content="https://www.autoyard.co.ke/assets/images/terms-and-conditions-cover.jpg"
+        />
+        <link rel="canonical" href="https://www.autoyard.co.ke/terms" />
+      </Head>
+
       <div className="z-10 top-0 fixed w-full">
         <Navbar userstatus="User" userId={userId} />
       </div>

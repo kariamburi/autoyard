@@ -8,12 +8,33 @@ import Verification from "@/components/shared/Verification";
 import Image from "next/image";
 import BottomNavigation from "@/components/shared/BottomNavigation";
 import Footersub from "@/components/shared/Footersub";
+import Head from "next/head";
 const Privacy = async () => {
   const { sessionClaims } = auth();
   const userId = sessionClaims?.userId as string;
 
   return (
     <>
+      <Head>
+        <title>Privacy Policy | AutoYard.co.ke</title>
+        <meta
+          name="description"
+          content="Learn how AutoYard.co.ke collects, uses, and protects your personal information. Our Privacy Policy outlines your data protection rights and how we safeguard your privacy when using our website."
+        />
+        <meta property="og:title" content="Privacy Policy | AutoYard.co.ke" />
+        <meta
+          property="og:description"
+          content="Read AutoYard.co.ke's Privacy Policy to understand how your personal information is handled. Your privacy and data protection are important to us."
+        />
+        <meta property="og:url" content="https://autoyard.co.ke/privacy" />
+        <meta property="og:type" content="article" />
+        <meta
+          name="keywords"
+          content="privacy policy, AutoYard, data protection, personal information, cookies, Kenya vehicle marketplace"
+        />
+        <meta name="author" content="AutoYard" />
+        <link rel="canonical" href="https://autoyard.co.ke/privacy" />
+      </Head>
       <div className="z-10 top-0 fixed w-full">
         <Navbar userstatus="User" userId={userId} />
       </div>

@@ -99,13 +99,7 @@ const Reviews = ({
             </div>
             <p className="text-sm">{message.text}</p>
             <div className="items-center flex justify-between">
-              <small className="text-gray-500">
-                {message.createdAt
-                  ? new Date(
-                      message.createdAt.seconds * 1000
-                    ).toLocaleTimeString()
-                  : "No date"}
-              </small>
+              <small className="text-gray-500">{formattedCreatedAt}</small>
 
               {uid === message.uid && (
                 <div className="bg-red-100 shadow rounded-lg pt-1 pl-1 pr-1">

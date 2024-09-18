@@ -383,7 +383,7 @@ export default function Ads({ ad, userId, userImage, userName }: CardProps) {
                       <span key={index} onClick={() => handleImageClick(index)}>
                         <div className="relative">
                           {isLoadingsmall && (
-                            <div className="absolute inset-0 flex items-center justify-center bg-[#000000] bg-opacity-50">
+                            <div className="absolute rounded-lg inset-0 flex items-center justify-center bg-[#000000] bg-opacity-50">
                               {/* Spinner or loading animation */}
                               <div className="w-8 h-8 border-4 border-t-4 border-gray-300 border-t-white rounded-full animate-spin"></div>
                             </div>

@@ -8,12 +8,37 @@ import Verification from "@/components/shared/Verification";
 import Image from "next/image";
 import BottomNavigation from "@/components/shared/BottomNavigation";
 import Footersub from "@/components/shared/Footersub";
+import Head from "next/head";
 const About = async () => {
   const { sessionClaims } = auth();
   const userId = sessionClaims?.userId as string;
 
   return (
     <>
+      <Head>
+        <title>About AutoYard | Kenya's Leading Vehicle Marketplace</title>
+        <meta
+          name="description"
+          content="Learn about AutoYard.co.ke, Kenya's premier platform for buying and selling vehicles. From cars to heavy-duty machinery, we connect buyers and sellers nationwide."
+        />
+        <meta
+          property="og:title"
+          content="About AutoYard | Kenya's Leading Vehicle Marketplace"
+        />
+        <meta
+          property="og:description"
+          content="At AutoYard.co.ke, we offer a seamless, transparent, and secure platform to buy and sell vehicles across Kenya. Discover a wide selection of cars, motorbikes, buses, and machinery."
+        />
+        <meta property="og:image" content="/assets/images/logo.png" />
+        <meta property="og:url" content="https://autoyard.co.ke/about" />
+        <meta property="og:type" content="website" />
+        <meta
+          name="keywords"
+          content="AutoYard, buy vehicles, sell vehicles, cars, motorbikes, buses, machinery, Kenya"
+        />
+        <meta name="author" content="AutoYard" />
+      </Head>
+
       <div className="z-10 top-0 fixed w-full">
         <Navbar userstatus="User" userId={userId} />
       </div>
