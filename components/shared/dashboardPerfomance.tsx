@@ -10,9 +10,16 @@ import CollectionBookmark from "./CollectionBookmark";
 import BookmarkIcon from "@mui/icons-material/Bookmark";
 import { IUser } from "@/lib/database/models/user.model";
 import Link from "next/link";
+import SellerProfileMobile from "./SellerProfileMobile";
+import Verification from "./Verification";
+import Ratingsmobile from "./ratingsmobile";
+import SellerProfilePermonance from "./SellerProfilePermonance";
+import Verificationmobile from "./Verificationmobile";
 
 type CollectionProps = {
   userId: string;
+  userName: string;
+  userImage: string;
   loggedId: string;
   daysRemaining?: number;
   packname?: string;
@@ -31,6 +38,8 @@ type CollectionProps = {
 
 const DashboardPerformance = ({
   userId,
+  userName,
+  userImage,
   data,
   packname,
   daysRemaining,
@@ -51,147 +60,183 @@ CollectionProps) => {
 
   return (
     <>
-      <div className="container mx-auto p-6">
+      <div className="w-full h-screen lg:max-w-6xl mx-auto p-6">
         <section className="bg-grey-50 bg-dotted-pattern bg-cover bg-center py-0 md:py-0 rounded-sm">
           <div className="flex items-center p-1 justify-between">
-            <h1 className="text-3xl font-bold mb-6">Ad Performance</h1>
+            <div className="flex flex-col">
+              <SellerProfilePermonance
+                userId={userId}
+                userName={userName}
+                userImage={userImage}
+                user={user}
+              />
+            </div>
 
             {isAdCreator &&
-              packname !== "Free" &&
-              daysRemaining &&
-              daysRemaining > 0 && (
-                <>
-                  <div
-                    style={{
-                      backgroundColor: color,
-                    }}
-                    className="text-center sm:text-left rounded-lg p-3 text-white relative"
-                  >
-                    <div className="flex flex-col">
-                      <div className="font-bold text-sm mt-4">
-                        Plan: {packname}
-                      </div>
-                      <div className="text-xs">
-                        Days remaining: {daysRemaining}
-                      </div>
+            packname !== "Free" &&
+            daysRemaining &&
+            daysRemaining > 0 ? (
+              <>
+                <div
+                  style={{
+                    backgroundColor: color,
+                  }}
+                  className="text-center sm:text-left rounded-lg p-3 text-white relative"
+                >
+                  <div className="flex flex-col">
+                    <div className="font-bold text-sm mt-4">
+                      Plan: {packname}
                     </div>
-                    {/* Green ribbon */}
-                    <div className="absolute top-0 shadow-lg left-0 bg-green-500 text-white text-xs py-1 px-3 rounded-bl-lg rounded-tr-lg">
-                      Active
+                    <div className="text-xs">
+                      Days remaining: {daysRemaining}
                     </div>
-                    <Link href="/plan">
-                      <div className="p-1 items-center flex flex-block text-black underline text-xs cursor-pointer border-2 border-transparent rounded-full hover:bg-[#000000]  hover:text-white">
-                        <div>Upgrade Plan</div>
-                      </div>
-                    </Link>
                   </div>
-                </>
-              )}
+                  {/* Green ribbon */}
+                  <div className="absolute top-0 shadow-lg left-0 bg-green-500 text-white text-xs py-1 px-3 rounded-bl-lg rounded-tr-lg">
+                    Active
+                  </div>
+                  <Link href="/plan">
+                    <div className="p-1 items-center flex flex-block text-black underline text-xs cursor-pointer border-2 border-transparent rounded-full hover:bg-[#000000]  hover:text-white">
+                      <div>Upgrade Plan</div>
+                    </div>
+                  </Link>
+                </div>
+              </>
+            ) : (
+              <>
+                <div
+                  style={{
+                    backgroundColor: color,
+                  }}
+                  className="text-center sm:text-left rounded-lg p-3 text-white relative"
+                >
+                  <div className="flex flex-col">
+                    <div className="font-bold text-sm mt-4">
+                      Plan: {packname}
+                    </div>
+                  </div>
+                  {/* Green ribbon */}
+                  <div className="absolute top-0 shadow-lg left-0 bg-green-500 text-white text-xs py-1 px-3 rounded-bl-lg rounded-tr-lg">
+                    Active
+                  </div>
+                  <Link href="/plan">
+                    <div className="p-1 items-center flex flex-block text-black underline text-xs cursor-pointer border-2 border-transparent rounded-full hover:bg-[#000000]  hover:text-white">
+                      <div>Upgrade Plan</div>
+                    </div>
+                  </Link>
+                </div>
+              </>
+            )}
           </div>
         </section>
+        <h1 className="text-3xl font-bold mb-6">Ad Performance</h1>
+        <div className="bg-white shadow-lg rounded-lg p-6 mb-6 border border-gray-200">
+          {data.length > 0 ? (
+            data.map((ad: any) => (
+              <div
+                key={ad._id}
+                className="bg-white shadow-lg rounded-lg p-6 mb-6 border border-gray-200"
+              >
+                {/* 1. Ad Details */}
+                <section className="mb-6">
+                  <h2 className="text-xl font-semibold mb-2">Ad Details</h2>
+                  <p className="text-gray-700">
+                    <strong>Title: </strong> {ad.title}
+                  </p>
+                  <p className="text-gray-700">
+                    <strong>Category: </strong> {ad.category?.name || "N/A"}
+                  </p>
+                  <p className="text-gray-700">
+                    <strong>Created Date: </strong>{" "}
+                    {new Date(ad.createdAt).toLocaleDateString()}
+                  </p>
+                </section>
 
-        {data.length > 0 ? (
-          data.map((ad: any) => (
-            <div
-              key={ad._id}
-              className="bg-white shadow-lg rounded-lg p-6 mb-6 border border-gray-200"
-            >
-              {/* 1. Ad Details */}
-              <section className="mb-6">
-                <h2 className="text-xl font-semibold mb-2">Ad Details</h2>
-                <p className="text-gray-700">
-                  <strong>Title: </strong> {ad.title}
-                </p>
-                <p className="text-gray-700">
-                  <strong>Category: </strong> {ad.category?.name || "N/A"}
-                </p>
-                <p className="text-gray-700">
-                  <strong>Created Date: </strong>{" "}
-                  {new Date(ad.createdAt).toLocaleDateString()}
-                </p>
-              </section>
+                {/* 2. Ad Engagement */}
+                <section className="mb-6">
+                  <h2 className="text-xl font-semibold mb-2">Ad Engagement</h2>
+                  <p className="text-gray-700">
+                    <strong>Views: </strong> {ad.views}
+                  </p>
+                  <p className="text-gray-700">
+                    <strong>Inquiries: </strong> {ad.inquiries || "0"}
+                  </p>
+                  <p className="text-gray-700">
+                    <strong>Calls: </strong> {ad.calls || "0"}
+                  </p>
+                  <p className="text-gray-700">
+                    <strong>WhatsApp Messages: </strong> {ad.whatsapp || "0"}
+                  </p>
+                </section>
 
-              {/* 2. Ad Engagement */}
-              <section className="mb-6">
-                <h2 className="text-xl font-semibold mb-2">Ad Engagement</h2>
-                <p className="text-gray-700">
-                  <strong>Views: </strong> {ad.views}
-                </p>
-                <p className="text-gray-700">
-                  <strong>Inquiries: </strong> {ad.inquiries || "0"}
-                </p>
-                <p className="text-gray-700">
-                  <strong>Calls: </strong> {ad.calls || "0"}
-                </p>
-                <p className="text-gray-700">
-                  <strong>WhatsApp Messages: </strong> {ad.whatsapp || "0"}
-                </p>
-              </section>
+                {/* 3. Ad Duration & Status */}
+                <section className="mb-6">
+                  <h2 className="text-xl font-semibold mb-2">
+                    Ad Duration & Status
+                  </h2>
+                  <p className="text-gray-700">
+                    <strong>Ad Expiry: </strong>{" "}
+                    {new Date(ad.expirely).toLocaleDateString()}
+                  </p>
+                  <p
+                    className={`text-gray-700 ${
+                      ad.adstatus === "active"
+                        ? "text-green-600"
+                        : "text-red-600"
+                    }`}
+                  >
+                    <strong>Status: </strong>{" "}
+                    {ad.adstatus === "active" ? "Active" : "Expired"}
+                  </p>
+                </section>
 
-              {/* 3. Ad Duration & Status */}
-              <section className="mb-6">
-                <h2 className="text-xl font-semibold mb-2">
-                  Ad Duration & Status
-                </h2>
-                <p className="text-gray-700">
-                  <strong>Ad Expiry: </strong>{" "}
-                  {new Date(ad.expirely).toLocaleDateString()}
-                </p>
-                <p
-                  className={`text-gray-700 ${
-                    ad.adstatus === "active" ? "text-green-600" : "text-red-600"
-                  }`}
-                >
-                  <strong>Status: </strong>{" "}
-                  {ad.adstatus === "active" ? "Active" : "Expired"}
-                </p>
-              </section>
+                {/* 4. Ad Performance */}
+                <section className="mb-6">
+                  <h2 className="text-xl font-semibold mb-2">Ad Performance</h2>
+                  <p className="text-gray-700">
+                    <strong>Priority Level: </strong> {ad.priority || "N/A"}
+                  </p>
+                  <p className="text-gray-700">
+                    <strong>Plan: </strong> {ad.plan?.name || "Free"}
+                  </p>
+                </section>
 
-              {/* 4. Ad Performance */}
-              <section className="mb-6">
-                <h2 className="text-xl font-semibold mb-2">Ad Performance</h2>
-                <p className="text-gray-700">
-                  <strong>Priority Level: </strong> {ad.priority || "N/A"}
-                </p>
-                <p className="text-gray-700">
-                  <strong>Plan: </strong> {ad.plan?.name || "Free"}
-                </p>
-              </section>
+                {/* 5. Contact Info */}
+                <section className="mb-6">
+                  <h2 className="text-xl font-semibold mb-2">Contact Info</h2>
+                  <p className="text-gray-700">
+                    <strong>Phone Number: </strong> {ad.phone || "N/A"}
+                  </p>
+                  <p className="text-gray-700">
+                    <strong>WhatsApp: </strong>{" "}
+                    {ad.organizer?.whatsapp || "N/A"}
+                  </p>
+                  <p className="text-gray-700">
+                    <strong>Verified Status: </strong>{" "}
+                    {ad.organizer?.verified?.accountverified
+                      ? "Verified"
+                      : "Not Verified"}
+                  </p>
+                </section>
 
-              {/* 5. Contact Info */}
-              <section className="mb-6">
-                <h2 className="text-xl font-semibold mb-2">Contact Info</h2>
-                <p className="text-gray-700">
-                  <strong>Phone Number: </strong> {ad.phone || "N/A"}
-                </p>
-                <p className="text-gray-700">
-                  <strong>WhatsApp: </strong> {ad.organizer?.whatsapp || "N/A"}
-                </p>
-                <p className="text-gray-700">
-                  <strong>Verified Status: </strong>{" "}
-                  {ad.organizer?.verified?.accountverified
-                    ? "Verified"
-                    : "Not Verified"}
-                </p>
-              </section>
-
-              {/* 6. Geographical Info */}
-              <section className="mb-6">
-                <h2 className="text-xl font-semibold mb-2">
-                  Geographical Info
-                </h2>
-                <p className="text-gray-700">
-                  <strong>Location: </strong> {ad.address || "N/A"}
-                </p>
-                <p className="text-gray-700">
-                  <strong>Map Enabled: </strong> {ad.enableMap ? "Yes" : "No"}
-                </p>
-              </section>
-            </div>
-          ))
-        ) : (
-          <p className="text-gray-500">No ads to display.</p>
-        )}
+                {/* 6. Geographical Info */}
+                <section className="mb-6">
+                  <h2 className="text-xl font-semibold mb-2">
+                    Geographical Info
+                  </h2>
+                  <p className="text-gray-700">
+                    <strong>Location: </strong> {ad.address || "N/A"}
+                  </p>
+                  <p className="text-gray-700">
+                    <strong>Map Enabled: </strong> {ad.enableMap ? "Yes" : "No"}
+                  </p>
+                </section>
+              </div>
+            ))
+          ) : (
+            <p className="text-gray-500">No ads to display.</p>
+          )}
+        </div>{" "}
       </div>
     </>
   );

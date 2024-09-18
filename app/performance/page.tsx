@@ -14,18 +14,19 @@ const Performance = async ({
   searchParams,
 }: SearchParamProps) => {
   const { sessionClaims } = auth();
-  const myId = sessionClaims?.userId as string;
-  let userId = id;
+  const userId = sessionClaims?.userId as string;
+  const userName = sessionClaims?.userName as string;
+  const userImage = sessionClaims?.userImage as string;
   const adsPage = Number(searchParams?.adsPage) || 1;
   const sortby = (searchParams?.query as string) || "recommeded";
-  const isAdCreator = myId === userId;
+  const isAdCreator = true;
   const organizedAds = await getAdByUser({
     userId,
     page: adsPage,
     sortby: sortby,
     myshop: isAdCreator,
   });
-
+  console.log("organizedAds:" + organizedAds);
   const user = await getUserById(userId);
 
   let subscription: any = [];
@@ -96,16 +97,18 @@ const Performance = async ({
   }
 
   return (
-    <>
+    <div className="h-screen w-full">
       <div className="z-10 top-0 fixed w-full">
-        <Navbar userstatus="User" userId={myId} />
+        <Navbar userstatus="User" userId={userId} />
       </div>
-      <div className="mt-[70px]">
+      <div className="mt-[50px]">
         <DashboardPerformance
           userId={userId}
-          loggedId={myId}
+          loggedId={userId}
           isAdCreator={isAdCreator}
           user={user}
+          userName={userName}
+          userImage={userImage}
           daysRemaining={daysRemaining}
           packname={planpackage}
           color={color}
@@ -123,7 +126,7 @@ const Performance = async ({
       <footer>
         <Footersub />
       </footer>
-    </>
+    </div>
   );
 };
 export default Performance;
