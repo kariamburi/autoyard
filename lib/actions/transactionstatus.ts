@@ -111,7 +111,7 @@ export async function getData(userId: string) {
 
     // Find the most recent transaction for the user
     const status = "Active";
-    const conditions = { $and: [{ buyer: userId }, { status: status }] };
+    const conditions = { $and: [{ buyer: userId }, { status: status }, { plan: { $ne: "Verification" }} ] };
     const recentTransaction = await Transaction.find(conditions)
       .sort({ createdAt: 'desc' })
       .limit(1)
@@ -142,7 +142,7 @@ export async function getData(userId: string) {
         ],
       };
       const AdCount = await Ad.countDocuments(adConditions);
-
+    // console.log(JSON.parse(JSON.stringify(transaction))+" AdCount:"+AdCount+" pack: "+pack)
       return {
         transaction: JSON.parse(JSON.stringify(transaction)),
         ads: AdCount,

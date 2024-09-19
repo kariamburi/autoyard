@@ -33,6 +33,7 @@ const ChatButton = ({ ad, userId, userName, userImage }: chatProps) => {
     const checkSubscription = async () => {
       try {
         subscription = await getData(ad.organizer._id);
+
         setsendsms(subscription.currentpack.features[5].checked);
         setsendemail(subscription.currentpack.features[6].checked);
         setplanpackage(subscription.currentpack.name);
@@ -84,9 +85,18 @@ const ChatButton = ({ ad, userId, userName, userImage }: chatProps) => {
       if (sendsms && daysRemaining > 0) {
         await sendSMS(phoneNumber, message, adTitle, adUrl);
       }
-      if (sendemail && daysRemaining > 0) {
-        await sendEmail(recipientEmail, message, adTitle, adUrl);
-      }
+
+      // if (sendemail && daysRemaining > 0) {
+      // alert(recipientEmail);
+      await sendEmail(
+        recipientEmail,
+        message,
+        adTitle,
+        adUrl,
+        userName,
+        userImage
+      );
+      //  }
 
       const inquiries = (Number(ad.inquiries ?? "0") + 1).toString();
       const _id = ad._id;
