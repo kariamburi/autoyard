@@ -10,21 +10,15 @@ export async function sendEmail(
   userImage: string
 ) {
 
-  let transporter = nodemailer.createTransport({
-    host: process.env.SMTP_HOST,
-    port: 465,
-    secure: true,
-    auth: {
-      user: process.env.SMTP_USER, // Your SMTP user
-      pass: process.env.SMTP_PASS, // Your SMTP password
-    },
-    dkim: {
-      domainName: "autoyard.co.ke",
-      keySelector: "mail",
-      privateKey: process.env.DKIM_PRIVATE_KEY,
-    },
-  });
-
+ let transporter = nodemailer.createTransport({
+  host: process.env.SMTP_HOST, // Your SMTP host
+  port: 587, // Use 587 for TLS
+  secure: false, // True if using port 465
+  auth: {
+    user: process.env.SMTP_USER, // Your SMTP user
+    pass: process.env.SMTP_PASS, // Your SMTP password
+  }
+});
 
   let mailOptions = {
     from: '"Autoyard" <no-reply@autoyard.co.ke>',
