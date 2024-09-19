@@ -70,7 +70,7 @@ const Contact = ({ ad, userId, userName, userImage }: chatProps) => {
               className="hover:bg-emerald-700 bg-[#30AF5B] text-white text-xs mt-2 p-2 rounded-lg shadow"
               onClick={handleShowPhoneClick}
             >
-              <CallIcon sx={{ marginRight: "5px" }} />
+              <CallIcon sx={{ fontSize: 20 }} />
 
               <div className="hidden lg:inline">Call</div>
             </button>
@@ -78,7 +78,7 @@ const Contact = ({ ad, userId, userName, userImage }: chatProps) => {
           <SignedOut>
             <a href={`/sign-in`}>
               <button className="hover:bg-emerald-700 bg-[#30AF5B] text-white text-xs mt-2 p-2 rounded-lg shadow">
-                <CallIcon sx={{ marginRight: "5px" }} />
+                <CallIcon sx={{ fontSize: 20 }} />
                 <div className="hidden lg:inline">Call</div>
               </button>
             </a>
@@ -95,7 +95,7 @@ const Contact = ({ ad, userId, userName, userImage }: chatProps) => {
           <SignedOut>
             <a href={`/sign-in`}>
               <button className="flex gap-1 hover:bg-emerald-700 bg-[#30AF5B] text-white text-xs mt-2 p-2 rounded-lg shadow">
-                <ChatBubbleOutlineOutlinedIcon sx={{ marginRight: "5px" }} />
+                <ChatBubbleOutlineOutlinedIcon sx={{ fontSize: 20 }} />
                 <div className="hidden lg:inline">Message</div>
               </button>
             </a>
@@ -108,7 +108,7 @@ const Contact = ({ ad, userId, userName, userImage }: chatProps) => {
                   onClick={handlewhatsappClick}
                   className="hover:bg-emerald-700 bg-[#30AF5B] text-white text-xs mt-2 p-2 rounded-lg shadow"
                 >
-                  <WhatsAppIcon sx={{ marginRight: "5px" }} />
+                  <WhatsAppIcon sx={{ fontSize: 20 }} />
 
                   <div className="hidden lg:inline">WhatsApp</div>
                 </button>
@@ -116,7 +116,7 @@ const Contact = ({ ad, userId, userName, userImage }: chatProps) => {
               <SignedOut>
                 <a href={`/sign-in`}>
                   <button className="hover:bg-emerald-700 bg-[#30AF5B] text-white text-xs mt-2 p-2 rounded-lg shadow">
-                    <WhatsAppIcon sx={{ marginRight: "5px" }} />
+                    <WhatsAppIcon sx={{ fontSize: 20 }} />
 
                     <div className="hidden lg:inline">WhatsApp</div>
                   </button>

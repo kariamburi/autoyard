@@ -111,7 +111,7 @@ const ChatButton = ({ ad, userId, userName, userImage }: chatProps) => {
         onClick={() => setIsOpen(true)}
         className="hover:bg-emerald-700 bg-[#30AF5B] text-white text-xs mt-2 p-2 rounded-lg shadow"
       >
-        <ChatBubbleOutlineOutlinedIcon sx={{ marginRight: "5px" }} />
+        <ChatBubbleOutlineOutlinedIcon sx={{ fontSize: 20 }} />
         <div className="hidden lg:inline">Enquire</div>
       </button>
       {isOpen && (
@@ -123,7 +123,7 @@ const ChatButton = ({ ad, userId, userName, userImage }: chatProps) => {
                 ? `${ad.description.substring(0, 80)}...`
                 : ad.description}
             </p>
-            <span className="text-sm lg:text-lg font-bold w-min rounded-full mt-1 text-emerald-950">
+            <span className="text-lg lg:text-xl font-bold w-min rounded-full mt-1 text-emerald-950">
               {formatKsh(ad.price)}
             </span>
 

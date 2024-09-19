@@ -37,14 +37,14 @@ const Performance = async ({
   let planId = "65fa7d3fb20de072ea107223";
   let priority = 0;
   let adstatus = "Pending";
-  let color = "#000000";
+  let color = "#7e71e5";
   const currDate = new Date();
   // Add one month to the current date
   let expirationDate = new Date(currDate);
   expirationDate.setMonth(currDate.getMonth() + 1);
 
   // const packagesList = await getAllPackages();
-  console.log(organizedAds);
+
   try {
     subscription = await getData(userId);
     //console.log(subscription);
@@ -80,6 +80,7 @@ const Performance = async ({
       adstatus = "Active";
     }
   } catch {}
+  //console.log(planpackage + " " + daysRemaining);
   if (!organizedAds || !user) {
     return (
       <div className="flex items-center justify-center h-screen w-full bg-[#ebf2f7] bg-dotted-pattern bg-cover bg-fixed bg-center">

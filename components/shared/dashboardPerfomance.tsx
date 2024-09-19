@@ -17,6 +17,19 @@ import SellerProfilePermonance from "./SellerProfilePermonance";
 import Verificationmobile from "./Verificationmobile";
 import { DeleteConfirmation } from "./DeleteConfirmation";
 import Image from "next/image";
+import AccessTimeIcon from "@mui/icons-material/AccessTime";
+import VisibilityIcon from "@mui/icons-material/Visibility";
+import LocationOnIcon from "@mui/icons-material/LocationOn";
+import ChatBubbleOutlineOutlinedIcon from "@mui/icons-material/ChatBubbleOutlineOutlined";
+import CallIcon from "@mui/icons-material/Call";
+import WhatsAppIcon from "@mui/icons-material/WhatsApp";
+import ShareOutlinedIcon from "@mui/icons-material/ShareOutlined";
+import ClassOutlinedIcon from "@mui/icons-material/ClassOutlined";
+import SplitscreenOutlinedIcon from "@mui/icons-material/SplitscreenOutlined";
+import ShieldOutlinedIcon from "@mui/icons-material/ShieldOutlined";
+import AssistantDirectionOutlinedIcon from "@mui/icons-material/AssistantDirectionOutlined";
+import LowPriorityOutlinedIcon from "@mui/icons-material/LowPriorityOutlined";
+import FlightTakeoffOutlinedIcon from "@mui/icons-material/FlightTakeoffOutlined";
 type CollectionProps = {
   userId: string;
   userName: string;
@@ -136,70 +149,81 @@ CollectionProps) => {
           data.map((ad: any) => (
             <div
               key={ad._id}
-              className="flex gap-1 bg-white shadow-lg rounded-lg overflow-hidden mb-6 border border-gray-200"
+              className="flex flex-col lg:flex-row gap-1 bg-white shadow-lg rounded-lg overflow-hidden mb-6 border border-gray-200"
             >
               {/* Ad Image */}
               <img
                 src={ad.imageUrls[0] || "/default-ad-image.jpg"}
                 alt={ad.title}
-                className="w-20 lg:w-64 h-64 object-cover"
+                className="w-full lg:w-64 h-40 lg:h-64 object-cover"
               />
 
               <div className="p-2 grid grid-cols-3">
                 {/* 1. Ad Details */}
-                <section className="mb-3 bg-gray-50 p-1 raounded-lg">
-                  <h2 className="font-semibold mb-2 text-gray-800">
+                <section className="mb-1 mr-1 bg-gray-100 p-1 rounded-lg">
+                  <p className="text-xs lg:text-base font-bold mb-1 text-gray-800">
                     Ad Details
-                  </h2>
-                  <p className="text-gray-700 text-sm">
+                  </p>
+                  <p className="flex gap-1 text-gray-700 text-[10px] lg:text-xs">
+                    <SplitscreenOutlinedIcon sx={{ fontSize: 14 }} />
                     <strong>Title: </strong> {ad.title}
                   </p>
-                  <p className="text-gray-700 text-sm">
-                    <strong>Category: </strong> {ad.category?.name || "N/A"}
+                  <p className="flex gap-1 text-gray-700 text-[10px] lg:text-xs">
+                    <ClassOutlinedIcon sx={{ fontSize: 14 }} />
+                    <strong>Category: </strong> {ad.subcategory || "N/A"}
                   </p>
-                  <p className="text-gray-700 text-sm">
-                    <strong>Created Date: </strong>{" "}
+                  <p className="flex gap-1 text-gray-700 text-[10px] lg:text-xs">
+                    <AccessTimeIcon sx={{ fontSize: 14 }} />
+                    <strong>Created Date: </strong>
                     {new Date(ad.createdAt).toLocaleDateString()}
                   </p>
                 </section>
 
                 {/* 2. Ad Engagement */}
-                <section className="mb-3 bg-gray-50 p-1 raounded-lg">
-                  <h2 className="font-semibold mb-2 text-gray-800">
+                <section className="mb-1 mr-1 bg-gray-100 p-1 rounded-lg">
+                  <p className="text-xs lg:text-base font-bold mb-1 text-gray-800">
                     Ad Engagement
-                  </h2>
-
-                  <p className="text-gray-700 text-sm">
-                    <strong>Views: </strong> {ad.views}
                   </p>
-                  <p className="text-gray-700 text-sm">
+
+                  <p className="flex gap-1 text-gray-700 text-[10px] lg:text-xs">
+                    <VisibilityIcon sx={{ fontSize: 14 }} />
+                    <strong>Ad Views: </strong> {ad.views}
+                  </p>
+                  <p className="flex gap-1 text-gray-700 text-[10px] lg:text-xs">
+                    <ChatBubbleOutlineOutlinedIcon sx={{ fontSize: 14 }} />
                     <strong>Inquiries: </strong> {ad.inquiries || "0"}
                   </p>
-                  <p className="text-gray-700 text-sm">
+                  <p className="flex gap-1 text-gray-700 text-[10px] lg:text-xs">
+                    <CallIcon sx={{ fontSize: 14 }} />
                     <strong>Calls: </strong> {ad.calls || "0"}
                   </p>
-                  <p className="text-gray-700 text-sm">
+                  <p className="flex gap-1 text-gray-700 text-[10px] lg:text-xs">
+                    <WhatsAppIcon sx={{ fontSize: 14 }} />
                     <strong>WhatsApp: </strong> {ad.whatsapp || "0"}
                   </p>
-                  <p className="text-gray-700 text-sm">
+                  <p className="flex gap-1 text-gray-700 text-[10px] lg:text-xs">
+                    <ShareOutlinedIcon sx={{ fontSize: 14 }} />
                     <strong>Share: </strong> {ad.shared || "0"}
                   </p>
-                  <p className="text-gray-700 text-sm">
-                    <strong>Liked / Bookmarked: </strong> {ad.bookmarked || "0"}
+                  <p className="flex gap-1 text-gray-700 text-[10px] lg:text-xs">
+                    <BookmarkIcon sx={{ fontSize: 14 }} />
+                    <strong>Bookmarked: </strong> {ad.bookmarked || "0"}
                   </p>
                 </section>
 
                 {/* 3. Ad Duration & Status */}
-                <section className="mb-3 bg-gray-50 p-1 raounded-lg">
-                  <h2 className="font-semibold mb-2 text-gray-800">
-                    Ad Duration & Status
+                <section className="mb-1 mr-1 bg-gray-100 p-1 rounded-lg">
+                  <h2 className="text-xs lg:text-base font-bold mb-1  text-gray-800">
+                    Ad Status
                   </h2>
-                  <p className="text-gray-700 text-sm">
-                    <strong>Ad Expiry: </strong>{" "}
+                  {/*  Ad Duration & Status
+                  <p className="text-gray-700 text-[10px] lg:text-xs">
+                    <strong>Ad Expiry: </strong>
                     {new Date(ad.expirely).toLocaleDateString()}
                   </p>
-                  <p
-                    className={`text-gray-700 text-sm ${
+                  */}
+                  {/*  <p
+                    className={`text-gray-700 text-[10px] lg:text-xs ${
                       ad.adstatus === "active"
                         ? "text-green-600"
                         : "text-red-600"
@@ -207,66 +231,95 @@ CollectionProps) => {
                   >
                     <strong>Status: </strong>{" "}
                     {ad.adstatus === "active" ? "Active" : "Expired"}
-                  </p>
+                  </p> */}
+
+                  {ad.adstatus && (
+                    <div
+                      className={`flex flex-col w-[100px] text-[8px] lg:text-[10px] p-1 text-white justify-center items-center rounded-full ${
+                        ad.adstatus === "Pending"
+                          ? "bg-yellow-600"
+                          : ad.adstatus === "Failed"
+                          ? "bg-red-600 "
+                          : "bg-green-600"
+                      }`}
+                    >
+                      {ad.adstatus}
+                    </div>
+                  )}
+                  <div className="flex mt-2 gap-4 rounded-xl bg-white p-3 shadow-sm transition-all">
+                    <Link href={`/ads/${ad._id}/update`}>
+                      <Image
+                        src="/assets/icons/edit.svg"
+                        alt="edit"
+                        width={20}
+                        height={20}
+                      />
+                    </Link>
+                    <DeleteConfirmation
+                      adId={ad._id}
+                      imageUrls={ad.imageUrls}
+                    />
+                  </div>
                 </section>
 
                 {/* 4. Ad Performance */}
-                <section className="mb-3 bg-gray-50 p-1 raounded-lg">
-                  <h2 className="font-semibold mb-2 text-gray-800">
+                <section className="mb-1 mr-1 bg-gray-100 p-1 rounded-lg">
+                  <h2 className="text-xs lg:text-base font-bold mb-1 text-gray-800">
                     Ad Performance
                   </h2>
-                  <p className="text-gray-700 text-sm">
+                  <p className="flex gap-1 text-gray-700 text-[10px] lg:text-xs">
+                    <LowPriorityOutlinedIcon sx={{ fontSize: 14 }} />
                     <strong>Priority Level: </strong> {ad.priority || "N/A"}
                   </p>
-                  <p className="text-gray-700 text-sm">
+                  <p className="flex gap-1 text-gray-700 text-[10px] lg:text-xs">
+                    <FlightTakeoffOutlinedIcon sx={{ fontSize: 14 }} />
                     <strong>Plan: </strong> {ad.plan?.name || "Free"}
                   </p>
                 </section>
 
                 {/* 5. Contact Info */}
-                <section className="mb-3 bg-gray-50 p-1 raounded-lg">
-                  <h2 className="font-semibold mb-2 text-gray-800">
+                <section className="mb-1 mr-1 bg-gray-100 p-1 rounded-lg">
+                  <h2 className="text-xs lg:text-base font-bold mb-1  text-gray-800">
                     Contact Info
                   </h2>
-                  <p className="text-gray-700 text-sm">
-                    <strong>Phone Number: </strong> {ad.phone || "N/A"}
+                  <p className="flex gap-1 text-gray-700 text-[10px] lg:text-xs">
+                    <CallIcon sx={{ fontSize: 14 }} />
+                    <strong>Phone: </strong> {ad.phone || "N/A"}
                   </p>
-                  <p className="text-gray-700 text-sm">
+                  <p className="flex gap-1 text-gray-700 text-[10px] lg:text-xs">
+                    <WhatsAppIcon sx={{ fontSize: 14 }} />
                     <strong>WhatsApp: </strong>{" "}
                     {ad.organizer?.whatsapp || "N/A"}
                   </p>
-                  <p className="text-gray-700 text-sm">
+                  <p
+                    className={`flex gap-1 text-gray-700 text-[10px] lg:text-xs ${
+                      ad.organizer?.verified[0]?.accountverified === true
+                        ? "text-green-600"
+                        : "text-red-600"
+                    }`}
+                  >
+                    <ShieldOutlinedIcon sx={{ fontSize: 14 }} />
                     <strong>Verified Status: </strong>{" "}
-                    {ad.organizer?.verified?.accountverified
+                    {ad.organizer?.verified[0]?.accountverified === true
                       ? "Verified"
                       : "Not Verified"}
                   </p>
                 </section>
 
                 {/* 6. Geographical Info */}
-                <section className="mb-3 bg-gray-50 p-1 raounded-lg">
-                  <h2 className="font-semibold mb-2 text-gray-800">
+                <section className="mb-1 mr-1 bg-gray-100 p-1 rounded-lg">
+                  <h2 className="text-xs lg:text-base font-bold mb-1  text-gray-800">
                     Geographical Info
                   </h2>
-                  <p className="text-gray-700 text-sm">
+                  <p className="flex gap-1 text-gray-700 text-[10px] lg:text-xs">
+                    <LocationOnIcon sx={{ fontSize: 14 }} />
                     <strong>Location: </strong> {ad.address || "N/A"}
                   </p>
-                  <p className="text-gray-700 text-sm text-sm">
+                  <p className="flex gap-1 text-gray-700 text-[10px] lg:text-xs">
+                    <AssistantDirectionOutlinedIcon sx={{ fontSize: 14 }} />
                     <strong>Map Enabled: </strong> {"Yes"}
                   </p>
                 </section>
-
-                <div className="flex gap-4 rounded-xl bg-white p-3 shadow-sm transition-all">
-                  <Link href={`/ads/${ad._id}/update`}>
-                    <Image
-                      src="/assets/icons/edit.svg"
-                      alt="edit"
-                      width={20}
-                      height={20}
-                    />
-                  </Link>
-                  <DeleteConfirmation adId={ad._id} imageUrls={ad.imageUrls} />
-                </div>
               </div>
             </div>
           ))
