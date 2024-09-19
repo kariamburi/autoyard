@@ -16,6 +16,7 @@ import {
   LinkedinShareButton,
   LinkedinIcon,
 } from "next-share";
+import { updateshared } from "@/lib/actions/ad.actions";
 
 interface shareProps {
   ad: IAd;
@@ -32,7 +33,17 @@ const ShareAd: React.FC<shareProps> = ({ ad }) => {
   const shareTitle = `${ad.title}, Price: Ksh ${ad.price}`;
   const shareDescription = ad.description;
   const imageUrl = ad.imageUrls[0];
-
+  const handleShare = async () => {
+    //console.log(`Shared via ${platform}`);
+    const shared = (Number(ad.shared ?? "0") + 1).toString();
+    const _id = ad._id;
+    await updateshared({
+      _id,
+      shared,
+      path: `/ads/${ad._id}`,
+    });
+    // You can add any analytics or event tracking here
+  };
   return (
     <>
       <Head>
@@ -54,6 +65,7 @@ const ShareAd: React.FC<shareProps> = ({ ad }) => {
           title={shareTitle}
           quote={shareDescription} // Facebook uses 'quote' for description
           hashtag="" // Optionally add a hashtag
+          onClick={() => handleShare()}
         >
           <FacebookIcon size={32} round />
         </FacebookShareButton>
@@ -62,6 +74,7 @@ const ShareAd: React.FC<shareProps> = ({ ad }) => {
           url={shareUrl}
           title={`${shareTitle}\n${shareDescription}`} // WhatsApp uses 'title' as the shared message
           separator=": " // Separator between title and URL
+          onClick={() => handleShare()}
         >
           <WhatsappIcon size={32} round />
         </WhatsappShareButton>
@@ -70,6 +83,7 @@ const ShareAd: React.FC<shareProps> = ({ ad }) => {
           url={shareUrl}
           title={`${shareTitle}\n${shareDescription}`} // Twitter uses 'title' for the tweet content
           hashtags={[]} // Optionally add hashtags
+          onClick={() => handleShare()}
         >
           <TwitterIcon size={32} round />
         </TwitterShareButton>
@@ -78,6 +92,7 @@ const ShareAd: React.FC<shareProps> = ({ ad }) => {
           url={shareUrl}
           subject={shareTitle} // Email uses 'subject' for the email subject
           body={shareDescription} // Email uses 'body' for the email content
+          onClick={() => handleShare()}
         >
           <EmailIcon size={32} round />
         </EmailShareButton>

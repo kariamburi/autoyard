@@ -67,6 +67,9 @@ adstatus:string;
 inquiries:string;
 whatsapp:string;
 calls:string;
+shared:string;
+bookmarked:string;
+abused:string;
 }
 export interface Verified {
   accountverified: boolean 
@@ -134,7 +137,10 @@ const AdSchema = new Schema({
   adstatus:{type: String},
   inquiries:{ type: String },
   whatsapp:{ type: String },
-  calls:{ type: String }
+  calls:{ type: String },
+  shared:{ type: String },
+  bookmarked:{ type: String },
+  abused:{ type: String }
 })
 
 const Ad = models.Ad || model('Ad', AdSchema);

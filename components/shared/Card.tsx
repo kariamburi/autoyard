@@ -50,7 +50,21 @@ const Card = ({ ad, hasOrderLink, hidePrice, userId }: CardProps) => {
       },
       path: pathname,
     });
-    if (newBookmark) {
+    if (newBookmark === "Ad Saved to Bookmark") {
+      const bookmarked = (Number(ad.bookmarked ?? "0") + 1).toString();
+      const _id = ad._id;
+      await updatebookmarked({
+        _id,
+        bookmarked,
+        path: `/ads/${ad._id}`,
+      });
+      toast({
+        title: "Alert",
+        description: newBookmark,
+        duration: 5000,
+        className: "bg-[#30AF5B] text-white",
+      });
+    } else {
       toast({
         title: "Alert",
         description: newBookmark,

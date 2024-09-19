@@ -26,7 +26,6 @@ export const createBookmark = async ({ bookmark, path}: CreateBookmarkParams) =>
     const conditions = { adId: bookmark.adId };
     const book = await Bookmark.findOne(conditions);  // Use findOne to find a single matching document
     
-    console.log("book: "+book)
     let newBookmark={}
     let response="Ad aleardy Saved to Bookmark"
     if(!book){

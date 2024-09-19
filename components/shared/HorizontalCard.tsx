@@ -19,6 +19,7 @@ import {
 import { usePathname } from "next/navigation";
 import { useToast } from "../ui/use-toast";
 import { createBookmark, deleteBookmark } from "@/lib/actions/bookmark.actions";
+import { updatebookmarked } from "@/lib/actions/ad.actions";
 type CardProps = {
   userId: string;
   ad: IAd;
@@ -44,7 +45,21 @@ const HorizontalCard = ({ userId, ad, isAdCreator }: CardProps) => {
       },
       path: pathname,
     });
-    if (newBookmark) {
+    if (newBookmark === "Ad Saved to Bookmark") {
+      const bookmarked = (Number(ad.bookmarked ?? "0") + 1).toString();
+      const _id = ad._id;
+      await updatebookmarked({
+        _id,
+        bookmarked,
+        path: `/ads/${ad._id}`,
+      });
+      toast({
+        title: "Alert",
+        description: newBookmark,
+        duration: 5000,
+        className: "bg-[#30AF5B] text-white",
+      });
+    } else {
       toast({
         title: "Alert",
         description: newBookmark,
@@ -61,7 +76,14 @@ const HorizontalCard = ({ userId, ad, isAdCreator }: CardProps) => {
       },
       path: pathname,
     });
-    if (delBookmark) {
+    if (delBookmark === "Bookmark deleted successfully") {
+      const bookmarked = (Number(ad.bookmarked ?? "1") - 1).toString();
+      const _id = ad._id;
+      await updatebookmarked({
+        _id,
+        bookmarked,
+        path: `/ads/${ad._id}`,
+      });
       toast({
         variant: "destructive",
         title: "Deleted!",

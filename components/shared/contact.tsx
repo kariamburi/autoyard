@@ -34,7 +34,6 @@ const Contact = ({ ad, userId, userName, userImage }: chatProps) => {
   };
 
   const handlewhatsappClick = async (e: any) => {
-    setshowphone(true);
     const whatsapp = (Number(ad.whatsapp ?? "0") + 1).toString();
     const _id = ad._id;
     await updatewhatsapp({
@@ -72,14 +71,8 @@ const Contact = ({ ad, userId, userName, userImage }: chatProps) => {
               onClick={handleShowPhoneClick}
             >
               <CallIcon sx={{ marginRight: "5px" }} />
-              {showphone ? (
-                <>{ad.phone}</>
-              ) : (
-                <>
-                  {" "}
-                  <div className="hidden lg:inline">Call</div>
-                </>
-              )}
+
+              <div className="hidden lg:inline">Call</div>
             </button>
           </SignedIn>
           <SignedOut>

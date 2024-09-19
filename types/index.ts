@@ -413,8 +413,10 @@ export type Ad = {
   expirely:Date
   adstatus:string
   inquiries:string
-whatsapp:string
-calls:string
+  whatsapp:string
+  shared:string
+  bookmarked:string
+  abused:string
 }
 export interface Subcategory {
   title: string;
@@ -575,6 +577,23 @@ export type UpdateInquiriesParams = {
   inquiries: string;
   path: string;
  
+};
+export type UpdateShareParams = {
+  _id: string; // object File
+  shared: string;
+  path: string;
+ 
+};
+export type UpdateAbuseParams = {
+  _id: string; // object File
+  abused: string;
+  path: string;
+ 
+};
+export type UpdateBookmarkedParams = {
+  _id: string; // object File
+  bookmarked: string;
+  path: string;
 };
 export type CreateVerifiesParams = {
   verifies: {

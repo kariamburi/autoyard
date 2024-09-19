@@ -41,7 +41,7 @@ import PauseCircleOutlineOutlinedIcon from "@mui/icons-material/PauseCircleOutli
 import PlayCircleFilledWhiteOutlinedIcon from "@mui/icons-material/PlayCircleFilledWhiteOutlined";
 import dynamic from "next/dynamic";
 import Skeleton from "@mui/material/Skeleton";
-import { updateview } from "@/lib/actions/ad.actions";
+import { updateabused, updateview } from "@/lib/actions/ad.actions";
 import CircularProgress from "@mui/material/CircularProgress";
 
 import {
@@ -53,12 +53,19 @@ import {
   CarouselPrevious,
 } from "../ui/carousel";
 import SellerProfile from "./SellerProfile";
-import { addDoc, collection, serverTimestamp } from "firebase/firestore";
+import {
+  addDoc,
+  collection,
+  getDocs,
+  query,
+  serverTimestamp,
+  where,
+} from "firebase/firestore";
 import { db } from "@/lib/firebase";
 import Head from "next/head";
 import ChatButton from "./ChatButton ";
 import ShareAd from "./ShareAd";
-
+import { useToast } from "../ui/use-toast";
 type CardProps = {
   ad: IAd;
   userId: string;
@@ -70,6 +77,7 @@ export default function Ads({ ad, userId, userImage, userName }: CardProps) {
   const [selectedIndex, setSelectedIndex] = React.useState<number | null>(null);
   const hideAddVideo = userId === ad.organizer._id;
   const [showphone, setshowphone] = useState(false);
+  const { toast } = useToast();
   const handleShowPhoneClick = (e: any) => {
     setshowphone(true);
     window.location.href = `tel:${ad.phone}`;
@@ -228,23 +236,68 @@ export default function Ads({ ad, userId, userImage, userName }: CardProps) {
     // For example, send data to the admin via an API call
     if (abuseDescription.trim()) {
       // Logic to handle report submission, e.g., send the description to the admin
-      console.log("Report Submitted:", abuseDescription);
       const read = "1";
       const imageUrl = "";
-      await addDoc(collection(db, "messages"), {
-        text: abuseDescription + " AD REPORTED:" + ad._id,
-        name: userName,
-        avatar: userImage,
-        createdAt: serverTimestamp(),
-        uid: userId,
-        recipientUid: "65d4a2ffec4c43cdc488ce0d",
-        imageUrl,
-        read,
-      });
+
+      // Define the query to check if a similar message already exists
+      const q = query(
+        collection(db, "messages"),
+        where("text", "==", abuseDescription + " AD REPORTED:" + ad._id),
+        where("uid", "==", userId),
+        where("recipientUid", "==", "65d4a2ffec4c43cdc488ce0d")
+      );
+
+      // Execute the query
+      const querySnapshot = await getDocs(q);
+
+      // Check if any matching document exists
+      if (querySnapshot.empty) {
+        // No matching document, proceed with adding the new message
+        await addDoc(collection(db, "messages"), {
+          text: abuseDescription + " AD REPORTED:" + ad._id,
+          name: userName,
+          avatar: userImage,
+          createdAt: serverTimestamp(),
+          uid: userId,
+          recipientUid: "65d4a2ffec4c43cdc488ce0d",
+          imageUrl,
+          read,
+        });
+        const abused = (Number(ad.abused ?? "0") + 1).toString();
+        const _id = ad._id;
+        await updateabused({
+          _id,
+          abused,
+          path: `/ads/${ad._id}`,
+        });
+        console.log("Message submitted successfully.");
+        toast({
+          title: "Alert",
+          description: "Message submitted successfully.",
+          duration: 5000,
+          className: "bg-[#30AF5B] text-white",
+        });
+      } else {
+        console.log("Message already exists. Skipping submission.");
+        toast({
+          variant: "destructive",
+          title: "Failed!",
+          description: "Message already exists. Skipping submission.",
+          duration: 5000,
+        });
+        // Handle case where the message already exists
+      }
+
       // Reset and close the popup after submission
       handleClosePopup();
     } else {
-      alert("Please enter a description of the abuse.");
+      //   alert("Please enter a description of the abuse.");
+      toast({
+        variant: "destructive",
+        title: "Failed!",
+        description: "Please enter a description of the abuse.",
+        duration: 5000,
+      });
     }
   };
   const [isLoading, setIsLoading] = useState(true);

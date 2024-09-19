@@ -23,6 +23,9 @@ import {
   UpdateCallsParams,
   UpdateInquiriesParams,
   UpdateWhatsappParams,
+  UpdateBookmarkedParams,
+  UpdateShareParams,
+  UpdateAbuseParams,
 } from '@/types'
 import Transaction from '../database/models/transaction.model'
 import { Model } from 'mongoose'
@@ -222,6 +225,74 @@ export async function updateinquiries({ _id, inquiries, path }: UpdateInquiriesP
 
     // Return the updated category
     return JSON.parse(JSON.stringify(updateAdinquiries));
+  } catch (error) {
+    handleError(error);
+    // Handle error appropriately (e.g., throw or return error response)
+    throw error;
+  }
+}
+// UPDATE
+export async function updateshared({ _id, shared, path }: UpdateShareParams) {
+  try {
+    await connectToDatabase();
+    
+    // Find the category by its ID and update the name field only
+    const updateAdshare = await Ad.findByIdAndUpdate(
+      _id,
+      { shared }, // Update only the name field
+      { new: true }
+    );
+    
+    // Revalidate the path (assuming it's a separate function)
+    revalidatePath(path);
+
+    // Return the updated category
+    return JSON.parse(JSON.stringify(updateAdshare));
+  } catch (error) {
+    handleError(error);
+    // Handle error appropriately (e.g., throw or return error response)
+    throw error;
+  }
+}
+// UPDATE
+export async function updatebookmarked({ _id, bookmarked, path }: UpdateBookmarkedParams) {
+  try {
+    await connectToDatabase();
+    
+    // Find the category by its ID and update the name field only
+    const updateAdbookmarked = await Ad.findByIdAndUpdate(
+      _id,
+      { bookmarked }, // Update only the name field
+      { new: true }
+    );
+    
+    // Revalidate the path (assuming it's a separate function)
+    revalidatePath(path);
+
+    // Return the updated category
+    return JSON.parse(JSON.stringify(updateAdbookmarked));
+  } catch (error) {
+    handleError(error);
+    // Handle error appropriately (e.g., throw or return error response)
+    throw error;
+  }
+}
+export async function updateabused({ _id, abused, path }: UpdateAbuseParams) {
+  try {
+    await connectToDatabase();
+    
+    // Find the category by its ID and update the name field only
+    const updateAdabused = await Ad.findByIdAndUpdate(
+      _id,
+      { abused }, // Update only the name field
+      { new: true }
+    );
+    
+    // Revalidate the path (assuming it's a separate function)
+    revalidatePath(path);
+
+    // Return the updated category
+    return JSON.parse(JSON.stringify(updateAdabused));
   } catch (error) {
     handleError(error);
     // Handle error appropriately (e.g., throw or return error response)
