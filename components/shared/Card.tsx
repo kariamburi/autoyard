@@ -19,6 +19,7 @@ import {
 import { createBookmark, deleteBookmark } from "@/lib/actions/bookmark.actions";
 import { usePathname } from "next/navigation";
 import { useToast } from "../ui/use-toast";
+import { updatebookmarked } from "@/lib/actions/ad.actions";
 type CardProps = {
   ad: IAd;
   hasOrderLink?: boolean;
