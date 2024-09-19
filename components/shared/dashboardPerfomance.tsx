@@ -205,7 +205,7 @@ CollectionProps) => {
                   </p>
                   <p className="flex gap-1 mb-1 text-gray-700 text-[10px] lg:text-xs">
                     <ShareOutlinedIcon sx={{ fontSize: 14 }} />
-                    <strong>Share: </strong> {ad.shared || "0"}
+                    <strong>Shared: </strong> {ad.shared || "0"}
                   </p>
                   <p className="flex gap-1 mb-1 text-gray-700 text-[10px] lg:text-xs">
                     <BookmarkIcon sx={{ fontSize: 14 }} />
