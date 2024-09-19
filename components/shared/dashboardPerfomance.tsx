@@ -143,8 +143,10 @@ CollectionProps) => {
             )}
           </div>
         </section>
-        <h1 className="text-3xl font-bold mb-6">Ad Performance</h1>
-
+        <h1 className="text-3xl font-bold">Ad Performance</h1>
+        <h1 className="bg-white p-1 rounded-full mb-6 text-gray-500 text-sm">
+          Total Ads: {data.length}
+        </h1>
         {data.length > 0 ? (
           data.map((ad: any) => (
             <div
