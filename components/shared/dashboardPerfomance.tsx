@@ -74,7 +74,7 @@ CollectionProps) => {
 
   return (
     <>
-      <div className="w-full lg:max-w-6xl mx-auto p-6">
+      <div className="w-full lg:max-w-6xl mx-auto p-1">
         <section className="bg-grey-50 bg-dotted-pattern bg-cover bg-center py-0 md:py-0 rounded-sm">
           <div className="flex items-center p-1 justify-between">
             <div className="flex flex-col">
@@ -158,21 +158,21 @@ CollectionProps) => {
                 className="w-full lg:w-64 h-40 lg:h-64 object-cover"
               />
 
-              <div className="p-2 grid grid-cols-3">
+              <div className="p-2 grid grid-cols-2 lg:grid-cols-3">
                 {/* 1. Ad Details */}
                 <section className="mb-1 mr-1 bg-gray-100 p-1 rounded-lg">
                   <p className="text-xs lg:text-base font-bold mb-1 text-gray-800">
                     Ad Details
                   </p>
-                  <p className="flex gap-1 text-gray-700 text-[10px] lg:text-xs">
+                  <p className="flex gap-1 mb-1 text-gray-700 text-[10px] lg:text-xs">
                     <SplitscreenOutlinedIcon sx={{ fontSize: 14 }} />
                     <strong>Title: </strong> {ad.title}
                   </p>
-                  <p className="flex gap-1 text-gray-700 text-[10px] lg:text-xs">
+                  <p className="flex gap-1 mb-1 text-gray-700 text-[10px] lg:text-xs">
                     <ClassOutlinedIcon sx={{ fontSize: 14 }} />
                     <strong>Category: </strong> {ad.subcategory || "N/A"}
                   </p>
-                  <p className="flex gap-1 text-gray-700 text-[10px] lg:text-xs">
+                  <p className="flex gap-1 mb-1 text-gray-700 text-[10px] lg:text-xs">
                     <AccessTimeIcon sx={{ fontSize: 14 }} />
                     <strong>Created Date: </strong>
                     {new Date(ad.createdAt).toLocaleDateString()}
@@ -185,27 +185,27 @@ CollectionProps) => {
                     Ad Engagement
                   </p>
 
-                  <p className="flex gap-1 text-gray-700 text-[10px] lg:text-xs">
+                  <p className="flex gap-1 mb-1 text-gray-700 text-[10px] lg:text-xs">
                     <VisibilityIcon sx={{ fontSize: 14 }} />
                     <strong>Ad Views: </strong> {ad.views}
                   </p>
-                  <p className="flex gap-1 text-gray-700 text-[10px] lg:text-xs">
+                  <p className="flex gap-1 mb-1 text-gray-700 text-[10px] lg:text-xs">
                     <ChatBubbleOutlineOutlinedIcon sx={{ fontSize: 14 }} />
                     <strong>Inquiries: </strong> {ad.inquiries || "0"}
                   </p>
-                  <p className="flex gap-1 text-gray-700 text-[10px] lg:text-xs">
+                  <p className="flex gap-1 mb-1 text-gray-700 text-[10px] lg:text-xs">
                     <CallIcon sx={{ fontSize: 14 }} />
                     <strong>Calls: </strong> {ad.calls || "0"}
                   </p>
-                  <p className="flex gap-1 text-gray-700 text-[10px] lg:text-xs">
+                  <p className="flex gap-1 mb-1 text-gray-700 text-[10px] lg:text-xs">
                     <WhatsAppIcon sx={{ fontSize: 14 }} />
                     <strong>WhatsApp: </strong> {ad.whatsapp || "0"}
                   </p>
-                  <p className="flex gap-1 text-gray-700 text-[10px] lg:text-xs">
+                  <p className="flex gap-1 mb-1 text-gray-700 text-[10px] lg:text-xs">
                     <ShareOutlinedIcon sx={{ fontSize: 14 }} />
                     <strong>Share: </strong> {ad.shared || "0"}
                   </p>
-                  <p className="flex gap-1 text-gray-700 text-[10px] lg:text-xs">
+                  <p className="flex gap-1 mb-1 text-gray-700 text-[10px] lg:text-xs">
                     <BookmarkIcon sx={{ fontSize: 14 }} />
                     <strong>Bookmarked: </strong> {ad.bookmarked || "0"}
                   </p>
@@ -267,11 +267,11 @@ CollectionProps) => {
                   <h2 className="text-xs lg:text-base font-bold mb-1 text-gray-800">
                     Ad Performance
                   </h2>
-                  <p className="flex gap-1 text-gray-700 text-[10px] lg:text-xs">
+                  <p className="flex gap-1 mb-1 text-gray-700 text-[10px] lg:text-xs">
                     <LowPriorityOutlinedIcon sx={{ fontSize: 14 }} />
                     <strong>Priority Level: </strong> {ad.priority || "N/A"}
                   </p>
-                  <p className="flex gap-1 text-gray-700 text-[10px] lg:text-xs">
+                  <p className="flex gap-1 mb-1 text-gray-700 text-[10px] lg:text-xs">
                     <FlightTakeoffOutlinedIcon sx={{ fontSize: 14 }} />
                     <strong>Plan: </strong> {ad.plan?.name || "Free"}
                   </p>
@@ -282,17 +282,17 @@ CollectionProps) => {
                   <h2 className="text-xs lg:text-base font-bold mb-1  text-gray-800">
                     Contact Info
                   </h2>
-                  <p className="flex gap-1 text-gray-700 text-[10px] lg:text-xs">
+                  <p className="flex gap-1 mb-1 text-gray-700 text-[10px] lg:text-xs">
                     <CallIcon sx={{ fontSize: 14 }} />
                     <strong>Phone: </strong> {ad.phone || "N/A"}
                   </p>
-                  <p className="flex gap-1 text-gray-700 text-[10px] lg:text-xs">
+                  <p className="flex gap-1 mb-1 text-gray-700 text-[10px] lg:text-xs">
                     <WhatsAppIcon sx={{ fontSize: 14 }} />
                     <strong>WhatsApp: </strong>{" "}
                     {ad.organizer?.whatsapp || "N/A"}
                   </p>
                   <p
-                    className={`flex gap-1 text-gray-700 text-[10px] lg:text-xs ${
+                    className={`flex gap-1 mb-1 text-gray-700 text-[10px] lg:text-xs ${
                       ad.organizer?.verified[0]?.accountverified === true
                         ? "text-green-600"
                         : "text-red-600"
@@ -311,11 +311,11 @@ CollectionProps) => {
                   <h2 className="text-xs lg:text-base font-bold mb-1  text-gray-800">
                     Geographical Info
                   </h2>
-                  <p className="flex gap-1 text-gray-700 text-[10px] lg:text-xs">
+                  <p className="flex gap-1 mb-1 text-gray-700 text-[10px] lg:text-xs">
                     <LocationOnIcon sx={{ fontSize: 14 }} />
                     <strong>Location: </strong> {ad.address || "N/A"}
                   </p>
-                  <p className="flex gap-1 text-gray-700 text-[10px] lg:text-xs">
+                  <p className="flex gap-1 mb-1 text-gray-700 text-[10px] lg:text-xs">
                     <AssistantDirectionOutlinedIcon sx={{ fontSize: 14 }} />
                     <strong>Map Enabled: </strong> {"Yes"}
                   </p>

@@ -72,7 +72,7 @@ const SellerProfilePermonance = ({
 
   return (
     <div className="flex gap-1 items-center">
-      <div className="flex gap-1 items-center p-1 w-full">
+      <div className="flex flex-col lg:flex-row gap-1 items-center p-1 w-full">
         <Link href={`/shop/${userId}`} className="no-underline font-bold m-1">
           <div className="w-12 h-12 rounded-full bg-white">
             <Zoom>
