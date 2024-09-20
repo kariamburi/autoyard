@@ -109,7 +109,7 @@ const SendMessage = ({
             <input
               value={value}
               onChange={(e) => setValue(e.target.value)}
-              className="input max-w-[740px] w-full text-sm lg:text-base text-black p-3 focus:outline-none bg-white rounded-r-none rounded-l-lg"
+              className="input lg:ml-[460px] w-full text-sm lg:text-base text-black p-3 focus:outline-none bg-white rounded-r-none rounded-l-lg"
               type="text"
               placeholder="Enter your message..."
             />
@@ -126,7 +126,7 @@ const SendMessage = ({
             <input
               value={value}
               disabled
-              className="input max-w-[740px] w-full text-sm lg:text-base text-black p-3 focus:outline-none bg-white rounded-r-none rounded-l-lg"
+              className="input lg:ml-[450px] w-full text-sm lg:text-base text-black p-3 focus:outline-none bg-white rounded-r-none rounded-l-lg"
               type="text"
               placeholder="Enter your message..."
             />

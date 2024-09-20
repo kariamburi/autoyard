@@ -125,9 +125,6 @@ const DashboardChat = ({
         </div>
 
         <div className="flex-1 w-full flex-col">
-          <span className="logo font-bold text-[25px] text-emerald-950">
-            Chats
-          </span>
           <div className="rounded-lg max-w-6xl mx-auto flex flex-col p-0 mt-0">
             <div className="w-full flex flex-col">
               <ChatBox

@@ -96,46 +96,39 @@ const Sidebar = ({ userId }: sidebarProps) => {
   return (
     <div>
       {loading ? (
-        <div className="flex justify-center items-center">
-          {/* <div className="flex gap-1 items-center">
-            <CircularProgress sx={{ color: "black" }} size={30} />
-            Loading chats...
+        <div className="flex flex-col justify-center w-[350px] p-1">
+          <div className="flex gap-2 justify-center mb-1">
+            <Skeleton
+              variant="rectangular"
+              animation="wave"
+              //  height={50}
+              className="rounded-sm w-6 h-6"
+            />
+            <Skeleton
+              variant="rectangular"
+              animation="wave"
+              //  height={50}
+              className="rounded-sm w-full h-6"
+            />
           </div>
-          */}
-          <div className="flex flex-col justify-center">
-            <div className="flex gap-2 justify-center mb-1">
-              <Skeleton
-                variant="rectangular"
-                animation="wave"
-                //  height={50}
-                className="rounded-sm w-6 h-36"
-              />
-              <Skeleton
-                variant="rectangular"
-                animation="wave"
-                //  height={50}
-                className="rounded-sm w-[350px] h-36"
-              />
-            </div>
-            <div className="flex gap-2 justify-center mb-1">
-              <Skeleton
-                variant="rectangular"
-                animation="wave"
-                //  height={50}
-                className="rounded-sm w-6 h-36"
-              />
-              <Skeleton
-                variant="rectangular"
-                animation="wave"
-                //  height={50}
-                className="rounded-sm w-[350px] h-36"
-              />
-            </div>
+          <div className="flex gap-2 justify-center mb-1">
+            <Skeleton
+              variant="rectangular"
+              animation="wave"
+              //  height={50}
+              className="rounded-sm w-6 h-6"
+            />
+            <Skeleton
+              variant="rectangular"
+              animation="wave"
+              //  height={50}
+              className="rounded-sm w-full h-6"
+            />
           </div>
         </div>
       ) : messages.length > 0 ? (
         <>
-          <div className="w-full max-w-md mx-auto bg-white shadow-md rounded-lg">
+          <div className="w-full bg-white shadow-md rounded-lg">
             <ScrollArea className="h-[72vh] w-full p-2">
               <ul className="divide-y divide-gray-200">
                 {messages.map((message, index) => {
@@ -187,7 +180,7 @@ const Sidebar = ({ userId }: sidebarProps) => {
                           />
                         </p>
                       </div>
-                      <div className="whitespace-nowrap text-[12px] lg:text-sm text-gray-500">
+                      <div className="whitespace-nowrap text-[10px] lg:text-sm text-gray-500">
                         {formattedCreatedAt}
                       </div>
                     </li>
