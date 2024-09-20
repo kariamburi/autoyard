@@ -6,6 +6,7 @@ import "react-medium-image-zoom/dist/styles.css";
 import { format, isToday, isYesterday } from "date-fns";
 import Image from "next/image";
 import { useState } from "react";
+import CircularProgress from "@mui/material/CircularProgress";
 interface MessageProps {
   message: {
     uid: string;
@@ -88,7 +89,7 @@ const Message = ({
                 {isLoading && (
                   <div className="absolute inset-0 flex items-center justify-center rounded-lg bg-[#000000] bg-opacity-50">
                     {/* Spinner or loading animation */}
-                    <div className="w-8 h-8 border-4 border-t-4 border-gray-300 border-t-white rounded-full animate-spin"></div>
+                    <CircularProgress sx={{ color: "white" }} />
                   </div>
                 )}
                 <Zoom>

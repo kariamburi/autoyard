@@ -53,6 +53,7 @@ import Image from "next/image";
 import EditOutlinedIcon from "@mui/icons-material/EditOutlined";
 import Zoom from "react-medium-image-zoom";
 import "react-medium-image-zoom/dist/styles.css";
+import CircularProgress from "@mui/material/CircularProgress";
 type CollectionProps = {
   userId: string;
   loggedId: string;
@@ -174,7 +175,10 @@ const SellerProfile = ({ userId, loggedId, user }: CollectionProps) => {
                               {isLoading && (
                                 <div className="absolute inset-0 flex items-center justify-center bg-[#000000] bg-opacity-50">
                                   {/* Spinner or loading animation */}
-                                  <div className="w-8 h-8 border-4 border-t-4 border-gray-300 border-t-white rounded-full animate-spin"></div>
+                                  <CircularProgress
+                                    sx={{ color: "white" }}
+                                    size={30}
+                                  />
                                 </div>
                               )}
                               <Zoom>

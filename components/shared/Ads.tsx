@@ -321,7 +321,7 @@ export default function Ads({ ad, userId, userImage, userName }: CardProps) {
                       {isLoading && (
                         <div className="absolute inset-0 flex items-center justify-center bg-[#000000] bg-opacity-50">
                           {/* Spinner or loading animation */}
-                          <div className="w-8 h-8 border-4 border-t-4 border-gray-300 border-t-white rounded-full animate-spin"></div>
+                          <CircularProgress sx={{ color: "white" }} />
                         </div>
                       )}
                       <Zoom>
@@ -438,7 +438,10 @@ export default function Ads({ ad, userId, userImage, userName }: CardProps) {
                           {isLoadingsmall && (
                             <div className="absolute rounded-lg inset-0 flex items-center justify-center bg-[#000000] bg-opacity-50">
                               {/* Spinner or loading animation */}
-                              <div className="w-8 h-8 border-4 border-t-4 border-gray-300 border-t-white rounded-full animate-spin"></div>
+                              <CircularProgress
+                                sx={{ color: "white" }}
+                                size={30}
+                              />
                             </div>
                           )}
 
@@ -485,7 +488,7 @@ export default function Ads({ ad, userId, userImage, userName }: CardProps) {
                             {isLoadingpopup && (
                               <div className="absolute inset-0 flex items-center justify-center bg-[#000000] bg-opacity-50">
                                 {/* Spinner or loading animation */}
-                                <div className="w-8 h-8 border-4 border-t-4 border-gray-300 border-t-white rounded-full animate-spin"></div>
+                                <CircularProgress sx={{ color: "white" }} />
                               </div>
                             )}
                             <Zoom>
