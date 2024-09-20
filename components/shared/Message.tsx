@@ -47,6 +47,17 @@ const Message = ({
     return title;
   };
   const [isLoading, setIsLoading] = useState(true);
+  let formattedCreatedAt = "";
+  try {
+    const createdAtDate = new Date(message.createdAt.seconds * 1000);
+    if (isToday(createdAtDate)) {
+      formattedCreatedAt = "Today " + format(createdAtDate, "HH:mm");
+    } else if (isYesterday(createdAtDate)) {
+      formattedCreatedAt = "Yesterday " + format(createdAtDate, "HH:mm");
+    } else {
+      formattedCreatedAt = format(createdAtDate, "dd-MM-yyyy HH:mm");
+    }
+  } catch {}
   return (
     <div className="">
       <div className="chatbox p-4">
@@ -71,13 +82,7 @@ const Message = ({
           >
             <h4 className="font-semibold">{message.name}</h4>
             <p className="text-sm">{message.text}</p>
-            <small className="text-gray-500">
-              {message.createdAt
-                ? new Date(
-                    message.createdAt.seconds * 1000
-                  ).toLocaleTimeString()
-                : "No date"}
-            </small>
+            <small className="text-gray-500">{formattedCreatedAt}</small>
             {message.imageUrl && (
               <div className="relative">
                 {isLoading && (
