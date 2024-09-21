@@ -46,17 +46,18 @@ const Settings = async () => {
         <div className="flex-1">
           <div className="max-w-6xl mb-20 lg:mb-0 mx-auto justify-center">
             <section className="w-full rounded-lg bg-white p-1">
-              <div className="flex flex-col">
-                <div className="flex text-lg gap-1 font-bold w-full">
+              <div className="w-full p-2 flex flex-col lg:flex-row lg:justify-between">
+                <div className="flex text-lg mb-1 gap-1 font-bold">
                   <SettingsOutlinedIcon />
                   <h3 className="font-bold text-[25px]">Settings</h3>
                 </div>
-
-                <Verification
-                  user={user}
-                  userId={userId}
-                  isAdCreator={isAdCreator}
-                />
+                <div className="flex">
+                  <Verification
+                    user={user}
+                    userId={userId}
+                    isAdCreator={isAdCreator}
+                  />
+                </div>
               </div>
             </section>
 

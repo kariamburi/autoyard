@@ -47,8 +47,8 @@ const About = async () => {
         <div className="hidden lg:inline mr-5"></div>
 
         <div className="flex-1">
-          <div className="rounded-lg border bg-white max-w-6xl mx-auto lg:flex-row mt-0 p-1 justify-center">
-            <div className="max-w-4xl mx-auto p-8 bg-gray-50 rounded-lg">
+          <div className="rounded-[20px] bg-white max-w-6xl mx-auto lg:flex-row mt-0 p-1 justify-center">
+            <div className="max-w-4xl mx-auto p-8">
               <h1 className="text-3xl font-bold text-gray-800 mb-6 text-center">
                 About AutoYard.co.ke
               </h1>

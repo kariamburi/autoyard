@@ -128,7 +128,7 @@ const Sidebar = ({ userId }: sidebarProps) => {
         </div>
       ) : messages.length > 0 ? (
         <>
-          <div className="w-full bg-white shadow-md rounded-lg">
+          <div className="w-full bg-white rounded-lg">
             <ScrollArea className="h-[72vh] w-full p-2">
               <ul className="divide-y divide-gray-200">
                 {messages.map((message, index) => {

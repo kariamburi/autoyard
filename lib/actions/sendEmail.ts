@@ -21,7 +21,7 @@ export async function sendEmail(
 });
 
   let mailOptions = {
-    from: '"Autoyard" <no-reply@autoyard.co.ke>',
+    from: '"AutoYard" <no-reply@autoyard.co.ke>',
     to: recipientEmail,
     subject: "New Inquiry on Your Ad",
     text: `You have a new inquiry on your ad titled "${adTitle}". \n\nMessage: ${message}\n\nFrom: ${userName}\n\Kindly replay on AutoYard\n\n`,

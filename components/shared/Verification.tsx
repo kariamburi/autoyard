@@ -83,12 +83,14 @@ const Verification: React.FC<SettingsProp> = ({
         className="text-emerald-600"
       />
       <div className="space-y-1">
-        <h4 className="text-sm font-semibold">Account Verified</h4>
+        <h4 className="text-sm font-semibold text-emerald-600">
+          Account Verified
+        </h4>
         <p className="text-sm">
           This account has been fully verified and is genuine.
         </p>
         <div className="flex items-center pt-2">
-          <span className="text-xs text-muted-foreground">
+          <span className="text-[10px] text-muted-foreground">
             Verified since {formattedCreatedAt}
           </span>
         </div>
