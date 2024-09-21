@@ -348,6 +348,18 @@ CollectionProps) => {
   const [showPopup, setShowPopup] = useState(false);
   // Handler to toggle the popup
   const togglePopup = () => {
+    if (!showPopup) {
+      let newUrl = "";
+      setactiverange(20);
+      newUrl = formUrlQuerymultiple({
+        params: "",
+        updates: {
+          category: category.toString(),
+          subcategory: subcategory.toString(),
+        },
+      });
+      router.push(newUrl, { scroll: false });
+    }
     setShowPopup(!showPopup);
   };
   return (
