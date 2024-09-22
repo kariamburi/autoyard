@@ -173,7 +173,7 @@ const SellerProfile = ({ userId, loggedId, user }: CollectionProps) => {
                           <div className="flex h-50 w-full flex-1 justify-center">
                             <div className="relative">
                               {isLoading && (
-                                <div className="absolute inset-0 flex items-center justify-center bg-[#000000] bg-opacity-50">
+                                <div className="absolute inset-0 rounded-t-[20px] flex items-center justify-center bg-[#000000] bg-opacity-50">
                                   {/* Spinner or loading animation */}
                                   <CircularProgress
                                     sx={{ color: "white" }}
