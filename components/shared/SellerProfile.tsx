@@ -168,12 +168,12 @@ const SellerProfile = ({ userId, loggedId, user }: CollectionProps) => {
                       <p className="text-xs lg:text-sm">Show More...</p>
                     </AccordionTrigger>
                     <AccordionContent>
-                      <div className="p-0 rounded-[20px] m-2 shadow bg-white">
+                      <div className="p-0 rounded-lg m-2 shadow bg-white">
                         {user?.imageUrl && (
                           <div className="flex h-50 w-full flex-1 justify-center">
                             <div className="relative">
                               {isLoading && (
-                                <div className="absolute inset-0 rounded-t-[20px] flex items-center justify-center bg-[#000000] bg-opacity-50">
+                                <div className="absolute inset-0 rounded-t-lg flex items-center justify-center bg-[#000000] bg-opacity-50">
                                   {/* Spinner or loading animation */}
                                   <CircularProgress
                                     sx={{ color: "white" }}
@@ -187,7 +187,7 @@ const SellerProfile = ({ userId, loggedId, user }: CollectionProps) => {
                                   alt="image"
                                   width={900}
                                   height={500}
-                                  className={`object-center rounded-t-[20px] ${
+                                  className={`object-center rounded-t-lg ${
                                     isLoading ? "opacity-0" : "opacity-100"
                                   } transition-opacity duration-300`}
                                   onLoadingComplete={() => setIsLoading(false)}
