@@ -772,7 +772,7 @@ export default function Ads({ ad, userId, userImage, userName }: CardProps) {
         {/* Right panel */}
         <div className="lg:w-[30%] p-1 lg:p-0">
           <div className="hidden lg:inline">
-            <div className="bg-white p-5 text-l rounded-lg overflow-hidden shadow-md flex flex-col items-center">
+            <div className="bg-white border-t-8 border-emerald-700 p-5 text-l rounded-lg overflow-hidden shadow-md flex flex-col items-center">
               <span className="flex gap-1 text-2xl font-bold w-min rounded-full px-4 py-1 text-emerald-950">
                 {formatKsh(ad.price)}
               </span>
