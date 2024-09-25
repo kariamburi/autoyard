@@ -45,34 +45,38 @@ const Card = ({ ad, hasOrderLink, hidePrice, userId }: CardProps) => {
     return address;
   };
   const handle = async (id: string) => {
-    const newBookmark = await createBookmark({
-      bookmark: {
-        userBId: userId,
-        adId: id,
-      },
-      path: pathname,
-    });
-    if (newBookmark === "Ad Saved to Bookmark") {
-      const bookmarked = (Number(ad.bookmarked ?? "0") + 1).toString();
-      const _id = ad._id;
-      await updatebookmarked({
-        _id,
-        bookmarked,
-        path: `/ads/${ad._id}`,
+    if (userId) {
+      const newBookmark = await createBookmark({
+        bookmark: {
+          userBId: userId,
+          adId: id,
+        },
+        path: pathname,
       });
-      toast({
-        title: "Alert",
-        description: newBookmark,
-        duration: 5000,
-        className: "bg-[#30AF5B] text-white",
-      });
+      if (newBookmark === "Ad Saved to Bookmark") {
+        const bookmarked = (Number(ad.bookmarked ?? "0") + 1).toString();
+        const _id = ad._id;
+        await updatebookmarked({
+          _id,
+          bookmarked,
+          path: `/ads/${ad._id}`,
+        });
+        toast({
+          title: "Alert",
+          description: newBookmark,
+          duration: 5000,
+          className: "bg-[#30AF5B] text-white",
+        });
+      } else {
+        toast({
+          variant: "destructive",
+          title: "Failed!",
+          description: newBookmark,
+          duration: 5000,
+        });
+      }
     } else {
-      toast({
-        variant: "destructive",
-        title: "Failed!",
-        description: newBookmark,
-        duration: 5000,
-      });
+      window.location.reload();
     }
   };
 
