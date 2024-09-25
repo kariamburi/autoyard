@@ -172,7 +172,7 @@ const Sidebar = ({ userId }: sidebarProps) => {
                         <p className="text-sm font-medium text-gray-900 truncate">
                           {message.name}
                         </p>
-                        <p className="flex gap-1 text-sm text-gray-500 truncate">
+                        <p className="flex gap-1 text-[10px] text-gray-500 truncate">
                           {truncateTitle(message.text, 18)}
                           <UnreadmessagesPeruser
                             uid={message.uid}
