@@ -66,10 +66,10 @@ const VerticalCard = ({ userId, ad, isAdCreator }: CardProps) => {
       });
     } else {
       toast({
-        title: "Alert",
+        variant: "destructive",
+        title: "Failed!",
         description: newBookmark,
         duration: 5000,
-        className: "bg-[#30AF5B] text-white",
       });
     }
   };

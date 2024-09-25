@@ -23,7 +23,8 @@ const populateAd = (query: any) => {
 export const createBookmark = async ({ bookmark, path}: CreateBookmarkParams) => {
   try {
     await connectToDatabase();
-    const conditions = { adId: bookmark.adId };
+  //  const conditions = { adId: bookmark.adId };
+    const conditions = { $and: [{adId: bookmark.adId }, { userBId: bookmark.userBId }] };
     const book = await Bookmark.findOne(conditions);  // Use findOne to find a single matching document
     
     let newBookmark={}
