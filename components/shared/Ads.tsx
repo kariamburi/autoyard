@@ -482,7 +482,7 @@ export default function Ads({ ad, userId, userImage, userName }: CardProps) {
                       {ad.imageUrls.map((image: string, index: number) => (
                         <CarouselItem
                           key={index}
-                          className="relative flex flex-row flex-wrap justify-center"
+                          className="relative flex flex-row flex-wrap items-center justify-center"
                         >
                           <div className="relative">
                             {isLoadingpopup && (
