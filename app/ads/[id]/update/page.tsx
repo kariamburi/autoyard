@@ -6,6 +6,7 @@ import { getAllPackages } from "@/lib/actions/packages.actions";
 import { getData } from "@/lib/actions/transactionstatus";
 import { auth } from "@clerk/nextjs/server";
 import { getAdById } from "@/lib/actions/ad.actions";
+import { Toaster } from "@/components/ui/toaster";
 type UpdateAdProps = {
   params: {
     id: string;
@@ -109,6 +110,7 @@ const UpdateAd = async ({ params: { id } }: UpdateAdProps) => {
           priority={priority}
           adstatus={adstatus}
         />
+        <Toaster />
       </div>
     </>
   );

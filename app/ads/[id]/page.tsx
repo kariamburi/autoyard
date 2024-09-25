@@ -15,7 +15,7 @@ import BottomNavigation from "@/components/shared/BottomNavigation";
 import Footersub from "@/components/shared/Footersub";
 import Contact from "@/components/shared/contact";
 import CollectionRelated from "@/components/shared/CollectionRelated";
-
+import { Toaster } from "@/components/ui/toaster";
 const Collection = dynamic(() => import("@/components/shared/Collection"), {
   ssr: false,
   loading: () => (
@@ -164,6 +164,7 @@ const AdDetails = async ({
             userName={userName || ""}
             userImage={userImage || ""}
           />
+          <Toaster />
         </div>
 
         <footer>
