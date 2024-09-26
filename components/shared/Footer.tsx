@@ -76,13 +76,18 @@ const Footer = () => {
             <p className="mb-3 text-slate-950 font-bold">Our Apps</p>
             <ul className="space-y-4">
               <li>
-                <Image
-                  src="https://assets.jiji.ng/static/img/single-images/app-store.svg"
-                  alt="App Store"
-                  className="w-20 md:w-40"
-                  width={20}
-                  height={40}
-                />
+                <Link
+                  href=" https://play.google.com/store/apps/details?id=ke.autoyard.app"
+                  className="no-underline hover:text-emerald-500 "
+                >
+                  <Image
+                    src="https://assets.jiji.ng/static/img/single-images/app-store.svg"
+                    alt="App Store"
+                    className="w-20 md:w-40"
+                    width={20}
+                    height={40}
+                  />
+                </Link>
               </li>
               <li>
                 <Image
