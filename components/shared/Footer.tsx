@@ -81,8 +81,8 @@ const Footer = () => {
                   className="no-underline hover:text-emerald-500 "
                 >
                   <Image
-                    src="https://assets.jiji.ng/static/img/single-images/app-store.svg"
-                    alt="App Store"
+                    src="https://assets.jiji.ng/static/img/single-images/google-play.svg"
+                    alt="Google Play"
                     className="w-20 md:w-40"
                     width={20}
                     height={40}
@@ -91,8 +91,8 @@ const Footer = () => {
               </li>
               <li>
                 <Image
-                  src="https://assets.jiji.ng/static/img/single-images/google-play.svg"
-                  alt="Google Play"
+                  src="https://assets.jiji.ng/static/img/single-images/app-store.svg"
+                  alt="App Store"
                   className="w-20 md:w-40"
                   width={20}
                   height={40}
