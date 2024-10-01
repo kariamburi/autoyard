@@ -44,6 +44,7 @@ const AdDetails = async ({
   const ad = await getAdById(id);
   const relatedAds: any = await getRelatedAdByCategory({
     categoryId: ad.category._id,
+    subcategory: ad.subcategory,
     adId: ad._id,
     page: searchParams.page as string,
   });

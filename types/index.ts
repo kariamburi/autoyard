@@ -319,6 +319,7 @@ export type deleteImageParams = {
 
 export type GetRelatedAdsByCategoryParams = {
   categoryId: string
+  subcategory: string
   adId: string
   limit?: number
   page: number | string

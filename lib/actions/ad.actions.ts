@@ -590,6 +590,7 @@ if(sortby==="recommeded"){
 // GET RELATED Ad: Ad WITH SAME CATEGORY
 export async function getRelatedAdByCategory({
   categoryId,
+  subcategory,
   adId,
   limit = 16,
   page = 1,
@@ -598,7 +599,7 @@ export async function getRelatedAdByCategory({
     await connectToDatabase()
 
     const skipAmount = (Number(page) - 1) * limit
-    const conditions = { $and: [{ category: categoryId }, { _id: { $ne: adId } }, { adstatus: "Active" }] }
+    const conditions = { $and: [{ category: categoryId }, { subcategory: subcategory }, { _id: { $ne: adId } }, { adstatus: "Active" }] }
 
     const AdQuery = Ad.find(conditions)
     //  .sort({ createdAt: 'desc' })
