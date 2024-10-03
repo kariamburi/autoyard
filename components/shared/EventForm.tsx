@@ -2225,32 +2225,19 @@ const AdForm = ({
 
                     <FormField
                       control={form.control}
-                      name="vehicleTransmissions"
+                      name="vehicleEngineSizesCC"
                       render={({ field }) => (
                         <FormItem className="w-full">
                           <FormControl>
                             <div className="w-full overflow-hidden rounded-full px-4 py-2">
-                              <Autocomplete
-                                id="vehicleTransmissions"
-                                options={vehicleTransmissions}
-                                getOptionLabel={(option) => option}
-                                value={
-                                  vehicleTransmissions.find(
-                                    (vc) => vc === field.value
-                                  ) || null
-                                }
-                                onChange={(event, newValue) => {
-                                  field.onChange(newValue ? newValue : null);
-                                }}
-                                renderInput={(field) => (
-                                  <TextField
-                                    {...field}
-                                    label="Transmissions (Optional)*"
-                                  />
-                                )}
+                              <TextField
+                                {...field}
+                                label="Engine Size CC (Optional)*"
+                                className="w-full"
                               />
+
                               <div className="text-[#FF0000] text-sm">
-                                {errorvehicleTransmissions}
+                                {errorvehicleEngineSizesCC}
                               </div>
                             </div>
                           </FormControl>
