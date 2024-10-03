@@ -220,19 +220,17 @@ export function FileUploader({
             <div {...getRootProps()}>
               <AddBoxIcon className="my-auto hover:cursor-pointer" />
             </div>
-            <div className="grid grid-cols-3 lg:grid-cols-5 w-full p-1">
+            <div className="grid grid-cols-3 lg:grid-cols-5 w-full p-2 bg-gray-100 rounded-sm">
               {imageUrls.map((url, index) => (
                 <div
                   key={index}
-                  className="relative rounded-sm shadow-sm p-1 bg-white w-20 h-20 lg:w-40 lg:h-40 flex-shrink-0"
+                  className="relative max-h-[150px] justify-center items-center mb-1 rounded-sm shadow-sm p-1 bg-white mr-1 flex-shrink-0"
                 >
                   <Zoom>
                     <img
                       src={url}
                       alt={`image-${index}`}
-                      className="w-full h-full object-cover object-center rounded-sm"
-                      width={77}
-                      height={77}
+                      className="w-full max-h-[140px] object-cover object-center rounded-sm"
                     />
                   </Zoom>
                   <div

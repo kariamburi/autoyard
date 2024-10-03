@@ -715,7 +715,7 @@ CollectionProps) => {
                   <div className="flex items-center gap-1 m-1 justify-end">
                     <button
                       onClick={handleClear}
-                      className="p-1 text-xs text-white bg-[#000000] rounded-lg flex hover:text-[#30AF5B] items-center gap-1 hover:cursor-pointer"
+                      className="p-1 text-xs text-white bg-emerald-700 rounded-sm flex hover:bg-[#30AF5B] items-center gap-1 hover:cursor-pointer"
                     >
                       <CloseOutlinedIcon sx={{ fontSize: 16 }} />
                       Reset Filter

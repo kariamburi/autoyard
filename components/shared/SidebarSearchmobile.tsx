@@ -223,14 +223,14 @@ const SidebarSearchmobile = ({
     router.push(newUrl, { scroll: false });
     // Perform any other actions you need
   };
-  const handleChange = (event: any) => {
+  const handleChange = (value: string) => {
     let newUrl = "";
 
-    if (event.target.value) {
+    if (value) {
       newUrl = formUrlQuery({
         params: searchParams.toString(),
         key: "membership",
-        value: event.target.value,
+        value: value,
       });
     } else {
       newUrl = removeKeysFromQuery({
@@ -238,9 +238,9 @@ const SidebarSearchmobile = ({
         keysToRemove: ["membership"],
       });
     }
-    setSelectedOption(event.target.value);
+    setSelectedOption(value);
     router.push(newUrl, { scroll: false });
-    //alert(event.target.value);
+    //alert(value);
   };
 
   const [isOpen, setIsOpen] = useState(false);
@@ -279,15 +279,15 @@ const SidebarSearchmobile = ({
 
   const [selectedTypesOption, setselectedTypesOption] = useState("all");
 
-  const handleExchangeChange = (event: any) => {
+  const handleExchangeChange = (value: string) => {
     let newUrl = "";
 
-    if (event.target.value) {
-      setselectedExchangeOption(event.target.value);
+    if (value) {
+      setselectedExchangeOption(value);
       newUrl = formUrlQuery({
         params: searchParams.toString(),
         key: "vehicleexchangeposible",
-        value: event.target.value,
+        value: value,
       });
     } else {
       setselectedExchangeOption("all");
@@ -297,18 +297,18 @@ const SidebarSearchmobile = ({
       });
     }
     router.push(newUrl, { scroll: false });
-    //alert(event.target.value);
+    //alert(value);
   };
 
-  const handleRegisteredChange = (event: any) => {
+  const handleRegisteredChange = (value: string) => {
     let newUrl = "";
 
-    if (event.target.value) {
-      setselectedRegisteredOption(event.target.value);
+    if (value) {
+      setselectedRegisteredOption(value);
       newUrl = formUrlQuery({
         params: searchParams.toString(),
         key: "vehicleregistered",
-        value: event.target.value,
+        value: value,
       });
     } else {
       setselectedRegisteredOption("all");
@@ -319,17 +319,17 @@ const SidebarSearchmobile = ({
     }
 
     router.push(newUrl, { scroll: false });
-    //alert(event.target.value);
+    //alert(value);
   };
-  const handleCCChange = (event: any) => {
+  const handleCCChange = (value: string) => {
     let newUrl = "";
 
-    if (event.target.value) {
-      setselectedCCOption(event.target.value);
+    if (value) {
+      setselectedCCOption(value);
       newUrl = formUrlQuery({
         params: searchParams.toString(),
         key: "vehicleEngineSizesCC",
-        value: event.target.value,
+        value: value,
       });
     } else {
       setselectedCCOption("all");
@@ -340,17 +340,17 @@ const SidebarSearchmobile = ({
     }
 
     router.push(newUrl, { scroll: false });
-    //alert(event.target.value);
+    //alert(value);
   };
-  const handleBodyChange = (event: any) => {
+  const handleBodyChange = (value: string) => {
     let newUrl = "";
 
-    if (event.target.value) {
-      setselectedBodyOption(event.target.value);
+    if (value) {
+      setselectedBodyOption(value);
       newUrl = formUrlQuery({
         params: searchParams.toString(),
         key: "vehicleBodyTypes",
-        value: event.target.value,
+        value: value,
       });
     } else {
       setselectedBodyOption("all");
@@ -361,17 +361,17 @@ const SidebarSearchmobile = ({
     }
 
     router.push(newUrl, { scroll: false });
-    //alert(event.target.value);
+    //alert(value);
   };
-  const handleFuelChange = (event: any) => {
+  const handleFuelChange = (value: string) => {
     let newUrl = "";
 
-    if (event.target.value) {
-      setselectedFuelOption(event.target.value);
+    if (value) {
+      setselectedFuelOption(value);
       newUrl = formUrlQuery({
         params: searchParams.toString(),
         key: "vehicleFuelTypes",
-        value: event.target.value,
+        value: value,
       });
     } else {
       setselectedFuelOption("all");
@@ -382,18 +382,18 @@ const SidebarSearchmobile = ({
     }
 
     router.push(newUrl, { scroll: false });
-    //alert(event.target.value);
+    //alert(value);
   };
 
-  const handleTransmissionChange = (event: any) => {
+  const handleTransmissionChange = (value: string) => {
     let newUrl = "";
 
-    if (event.target.value) {
-      setselectedTransmissionOption(event.target.value);
+    if (value) {
+      setselectedTransmissionOption(value);
       newUrl = formUrlQuery({
         params: searchParams.toString(),
         key: "vehicleTransmissions",
-        value: event.target.value,
+        value: value,
       });
     } else {
       setselectedTransmissionOption("all");
@@ -404,18 +404,18 @@ const SidebarSearchmobile = ({
     }
 
     router.push(newUrl, { scroll: false });
-    //alert(event.target.value);
+    //alert(value);
   };
 
-  const handleConditionChange = (event: any) => {
+  const handleConditionChange = (value: string) => {
     let newUrl = "";
 
-    if (event.target.value) {
-      setselectedConditionOption(event.target.value);
+    if (value) {
+      setselectedConditionOption(value);
       newUrl = formUrlQuery({
         params: searchParams.toString(),
         key: "vehiclecondition",
-        value: event.target.value,
+        value: value,
       });
     } else {
       setselectedConditionOption("all");
@@ -426,20 +426,20 @@ const SidebarSearchmobile = ({
     }
 
     router.push(newUrl, { scroll: false });
-    //alert(event.target.value);
+    //alert(value);
   };
 
   const [selectedfloorsOption, setselectedfloorsOption] = useState("all");
 
-  const handlefloorsChange = (event: any) => {
+  const handlefloorsChange = (value: string) => {
     let newUrl = "";
 
-    if (event.target.value) {
-      setselectedfloorsOption(event.target.value);
+    if (value) {
+      setselectedfloorsOption(value);
       newUrl = formUrlQuery({
         params: searchParams.toString(),
         key: "floors",
-        value: event.target.value,
+        value: value,
       });
     } else {
       setselectedfloorsOption("all");
@@ -455,15 +455,15 @@ const SidebarSearchmobile = ({
   const [selectedpropertysecurityOption, setselectedpropertysecurityOption] =
     useState("all");
 
-  const handlepropertysecurityChange = (event: any) => {
+  const handlepropertysecurityChange = (value: string) => {
     let newUrl = "";
 
-    if (event.target.value) {
-      setselectedpropertysecurityOption(event.target.value);
+    if (value) {
+      setselectedpropertysecurityOption(value);
       newUrl = formUrlQuery({
         params: searchParams.toString(),
         key: "propertysecurity",
-        value: event.target.value,
+        value: value,
       });
     } else {
       setselectedpropertysecurityOption("all");
@@ -478,15 +478,15 @@ const SidebarSearchmobile = ({
 
   const [selectedlanduseOption, setselectedlanduseOption] = useState("all");
 
-  const handlelanduseChange = (event: any) => {
+  const handlelanduseChange = (value: string) => {
     let newUrl = "";
 
-    if (event.target.value) {
-      setselectedlanduseOption(event.target.value);
+    if (value) {
+      setselectedlanduseOption(value);
       newUrl = formUrlQuery({
         params: searchParams.toString(),
         key: "landuse",
-        value: event.target.value,
+        value: value,
       });
     } else {
       setselectedlanduseOption("all");
@@ -500,15 +500,15 @@ const SidebarSearchmobile = ({
   };
   const [selectedareaOption, setselectedareaOption] = useState("all");
 
-  const handleareaChange = (event: any) => {
+  const handleareaChange = (value: string) => {
     let newUrl = "";
 
-    if (event.target.value) {
-      setselectedareaOption(event.target.value);
+    if (value) {
+      setselectedareaOption(value);
       newUrl = formUrlQuery({
         params: searchParams.toString(),
         key: "area",
-        value: event.target.value,
+        value: value,
       });
     } else {
       setselectedareaOption("all");
@@ -523,15 +523,15 @@ const SidebarSearchmobile = ({
 
   const [selectedstatusOption, setselectedstatusOption] = useState("all");
 
-  const handlestatusChange = (event: any) => {
+  const handlestatusChange = (value: string) => {
     let newUrl = "";
 
-    if (event.target.value) {
-      setselectedstatusOption(event.target.value);
+    if (value) {
+      setselectedstatusOption(value);
       newUrl = formUrlQuery({
         params: searchParams.toString(),
         key: "status",
-        value: event.target.value,
+        value: value,
       });
     } else {
       setselectedstatusOption("all");
@@ -546,15 +546,15 @@ const SidebarSearchmobile = ({
 
   const [selectedparkingOption, setselectedparkingOption] = useState("all");
 
-  const handleparkingChange = (event: any) => {
+  const handleparkingChange = (value: string) => {
     let newUrl = "";
 
-    if (event.target.value) {
-      setselectedparkingOption(event.target.value);
+    if (value) {
+      setselectedparkingOption(value);
       newUrl = formUrlQuery({
         params: searchParams.toString(),
         key: "parking",
-        value: event.target.value,
+        value: value,
       });
     } else {
       setselectedparkingOption("all");
@@ -568,15 +568,15 @@ const SidebarSearchmobile = ({
   };
   const [selectedtoiletsOption, setselectedtoiletsOption] = useState("all");
 
-  const handletoiletsChange = (event: any) => {
+  const handletoiletsChange = (value: string) => {
     let newUrl = "";
 
-    if (event.target.value) {
-      setselectedtoiletsOption(event.target.value);
+    if (value) {
+      setselectedtoiletsOption(value);
       newUrl = formUrlQuery({
         params: searchParams.toString(),
         key: "toilets",
-        value: event.target.value,
+        value: value,
       });
     } else {
       setselectedtoiletsOption("all");
@@ -590,15 +590,15 @@ const SidebarSearchmobile = ({
   };
   const [selectedamenitiesOption, setselectedamenitiesOption] = useState("all");
 
-  const handleamenitiesChange = (event: any) => {
+  const handleamenitiesChange = (value: string) => {
     let newUrl = "";
 
-    if (event.target.value) {
-      setselectedamenitiesOption(event.target.value);
+    if (value) {
+      setselectedamenitiesOption(value);
       newUrl = formUrlQuery({
         params: searchParams.toString(),
         key: "amenities",
-        value: event.target.value,
+        value: value,
       });
     } else {
       setselectedamenitiesOption("all");
@@ -614,15 +614,15 @@ const SidebarSearchmobile = ({
   const [selectedfurnishingOption, setselectedfurnishingOption] =
     useState("all");
 
-  const handlefurnishingChange = (event: any) => {
+  const handlefurnishingChange = (value: string) => {
     let newUrl = "";
 
-    if (event.target.value) {
-      setselectedfurnishingOption(event.target.value);
+    if (value) {
+      setselectedfurnishingOption(value);
       newUrl = formUrlQuery({
         params: searchParams.toString(),
         key: "furnishing",
-        value: event.target.value,
+        value: value,
       });
     } else {
       setselectedfurnishingOption("all");
@@ -637,15 +637,15 @@ const SidebarSearchmobile = ({
 
   const [selectedbathroomsOption, setselectedbathroomsOption] = useState("all");
 
-  const handlebathroomsChange = (event: any) => {
+  const handlebathroomsChange = (value: string) => {
     let newUrl = "";
 
-    if (event.target.value) {
-      setselectedbathroomsOption(event.target.value);
+    if (value) {
+      setselectedbathroomsOption(value);
       newUrl = formUrlQuery({
         params: searchParams.toString(),
         key: "bathrooms",
-        value: event.target.value,
+        value: value,
       });
     } else {
       setselectedbathroomsOption("all");
@@ -660,15 +660,15 @@ const SidebarSearchmobile = ({
 
   const [selectedbedroomsOption, setselectedbedroomsOption] = useState("all");
 
-  const handlebedroomsChange = (event: any) => {
+  const handlebedroomsChange = (value: string) => {
     let newUrl = "";
 
-    if (event.target.value) {
-      setselectedbedroomsOption(event.target.value);
+    if (value) {
+      setselectedbedroomsOption(value);
       newUrl = formUrlQuery({
         params: searchParams.toString(),
         key: "bedrooms",
-        value: event.target.value,
+        value: value,
       });
     } else {
       setselectedbedroomsOption("all");
@@ -681,15 +681,15 @@ const SidebarSearchmobile = ({
     router.push(newUrl, { scroll: false });
   };
 
-  const handleTypesChange = (event: any) => {
+  const handleTypesChange = (value: string) => {
     let newUrl = "";
 
-    if (event.target.value) {
-      setselectedTypesOption(event.target.value);
+    if (value) {
+      setselectedTypesOption(value);
       newUrl = formUrlQuery({
         params: searchParams.toString(),
         key: "Types",
-        value: event.target.value,
+        value: value,
       });
     } else {
       setselectedTypesOption("all");
@@ -702,15 +702,15 @@ const SidebarSearchmobile = ({
     router.push(newUrl, { scroll: false });
   };
 
-  const handleMakeChange = (event: any) => {
+  const handleMakeChange = (value: string) => {
     let newUrl = "";
 
-    if (event.target.value) {
-      setselectedMakeOption(event.target.value);
+    if (value) {
+      setselectedMakeOption(value);
       newUrl = formUrlQuery({
         params: searchParams.toString(),
         key: "make",
-        value: event.target.value,
+        value: value,
       });
     } else {
       setselectedMakeOption("all");
@@ -723,15 +723,15 @@ const SidebarSearchmobile = ({
     router.push(newUrl, { scroll: false });
   };
 
-  const handleSecondChange = (event: any) => {
+  const handleSecondChange = (value: string) => {
     let newUrl = "";
-    alert(event.target.value);
-    if (event.target.value) {
-      setselectedSecondOption(event.target.value);
+
+    if (value) {
+      setselectedSecondOption(value);
       newUrl = formUrlQuery({
         params: searchParams.toString(),
         key: "vehiclesecordCondition",
-        value: event.target.value,
+        value: value,
       });
     } else {
       setselectedSecondOption("all");
@@ -742,18 +742,18 @@ const SidebarSearchmobile = ({
     }
 
     router.push(newUrl, { scroll: false });
-    //alert(event.target.value);
+    //alert(value);
   };
 
-  const handleSeatsChange = (event: any) => {
+  const handleSeatsChange = (value: string) => {
     let newUrl = "";
 
-    if (event.target.value) {
-      setselectedSeatsOption(event.target.value);
+    if (value) {
+      setselectedSeatsOption(value);
       newUrl = formUrlQuery({
         params: searchParams.toString(),
         key: "vehicleSeats",
-        value: event.target.value,
+        value: value,
       });
     } else {
       setselectedSeatsOption("all");
@@ -764,17 +764,17 @@ const SidebarSearchmobile = ({
     }
 
     router.push(newUrl, { scroll: false });
-    //alert(event.target.value);
+    //alert(value);
   };
-  const handleColorChange = (event: any) => {
+  const handleColorChange = (value: string) => {
     let newUrl = "";
 
-    if (event.target.value) {
-      setselectedColorOption(event.target.value);
+    if (value) {
+      setselectedColorOption(value);
       newUrl = formUrlQuery({
         params: searchParams.toString(),
         key: "vehiclecolor",
-        value: event.target.value,
+        value: value,
       });
     } else {
       setselectedColorOption("all");
@@ -785,7 +785,7 @@ const SidebarSearchmobile = ({
     }
 
     router.push(newUrl, { scroll: false });
-    //alert(event.target.value);
+    //alert(value);
   };
   const currentYear = new Date().getFullYear();
   let years = [];
@@ -1228,7 +1228,7 @@ const SidebarSearchmobile = ({
                     type="radio"
                     value="all"
                     checked={selectedOption === "all"}
-                    onChange={handleChange}
+                    onChange={(e) => handleChange("all")}
                   />
                   <div>Show All</div>
                   <div>|</div>
@@ -1244,7 +1244,7 @@ const SidebarSearchmobile = ({
                     type="radio"
                     value="verified"
                     checked={selectedOption === "verified"}
-                    onChange={handleChange}
+                    onChange={(e) => handleChange("verified")}
                   />
                   <div className="flex w-full gap-1 items-center mt-1 mb-1">
                     Verified sellers
@@ -1263,7 +1263,7 @@ const SidebarSearchmobile = ({
                     type="radio"
                     value="unverified"
                     checked={selectedOption === "unverified"}
-                    onChange={handleChange}
+                    onChange={(e) => handleChange("unverified")}
                   />
                   <div className="flex w-full gap-1 items-center mt-1 mb-1">
                     Unverified sellers
@@ -1310,7 +1310,10 @@ const SidebarSearchmobile = ({
                         (cond: any) => cond.make === selectedMakeOption
                       ) || null
                     }
-                    onChange={handleMakeChange}
+                    //  onChange={(e) => handleMakeChange(e.target.value)}
+                    onChange={(event, newValue) =>
+                      handleMakeChange(newValue?.make || "")
+                    }
                     renderOption={(props: any, option: any) => (
                       <div
                         {...props}
@@ -1360,7 +1363,9 @@ const SidebarSearchmobile = ({
                         (cond: any) => cond.name === selectedTypesOption
                       ) || null
                     }
-                    onChange={handleTypesChange}
+                    onChange={(event, newValue) =>
+                      handleTypesChange(newValue?.name || "")
+                    }
                     renderOption={(props: any, option: any) => (
                       <div
                         {...props}
@@ -1406,7 +1411,9 @@ const SidebarSearchmobile = ({
                         (cond: any) => cond.make === selectedMakeOption
                       ) || null
                     }
-                    onChange={handleMakeChange}
+                    onChange={(event, newValue) =>
+                      handleMakeChange(newValue?.make || "")
+                    }
                     renderOption={(props: any, option: any) => (
                       <div
                         {...props}
@@ -1456,7 +1463,9 @@ const SidebarSearchmobile = ({
                         (cond: any) => cond.type === selectedTypesOption
                       ) || null
                     }
-                    onChange={handleTypesChange}
+                    onChange={(event, newValue) =>
+                      handleMakeChange(newValue?.type || "")
+                    }
                     renderOption={(props: any, option: any) => (
                       <div
                         {...props}
@@ -1503,7 +1512,9 @@ const SidebarSearchmobile = ({
                         (cond: any) => cond.make === selectedMakeOption
                       ) || null
                     }
-                    onChange={handleMakeChange}
+                    onChange={(event, newValue) =>
+                      handleMakeChange(newValue?.make || "")
+                    }
                     renderOption={(props: any, option: any) => (
                       <div
                         {...props}
@@ -1553,7 +1564,9 @@ const SidebarSearchmobile = ({
                         (cond: any) => cond.type === selectedTypesOption
                       ) || null
                     }
-                    onChange={handleTypesChange}
+                    onChange={(event, newValue) =>
+                      handleTypesChange(newValue?.type || "")
+                    }
                     renderOption={(props: any, option: any) => (
                       <div
                         {...props}
@@ -1600,7 +1613,9 @@ const SidebarSearchmobile = ({
                         (cond: any) => cond.make === selectedMakeOption
                       ) || null
                     }
-                    onChange={handleMakeChange}
+                    onChange={(event, newValue) =>
+                      handleMakeChange(newValue?.make || "")
+                    }
                     renderOption={(props: any, option: any) => (
                       <div
                         {...props}
@@ -1650,7 +1665,9 @@ const SidebarSearchmobile = ({
                         (cond: any) => cond.make === selectedMakeOption
                       ) || null
                     }
-                    onChange={handleMakeChange}
+                    onChange={(event, newValue) =>
+                      handleMakeChange(newValue?.make || "")
+                    }
                     renderOption={(props: any, option: any) => (
                       <div
                         {...props}
@@ -1700,7 +1717,9 @@ const SidebarSearchmobile = ({
                         (cond: any) => cond.make === selectedMakeOption
                       ) || null
                     }
-                    onChange={handleMakeChange}
+                    onChange={(event, newValue) =>
+                      handleMakeChange(newValue?.make || "")
+                    }
                     renderOption={(props: any, option: any) => (
                       <div
                         {...props}
@@ -1750,7 +1769,9 @@ const SidebarSearchmobile = ({
                         (cond: any) => cond.type === selectedTypesOption
                       ) || null
                     }
-                    onChange={handleTypesChange}
+                    onChange={(event, newValue) =>
+                      handleTypesChange(newValue?.type || "")
+                    }
                     renderOption={(props: any, option: any) => (
                       <div
                         {...props}
@@ -1845,7 +1866,9 @@ const SidebarSearchmobile = ({
                         (cond) => cond === selectedConditionOption
                       ) || null
                     }
-                    onChange={handleConditionChange}
+                    onChange={(event, newValue) =>
+                      handleConditionChange(newValue || "")
+                    }
                     renderOption={(props: any, option: any) => (
                       <div
                         {...props}
@@ -1897,7 +1920,9 @@ const SidebarSearchmobile = ({
                         (cond) => cond === selectedColorOption
                       ) || null
                     }
-                    onChange={handleColorChange}
+                    onChange={(event, newValue) =>
+                      handleColorChange(newValue || "")
+                    }
                     renderOption={(props: any, option: any) => (
                       <div
                         {...props}
@@ -1950,7 +1975,9 @@ const SidebarSearchmobile = ({
                         (cond) => cond === selectedTransmissionOption
                       ) || null
                     }
-                    onChange={handleTransmissionChange}
+                    onChange={(event, newValue) =>
+                      handleTransmissionChange(newValue || "")
+                    }
                     renderOption={(props: any, option: any) => (
                       <div
                         {...props}
@@ -2001,7 +2028,9 @@ const SidebarSearchmobile = ({
                         (cond) => cond === selectedFuelOption
                       ) || null
                     }
-                    onChange={handleFuelChange}
+                    onChange={(event, newValue) =>
+                      handleFuelChange(newValue || "")
+                    }
                     renderOption={(props: any, option: any) => (
                       <div
                         {...props}
@@ -2051,7 +2080,9 @@ const SidebarSearchmobile = ({
                         (cond: any) => cond.type === selectedBodyOption
                       ) || null
                     }
-                    onChange={handleBodyChange}
+                    onChange={(event, newValue) =>
+                      handleBodyChange(newValue?.type || "")
+                    }
                     renderOption={(props: any, option: any) => (
                       <div
                         {...props}
@@ -2104,7 +2135,9 @@ const SidebarSearchmobile = ({
                         (cond: any) => cond._id === selectedCCOption
                       ) || null
                     }
-                    onChange={handleCCChange}
+                    onChange={(event, newValue) =>
+                      handleCCChange(newValue?._id || "")
+                    }
                     renderOption={(props: any, option: any) => (
                       <div
                         {...props}
@@ -2141,7 +2174,9 @@ const SidebarSearchmobile = ({
                         (cond) => cond === selectedRegisteredOption
                       ) || null
                     }
-                    onChange={handleRegisteredChange}
+                    onChange={(event, newValue) =>
+                      handleRegisteredChange(newValue || "")
+                    }
                     renderOption={(props: any, option: any) => (
                       <div
                         {...props}
@@ -2196,7 +2231,9 @@ const SidebarSearchmobile = ({
                         (cond) => cond === selectedExchangeOption
                       ) || null
                     }
-                    onChange={handleExchangeChange}
+                    onChange={(event, newValue) =>
+                      handleExchangeChange(newValue || "")
+                    }
                     renderOption={(props: any, option: any) => (
                       <div
                         {...props}
@@ -2246,7 +2283,9 @@ const SidebarSearchmobile = ({
                         (cond) => cond === selectedSeatsOption
                       ) || null
                     }
-                    onChange={handleSeatsChange}
+                    onChange={(event, newValue) =>
+                      handleSeatsChange(newValue || "")
+                    }
                     renderOption={(props: any, option: any) => (
                       <div
                         {...props}
@@ -2297,7 +2336,9 @@ const SidebarSearchmobile = ({
                         (cond) => cond === selectedSecondOption
                       ) || null
                     }
-                    onChange={handleSecondChange}
+                    onChange={(event, newValue) =>
+                      handleSecondChange(newValue || "")
+                    }
                     //  onChange={(event, newValue) => {
                     //    setselectedSecondOption(newValue);
                     //  }}
