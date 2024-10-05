@@ -74,7 +74,7 @@ const Storeads = async ({ params: { id }, searchParams }: SearchParamProps) => {
   const sortby = (searchParams?.sortby as string) || "";
   const category = (searchParams?.category as string) || "";
   const subcategory = (searchParams?.subcategory as string) || "";
-  const make = (searchParams?.make as string) || "";
+  const makeselected = (searchParams?.make as string) || "";
   const vehiclemodel = (searchParams?.vehiclemodel as string) || "";
   const yearfrom = (searchParams?.yearfrom as string) || "";
   const yearto = (searchParams?.yearto as string) || "";
@@ -98,7 +98,7 @@ const Storeads = async ({ params: { id }, searchParams }: SearchParamProps) => {
   const vehiclesecordCondition =
     (searchParams?.vehiclesecordCondition as string) || "";
   const vehicleyear = (searchParams?.vehicleyear as string) || "";
-  const Types = (searchParams?.Types as string) || "";
+  const Type = (searchParams?.Types as string) || "";
   const bedrooms = (searchParams?.bedrooms as string) || "";
   const bathrooms = (searchParams?.bathrooms as string) || "";
   const furnishing = (searchParams?.furnishing as string) || "";
@@ -112,8 +112,9 @@ const Storeads = async ({ params: { id }, searchParams }: SearchParamProps) => {
   const floors = (searchParams?.floors as string) || "";
   const estatename = (searchParams?.estatename as string) || "";
   const houseclass = (searchParams?.houseclass as string) || "";
-  let Ads: any = [];
+
   let AdsCountPerMake: any = [];
+  //  let AdsCountPerSubcategory: any = [];
   let AdsCountPerColor: any = [];
   let AdsCountPerTransmission: any = [];
   let AdsCountPerFuel: any = [];
@@ -372,97 +373,6 @@ const Storeads = async ({ params: { id }, searchParams }: SearchParamProps) => {
     AdsCountPersecondCondition = AdsCountPersecondCondition_;
   }
 
-  if (sortby === "nearby" && longitude && latitude) {
-    // console.log("nearby");
-    Ads = await getListingsNearLocation({
-      query: searchText,
-      sortby: sortby,
-      category,
-      subcategory,
-      make: make,
-      vehiclemodel: vehiclemodel,
-      yearfrom: yearfrom,
-      yearto: yearto,
-      vehiclecolor: vehiclecolor,
-      vehiclecondition: vehiclecondition,
-      longitude: longitude,
-      latitude: latitude,
-      address: region,
-      membership: membership,
-      vehicleTransmissions: vehicleTransmissions,
-      vehicleFuelTypes: vehicleFuelTypes,
-      vehicleEngineSizesCC: vehicleEngineSizesCC,
-      vehicleexchangeposible: vehicleexchangeposible,
-      vehicleBodyTypes: vehicleBodyTypes,
-      vehicleregistered: vehicleregistered,
-      vehicleSeats: vehicleSeats,
-      vehiclesecordCondition: vehiclesecordCondition,
-      vehicleyear: vehicleyear,
-      Types: Types,
-      Price: Price,
-      bedrooms: bedrooms,
-      bathrooms: bathrooms,
-      furnishing: furnishing,
-      amenities: amenities,
-      toilets: toilets,
-      parking: parking,
-      status: status,
-      area: area,
-      landuse: landuse,
-      propertysecurity: propertysecurity,
-      floors: floors,
-      estatename: estatename,
-      houseclass: houseclass,
-      page: 1,
-      limit: 20,
-    });
-    // console.log(Ads);
-  } else {
-    //  console.log(sortby);
-    Ads = await getAllAd({
-      query: searchText,
-      sortby: sortby,
-      category,
-      subcategory,
-      make: make,
-      vehiclemodel: vehiclemodel,
-      yearfrom: yearfrom,
-      yearto: yearto,
-      vehiclecolor: vehiclecolor,
-      vehiclecondition: vehiclecondition,
-      longitude: longitude,
-      latitude: latitude,
-      address: region,
-      membership: membership,
-      vehicleTransmissions: vehicleTransmissions,
-      vehicleFuelTypes: vehicleFuelTypes,
-      vehicleEngineSizesCC: vehicleEngineSizesCC,
-      vehicleexchangeposible: vehicleexchangeposible,
-      vehicleBodyTypes: vehicleBodyTypes,
-      vehicleregistered: vehicleregistered,
-      vehicleSeats: vehicleSeats,
-      vehiclesecordCondition: vehiclesecordCondition,
-      vehicleyear: vehicleyear,
-      Types: Types,
-      Price: Price,
-      bedrooms: bedrooms,
-      bathrooms: bathrooms,
-      furnishing: furnishing,
-      amenities: amenities,
-      toilets: toilets,
-      parking: parking,
-      status: status,
-      area: area,
-      landuse: landuse,
-      propertysecurity: propertysecurity,
-      floors: floors,
-      estatename: estatename,
-      houseclass: houseclass,
-      page: 1,
-      limit: 20,
-    });
-    // console.log(Ads);
-  }
   // console.log("--------------------------------------" + Ads?.data);
   return (
     <>
@@ -541,18 +451,19 @@ const Storeads = async ({ params: { id }, searchParams }: SearchParamProps) => {
       </div>
       <div className="mt-1 mb-20 lg:mb-0">
         <DashboardCategory
-          loading={false} // Initially false because this is SSR
+          //loading={false} // Initially false because this is SSR
           userId={userId}
           category={category}
-          data={Ads?.data}
-          totalPages={Ads?.totalPages}
+          //data={Ads?.data}
+          //totalPages={Ads?.totalPages}
           emptyTitle="No ads have been created yet"
           emptyStateSubtext="Go create some now"
           limit={20}
-          page={page}
+          // page={page}
           categoryList={categoryList}
           subcategory={subcategory}
           make={AdsCountPerMake}
+          makeselected={makeselected}
           AdsCountPerSubcategory={AdsCountPerSubcategory}
           AdsCountPerRegion={AdsCountPerRegion}
           AdsCountPerVerifiedTrue={AdsCountPerVerifiedTrue}
@@ -581,6 +492,42 @@ const Storeads = async ({ params: { id }, searchParams }: SearchParamProps) => {
           AdsCountPerstatus={AdsCountPerstatus}
           AdsCountPerarea={AdsCountPerarea}
           AdsCountPerpropertysecurity={AdsCountPerpropertysecurity}
+          searchText={searchText}
+          sortby={sortby}
+          Type={Type}
+          vehiclemodel={vehiclemodel}
+          yearfrom={yearfrom}
+          yearto={yearto}
+          vehiclecolor={vehiclecolor}
+          vehiclecondition={vehiclecondition}
+          vehicleTransmissions={vehicleTransmissions}
+          longitude={longitude}
+          latitude={latitude}
+          region={region}
+          membership={membership}
+          vehicleFuelTypes={vehicleFuelTypes}
+          vehicleEngineSizesCC={vehicleEngineSizesCC}
+          vehicleexchangeposible={vehicleexchangeposible}
+          vehicleBodyTypes={vehicleBodyTypes}
+          vehicleregistered={vehicleregistered}
+          vehicleSeats={vehicleSeats}
+          vehiclesecordCondition={vehiclesecordCondition}
+          vehicleyear={vehicleyear}
+          Price={Price}
+          bedrooms={bedrooms}
+          bathrooms={bathrooms}
+          furnishing={furnishing}
+          amenities={amenities}
+          toilets={toilets}
+          parking={parking}
+          status={status}
+          area={area}
+          landuse={landuse}
+          propertysecurity={propertysecurity}
+          floors={floors}
+          estatename={estatename}
+          houseclass={houseclass}
+          loading={false}
         />
         <Toaster />
       </div>

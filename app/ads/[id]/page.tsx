@@ -42,12 +42,6 @@ const AdDetails = async ({
   const userName = sessionClaims?.userName as string;
   const userImage = sessionClaims?.userImage as string;
   const ad = await getAdById(id);
-  const relatedAds: any = await getRelatedAdByCategory({
-    categoryId: ad.category._id,
-    subcategory: ad.subcategory,
-    adId: ad._id,
-    page: searchParams.page as string,
-  });
 
   if (!ad) {
     return (
@@ -154,16 +148,16 @@ const AdDetails = async ({
         <h2 className="font-bold p-2 text-[30px]">Related Ads</h2>
         <div className="p-1 mb-24 lg:mb-0">
           <CollectionRelated
-            data={relatedAds?.data}
             emptyTitle="No Ads Found"
             emptyStateSubtext="Come back later"
             collectionType="All_Ads"
-            limit={20}
-            page={searchParams.page as string}
-            totalPages={relatedAds?.totalPages}
+            limit={16}
             userId={userId || ""}
             userName={userName || ""}
             userImage={userImage || ""}
+            categoryId={ad.category._id}
+            subcategory={ad.subcategory}
+            adId={id}
           />
           <Toaster />
         </div>

@@ -18,10 +18,10 @@ const myads = async ({ params: { id }, searchParams }: SearchParamProps) => {
   const { sessionClaims } = auth();
   const userId = sessionClaims?.userId as string;
   const adsPage = Number(searchParams?.adsPage) || 1;
-  const bookmark = await getallBookmarkByuserId(userId);
+
   const user = await getUserById(userId);
   // console.log(bookmark?.data[0].adId);
-  if (!bookmark || !user) {
+  if (!user) {
     return (
       <div className="flex items-center justify-center h-screen w-full bg-[#ebf2f7] bg-dotted-pattern bg-cover bg-fixed bg-center">
         <div className="flex gap-1 items-center justify-center">
@@ -46,15 +46,15 @@ const myads = async ({ params: { id }, searchParams }: SearchParamProps) => {
       <div className="mt-20">
         <DashboardBookmark
           userId={userId}
-          data={bookmark?.data}
+          // data={bookmark?.data}
           user={user}
           emptyTitle="No ads have been created yet"
           emptyStateSubtext="Go create some now"
           collectionType="Ads_Organized"
           limit={3}
-          page={adsPage}
+          // page={adsPage}
           urlParamName="adsPage"
-          totalPages={bookmark?.totalPages}
+          //  totalPages={bookmark?.totalPages}
         />
         <Toaster />
       </div>

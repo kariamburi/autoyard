@@ -11,25 +11,25 @@ import BookmarkIcon from "@mui/icons-material/Bookmark";
 
 type CollectionProps = {
   userId: string;
-  data: IAd[];
+  // data: IAd[];
   user: CreateUserParams;
   emptyTitle: string;
   emptyStateSubtext: string;
   limit: number;
-  page: number | string;
-  totalPages?: number;
+  //page: number | string;
+  //totalPages?: number;
   urlParamName?: string;
   collectionType?: "Ads_Organized" | "My_Tickets" | "All_Ads";
 };
 
 const DashboardBookmark = ({
   userId,
-  data,
+  // data,
   user,
   emptyTitle,
   emptyStateSubtext,
-  page,
-  totalPages = 0,
+  // page,
+  //totalPages = 0,
   collectionType,
   urlParamName,
 }: // Accept the onSortChange prop
@@ -49,14 +49,14 @@ CollectionProps) => {
             </section>
             <section className=" my-2">
               <CollectionBookmark
-                data={data}
+                // data={data}
                 emptyTitle="No Saved Ad"
                 emptyStateSubtext="Go and bookmark your favorite ads"
                 collectionType="Ads_Organized"
-                limit={3}
-                page={page}
+                limit={20}
+                //page={page}
                 urlParamName="adsPage"
-                totalPages={totalPages}
+                //totalPages={totalPages}
                 userId={userId}
                 isAdCreator={false}
                 isVertical={isVertical}

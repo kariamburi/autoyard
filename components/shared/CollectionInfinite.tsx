@@ -1,6 +1,6 @@
 "use client";
 import { IAd } from "@/lib/database/models/ad.model";
-import React, { useEffect, useRef, useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import Card from "./Card";
 import Pagination from "./Pagination";
 import { SignedIn, SignedOut } from "@clerk/nextjs";
@@ -9,41 +9,111 @@ import ChatWindow from "./ChatWindow";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { getRelatedAdByCategory } from "@/lib/actions/ad.actions";
+import { getAllAd } from "@/lib/actions/ad.actions";
 //import Card from './Card'
 //import Pagination from './Pagination'
 
 type CollectionProps = {
-  //  data: IAd[];
+  // data: IAd[];
   emptyTitle: string;
   emptyStateSubtext: string;
   limit: number;
-  categoryId: string;
-  adId: string;
-  subcategory: string;
-  // page: number | string;
-  // totalPages?: number;
+  //page: number;
+  //totalPages?: number;
   urlParamName?: string;
   userId: string;
   userName: string;
   userImage: string;
   collectionType?: "Ads_Organized" | "My_Tickets" | "All_Ads";
+
+  searchText: string;
+  sortby: string;
+  category: string;
+  subcategory: string;
+  make: string;
+  vehiclemodel: string;
+  yearfrom: string;
+  yearto: string;
+  vehiclecolor: string;
+  vehiclecondition: string;
+  vehicleTransmissions: string;
+  longitude: string;
+  latitude: string;
+  region: string;
+  membership: string;
+  vehicleFuelTypes: string;
+  vehicleEngineSizesCC: string;
+  vehicleexchangeposible: string;
+  vehicleBodyTypes: string;
+  vehicleregistered: string;
+  vehicleSeats: string;
+  vehiclesecordCondition: string;
+  vehicleyear: string;
+  Price: string;
+  bedrooms: string;
+  bathrooms: string;
+  furnishing: string;
+  amenities: any;
+  toilets: string;
+  parking: string;
+  status: string;
+  area: string;
+  landuse: string;
+  propertysecurity: string;
+  floors: string;
+  estatename: string;
+  houseclass: string;
 };
 
-const CollectionRelated = ({
-  // data,
+const CollectionInfinite = ({
+  //data,
   emptyTitle,
   emptyStateSubtext,
   // page,
-  // totalPages = 0,
+  //totalPages = 0,
   collectionType,
   urlParamName,
-  categoryId,
-  subcategory,
-  adId,
   userId,
   userName,
   userImage,
+
+  searchText,
+  sortby,
+  category,
+  subcategory,
+  make,
+  vehiclemodel,
+  yearfrom,
+  yearto,
+  vehiclecolor,
+  vehiclecondition,
+  vehicleTransmissions,
+  longitude,
+  latitude,
+  region,
+  membership,
+  vehicleFuelTypes,
+  vehicleEngineSizesCC,
+  vehicleexchangeposible,
+  vehicleBodyTypes,
+  vehicleregistered,
+  vehicleSeats,
+  vehiclesecordCondition,
+  vehicleyear,
+  Price,
+  bedrooms,
+  bathrooms,
+  furnishing,
+  amenities,
+  toilets,
+  parking,
+  status,
+  area,
+  landuse,
+  propertysecurity,
+  floors,
+  estatename,
+  houseclass,
 }: CollectionProps) => {
   const [isChatOpen, setChatOpen] = useState(false);
   const toggleChat = () => {
@@ -62,25 +132,60 @@ const CollectionRelated = ({
   const fetchAds = async () => {
     setLoading(true);
     try {
-      const relatedAds: any = await getRelatedAdByCategory({
-        categoryId: categoryId,
-        subcategory: subcategory,
-        adId: adId,
+      const Ads = await getAllAd({
+        query: searchText,
+        sortby: sortby,
+        category,
+        subcategory,
+        make: make,
+        vehiclemodel: vehiclemodel,
+        yearfrom: yearfrom,
+        yearto: yearto,
+        vehiclecolor: vehiclecolor,
+        vehiclecondition: vehiclecondition,
+        vehicleTransmissions: vehicleTransmissions,
+        longitude: longitude,
+        latitude: latitude,
+        address: region,
+        membership: membership,
+        vehicleFuelTypes: vehicleFuelTypes,
+        vehicleEngineSizesCC: vehicleEngineSizesCC,
+        vehicleexchangeposible: vehicleexchangeposible,
+        vehicleBodyTypes: vehicleBodyTypes,
+        vehicleregistered: vehicleregistered,
+        vehicleSeats: vehicleSeats,
+        vehiclesecordCondition: vehiclesecordCondition,
+        vehicleyear: vehicleyear,
+        Price: Price,
+        bedrooms: bedrooms,
+        bathrooms: bathrooms,
+        furnishing: furnishing,
+        amenities: amenities,
+        toilets: toilets,
+        parking: parking,
+        status: status,
+        area: area,
+        landuse: landuse,
+        propertysecurity: propertysecurity,
+        floors: floors,
+        estatename: estatename,
+        houseclass: houseclass,
         page,
+        limit: 20,
       });
 
-      // Update ads state using the latest prevAds for filtering
       setAds((prevAds: IAd[]) => {
         const existingAdIds = new Set(prevAds.map((ad) => ad._id));
 
         // Filter out ads that are already in prevAds
-        const newAds = relatedAds?.data.filter(
+        const newAds = Ads?.data.filter(
           (ad: IAd) => !existingAdIds.has(ad._id)
         );
 
         return [...prevAds, ...newAds]; // Return updated ads
       });
-      setTotalPages(relatedAds?.totalPages || 1);
+
+      setTotalPages(Ads?.totalPages || 1);
     } catch (error) {
       console.error("Error fetching ads", error);
     } finally {
@@ -159,6 +264,19 @@ const CollectionRelated = ({
         )
       )}
 
+      {userId && (
+        <>
+          <FloatingChatIcon onClick={toggleChat} isOpen={isChatOpen} />
+          <ChatWindow
+            isOpen={isChatOpen}
+            onClose={toggleChat}
+            senderId={userId}
+            senderName={userName}
+            senderImage={userImage}
+            recipientUid={"66dd62d837607af83cabf551"}
+          />
+        </>
+      )}
       {loading && (
         <div>
           <div className="w-full mt-10 h-full flex flex-col items-center justify-center">
@@ -176,4 +294,4 @@ const CollectionRelated = ({
   );
 };
 
-export default CollectionRelated;
+export default CollectionInfinite;

@@ -20,12 +20,6 @@ const myads = async ({ params: { id }, searchParams }: SearchParamProps) => {
   const adsPage = Number(searchParams?.adsPage) || 1;
   const sortby = (searchParams?.query as string) || "recommeded";
   const isAdCreator = myId === userId;
-  const organizedAds = await getAdByUser({
-    userId,
-    page: adsPage,
-    sortby: sortby,
-    myshop: isAdCreator,
-  });
 
   const user = await getUserById(userId);
 
@@ -80,7 +74,7 @@ const myads = async ({ params: { id }, searchParams }: SearchParamProps) => {
       adstatus = "Active";
     }
   } catch {}
-  if (!organizedAds || !user) {
+  if (!user) {
     return (
       <div className="flex items-center justify-center h-screen w-full bg-[#ebf2f7] bg-dotted-pattern bg-cover bg-fixed bg-center">
         <div className="flex gap-1 items-center justify-center">
@@ -111,14 +105,14 @@ const myads = async ({ params: { id }, searchParams }: SearchParamProps) => {
           daysRemaining={daysRemaining}
           packname={planpackage}
           color={color}
-          data={organizedAds?.data}
+          // data={organizedAds?.data}
           emptyTitle="No ads have been created yet"
           emptyStateSubtext="Go create some now"
           collectionType="Ads_Organized"
           limit={3}
-          page={adsPage}
+          sortby={sortby}
           urlParamName="adsPage"
-          totalPages={organizedAds?.totalPages}
+          //  totalPages={organizedAds?.totalPages}
         />
         <Toaster />
       </div>

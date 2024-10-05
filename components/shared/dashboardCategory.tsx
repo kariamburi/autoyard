@@ -105,7 +105,7 @@ const SidebarSearch = dynamic(() => import("./SidebarSearch"), {
   ssr: false,
   loading: () => (
     <div>
-      <div className="w-full mt-10 h-full flex flex-col items-center justify-center">
+      <div className="w-[280px] mt-10 h-full flex flex-col items-center justify-center">
         <Image
           src="/assets/icons/loading2.gif"
           alt="loading"
@@ -132,12 +132,14 @@ type CollectionProps = {
   category: string;
   categoryList?: ICategory;
   subcategory: string;
-  data: IAd[];
+  //data: IAd[];
   emptyTitle: string;
   emptyStateSubtext: string;
   limit: number;
-  page: number | string;
-  totalPages?: number;
+  Type: string;
+  makeselected: string;
+  // page: number | string;
+  // totalPages?: number;
   urlParamName?: string;
   //vehiclemake: string;
   AdsCountPerSubcategory: any;
@@ -169,14 +171,49 @@ type CollectionProps = {
   AdsCountPerstatus: any;
   AdsCountPerarea: any;
   AdsCountPerpropertysecurity: any;
+  searchText: string;
+  sortby: string;
+
+  vehiclemodel: string;
+  yearfrom: string;
+  yearto: string;
+  vehiclecolor: string;
+  vehiclecondition: string;
+  vehicleTransmissions: string;
+  longitude: string;
+  latitude: string;
+  region: string;
+  membership: string;
+  vehicleFuelTypes: string;
+  vehicleEngineSizesCC: string;
+  vehicleexchangeposible: string;
+  vehicleBodyTypes: string;
+  vehicleregistered: string;
+  vehicleSeats: string;
+  vehiclesecordCondition: string;
+  vehicleyear: string;
+  Price: string;
+  bedrooms: string;
+  bathrooms: string;
+  furnishing: string;
+  amenities: any;
+  toilets: string;
+  parking: string;
+  status: string;
+  area: string;
+  landuse: string;
+  propertysecurity: string;
+  floors: string;
+  estatename: string;
+  houseclass: string;
 };
 
 const DashboardCategory = ({
-  loading,
+  Type,
   userId,
-  data,
-  page,
-  totalPages = 0,
+  // data,
+  //page,
+  //totalPages = 0,
   category,
   categoryList,
   subcategory,
@@ -185,6 +222,7 @@ const DashboardCategory = ({
   AdsCountPerVerifiedTrue,
   AdsCountPerVerifiedFalse,
   make,
+  makeselected,
   AdsCountPerColor,
   AdsCountPerTransmission,
   AdsCountPerFuel,
@@ -209,6 +247,40 @@ const DashboardCategory = ({
   AdsCountPerstatus,
   AdsCountPerarea,
   AdsCountPerpropertysecurity,
+  searchText,
+  sortby,
+  vehiclemodel,
+  yearfrom,
+  yearto,
+  vehiclecolor,
+  vehiclecondition,
+  vehicleTransmissions,
+  longitude,
+  latitude,
+  region,
+  membership,
+  vehicleFuelTypes,
+  vehicleEngineSizesCC,
+  vehicleexchangeposible,
+  vehicleBodyTypes,
+  vehicleregistered,
+  vehicleSeats,
+  vehiclesecordCondition,
+  vehicleyear,
+  Price,
+  bedrooms,
+  bathrooms,
+  furnishing,
+  amenities,
+  toilets,
+  parking,
+  status,
+  area,
+  landuse,
+  propertysecurity,
+  floors,
+  estatename,
+  houseclass,
 }: // user,
 
 // Accept the onSortChange prop
@@ -309,19 +381,19 @@ CollectionProps) => {
     }
   }
 
-  const [loadin, setLoading] = useState(loading);
-  const [adsData, setAdsData] = useState(data);
+  // const [loadin, setLoading] = useState(loading);
+  // const [adsData, setAdsData] = useState(data);
 
-  useEffect(() => {
-    // Simulate loading state
-    setLoading(true);
-    setTimeout(() => {
-      setLoading(false);
-      setAdsData(data);
-    }, 1000);
+  //useEffect(() => {
+  // Simulate loading state
+  //   setLoading(true);
+  //   setTimeout(() => {
+  //     setLoading(false);
+  //    setAdsData(data);
+  //  }, 1000);
 
-    // Simulated delay
-  }, [data]);
+  // Simulated delay
+  // }, [data]);
   const handleClear = () => {
     let newUrl = "";
     setShowPopup(false);
@@ -923,17 +995,53 @@ CollectionProps) => {
                 </div>
               </div>
               <CollectionSearch
-                data={adsData}
+                //  data={adsData}
                 emptyTitle="No ads have been created yet"
                 emptyStateSubtext="Go create some now"
                 // collectionType="Ads_Organized"
-                limit={3}
-                page={page}
+                limit={6}
+                Type={Type}
                 urlParamName="adsPage"
-                totalPages={totalPages}
                 userId={userId}
                 activeButton={activeButton}
-                loading={loadin}
+                searchText={searchText}
+                sortby={sortby}
+                category={category}
+                subcategory={subcategory}
+                make={make}
+                makeselected={makeselected}
+                vehiclemodel={vehiclemodel}
+                yearfrom={yearfrom}
+                yearto={yearto}
+                vehiclecolor={vehiclecolor}
+                vehiclecondition={vehiclecondition}
+                vehicleTransmissions={vehicleTransmissions}
+                longitude={longitude}
+                latitude={latitude}
+                region={region}
+                membership={membership}
+                vehicleFuelTypes={vehicleFuelTypes}
+                vehicleEngineSizesCC={vehicleEngineSizesCC}
+                vehicleexchangeposible={vehicleexchangeposible}
+                vehicleBodyTypes={vehicleBodyTypes}
+                vehicleregistered={vehicleregistered}
+                vehicleSeats={vehicleSeats}
+                vehiclesecordCondition={vehiclesecordCondition}
+                vehicleyear={vehicleyear}
+                Price={Price}
+                bedrooms={bedrooms}
+                bathrooms={bathrooms}
+                furnishing={furnishing}
+                amenities={amenities}
+                toilets={toilets}
+                parking={parking}
+                status={status}
+                area={area}
+                landuse={landuse}
+                propertysecurity={propertysecurity}
+                floors={floors}
+                estatename={estatename}
+                houseclass={houseclass}
               />
             </section>
           </div>

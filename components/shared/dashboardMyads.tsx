@@ -63,13 +63,14 @@ type CollectionProps = {
   daysRemaining?: number;
   packname?: string;
   color: string;
-  data: IAd[];
+  sortby: string;
+  //data: IAd[];
   user: IUser;
   emptyTitle: string;
   emptyStateSubtext: string;
   limit: number;
-  page: number | string;
-  totalPages?: number;
+  //page: number | string;
+  // totalPages?: number;
   urlParamName?: string;
   isAdCreator: boolean;
   collectionType?: "Ads_Organized" | "My_Tickets" | "All_Ads";
@@ -77,14 +78,14 @@ type CollectionProps = {
 
 const DashboardMyads = ({
   userId,
-  data,
+  //data,
   packname,
   daysRemaining,
   color,
   emptyTitle,
   emptyStateSubtext,
-  page,
-  totalPages = 0,
+  sortby,
+  //totalPages = 0,
   collectionType,
   urlParamName,
   isAdCreator,
@@ -298,14 +299,14 @@ CollectionProps) => {
                 </div>
               </div>
               <CollectionMyads
-                data={data}
+                // data={data}
                 emptyTitle="No ads have been created yet"
                 emptyStateSubtext="Go create some now"
                 collectionType="Ads_Organized"
                 limit={3}
-                page={page}
+                sortby={sortby}
                 urlParamName="adsPage"
-                totalPages={totalPages}
+                //totalPages={totalPages}
                 userId={userId}
                 isAdCreator={isAdCreator}
                 isVertical={isVertical}

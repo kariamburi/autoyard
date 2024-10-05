@@ -12,6 +12,7 @@ import MenuSubmobile from "@/components/shared/MenuSubmobile";
 import Collection from "@/components/shared/Collection";
 import { createUser } from "@/lib/actions/user.actions";
 import { getfcmTokenFromCookie } from "@/lib/actions/cookies";
+import CollectionInfinite from "@/components/shared/CollectionInfinite";
 
 export default async function Home({ searchParams }: SearchParamProps) {
   const { sessionClaims } = auth();
@@ -72,49 +73,49 @@ export default async function Home({ searchParams }: SearchParamProps) {
   const estatename = (searchParams?.estatename as string) || "";
   const houseclass = (searchParams?.houseclass as string) || "";
   const categoryList = await getAllCategories();
-  const Ads = await getAllAd({
-    query: searchText,
-    sortby: sortby,
-    category,
-    subcategory,
-    make: make,
-    vehiclemodel: vehiclemodel,
-    yearfrom: yearfrom,
-    yearto: yearto,
-    vehiclecolor: vehiclecolor,
-    vehiclecondition: vehiclecondition,
-    vehicleTransmissions: vehicleTransmissions,
-    longitude: longitude,
-    latitude: latitude,
-    address: region,
-    membership: membership,
-    vehicleFuelTypes: vehicleFuelTypes,
-    vehicleEngineSizesCC: vehicleEngineSizesCC,
-    vehicleexchangeposible: vehicleexchangeposible,
-    vehicleBodyTypes: vehicleBodyTypes,
-    vehicleregistered: vehicleregistered,
-    vehicleSeats: vehicleSeats,
-    vehiclesecordCondition: vehiclesecordCondition,
-    vehicleyear: vehicleyear,
-    Price: Price,
-    bedrooms: bedrooms,
-    bathrooms: bathrooms,
-    furnishing: furnishing,
-    amenities: amenities,
-    toilets: toilets,
-    parking: parking,
-    status: status,
-    area: area,
-    landuse: landuse,
-    propertysecurity: propertysecurity,
-    floors: floors,
-    estatename: estatename,
-    houseclass: houseclass,
-    page,
-    limit: 20,
-  });
+  // const Ads = await getAllAd({
+  //   query: searchText,
+  //   sortby: sortby,
+  //  category,
+  //   subcategory,
+  //  make: make,
+  //  vehiclemodel: vehiclemodel,
+  //  yearfrom: yearfrom,
+  //  yearto: yearto,
+  //   vehiclecolor: vehiclecolor,
+  //  vehiclecondition: vehiclecondition,
+  //  vehicleTransmissions: vehicleTransmissions,
+  //  longitude: longitude,
+  //  latitude: latitude,
+  //   address: region,
+  //  membership: membership,
+  //  vehicleFuelTypes: vehicleFuelTypes,
+  //  vehicleEngineSizesCC: vehicleEngineSizesCC,
+  //  vehicleexchangeposible: vehicleexchangeposible,
+  //  vehicleBodyTypes: vehicleBodyTypes,
+  //  vehicleregistered: vehicleregistered,
+  //  vehicleSeats: vehicleSeats,
+  //  vehiclesecordCondition: vehiclesecordCondition,
+  //   vehicleyear: vehicleyear,
+  //   Price: Price,
+  //   bedrooms: bedrooms,
+  // bathrooms: bathrooms,
+  //  furnishing: furnishing,
+  //  amenities: amenities,
+  //  toilets: toilets,
+  //  parking: parking,
+  //   status: status,
+  //   area: area,
+  //  landuse: landuse,
+  //  propertysecurity: propertysecurity,
+  //  floors: floors,
+  //  estatename: estatename,
+  //   houseclass: houseclass,
+  //   page,
+  //   limit: 20,
+  // });
 
-  if (!Ads || !categoryList) {
+  if (!categoryList) {
     return (
       <div>
         <div className="flex-center h-screen w-full bg-[#ebf2f7] bg-dotted-pattern bg-cover bg-fixed bg-center">
@@ -167,17 +168,51 @@ export default async function Home({ searchParams }: SearchParamProps) {
                 </SignedOut>
               </div> */}
             </div>
-            <Collection
-              data={Ads?.data}
+            <CollectionInfinite
               emptyTitle="No Ads Found"
               emptyStateSubtext="Come back later"
               collectionType="All_Ads"
               limit={20}
-              page={page}
-              totalPages={Ads?.totalPages}
               userId={userId}
               userName={userName}
               userImage={userImage}
+              searchText={searchText}
+              sortby={sortby}
+              category={category}
+              subcategory={subcategory}
+              make={make}
+              vehiclemodel={vehiclemodel}
+              yearfrom={yearfrom}
+              yearto={yearto}
+              vehiclecolor={vehiclecolor}
+              vehiclecondition={vehiclecondition}
+              vehicleTransmissions={vehicleTransmissions}
+              longitude={longitude}
+              latitude={latitude}
+              region={region}
+              membership={membership}
+              vehicleFuelTypes={vehicleFuelTypes}
+              vehicleEngineSizesCC={vehicleEngineSizesCC}
+              vehicleexchangeposible={vehicleexchangeposible}
+              vehicleBodyTypes={vehicleBodyTypes}
+              vehicleregistered={vehicleregistered}
+              vehicleSeats={vehicleSeats}
+              vehiclesecordCondition={vehiclesecordCondition}
+              vehicleyear={vehicleyear}
+              Price={Price}
+              bedrooms={bedrooms}
+              bathrooms={bathrooms}
+              furnishing={furnishing}
+              amenities={amenities}
+              toilets={toilets}
+              parking={parking}
+              status={status}
+              area={area}
+              landuse={landuse}
+              propertysecurity={propertysecurity}
+              floors={floors}
+              estatename={estatename}
+              houseclass={houseclass}
             />
           </div>
         </div>
