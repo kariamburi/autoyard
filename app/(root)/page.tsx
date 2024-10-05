@@ -9,7 +9,7 @@ import AddCircleOutlineOutlinedIcon from "@mui/icons-material/AddCircleOutlineOu
 import Link from "next/link";
 import { getAllAd } from "@/lib/actions/ad.actions";
 import MenuSubmobile from "@/components/shared/MenuSubmobile";
-import Collection from "@/components/shared/Collection";
+//import Collection from "@/components/shared/Collection";
 import { createUser } from "@/lib/actions/user.actions";
 import { getfcmTokenFromCookie } from "@/lib/actions/cookies";
 import CollectionInfinite from "@/components/shared/CollectionInfinite";

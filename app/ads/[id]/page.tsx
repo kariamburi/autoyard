@@ -14,24 +14,27 @@ import { SearchParamProps } from "@/types";
 import BottomNavigation from "@/components/shared/BottomNavigation";
 import Footersub from "@/components/shared/Footersub";
 import Contact from "@/components/shared/contact";
-import CollectionRelated from "@/components/shared/CollectionRelated";
+//import CollectionRelated from "@/components/shared/CollectionRelated";
 import { Toaster } from "@/components/ui/toaster";
-const Collection = dynamic(() => import("@/components/shared/Collection"), {
-  ssr: false,
-  loading: () => (
-    <div>
-      <div className="w-full h-[300px] mb-2 bg-white rounded-lg flex flex-col items-center justify-center">
-        <Image
-          src="/assets/icons/loading2.gif"
-          alt="loading"
-          width={40}
-          height={40}
-          unoptimized
-        />
+const CollectionRelated = dynamic(
+  () => import("@/components/shared/CollectionRelated"),
+  {
+    ssr: false,
+    loading: () => (
+      <div>
+        <div className="w-full h-[300px] mb-2 bg-white rounded-lg flex flex-col items-center justify-center">
+          <Image
+            src="/assets/icons/loading2.gif"
+            alt="loading"
+            width={40}
+            height={40}
+            unoptimized
+          />
+        </div>
       </div>
-    </div>
-  ),
-});
+    ),
+  }
+);
 
 const AdDetails = async ({
   params: { id },
