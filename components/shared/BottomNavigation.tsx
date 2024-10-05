@@ -7,6 +7,7 @@ import AddCircleOutlineOutlinedIcon from "@mui/icons-material/AddCircleOutlineOu
 import CommentOutlinedIcon from "@mui/icons-material/CommentOutlined";
 import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
 import Unreadmessages from "./Unreadmessages";
+import { SignedIn, SignedOut } from "@clerk/nextjs";
 type navprop = {
   userId: string;
 };
@@ -51,40 +52,88 @@ const BottomNavigation = ({ userId }: navprop) => {
         </Link>
 
         {/* Sell Button */}
-        <Link href="/ads/create" passHref>
-          <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
-            <div className="flex justify-center items-center w-16 h-16 bg-emerald-600 text-white rounded-full shadow-lg hover:bg-emerald-700 active:bg-emerald-800 transition duration-200">
-              <AddCircleOutlineOutlinedIcon className="text-3xl" />
+
+        <SignedIn>
+          <Link href="/ads/create" passHref>
+            <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
+              <div className="flex justify-center items-center w-16 h-16 bg-emerald-600 text-white rounded-full shadow-lg hover:bg-emerald-700 active:bg-emerald-800 transition duration-200">
+                <AddCircleOutlineOutlinedIcon className="text-3xl" />
+              </div>
             </div>
-          </div>
-        </Link>
+          </Link>
+        </SignedIn>
 
-        <Link href="/chat" passHref>
-          <div
-            className={`flex flex-col items-center hover:text-emerald-400 ${
-              isActive("/chat") ? "text-emerald-600" : "text-gray-600"
-            }`}
-          >
-            <span className="flex">
-              <CommentOutlinedIcon />
-              <Unreadmessages userId={userId} />
-            </span>
-            <span className="text-xs">Chat</span>
-          </div>
-        </Link>
+        <SignedOut>
+          <Link href="/sign-in">
+            <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
+              <div className="flex justify-center items-center w-16 h-16 bg-emerald-600 text-white rounded-full shadow-lg hover:bg-emerald-700 active:bg-emerald-800 transition duration-200">
+                <AddCircleOutlineOutlinedIcon className="text-3xl" />
+              </div>
+            </div>
+          </Link>
+        </SignedOut>
 
-        <Link href="/settings" passHref>
-          <div
-            className={`flex flex-col items-center hover:text-emerald-400 ${
-              isActive("/settings") ? "text-emerald-600" : "text-gray-600"
-            }`}
-          >
-            <span>
-              <SettingsIcon />
-            </span>
-            <span className="text-xs">Settings</span>
-          </div>
-        </Link>
+        <SignedIn>
+          <Link href="/chat" passHref>
+            <div
+              className={`flex flex-col items-center hover:text-emerald-400 ${
+                isActive("/chat") ? "text-emerald-600" : "text-gray-600"
+              }`}
+            >
+              <span className="flex">
+                <CommentOutlinedIcon />
+                <Unreadmessages userId={userId} />
+              </span>
+              <span className="text-xs">Chat</span>
+            </div>
+          </Link>
+        </SignedIn>
+
+        <SignedOut>
+          <Link href="/sign-in">
+            <div
+              className={`flex flex-col items-center hover:text-emerald-400 ${
+                isActive("/chat") ? "text-emerald-600" : "text-gray-600"
+              }`}
+            >
+              <span className="flex">
+                <CommentOutlinedIcon />
+                <Unreadmessages userId={userId} />
+              </span>
+              <span className="text-xs">Chat</span>
+            </div>
+          </Link>
+        </SignedOut>
+
+        <SignedIn>
+          <Link href="/settings" passHref>
+            <div
+              className={`flex flex-col items-center hover:text-emerald-400 ${
+                isActive("/settings") ? "text-emerald-600" : "text-gray-600"
+              }`}
+            >
+              <span>
+                <SettingsIcon />
+              </span>
+              <span className="text-xs">Settings</span>
+            </div>
+          </Link>
+        </SignedIn>
+
+        <SignedOut>
+          <Link href="/sign-in">
+            <div
+              className={`flex flex-col items-center hover:text-emerald-400 ${
+                isActive("/settings") ? "text-emerald-600" : "text-gray-600"
+              }`}
+            >
+              <span>
+                <SettingsIcon />
+              </span>
+              <span className="text-xs">Settings</span>
+            </div>
+          </Link>
+        </SignedOut>
       </div>
     </nav>
   );

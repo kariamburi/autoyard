@@ -20,6 +20,7 @@ import {
 } from "../ui/tooltip";
 import { updatebookmarked } from "@/lib/actions/ad.actions";
 import { SignedIn, SignedOut } from "@clerk/nextjs";
+import { useRouter } from "next/navigation";
 type CardProps = {
   userId: string;
   ad: IAd;
@@ -102,13 +103,15 @@ const VerticalCard = ({ userId, ad, isAdCreator }: CardProps) => {
       });
     }
   };
+  const router = useRouter();
   // console.log(ad.imageUrls);
   return (
     <div className="group relative flex min-h-[300px] w-full max-w-[400px] flex-col overflow-hidden rounded-xl bg-white shadow-md transition-all hover:shadow-lg md:min-h-[300px]">
-      <Link
-        href={`/ads/${ad._id}`}
+      <div
+        // href={`/ads/${ad._id}`}
+        onClick={() => router.push(`/ads/${ad._id}`)}
         style={{ backgroundImage: `url(${ad.imageUrls[0]})` }}
-        className="flex-center flex-grow bg-gray-50 bg-cover bg-center text-grey-500"
+        className="flex-center flex-grow bg-gray-50 bg-cover bg-center text-grey-500 cursor-pointer"
       />
       {/* IS Ad CREATOR ... */}
 
