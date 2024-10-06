@@ -315,7 +315,7 @@ CollectionProps) => {
       setQuery(selectedOption);
       router.push(newUrl, { scroll: false });
     }
-    // setActiveButton(1);
+    setActiveButton(1);
   };
 
   const handlePrice = (index: number, min: string, max: string) => {
@@ -522,7 +522,7 @@ CollectionProps) => {
               </div>
               <div className="lg:hidden">
                 <section className="flex justify-between items-center gap-1 bg-white p-1 bg-white bg-dotted-pattern bg-cover bg-center py-0 md:py-0 rounded-sm">
-                  <div className="flex w-full p-1 z-5">
+                  <div className="flex w-full p-1">
                     <SubCategoryFilterSearch
                       category={category}
                       AdsCountPerSubcategory={AdsCountPerSubcategory}
@@ -976,10 +976,7 @@ CollectionProps) => {
                     <SelectTrigger className="w-[180px]">
                       <SelectValue placeholder="Sort By" />
                     </SelectTrigger>
-                    <SelectContent
-                      onClick={(e) => e.stopPropagation()}
-                      className="z-20"
-                    >
+                    <SelectContent className="z-20">
                       <SelectGroup>
                         <SelectItem value="recommeded">
                           Recommended first

@@ -150,7 +150,7 @@ CollectionProps) => {
       setQuery(selectedOption);
       router.push(newUrl, { scroll: false });
     }
-    //  setActiveButton(1);
+    setActiveButton(1);
   };
 
   function getCurrentLocation(selectedOption: string) {
@@ -281,10 +281,7 @@ CollectionProps) => {
                     <SelectTrigger className="w-[180px]">
                       <SelectValue placeholder="Sort By" />
                     </SelectTrigger>
-                    <SelectContent
-                      onClick={(e) => e.stopPropagation()}
-                      className="z-20"
-                    >
+                    <SelectContent>
                       <SelectGroup>
                         <SelectItem value="recommeded">
                           Recommended first
