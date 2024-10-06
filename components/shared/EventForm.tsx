@@ -3617,10 +3617,10 @@ const AdForm = ({
                             label="Price"
                             className="w-full"
                             value={formatToCurrency(field.value ?? 0)} // Format value as money
-                            inputProps={{
-                              inputMode: "numeric",
-                              pattern: "[0-9]*",
-                            }} // Ensures numeric input
+                            // inputProps={{
+                            //  inputMode: "numeric",
+                            //  pattern: "[0-9]*",
+                            // }} // Ensures numeric input
                           />
                           <FormField
                             control={form.control}

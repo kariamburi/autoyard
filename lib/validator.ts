@@ -14,10 +14,11 @@ export const AdFormSchema = z.object({
   views: z.string(),
   categoryId: z.string(),
   price: z.union([z.string(), z.number()])
-  .refine(value => !isNaN(Number(value)), {
+  .refine(value => !isNaN(Number(typeof value === 'string' ? value.replace(/,/g, "") : value)), {
     message: 'Price must be a valid number',
   })
-  .transform(value => Number(value)),
+  .transform(value => Number(typeof value === 'string' ? value.replace(/,/g, "") : value)),
+
   negotiable: z.boolean(),
   latitude: z.string(),
   longitude: z.string(),
