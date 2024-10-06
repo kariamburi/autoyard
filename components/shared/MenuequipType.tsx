@@ -1,9 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import {
-  equipmentTypes,
-} from "@/constants";
+import { equipmentTypes } from "@/constants";
 import { formUrlQuery, removeKeysFromQuery } from "@/lib/utils";
 import { useRouter, useSearchParams } from "next/navigation";
 import Image from "next/image";
@@ -24,13 +22,13 @@ export default function MenuequipType({ category, subcategory }: CardProps) {
       if (query) {
         newUrl = formUrlQuery({
           params: searchParams.toString(),
-          key: "equipmentTypes",
+          key: "Types",
           value: query,
         });
       } else {
         newUrl = removeKeysFromQuery({
           params: searchParams.toString(),
-          keysToRemove: ["equipmentTypes"],
+          keysToRemove: ["Types"],
         });
       }
 
@@ -47,7 +45,11 @@ export default function MenuequipType({ category, subcategory }: CardProps) {
           equipmentTypes.slice(0, 8).map((vehicle: any) => (
             <div
               key={vehicle.type} // Always good to have a unique key prop
-              className="flex h-[80px] bg-white shadow flex-col items-center justify-center cursor-pointer rounded-sm p-1 border-1 border-emerald-300 hover:bg-emerald-100"
+              className={`flex h-[80px] shadow flex-col items-center justify-center cursor-pointer rounded-sm p-1 border-1 border-emerald-300 hover:bg-emerald-200 ${
+                vehicle.type === searchParams.get("Types")
+                  ? "bg-[#30AF5B] text-white"
+                  : "bg-white hover:bg-emerald-200"
+              }`}
             >
               <div
                 className="flex flex-col text-center items-center"

@@ -25,13 +25,13 @@ export default function MenumakeMotobikes({
       if (query) {
         newUrl = formUrlQuery({
           params: searchParams.toString(),
-          key: "motorcycleMakes",
+          key: "make",
           value: query,
         });
       } else {
         newUrl = removeKeysFromQuery({
           params: searchParams.toString(),
-          keysToRemove: ["motorcycleMakes"],
+          keysToRemove: ["make"],
         });
       }
 
@@ -48,7 +48,11 @@ export default function MenumakeMotobikes({
           motorcycleMakes.slice(0, 8).map((vehicle: any) => (
             <div
               key={vehicle.make} // Always good to have a unique key prop
-              className="flex h-[80px] bg-white shadow flex-col items-center justify-center cursor-pointer rounded-sm p-1 border-1 border-emerald-300 hover:bg-emerald-100"
+              className={`flex h-[80px] shadow flex-col items-center justify-center cursor-pointer rounded-sm p-1 border-1 border-emerald-300 hover:bg-emerald-200 ${
+                vehicle.make === searchParams.get("make")
+                  ? "bg-[#30AF5B] text-white"
+                  : "bg-white hover:bg-emerald-200"
+              }`}
             >
               <div
                 className="flex text-center flex-col items-center"
