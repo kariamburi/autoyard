@@ -239,7 +239,10 @@ const AdForm = ({
       return null;
     }
   }
-
+  const parseCurrencyToNumber = (value: string): number => {
+    // Remove any commas from the string and convert to number
+    return Number(value.replace(/,/g, ""));
+  };
   async function onSubmit(values: z.infer<typeof AdFormSchema>) {
     uploadedImageUrl = values.imageUrls;
 
@@ -452,7 +455,7 @@ const AdForm = ({
             expirely: ExpirationDate_,
             adstatus: Adstatus_,
             phone: countryCode + removeLeadingZero(phoneNumber),
-            price: Number(form.getValues("price")),
+            price: parseCurrencyToNumber(form.getValues("price").toString()),
             address: form.getValues("address"),
             vehiclekeyfeatures:
               selectedfeaturesOptions.length > 0 ? selectedfeaturesOptions : [],
@@ -515,7 +518,7 @@ const AdForm = ({
           ad: {
             ...values,
             phone: countryCode + removeLeadingZero(phoneNumber),
-            price: Number(form.getValues("price")),
+            price: parseCurrencyToNumber(form.getValues("price").toString()),
             vehiclekeyfeatures:
               selectedfeaturesOptions.length > 0 ? selectedfeaturesOptions : [],
             vehicleEngineSizesCC: (
