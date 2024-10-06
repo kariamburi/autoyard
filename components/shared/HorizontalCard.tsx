@@ -142,48 +142,7 @@ const HorizontalCard = ({ userId, ad, isAdCreator }: CardProps) => {
               <DeleteConfirmation adId={ad._id} imageUrls={ad.imageUrls} />
             </div>
           )}
-          {!isAdCreator && !isbookmark && (
-            <>
-              <SignedIn>
-                <div
-                  className="w-8 h-8 p-1 mt-[-20px] shadow-lg flex items-center justify-center rounded-full bg-white text-emerald-500 tooltip tooltip-bottom hover:text-[#2BBF4E] hover:cursor-pointer"
-                  data-tip="Bookmark"
-                  onClick={() => handle(ad._id)}
-                >
-                  <TooltipProvider>
-                    <Tooltip>
-                      <TooltipTrigger asChild>
-                        <BookmarkIcon sx={{ fontSize: 16 }} />
-                      </TooltipTrigger>
-                      <TooltipContent side="left">
-                        <p className="text-sm"> Save Ad</p>
-                      </TooltipContent>
-                    </Tooltip>
-                  </TooltipProvider>
-                </div>
-              </SignedIn>
 
-              <SignedOut>
-                <Link href="/sign-in">
-                  <div
-                    className="w-8 h-8 p-1 mt-[-20px] shadow-lg flex items-center justify-center rounded-full bg-white text-emerald-500 tooltip tooltip-bottom hover:text-[#2BBF4E] hover:cursor-pointer"
-                    data-tip="Bookmark"
-                  >
-                    <TooltipProvider>
-                      <Tooltip>
-                        <TooltipTrigger asChild>
-                          <BookmarkIcon sx={{ fontSize: 16 }} />
-                        </TooltipTrigger>
-                        <TooltipContent side="left">
-                          <p className="text-sm"> Save Ad</p>
-                        </TooltipContent>
-                      </Tooltip>
-                    </TooltipProvider>
-                  </div>
-                </Link>
-              </SignedOut>
-            </>
-          )}
           {isbookmark && (
             <div className="w-full flex justify-end  absolute top-2/3 left-1/2 transform -translate-x-1/2 p-1 rounded-full">
               <div
@@ -279,21 +238,64 @@ const HorizontalCard = ({ userId, ad, isAdCreator }: CardProps) => {
               </Link>
             </div>
           )}
+          <div className="flex justify-between w-full">
+            <div className="flex gap-1 mt-1">
+              {ad.vehiclecondition && (
+                <div className="flex gap-2 text-[8px] lg:text-xs bg-[#ebf2f7] rounded-sm p-1 justify-center border">
+                  {ad.vehiclecondition}
+                </div>
+              )}
+              {ad.vehicleTransmissions && (
+                <div className="flex gap-2 text-[8px] lg:text-xs bg-[#ebf2f7] rounded-sm p-1 justify-center border">
+                  {ad.vehicleTransmissions}
+                </div>
+              )}
+              {ad.vehicleEngineSizesCC && (
+                <div className="flex gap-2 text-[8px] lg:text-xs bg-[#ebf2f7] rounded-sm p-1 justify-center border">
+                  {ad.vehicleEngineSizesCC}
+                </div>
+              )}
+            </div>
+            {!isAdCreator && !isbookmark && (
+              <div className="">
+                <SignedIn>
+                  <div
+                    className="w-8 h-8 p-1 shadow-lg flex items-center justify-center rounded-full bg-white text-emerald-500 tooltip tooltip-bottom hover:text-[#2BBF4E] hover:cursor-pointer"
+                    data-tip="Bookmark"
+                    onClick={() => handle(ad._id)}
+                  >
+                    <TooltipProvider>
+                      <Tooltip>
+                        <TooltipTrigger asChild>
+                          <BookmarkIcon sx={{ fontSize: 16 }} />
+                        </TooltipTrigger>
+                        <TooltipContent side="left">
+                          <p className="text-sm"> Save Ad</p>
+                        </TooltipContent>
+                      </Tooltip>
+                    </TooltipProvider>
+                  </div>
+                </SignedIn>
 
-          <div className="flex gap-1 mt-1 w-full">
-            {ad.vehiclecondition && (
-              <div className="flex gap-2 text-[8px] lg:text-xs bg-[#ebf2f7] rounded-sm p-1 justify-center border">
-                {ad.vehiclecondition}
-              </div>
-            )}
-            {ad.vehicleTransmissions && (
-              <div className="flex gap-2 text-[8px] lg:text-xs bg-[#ebf2f7] rounded-sm p-1 justify-center border">
-                {ad.vehicleTransmissions}
-              </div>
-            )}
-            {ad.vehicleEngineSizesCC && (
-              <div className="flex gap-2 text-[8px] lg:text-xs bg-[#ebf2f7] rounded-sm p-1 justify-center border">
-                {ad.vehicleEngineSizesCC}
+                <SignedOut>
+                  <Link href="/sign-in">
+                    <div
+                      className="w-8 h-8 p-1 shadow-lg flex items-center justify-center rounded-full bg-white text-emerald-500 tooltip tooltip-bottom hover:text-[#2BBF4E] hover:cursor-pointer"
+                      data-tip="Bookmark"
+                    >
+                      <TooltipProvider>
+                        <Tooltip>
+                          <TooltipTrigger asChild>
+                            <BookmarkIcon sx={{ fontSize: 16 }} />
+                          </TooltipTrigger>
+                          <TooltipContent side="left">
+                            <p className="text-sm"> Save Ad</p>
+                          </TooltipContent>
+                        </Tooltip>
+                      </TooltipProvider>
+                    </div>
+                  </Link>
+                </SignedOut>
               </div>
             )}
           </div>

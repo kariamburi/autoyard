@@ -3,6 +3,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
 import { Button } from "@/components/ui/button";
+import axios from "axios";
 import {
   Form,
   FormControl,
@@ -98,6 +99,7 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip";
 import { addModelToMake } from "./addModelToMake";
+import CircularProgressWithLabel from "./CircularProgressWithLabel";
 
 type Package = {
   imageUrl: string;
@@ -149,7 +151,7 @@ const AdForm = ({
   const router = useRouter();
 
   const [files, setFiles] = useState<File[]>([]);
-
+  const [uploadProgress, setUploadProgress] = useState(0);
   const form = useForm<z.infer<typeof AdFormSchema>>({
     resolver: zodResolver(AdFormSchema),
     defaultValues: initialValues,
@@ -170,18 +172,18 @@ const AdForm = ({
     ad?.subcategory ?? ""
   );
   // Define custom toolbar options
-  const modules = {
-    toolbar: [
-      [{ header: "1" }, { header: "2" }, { font: [] }],
-      [{ size: ["small", false, "large", "huge"] }], // Font size options
-      [{ list: "ordered" }, { list: "bullet" }],
-      ["bold", "italic", "underline", "strike", "blockquote"],
-      [{ color: [] }, { background: [] }], // Color options
-      [{ align: [] }],
-      ["link", "image"],
-      ["clean"],
-    ],
-  };
+  //const modules = {
+  //  toolbar: [
+  //    [{ header: "1" }, { header: "2" }, { font: [] }],
+  //   [{ size: ["small", false, "large", "huge"] }], // Font size options
+  //   [{ list: "ordered" }, { list: "bullet" }],
+  //   ["bold", "italic", "underline", "strike", "blockquote"],
+  //    [{ color: [] }, { background: [] }], // Color options
+  //    [{ align: [] }],
+  //    ["link", "image"],
+  //    ["clean"],
+  //   ],
+  // };
   const [categories, setCategories] = useState<ICategory[]>([]);
   //errors
   const [showmessage, setmessage] = useState("");
@@ -411,6 +413,7 @@ const AdForm = ({
             if (uploadedImages && uploadedImages.length > 0) {
               // Push the URL to the corresponding index in uploadedImageUrl array
               uploadedImageUrl.push(uploadedImages[0].url);
+              setUploadProgress(Math.round(((1 + i) / files.length) * 100));
               // console.log("push- " + uploadedImages[0].url);
             }
           } catch (error) {
@@ -870,6 +873,19 @@ const AdForm = ({
     }
   };
 
+  const formatToCurrency = (value: string | number) => {
+    if (!value) return "0";
+    const numberValue =
+      typeof value === "string" ? parseFloat(value.replace(/,/g, "")) : value;
+    return new Intl.NumberFormat("en-US", {
+      style: "decimal",
+      minimumFractionDigits: 0,
+      maximumFractionDigits: 0,
+    }).format(numberValue);
+  };
+
+  // Handle changes and strip non-numeric characters
+
   return (
     <>
       <Form {...form}>
@@ -1056,12 +1072,12 @@ const AdForm = ({
                                     <TooltipProvider>
                                       <Tooltip>
                                         <TooltipTrigger asChild>
-                                          <div className="bg-black rounded-sm flex w-[80px] text-xs p-1 text-white hover:bg-green-500 mr-4">
-                                            Add new
+                                          <div className="bg-black rounded-sm flex w-[80px] text-xs p-2 text-white hover:bg-green-500 mr-4">
+                                            Add New model?
                                           </div>
                                         </TooltipTrigger>
                                         <TooltipContent>
-                                          <p>Add new model if missing!</p>
+                                          <p>Add New model if missing!</p>
                                         </TooltipContent>
                                       </Tooltip>
                                     </TooltipProvider>
@@ -1069,7 +1085,7 @@ const AdForm = ({
                                   <AlertDialogContent className="bg-white">
                                     <AlertDialogHeader>
                                       <AlertDialogTitle>
-                                        New {form.getValues("make")} model
+                                        Add new {form.getValues("make")} model
                                       </AlertDialogTitle>
                                       <AlertDialogDescription>
                                         <Input
@@ -3597,9 +3613,12 @@ const AdForm = ({
                             {...field}
                             label="Price"
                             className="w-full"
-                            value={field.value ?? 0} // Handle the initial undefined value
+                            value={formatToCurrency(field.value ?? 0)} // Format value as money
+                            inputProps={{
+                              inputMode: "numeric",
+                              pattern: "[0-9]*",
+                            }} // Ensures numeric input
                           />
-
                           <FormField
                             control={form.control}
                             name="negotiable"
@@ -4086,8 +4105,9 @@ const AdForm = ({
           >
             <div className="flex gap-1 items-center">
               {form.formState.isSubmitting && (
-                <CircularProgress sx={{ color: "white" }} size={30} />
+                <CircularProgressWithLabel value={uploadProgress} />
               )}
+
               {form.formState.isSubmitting ? "Submitting..." : `${type} Ad `}
             </div>
           </Button>
