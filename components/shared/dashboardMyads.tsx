@@ -281,7 +281,10 @@ CollectionProps) => {
                     <SelectTrigger className="w-[180px]">
                       <SelectValue placeholder="Sort By" />
                     </SelectTrigger>
-                    <SelectContent>
+                    <SelectContent
+                      onClick={(e) => e.stopPropagation()}
+                      className="z-20"
+                    >
                       <SelectGroup>
                         <SelectItem value="recommeded">
                           Recommended first
@@ -303,7 +306,7 @@ CollectionProps) => {
                 emptyTitle="No ads have been created yet"
                 emptyStateSubtext="Go create some now"
                 collectionType="Ads_Organized"
-                limit={3}
+                limit={20}
                 sortby={sortby}
                 urlParamName="adsPage"
                 //totalPages={totalPages}
