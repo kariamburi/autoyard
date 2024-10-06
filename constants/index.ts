@@ -652,7 +652,11 @@ export const vehicleColors = [
 ];
 
 export const vehicleModels = [
-  { make: "Toyota", models: ["4Runner", "86", "Avalon", "C-HR", "Camry", "Corolla", "Corolla Cross", "GR Supra", "Highlander", "Land Cruiser", "Mirai", "Prius", "Rav4", "Sequoia", "Sienna", "Tacoma", "Tundra", "Venza", "Yaris"] },
+  { make: "Toyota", models: [
+    "4Runner", "86", "Avalon", "C-HR", "Camry", "Corolla", "Corolla Cross", 
+    "GR Supra", "Highlander", "Land Cruiser", "Mirai", "Prius", "Rav4", 
+    "Sequoia", "Sienna", "Tacoma", "Tundra", "Venza", "Wish", "Yaris"
+  ] },
   {
     make: "Nissan",
     models: [

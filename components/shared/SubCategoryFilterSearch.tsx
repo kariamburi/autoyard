@@ -70,7 +70,10 @@ const SubCategoryFilterSearch = ({
         <SelectTrigger className="select-field">
           <SelectValue placeholder="Search Category" />
         </SelectTrigger>
-        <SelectContent>
+        <SelectContent
+          onClick={(e) => e.stopPropagation()} // Prevent click events from propagating
+          className="z-20" // Ensure it appears above other elements
+        >
           {categories &&
             categories
               .find((cat: any) => cat.name === category)

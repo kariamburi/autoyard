@@ -976,7 +976,10 @@ CollectionProps) => {
                     <SelectTrigger className="w-[180px]">
                       <SelectValue placeholder="Sort By" />
                     </SelectTrigger>
-                    <SelectContent>
+                    <SelectContent
+                      onClick={(e) => e.stopPropagation()}
+                      className="z-20"
+                    >
                       <SelectGroup>
                         <SelectItem value="recommeded">
                           Recommended first
