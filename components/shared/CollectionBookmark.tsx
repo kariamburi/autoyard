@@ -4,7 +4,7 @@ import Pagination from "./Pagination";
 import VerticalCard from "./VerticalCard";
 import HorizontalCard from "./HorizontalCard";
 import { getallBookmarkByuserId } from "@/lib/actions/bookmark.actions";
-
+import Image from "next/image";
 type CollectionProps = {
   userId: string;
   //data: IAd[];
