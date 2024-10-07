@@ -2,13 +2,12 @@
   "name": "wheels",
   "version": "0.1.0",
   "private": true,
-  "type": "module",
   "scripts": {
     "dev": "next dev",
-    "start": "next start",
     "build": "next build",
+    "start": "next start",
     "lint": "next lint",
-    "postbuild": "next-sitemap --config next-sitemap.config.cjs"
+    "postbuild": "next-sitemap"
   },
   "dependencies": {
     "@clerk/nextjs": "^5.3.1",
@@ -40,6 +39,7 @@
     "clsx": "^2.1.1",
     "cmdk": "^1.0.0",
     "date-fns": "^3.6.0",
+    "dotenv": "^16.4.5",
     "embla-carousel": "^8.2.0",
     "embla-carousel-autoplay": "^8.2.0",
     "embla-carousel-react": "^8.1.8",
@@ -47,7 +47,6 @@
     "js-cookie": "^3.0.5",
     "leaflet": "^1.9.4",
     "lucide-react": "^0.428.0",
-    "luxon": "^3.5.0",
     "mongoose": "^8.7.0",
     "next": "14.2.5",
     "next-share": "^0.27.0",
@@ -87,8 +86,6 @@
     "@types/react-dom": "^18",
     "@types/uuid": "^10.0.0",
     "autoprefixer": "^10.4.20",
-    "concurrently": "^9.0.1",
-    "dotenv": "^16.4.5",
     "eslint": "^8",
     "eslint-config-next": "14.2.5",
     "postcss": "^8.4.41",
