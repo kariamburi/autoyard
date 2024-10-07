@@ -18,7 +18,6 @@ const myads = async ({ params: { id }, searchParams }: SearchParamProps) => {
   const { sessionClaims } = auth();
   const userId = sessionClaims?.userId as string;
   const adsPage = Number(searchParams?.adsPage) || 1;
-
   const user = await getUserById(userId);
   // console.log(bookmark?.data[0].adId);
   if (!user) {
@@ -51,7 +50,7 @@ const myads = async ({ params: { id }, searchParams }: SearchParamProps) => {
           emptyTitle="No ads have been created yet"
           emptyStateSubtext="Go create some now"
           collectionType="Ads_Organized"
-          limit={3}
+          limit={20}
           // page={adsPage}
           urlParamName="adsPage"
           //  totalPages={bookmark?.totalPages}

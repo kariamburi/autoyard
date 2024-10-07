@@ -20,13 +20,8 @@ const Performance = async ({
   const adsPage = Number(searchParams?.adsPage) || 1;
   const sortby = (searchParams?.query as string) || "recommeded";
   const isAdCreator = true;
-  const organizedAds = await getAdByUser({
-    userId,
-    page: adsPage,
-    sortby: sortby,
-    myshop: isAdCreator,
-  });
-  console.log("organizedAds:" + organizedAds);
+
+  // console.log("organizedAds:" + organizedAds);
   const user = await getUserById(userId);
 
   let subscription: any = [];
@@ -81,7 +76,7 @@ const Performance = async ({
     }
   } catch {}
   //console.log(planpackage + " " + daysRemaining);
-  if (!organizedAds || !user) {
+  if (!user) {
     return (
       <div className="flex items-center justify-center h-screen w-full bg-[#ebf2f7] bg-dotted-pattern bg-cover bg-fixed bg-center">
         <div className="flex gap-1 items-center justify-center">
@@ -113,14 +108,14 @@ const Performance = async ({
           daysRemaining={daysRemaining}
           packname={planpackage}
           color={color}
-          data={organizedAds?.data}
+          sortby={sortby}
           emptyTitle="No ads have been created yet"
           emptyStateSubtext="Go create some now"
           collectionType="Ads_Organized"
-          limit={3}
-          page={adsPage}
+          limit={20}
+          //  page={adsPage}
           urlParamName="adsPage"
-          totalPages={organizedAds?.totalPages}
+          //  totalPages={organizedAds?.totalPages}
         />
         <Toaster />
       </div>

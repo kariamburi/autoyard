@@ -392,6 +392,19 @@ const CollectionSearch = ({
           </>
         )
       )}
+      {loading && (
+        <div>
+          <div className="w-full mt-10 h-full flex flex-col items-center justify-center">
+            <Image
+              src="/assets/icons/loading2.gif"
+              alt="loading"
+              width={40}
+              height={40}
+              unoptimized
+            />
+          </div>
+        </div>
+      )}
     </>
   );
 };

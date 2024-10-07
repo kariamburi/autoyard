@@ -89,12 +89,12 @@ const CollectionBookmark = ({
                   return (
                     <div
                       ref={lastAdRef}
-                      key={ad._id}
+                      key={ad.adId._id}
                       className="flex justify-center"
                     >
                       {/* Render Ad */}
                       <VerticalCard
-                        ad={ad}
+                        ad={ad.adId}
                         userId={userId}
                         isAdCreator={isAdCreator}
                       />
@@ -102,10 +102,10 @@ const CollectionBookmark = ({
                   );
                 } else {
                   return (
-                    <div key={ad._id} className="flex justify-center">
+                    <div key={ad.adId._id} className="flex justify-center">
                       {/* Render Ad */}
                       <VerticalCard
-                        ad={ad}
+                        ad={ad.adId}
                         userId={userId}
                         isAdCreator={isAdCreator}
                       />
@@ -161,6 +161,19 @@ const CollectionBookmark = ({
             </div>
           </>
         )
+      )}
+      {loading && (
+        <div>
+          <div className="w-full mt-10 h-full flex flex-col items-center justify-center">
+            <Image
+              src="/assets/icons/loading2.gif"
+              alt="loading"
+              width={40}
+              height={40}
+              unoptimized
+            />
+          </div>
+        </div>
       )}
     </>
   );
