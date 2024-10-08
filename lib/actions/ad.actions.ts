@@ -409,7 +409,8 @@ export async function getAllAd({ query, limit = 20, page, category, subcategory,
    
 if(sortby==="recommeded"){
    AdQuery = Ad.find(conditions)
-   .sort({ priority: 'desc' })
+  // .sort({ priority: 'desc' })
+  .sort({ priority: -1, createdAt: -1 }) // Both sorted in descending order
       .skip(skipAmount)
       .limit(limit)
 }else if(sortby==="new"){
@@ -554,7 +555,8 @@ if(myshop){
     let AdQuery:any=[];
 if(sortby==="recommeded"){
    AdQuery = Ad.find(conditions)
-     .sort({ priority: 'desc' })
+    // .sort({ priority: 'desc' })
+    .sort({ priority: -1, createdAt: -1 }) // Both sorted in descending order
       .skip(skipAmount)
       .limit(limit)
 }else if(sortby==="new"){
