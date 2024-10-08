@@ -121,7 +121,7 @@ async function checkExpiredSubscriptions() {
 }
 
 // Schedule the task to run once a day at midnight ''0 */12 * * *'
-cron.schedule('* * * * *', async () => {
+cron.schedule('0 */12 * * *', async () => {
   console.log('Running subscription expiration check...');
   await checkExpiredSubscriptions();
 });

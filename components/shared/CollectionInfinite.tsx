@@ -121,7 +121,7 @@ const CollectionInfinite = ({
   };
   const pathname = usePathname();
   const isAdCreator = pathname === "/ads/";
-
+  const [newpage, setnewpage] = useState(false);
   const [data, setAds] = useState<IAd[]>([]); // Initialize with an empty array
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
@@ -174,16 +174,22 @@ const CollectionInfinite = ({
         limit: 20,
       });
 
-      setAds((prevAds: IAd[]) => {
-        const existingAdIds = new Set(prevAds.map((ad) => ad._id));
+      if (newpage) {
+        setnewpage(false);
+        setAds((prevAds: IAd[]) => {
+          const existingAdIds = new Set(prevAds.map((ad) => ad._id));
 
-        // Filter out ads that are already in prevAds
-        const newAds = Ads?.data.filter(
-          (ad: IAd) => !existingAdIds.has(ad._id)
-        );
+          // Filter out ads that are already in prevAds
+          const newAds = Ads?.data.filter(
+            (ad: IAd) => !existingAdIds.has(ad._id)
+          );
 
-        return [...prevAds, ...newAds]; // Return updated ads
-      });
+          return [...prevAds, ...newAds]; // Return updated ads
+        });
+      } else {
+        setnewpage(false);
+        setAds(Ads?.data);
+      }
 
       setTotalPages(Ads?.totalPages || 1);
     } catch (error) {
@@ -194,8 +200,11 @@ const CollectionInfinite = ({
   };
 
   useEffect(() => {
+    if (!newpage) {
+      setPage(1);
+    }
     fetchAds();
-  }, [page]);
+  }, [page, searchText]);
 
   const lastAdRef = (node: any) => {
     if (loading) return;
@@ -203,6 +212,7 @@ const CollectionInfinite = ({
 
     observer.current = new IntersectionObserver((entries) => {
       if (entries[0].isIntersecting && page < totalPages) {
+        setnewpage(true);
         setPage((prevPage: any) => prevPage + 1);
       }
     });

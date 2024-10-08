@@ -84,10 +84,10 @@ const ChatWindow: React.FC<ChatWindowProps> = ({
                   </div>
                 </div>
                 <div className="gap-2 justify-center flex w-full items-center">
-                  <h3 className="font-semibold text-emerald-100 lg:text-xl">
+                  <h3 className="font-bold text-emerald-100 text-sm lg:text-lg">
                     Hi {senderName}
                   </h3>
-                  <div className="h-16 w-16">
+                  <div className="h-14 w-14">
                     <Image src="/hello.png" alt="logo" width={50} height={50} />
                   </div>
                 </div>
