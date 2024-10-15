@@ -1,19 +1,23 @@
 "use client";
 import { useEffect, useState } from "react";
 import Image from "next/image"; // Import Image component from Next.js
+import { useRouter, useSearchParams } from "next/navigation";
 const AppPopup = () => {
   const [showPopup, setShowPopup] = useState(false);
+  const searchParams = useSearchParams();
 
   useEffect(() => {
     const userAgent = navigator.userAgent || navigator.vendor;
     // Check if accessing from Android custom tab with your app user-agent
-    const isAutoyardApp = userAgent.includes("AutoyardApp");
+    //const isAutoyardApp = userAgent.includes("AutoyardApp");
 
     // Check if accessing from mobile (iOS/Android)
     const isMobile = /android|iphone|ipad|ipod/i.test(userAgent);
-
+    const source = searchParams.get("source");
     // Show popup if not accessing from AutoyardApp and using a mobile device
-    if (!isAutoyardApp && isMobile) {
+
+    // Check if the referrer is available in the document
+    if (!source && isMobile) {
       setShowPopup(true);
     }
   }, []);
