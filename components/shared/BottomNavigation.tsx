@@ -8,6 +8,7 @@ import CommentOutlinedIcon from "@mui/icons-material/CommentOutlined";
 import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
 import Unreadmessages from "./Unreadmessages";
 import { SignedIn, SignedOut } from "@clerk/nextjs";
+import ShareOutlinedIcon from "@mui/icons-material/ShareOutlined";
 type navprop = {
   userId: string;
 };
@@ -16,7 +17,26 @@ const BottomNavigation = ({ userId }: navprop) => {
   const pathname = usePathname();
 
   const isActive = (path: string) => pathname === path;
+  const shareUrl = "https://autoyard.co.ke"; // Replace with the URL you want to share
 
+  const handleShare = async () => {
+    if (navigator.share) {
+      try {
+        await navigator.share({
+          title: "Check out Autoyard",
+          text: "I found this amazing site for vehicle classification!",
+          url: shareUrl,
+        });
+        console.log("Share was successful.");
+      } catch (error) {
+        console.error("Sharing failed:", error);
+      }
+    } else {
+      // Fallback for browsers that do not support the Web Share API
+      console.log("Share not supported on this browser.");
+      // You can also show a modal or a tooltip with the URL or instructions here.
+    }
+  };
   return (
     <nav className="fixed bottom-0 z-10 w-full bg-white shadow-md border-t border-gray-200">
       <div className="flex justify-around py-2 relative">
@@ -76,7 +96,7 @@ const BottomNavigation = ({ userId }: navprop) => {
         <SignedIn>
           <Link href="/chat" passHref>
             <div
-              className={`flex flex-col items-center hover:text-emerald-400 ${
+              className={`flex cursor-pointer flex-col items-center hover:text-emerald-400 ${
                 isActive("/chat") ? "text-emerald-600" : "text-gray-600"
               }`}
             >
@@ -105,35 +125,17 @@ const BottomNavigation = ({ userId }: navprop) => {
           </Link>
         </SignedOut>
 
-        <SignedIn>
-          <Link href="/settings" passHref>
-            <div
-              className={`flex flex-col items-center hover:text-emerald-400 ${
-                isActive("/settings") ? "text-emerald-600" : "text-gray-600"
-              }`}
-            >
-              <span>
-                <SettingsIcon />
-              </span>
-              <span className="text-xs">Settings</span>
-            </div>
-          </Link>
-        </SignedIn>
-
-        <SignedOut>
-          <Link href="/sign-in">
-            <div
-              className={`flex flex-col items-center hover:text-emerald-400 ${
-                isActive("/settings") ? "text-emerald-600" : "text-gray-600"
-              }`}
-            >
-              <span>
-                <SettingsIcon />
-              </span>
-              <span className="text-xs">Settings</span>
-            </div>
-          </Link>
-        </SignedOut>
+        <div
+          className={`flex flex-col items-center hover:text-emerald-400 ${
+            isActive("/share") ? "text-emerald-600" : "text-gray-600"
+          }`}
+          onClick={handleShare}
+        >
+          <span>
+            <ShareOutlinedIcon />
+          </span>
+          <span className="text-xs">Share</span>
+        </div>
       </div>
     </nav>
   );
