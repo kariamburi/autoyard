@@ -2,6 +2,7 @@
 import { useEffect, useState } from "react";
 import Image from "next/image"; // Import Image component from Next.js
 import { useRouter, useSearchParams } from "next/navigation";
+import { getsourceCookie, setsourceCookie } from "./cookies";
 const AppPopup = () => {
   const [showPopup, setShowPopup] = useState(false);
   const searchParams = useSearchParams();
@@ -15,9 +16,12 @@ const AppPopup = () => {
     const isMobile = /android|iphone|ipad|ipod/i.test(userAgent);
     const source = searchParams.get("source");
     // Show popup if not accessing from AutoyardApp and using a mobile device
-
+    const sourceCookie = getsourceCookie();
+    if (source) {
+      setsourceCookie(source);
+    }
     // Check if the referrer is available in the document
-    if (!source && isMobile) {
+    if (!sourceCookie && !source && isMobile) {
       setShowPopup(true);
     }
   }, []);
