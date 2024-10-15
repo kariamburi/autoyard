@@ -43,6 +43,7 @@ import {
 import Unreadmessages from "./Unreadmessages";
 import dynamic from "next/dynamic";
 import StyledBrandName from "./StyledBrandName";
+import AppPopup from "./AppPopup ";
 const SignedIn = dynamic(
   () => import("@clerk/nextjs").then((mod) => mod.SignedIn),
   { ssr: false }
@@ -208,6 +209,7 @@ export default function Navbarhome({ userstatus, userId }: NavProps) {
       </div>
       <div>
         <Header />
+        <AppPopup />
       </div>
     </div>
   );

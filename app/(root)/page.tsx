@@ -13,6 +13,7 @@ import MenuSubmobile from "@/components/shared/MenuSubmobile";
 import { createUser } from "@/lib/actions/user.actions";
 import { getfcmTokenFromCookie } from "@/lib/actions/cookies";
 import CollectionInfinite from "@/components/shared/CollectionInfinite";
+import AppPopup from "@/components/shared/AppPopup ";
 
 export default async function Home({ searchParams }: SearchParamProps) {
   const { sessionClaims } = auth();
