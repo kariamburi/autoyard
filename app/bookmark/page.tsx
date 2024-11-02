@@ -17,6 +17,8 @@ import { Toaster } from "@/components/ui/toaster";
 const myads = async ({ params: { id }, searchParams }: SearchParamProps) => {
   const { sessionClaims } = auth();
   const userId = sessionClaims?.userId as string;
+  const userName = sessionClaims?.userName as string;
+  const userImage = sessionClaims?.userImage as string;
   const adsPage = Number(searchParams?.adsPage) || 1;
   const user = await getUserById(userId);
   // console.log(bookmark?.data[0].adId);
@@ -45,6 +47,8 @@ const myads = async ({ params: { id }, searchParams }: SearchParamProps) => {
       <div className="mt-20">
         <DashboardBookmark
           userId={userId}
+          userImage={userImage}
+          userName={userName}
           // data={bookmark?.data}
           user={user}
           emptyTitle="No ads have been created yet"

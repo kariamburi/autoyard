@@ -8,13 +8,45 @@ import { SignedIn, SignedOut } from "@clerk/nextjs";
 import AddCircleOutlineOutlinedIcon from "@mui/icons-material/AddCircleOutlineOutlined";
 import Link from "next/link";
 import { getAllAd } from "@/lib/actions/ad.actions";
-import MenuSubmobile from "@/components/shared/MenuSubmobile";
+//import MenuSubmobile from "@/components/shared/MenuSubmobile";
 //import Collection from "@/components/shared/Collection";
 import { createUser } from "@/lib/actions/user.actions";
 import { getfcmTokenFromCookie } from "@/lib/actions/cookies";
 import CollectionInfinite from "@/components/shared/CollectionInfinite";
 import AppPopup from "@/components/shared/AppPopup ";
+import TrendingAds from "@/components/shared/TrendingAds ";
+import SkeletonMenu from "@/components/shared/SkeletonMenu";
 
+const MenuSubmobile = dynamic(
+  () => import("@/components/shared/MenuSubmobile"),
+  {
+    ssr: false,
+    loading: () => (
+      <div className="flex items-center justify-center w-full">
+        <div className="hidden lg:inline">
+          <div className="grid grid-cols-3 md:grid-cols-3 lg:grid-cols-7 gap-1">
+            <SkeletonMenu />
+            <SkeletonMenu />
+            <SkeletonMenu />
+            <SkeletonMenu />
+            <SkeletonMenu />
+            <SkeletonMenu />
+            <SkeletonMenu />
+          </div>
+        </div>
+
+        <div className="lg:hidden grid grid-cols-3 md:grid-cols-3 lg:grid-cols-7 gap-1">
+          <SkeletonMenu />
+          <SkeletonMenu />
+          <SkeletonMenu />
+          <SkeletonMenu />
+          <SkeletonMenu />
+          <SkeletonMenu />
+        </div>
+      </div>
+    ),
+  }
+);
 export default async function Home({ searchParams }: SearchParamProps) {
   const { sessionClaims } = auth();
   const userId = sessionClaims?.userId as string;
@@ -137,15 +169,13 @@ export default async function Home({ searchParams }: SearchParamProps) {
   return (
     <main>
       <div className="max-w-6xl mx-auto flex mt-0">
-        <div className="flex-1">
-          <div className="mt-[190px] sm:mt-0">
+        <div className="flex-1 w-full">
+          <div className="mt-[190px] sm:mt-0 w-full">
             <MenuSubmobile categoryList={categoryList} />
           </div>
           <div className="p-2 mt-2 mb-20 lg:mb-0">
             <div className="flex w-full items-center justify-between gap-5 p-2 md:flex-row">
-              <div className="items-center flex">
-                <h2 className="font-bold p-2 text-[30px]">Trending Ads</h2>
-              </div>
+              <TrendingAds />
               {/*  <div>
                 <SignedIn>
                   <Link href="/ads/create">
@@ -173,7 +203,7 @@ export default async function Home({ searchParams }: SearchParamProps) {
               emptyTitle="No Ads Found"
               emptyStateSubtext="Come back later"
               collectionType="All_Ads"
-              limit={20}
+              limit={8}
               userId={userId}
               userName={userName}
               userImage={userImage}

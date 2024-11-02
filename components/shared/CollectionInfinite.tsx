@@ -1,18 +1,17 @@
 "use client";
+import { motion } from "framer-motion"; // Import framer-motion
 import { IAd } from "@/lib/database/models/ad.model";
 import { useState, useEffect, useRef } from "react";
 import Card from "./Card";
-import Pagination from "./Pagination";
-import { SignedIn, SignedOut } from "@clerk/nextjs";
 import FloatingChatIcon from "./FloatingChatIcon";
 import ChatWindow from "./ChatWindow";
-import Image from "next/image";
-import Link from "next/link";
+import SkeletonCard from "./SkeletonCard";
 import { usePathname } from "next/navigation";
 import { getAllAd } from "@/lib/actions/ad.actions";
-//import Card from './Card'
-//import Pagination from './Pagination'
-
+import { AnyArray } from "mongoose";
+import ViewListIcon from "@mui/icons-material/ViewList";
+import ShareLocationOutlinedIcon from "@mui/icons-material/ShareLocationOutlined";
+import StreetmapAll from "./StreetmapAll";
 type CollectionProps = {
   // data: IAd[];
   emptyTitle: string;
@@ -66,17 +65,12 @@ type CollectionProps = {
 };
 
 const CollectionInfinite = ({
-  //data,
   emptyTitle,
   emptyStateSubtext,
-  // page,
-  //totalPages = 0,
   collectionType,
-  urlParamName,
   userId,
   userName,
   userImage,
-
   searchText,
   sortby,
   category,
@@ -116,17 +110,14 @@ const CollectionInfinite = ({
   houseclass,
 }: CollectionProps) => {
   const [isChatOpen, setChatOpen] = useState(false);
-  const toggleChat = () => {
-    setChatOpen(!isChatOpen);
-  };
+  const toggleChat = () => setChatOpen(!isChatOpen);
   const pathname = usePathname();
   const isAdCreator = pathname === "/ads/";
   const [newpage, setnewpage] = useState(false);
-  const [data, setAds] = useState<IAd[]>([]); // Initialize with an empty array
+  const [data, setAds] = useState<IAd[]>([]);
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
   const [loading, setLoading] = useState(true);
-  // const observer = useRef();
   const observer = useRef<IntersectionObserver | null>(null);
 
   const fetchAds = async () => {
@@ -134,63 +125,58 @@ const CollectionInfinite = ({
     try {
       const Ads = await getAllAd({
         query: searchText,
-        sortby: sortby,
+        sortby,
         category,
         subcategory,
-        make: make,
-        vehiclemodel: vehiclemodel,
-        yearfrom: yearfrom,
-        yearto: yearto,
-        vehiclecolor: vehiclecolor,
-        vehiclecondition: vehiclecondition,
-        vehicleTransmissions: vehicleTransmissions,
-        longitude: longitude,
-        latitude: latitude,
+        make,
+        vehiclemodel,
+        yearfrom,
+        yearto,
+        vehiclecolor,
+        vehiclecondition,
+        vehicleTransmissions,
+        longitude,
+        latitude,
         address: region,
-        membership: membership,
-        vehicleFuelTypes: vehicleFuelTypes,
-        vehicleEngineSizesCC: vehicleEngineSizesCC,
-        vehicleexchangeposible: vehicleexchangeposible,
-        vehicleBodyTypes: vehicleBodyTypes,
-        vehicleregistered: vehicleregistered,
-        vehicleSeats: vehicleSeats,
-        vehiclesecordCondition: vehiclesecordCondition,
-        vehicleyear: vehicleyear,
-        Price: Price,
-        bedrooms: bedrooms,
-        bathrooms: bathrooms,
-        furnishing: furnishing,
-        amenities: amenities,
-        toilets: toilets,
-        parking: parking,
-        status: status,
-        area: area,
-        landuse: landuse,
-        propertysecurity: propertysecurity,
-        floors: floors,
-        estatename: estatename,
-        houseclass: houseclass,
+        membership,
+        vehicleFuelTypes,
+        vehicleEngineSizesCC,
+        vehicleexchangeposible,
+        vehicleBodyTypes,
+        vehicleregistered,
+        vehicleSeats,
+        vehiclesecordCondition,
+        vehicleyear,
+        Price,
+        bedrooms,
+        bathrooms,
+        furnishing,
+        amenities,
+        toilets,
+        parking,
+        status,
+        area,
+        landuse,
+        propertysecurity,
+        floors,
+        estatename,
+        houseclass,
         page,
         limit: 20,
       });
 
       if (newpage) {
         setnewpage(false);
-        setAds((prevAds: IAd[]) => {
-          const existingAdIds = new Set(prevAds.map((ad) => ad._id));
-
-          // Filter out ads that are already in prevAds
-          const newAds = Ads?.data.filter(
-            (ad: IAd) => !existingAdIds.has(ad._id)
-          );
-
-          return [...prevAds, ...newAds]; // Return updated ads
-        });
+        setAds((prevAds) => [
+          ...prevAds,
+          ...Ads?.data.filter(
+            (ad: any) => !prevAds.some((item) => item._id === ad._id)
+          ),
+        ]);
       } else {
         setnewpage(false);
         setAds(Ads?.data);
       }
-
       setTotalPages(Ads?.totalPages || 1);
     } catch (error) {
       console.error("Error fetching ads", error);
@@ -200,9 +186,7 @@ const CollectionInfinite = ({
   };
 
   useEffect(() => {
-    if (!newpage) {
-      setPage(1);
-    }
+    if (!newpage) setPage(1);
     fetchAds();
   }, [page, searchText]);
 
@@ -213,67 +197,123 @@ const CollectionInfinite = ({
     observer.current = new IntersectionObserver((entries) => {
       if (entries[0].isIntersecting && page < totalPages) {
         setnewpage(true);
-        setPage((prevPage: any) => prevPage + 1);
+        setPage((prevPage) => prevPage + 1);
       }
     });
 
     if (node) observer.current.observe(node);
   };
 
+  const animationVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: (i: any) => ({
+      opacity: 1,
+      y: 0,
+      transition: { delay: i * 0.05 },
+    }),
+  };
+
+  const [isMap, setisMap] = useState(false);
+  // Handler to toggle the popup
+  const togglePopup = () => {
+    setisMap(!isMap);
+  };
+  const [isButtonVisible, setIsButtonVisible] = useState(true); // State to control button visibility
+
+  const dataRef = useRef<HTMLDivElement | null>(null); // Reference to the data div
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (dataRef.current) {
+        const dataDivBottom = dataRef.current.getBoundingClientRect().bottom;
+        setIsButtonVisible(dataDivBottom > window.innerHeight); // Hide button if scrolled past
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   return (
     <div>
       {data.length > 0 ? (
-        <div className="flex flex-col items-center gap-10 p-0">
-          <div className="grid w-full grid-cols-2 gap-1 sm:grid-cols-2 lg:grid-cols-4 lg:gap-3">
-            {data.map((ad: any, index: number) => {
-              const hasOrderLink = collectionType === "Ads_Organized";
-              const hidePrice = collectionType === "My_Tickets";
+        <div ref={dataRef}>
+          {!isMap && (
+            <>
+              <div className="flex flex-col items-center gap-10 p-0">
+                <div className="grid w-full grid-cols-2 gap-1 sm:grid-cols-2 lg:grid-cols-4 lg:gap-3">
+                  {data.map((ad, index) => {
+                    const hasOrderLink = collectionType === "Ads_Organized";
+                    const hidePrice = collectionType === "My_Tickets";
 
-              if (data.length === index + 1) {
-                return (
-                  <div
-                    ref={lastAdRef}
-                    key={ad._id}
-                    className="flex justify-center"
-                  >
-                    {/* Render Ad */}
-                    <Card
-                      ad={ad}
-                      hasOrderLink={hasOrderLink}
-                      hidePrice={hidePrice}
-                      userId={userId}
-                    />
-                  </div>
-                );
-              } else {
-                return (
-                  <div key={ad._id} className="flex justify-center">
-                    {/* Render Ad */}
-                    <Card
-                      ad={ad}
-                      hasOrderLink={hasOrderLink}
-                      hidePrice={hidePrice}
-                      userId={userId}
-                    />
-                  </div>
-                );
-              }
-            })}
-          </div>
+                    if (data.length === index + 1) {
+                      return (
+                        <motion.div
+                          key={ad._id}
+                          ref={lastAdRef}
+                          className="flex justify-center"
+                          variants={animationVariants}
+                          initial="hidden"
+                          animate="visible"
+                          custom={index}
+                        >
+                          <Card
+                            ad={ad}
+                            hasOrderLink={hasOrderLink}
+                            hidePrice={hidePrice}
+                            userId={userId}
+                            userImage={userImage}
+                            userName={userName}
+                          />
+                        </motion.div>
+                      );
+                    } else {
+                      return (
+                        <motion.div
+                          key={ad._id}
+                          className="flex justify-center"
+                          variants={animationVariants}
+                          initial="hidden"
+                          animate="visible"
+                          custom={index}
+                        >
+                          <Card
+                            ad={ad}
+                            hasOrderLink={hasOrderLink}
+                            hidePrice={hidePrice}
+                            userId={userId}
+                            userImage={userImage}
+                            userName={userName}
+                          />
+                        </motion.div>
+                      );
+                    }
+                  })}
+                </div>
+              </div>
+            </>
+          )}
+          {isMap && (
+            <motion.div
+              initial={{ opacity: 0, y: -20 }} // Initial state: transparent and above its position
+              animate={{ opacity: 1, y: 0 }} // Final state: fully opaque and in position
+              transition={{ delay: 0.3, duration: 0.5 }} // Delay before starting motion
+              className="bg-white rounded-xl p-1"
+            >
+              <StreetmapAll data={data} />
+            </motion.div>
+          )}
         </div>
       ) : (
-        loading === false && (
-          <>
-            <div className="flex-center wrapper min-h-[200px] w-full flex-col gap-3 rounded-[14px] bg-grey-50 py-28 text-center">
-              <h3 className="font-bold text-[16px] lg:text-[25px]">
-                {emptyTitle}
-              </h3>
-              <p className="text-sm lg:p-regular-14">{emptyStateSubtext}</p>
-            </div>
-          </>
+        !loading && (
+          <div className="flex-center wrapper min-h-[200px] w-full flex-col gap-3 rounded-[14px] bg-grey-50 py-28 text-center">
+            <h3 className="font-bold text-[16px] lg:text-[25px]">
+              {emptyTitle}
+            </h3>
+            <p className="text-sm lg:p-regular-14">{emptyStateSubtext}</p>
+          </div>
         )
       )}
-
       {userId && (
         <>
           <FloatingChatIcon onClick={toggleChat} isOpen={isChatOpen} />
@@ -288,17 +328,42 @@ const CollectionInfinite = ({
         </>
       )}
       {loading && (
-        <div>
-          <div className="w-full mt-10 h-full flex flex-col items-center justify-center">
-            <Image
-              src="/assets/icons/loading2.gif"
-              alt="loading"
-              width={40}
-              height={40}
-              unoptimized
-            />
-          </div>
+        <div className="mt-2 grid w-full grid-cols-2 gap-1 sm:grid-cols-2 lg:grid-cols-4 lg:gap-3">
+          <SkeletonCard />
+          <SkeletonCard />
+          <SkeletonCard />
+          <SkeletonCard />
         </div>
+      )}
+      {isButtonVisible && data.length > 0 && (
+        <motion.div
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.3, duration: 0.5 }}
+          className="fixed bottom-0 left-0 right-0 z-10 p-3 flex flex-col justify-center items-center"
+        >
+          <button
+            onClick={togglePopup}
+            className=" flex gap-1 items-center hover:bg-white hover:text-black bg-[#000000] gap-1 text-white text-sm p-3 rounded-full shadow"
+          >
+            {isMap ? (
+              <>
+                <div>
+                  <ViewListIcon sx={{ fontSize: 18 }} />
+                </div>
+                <div className="hidden lg:inline">Show List</div>
+              </>
+            ) : (
+              <>
+                <div>
+                  {" "}
+                  <ShareLocationOutlinedIcon sx={{ fontSize: 18 }} />
+                </div>
+                <div className="hidden lg:inline">Show Map</div>
+              </>
+            )}
+          </button>
+        </motion.div>
       )}
     </div>
   );

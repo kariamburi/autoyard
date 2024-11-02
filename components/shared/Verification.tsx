@@ -12,7 +12,7 @@ import { getVerfiesfee } from "@/lib/actions/verifies.actions";
 import { useRouter } from "next/navigation";
 
 interface SettingsProp {
-  user: IUser;
+  user: any;
   userId: string;
   isAdCreator: boolean;
 }
@@ -143,7 +143,7 @@ const Verification: React.FC<SettingsProp> = ({
       {user.verified && user?.verified[0]?.accountverified === true ? (
         <ShowPopup
           trigger={
-            <p className="text-white p-1 bg-[#30AF5B] rounded-sm text-xs cursor-pointer hover:underline">
+            <p className="p-1 text-[#30AF5B] border hover:shadow-lg rounded-full text-xs cursor-pointer hover:underline">
               <VerifiedUserOutlinedIcon sx={{ fontSize: 16 }} />
               Account Verified
             </p>
@@ -155,7 +155,7 @@ const Verification: React.FC<SettingsProp> = ({
           {isAdCreator ? (
             <ShowPopup
               trigger={
-                <p className="text-gray-600 p-1 bg-white rounded-sm text-xs cursor-pointer hover:underline">
+                <p className="text-gray-600 p-1 border bg-white rounded-full hover:shadow-lg text-xs cursor-pointer hover:underline">
                   <ShieldOutlinedIcon sx={{ fontSize: 16 }} />
                   Account unverified
                 </p>
@@ -165,7 +165,7 @@ const Verification: React.FC<SettingsProp> = ({
           ) : (
             <ShowPopup
               trigger={
-                <p className="text-gray-600 p-1 bg-white rounded-sm text-xs cursor-pointer hover:underline">
+                <p className="text-gray-600 p-1 bg-white border hover:shadow-lg rounded-full text-xs cursor-pointer hover:underline">
                   <ShieldOutlinedIcon sx={{ fontSize: 16 }} />
                   Account unverified
                 </p>

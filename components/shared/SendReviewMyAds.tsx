@@ -18,7 +18,7 @@ type sidebarProps = {
   photoURL: string;
   recipientUid: string;
 };
-const SendReview = ({
+const SendReviewMyAds = ({
   uid,
   photoURL,
   displayName,
@@ -105,7 +105,7 @@ const SendReview = ({
   return (
     <>
       {recipientUid !== uid && (
-        <div className="fixed bottom-0 left-0 right-0 bg-[#ebf2f7] h-auto z-10 p-0 shadow-md flex flex-col md:flex-row justify-end items-center">
+        <div className="flex flex-col items-center">
           <form
             onSubmit={handleSendMessage}
             className="flex flex-col w-full justify-end items-center"
@@ -128,7 +128,7 @@ const SendReview = ({
                   <input
                     value={value}
                     onChange={(e) => setValue(e.target.value)}
-                    className="input  max-w-[800px] w-full p-2 focus:outline-none bg-white rounded-r-none rounded-l-lg"
+                    className="input border w-full p-2 focus:outline-none bg-white rounded-r-none rounded-l-lg"
                     type="text"
                     placeholder="Write your review..."
                   />
@@ -158,7 +158,7 @@ const SendReview = ({
                   <input
                     value={value}
                     disabled
-                    className="input w-full p-2 focus:outline-none bg-white rounded-r-none rounded-l-lg"
+                    className="input border w-full p-2 focus:outline-none bg-white rounded-r-none rounded-l-lg"
                     type="text"
                     placeholder="Enter your message..."
                   />
@@ -179,4 +179,4 @@ const SendReview = ({
   );
 };
 
-export default SendReview;
+export default SendReviewMyAds;

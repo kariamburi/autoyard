@@ -42,7 +42,7 @@ const Streetmap = ({ id, title, price, imageUrls, lat, lng }: CardProps) => {
             <Image
               src={imageUrls[0]}
               alt=""
-              className="w-24 h-12 object-cover"
+              className="w-24 h-12 rounded-lg object-cover"
               width={900}
               height={500}
             />

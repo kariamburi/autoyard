@@ -66,6 +66,8 @@ import Head from "next/head";
 import ChatButton from "./ChatButton ";
 import ShareAd from "./ShareAd";
 import { useToast } from "../ui/use-toast";
+import SellerProfileCard from "./SellerProfileCard";
+import { motion } from "framer-motion";
 type CardProps = {
   ad: IAd;
   userId: string;
@@ -717,11 +719,39 @@ export default function Ads({ ad, userId, userImage, userName }: CardProps) {
                 </div>
               </>
             )}
-            <div className="divider"></div>
+            <div className="border-b w-full"></div>
             <p className="mt-5 font-bold text-emerald-950">Description</p>
             <p className="my-1 text-text-emerald-950">{ad.description}</p>
 
-            <div className="divider"></div>
+            <div className="border-b w-full"></div>
+            <div className="text-l rounded-lg">
+              <div className="">
+                <p className="lg:mt-5 font-bold">Approximate Location</p>
+                <p className="text-gray-700 mb-1 text-sm">
+                  <LocationOnIcon sx={{ fontSize: 20 }} /> {ad.address}
+                </p>
+
+                <Streetmap
+                  id={ad._id}
+                  title={ad.title}
+                  price={ad.price}
+                  imageUrls={ad.imageUrls}
+                  lat={ad.latitude}
+                  lng={ad.longitude}
+                />
+                <div className="justify-between flex w-full">
+                  <button
+                    onClick={handleDirectionClick}
+                    className="hover:bg-emerald-700 bg-[#000000] text-white text-xs mt-2 p-2 rounded-lg shadow"
+                  >
+                    <AssistantDirectionIcon sx={{ marginRight: "5px" }} />
+                    Get Direction
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <div className="border-b w-full"></div>
             <h1 className="mt-5 p-0 font-bold text-emerald-950">
               Share this Ad on Social media
             </h1>
@@ -771,8 +801,13 @@ export default function Ads({ ad, userId, userImage, userName }: CardProps) {
 
         {/* Right panel */}
         <div className="lg:w-[30%] p-1 lg:p-0">
-          <div className="hidden lg:inline">
-            <div className="bg-white border-t-8 border-emerald-700 p-5 text-l rounded-lg overflow-hidden shadow-md flex flex-col items-center">
+          <motion.div
+            initial={{ opacity: 0, y: -20 }} // Initial state: transparent and above its position
+            animate={{ opacity: 1, y: 0 }} // Final state: fully opaque and in position
+            transition={{ delay: 0.3, duration: 0.5 }} // Delay before starting motion
+            className="hidden lg:inline"
+          >
+            <div className="bg-white border-t-8 border-emerald-700 p-5 text-l rounded-xl overflow-hidden flex flex-col items-center">
               <span className="flex gap-1 text-2xl font-bold w-min rounded-full px-4 py-1 text-emerald-950">
                 {formatKsh(ad.price)}
               </span>
@@ -857,53 +892,27 @@ export default function Ads({ ad, userId, userImage, userName }: CardProps) {
                 )}
               </div>
             </span>
-          </div>
+          </motion.div>
 
-          <br />
-          <div className="bg-white p-5 text-l rounded-lg overflow-hidden lg:shadow-md">
-            <div className="">
-              <p className="lg:mt-5 font-bold">Approximate Location</p>
-              <p className="text-gray-700 mb-1 text-sm">
-                <LocationOnIcon sx={{ fontSize: 20 }} /> {ad.address}
-              </p>
-
-              <Streetmap
-                id={ad._id}
-                title={ad.title}
-                price={ad.price}
-                imageUrls={ad.imageUrls}
-                lat={ad.latitude}
-                lng={ad.longitude}
-              />
-              <div className="justify-between flex w-full">
-                <button
-                  onClick={handleDirectionClick}
-                  className="hover:bg-emerald-700 bg-[#000000] text-white text-xs mt-2 p-2 rounded-lg shadow"
-                >
-                  <AssistantDirectionIcon sx={{ marginRight: "5px" }} />
-                  Get Direction
-                </button>
-              </div>
-            </div>
-          </div>
-
-          <br />
-          <div className="hidden lg:inline">
-            <div className="bg-white p-1 text-l rounded-lg overflow-hidden shadow-md">
+          <div className="">
+            <div>
               <div className="flex flex-col">
-                <SellerProfile
+                <SellerProfileCard
+                  userId={userId}
+                  ad={ad}
+                  userImage={userImage}
+                  userName={userName}
+                />
+                {/* <SellerProfile
                   userId={ad.organizer._id}
                   loggedId={userId}
                   user={ad.organizer}
-                />
+                />*/}
               </div>
             </div>
-            <br />
-
-            <div className="justify-between flex w-full"></div>
           </div>
-
-          <div className="bg-white p-5 text-sm lg:mt-5 rounded-lg overflow-hidden lg:shadow-md">
+          {/*
+          <div className="bg-white p-5 text-sm lg:mt-5 rounded-xl overflow-hidden">
             <div className="font-bold text-lg text-center">Safety tips</div>
 
             <ol>
@@ -960,6 +969,7 @@ export default function Ads({ ad, userId, userImage, userName }: CardProps) {
               </li>
             </ol>
           </div>
+ */}
         </div>
       </div>
     </>

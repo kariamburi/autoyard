@@ -7,8 +7,14 @@ import Skeleton from "@mui/material/Skeleton";
 import StreetmapAll from "./StreetmapAll";
 import Image from "next/image";
 import { getAllAd, getListingsNearLocation } from "@/lib/actions/ad.actions";
+import SkeletonCard from "./SkeletonCard";
+import { motion } from "framer-motion";
+import ViewListIcon from "@mui/icons-material/ViewList";
+import ShareLocationOutlinedIcon from "@mui/icons-material/ShareLocationOutlined";
 type CollectionProps = {
   userId: string;
+  userName: string;
+  userImage: string;
   emptyTitle: string;
   emptyStateSubtext: string;
   limit: number;
@@ -57,6 +63,8 @@ type CollectionProps = {
 
 const CollectionSearch = ({
   userId,
+  userName,
+  userImage,
   emptyTitle,
   emptyStateSubtext,
   Type,
@@ -293,12 +301,30 @@ const CollectionSearch = ({
 
     if (node) observer.current.observe(node);
   };
+  const [isButtonVisible, setIsButtonVisible] = useState(true); // State to control button visibility
 
+  const dataRef = useRef<HTMLDivElement | null>(null); // Reference to the data div
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (dataRef.current) {
+        const dataDivBottom = dataRef.current.getBoundingClientRect().bottom;
+        setIsButtonVisible(dataDivBottom > window.innerHeight); // Hide button if scrolled past
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+  const [isMap, setisMap] = useState(false);
+  const togglePopup = () => {
+    setisMap(!isMap);
+  };
   return (
-    <>
+    <div ref={dataRef}>
       {data.length > 0 ? (
         <>
-          {activeButton === 0 && (
+          {!isMap && activeButton === 0 && (
             <>
               <div className="flex flex-col items-center gap-10 p-1 bg-[#ebf2f7] rounded-lg p-1">
                 <ul className="grid w-full grid-cols-2 gap-1 lg:gap-3 sm:grid-cols-2 lg:grid-cols-3 xl:gap-3">
@@ -316,6 +342,8 @@ const CollectionSearch = ({
                             ad={ad}
                             userId={userId}
                             isAdCreator={isAdCreator}
+                            userImage={userImage}
+                            userName={userName}
                           />
                         </div>
                       );
@@ -327,6 +355,8 @@ const CollectionSearch = ({
                             ad={ad}
                             userId={userId}
                             isAdCreator={isAdCreator}
+                            userImage={userImage}
+                            userName={userName}
                           />
                         </div>
                       );
@@ -336,7 +366,7 @@ const CollectionSearch = ({
               </div>
             </>
           )}
-          {activeButton === 1 && (
+          {!isMap && activeButton === 1 && (
             <>
               <div className="flex p-1 bg-[#ebf2f7] rounded-lg">
                 <ul className="w-full">
@@ -354,6 +384,8 @@ const CollectionSearch = ({
                             ad={ad}
                             userId={userId}
                             isAdCreator={isAdCreator}
+                            userImage={userImage}
+                            userName={userName}
                           />
                         </div>
                       );
@@ -365,6 +397,8 @@ const CollectionSearch = ({
                             ad={ad}
                             userId={userId}
                             isAdCreator={isAdCreator}
+                            userImage={userImage}
+                            userName={userName}
                           />
                         </div>
                       );
@@ -374,10 +408,15 @@ const CollectionSearch = ({
               </div>
             </>
           )}
-          {activeButton === 2 && (
-            <>
+          {isMap && (
+            <motion.div
+              initial={{ opacity: 0, y: -20 }} // Initial state: transparent and above its position
+              animate={{ opacity: 1, y: 0 }} // Final state: fully opaque and in position
+              transition={{ delay: 0.3, duration: 0.5 }} // Delay before starting motion
+              className="bg-white rounded-xl p-1"
+            >
               <StreetmapAll data={data} />
-            </>
+            </motion.div>
           )}
         </>
       ) : (
@@ -394,18 +433,43 @@ const CollectionSearch = ({
       )}
       {loading && (
         <div>
-          <div className="w-full mt-10 h-full flex flex-col items-center justify-center">
-            <Image
-              src="/assets/icons/loading2.gif"
-              alt="loading"
-              width={40}
-              height={40}
-              unoptimized
-            />
+          <div className="mt-2 grid w-full grid-cols-2 gap-1 sm:grid-cols-2 lg:grid-cols-3 lg:gap-3">
+            <SkeletonCard />
+            <SkeletonCard />
+            <SkeletonCard />
           </div>
         </div>
       )}
-    </>
+      {isButtonVisible && data.length > 0 && (
+        <motion.div
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.3, duration: 0.5 }}
+          className="fixed bottom-0 left-0 right-0 z-10 p-3 flex flex-col justify-center items-center"
+        >
+          <button
+            onClick={togglePopup}
+            className=" flex gap-1 items-center hover:bg-white hover:text-black bg-[#000000] gap-1 text-white text-sm p-3 rounded-full shadow"
+          >
+            {isMap ? (
+              <>
+                <div>
+                  <ViewListIcon sx={{ fontSize: 18 }} />
+                </div>
+                <div className="hidden lg:inline">Show List</div>
+              </>
+            ) : (
+              <>
+                <div>
+                  <ShareLocationOutlinedIcon sx={{ fontSize: 18 }} />
+                </div>
+                <div className="hidden lg:inline">Show Map</div>
+              </>
+            )}
+          </button>
+        </motion.div>
+      )}
+    </div>
   );
 };
 

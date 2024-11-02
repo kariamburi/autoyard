@@ -5,8 +5,11 @@ import VerticalCard from "./VerticalCard";
 import HorizontalCard from "./HorizontalCard";
 import { getallBookmarkByuserId } from "@/lib/actions/bookmark.actions";
 import Image from "next/image";
+import SkeletonCard from "./SkeletonCard";
 type CollectionProps = {
   userId: string;
+  userName: string;
+  userImage: string;
   //data: IAd[];
   emptyTitle: string;
   emptyStateSubtext: string;
@@ -22,6 +25,8 @@ type CollectionProps = {
 const CollectionBookmark = ({
   //data,
   userId,
+  userName,
+  userImage,
   emptyTitle,
   emptyStateSubtext,
   // page,
@@ -97,6 +102,8 @@ const CollectionBookmark = ({
                         ad={ad.adId}
                         userId={userId}
                         isAdCreator={isAdCreator}
+                        userImage={userImage}
+                        userName={userName}
                       />
                     </div>
                   );
@@ -108,6 +115,8 @@ const CollectionBookmark = ({
                         ad={ad.adId}
                         userId={userId}
                         isAdCreator={isAdCreator}
+                        userImage={userImage}
+                        userName={userName}
                       />
                     </div>
                   );
@@ -131,6 +140,8 @@ const CollectionBookmark = ({
                         ad={ad}
                         userId={userId}
                         isAdCreator={isAdCreator}
+                        userImage={userImage}
+                        userName={userName}
                       />
                     </div>
                   );
@@ -142,6 +153,8 @@ const CollectionBookmark = ({
                         ad={ad}
                         userId={userId}
                         isAdCreator={isAdCreator}
+                        userImage={userImage}
+                        userName={userName}
                       />
                     </div>
                   );
@@ -164,14 +177,11 @@ const CollectionBookmark = ({
       )}
       {loading && (
         <div>
-          <div className="w-full mt-10 h-full flex flex-col items-center justify-center">
-            <Image
-              src="/assets/icons/loading2.gif"
-              alt="loading"
-              width={40}
-              height={40}
-              unoptimized
-            />
+          <div className="mt-2 grid w-full grid-cols-2 gap-1 sm:grid-cols-2 lg:grid-cols-4 lg:gap-3">
+            <SkeletonCard />
+            <SkeletonCard />
+            <SkeletonCard />
+            <SkeletonCard />
           </div>
         </div>
       )}

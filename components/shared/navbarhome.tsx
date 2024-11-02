@@ -70,7 +70,7 @@ export default function Navbarhome({ userstatus, userId }: NavProps) {
   const isActive = pathname === "/";
 
   return (
-    <div className="w-full bg-gradient-to-b lg:bg-gradient-to-r from-emerald-800 to-emerald-950 p-2 lg:p-3">
+    <div className="w-full bg-gradient-to-b lg:bg-gradient-to-b from-emerald-800 to-[#ebf2f7] p-2 lg:p-3">
       <div className="flex p-1 w-full">
         <div className="flex-1">
           <div className="flex items-center">
@@ -113,7 +113,7 @@ export default function Navbarhome({ userstatus, userId }: NavProps) {
         <div className="hidden lg:inline">
           <div className="flex items-center gap-2">
             <div
-              className="w-8 h-8 flex items-center justify-center rounded-full bg-white emerald-500 tooltip tooltip-bottom hover:cursor-pointer"
+              className="w-8 h-8 flex items-center justify-center opacity-80 hover:opacity-100 rounded-full bg-white emerald-500 tooltip tooltip-bottom hover:cursor-pointer"
               data-tip="Messages"
               onClick={() => router.push(`/bookmark/`)}
             >
@@ -130,7 +130,7 @@ export default function Navbarhome({ userstatus, userId }: NavProps) {
             </div>
 
             <div
-              className="w-8 h-8 flex items-center justify-center rounded-full bg-white tooltip tooltip-bottom hover:cursor-pointer"
+              className="w-8 h-8 flex items-center justify-center opacity-80 hover:opacity-100 rounded-full bg-white tooltip tooltip-bottom hover:cursor-pointer"
               data-tip="Messages"
               onClick={() => router.push(`/chat/`)}
             >
@@ -158,7 +158,7 @@ export default function Navbarhome({ userstatus, userId }: NavProps) {
             </div>
 
             <div
-              className="w-8 h-8 flex items-center justify-center rounded-full bg-white tooltip tooltip-bottom hover:cursor-pointer"
+              className="w-8 h-8 flex items-center justify-center opacity-80 hover:opacity-100 rounded-full bg-white tooltip tooltip-bottom hover:cursor-pointer"
               data-tip="Messages"
               onClick={() => router.push(`/plan/`)}
             >
@@ -177,7 +177,7 @@ export default function Navbarhome({ userstatus, userId }: NavProps) {
               <SignedIn>
                 <Link href="/ads/create">
                   <button
-                    className={`w-[100px] bg-gradient-to-b from-[#4DCE7A] to-[#30AF5B] hover:bg-[#30AF5B] text-white p-1 rounded-full`}
+                    className={`w-[100px] text-sm bg-gradient-to-r from-black to-black shadow-md hover:bg-[#30AF5B] text-white p-1 rounded-full`}
                   >
                     <AddCircleOutlineOutlinedIcon /> SELL
                   </button>

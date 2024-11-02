@@ -45,7 +45,7 @@ const StreetmapOfice = ({
             <Image
               src={imageUrl}
               alt=""
-              className="w-full h-12 object-cover"
+              className="w-full rounded-lg h-12 object-cover"
               width={900}
               height={500}
             />

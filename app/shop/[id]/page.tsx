@@ -16,6 +16,8 @@ import { Toaster } from "@/components/ui/toaster";
 const myads = async ({ params: { id }, searchParams }: SearchParamProps) => {
   const { sessionClaims } = auth();
   const myId = sessionClaims?.userId as string;
+  const userName = sessionClaims?.userName as string;
+  const userImage = sessionClaims?.userImage as string;
   let userId = id;
   const adsPage = Number(searchParams?.adsPage) || 1;
   const sortby = (searchParams?.query as string) || "recommeded";
@@ -112,6 +114,8 @@ const myads = async ({ params: { id }, searchParams }: SearchParamProps) => {
           limit={3}
           sortby={sortby}
           urlParamName="adsPage"
+          userImage={userImage}
+          userName={userName}
           //  totalPages={organizedAds?.totalPages}
         />
         <Toaster />

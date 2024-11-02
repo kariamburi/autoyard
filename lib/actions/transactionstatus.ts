@@ -226,7 +226,7 @@ export async function createTransaction(transaction: CreateTransactionParams) {
       ...transaction,buyer: transaction.buyerId
     })
 
- console.log(JSON.parse(JSON.stringify(newTransaction)))
+ //console.log(JSON.parse(JSON.stringify(newTransaction)))
     return JSON.parse(JSON.stringify(newTransaction));
   } catch (error) {
     handleError(error)

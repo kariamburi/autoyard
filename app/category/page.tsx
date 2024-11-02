@@ -42,33 +42,36 @@ import Navbar from "@/components/shared/navbar";
 import Footersub from "@/components/shared/Footersub";
 import BottomNavigation from "@/components/shared/BottomNavigation";
 import { Toaster } from "@/components/ui/toaster";
+import DashboardCategory from "@/components/shared/dashboardCategory";
 // Dynamic imports for components that are not critical for the initial render
 //const Navbar = dynamic(() => import("@/components/shared/navbar"), {
 // ssr: false,
 //});
 
-const DashboardCategory = dynamic(
-  () => import("@/components/shared/dashboardCategory"),
-  {
-    ssr: false,
-    loading: () => (
-      <div className="flex items-center justify-center h-screen w-full bg-[#ebf2f7] bg-dotted-pattern bg-cover bg-fixed bg-center">
-        <div className="flex gap-1 items-center justify-center mb-40">
-          <img
-            src="/assets/icons/loading.gif"
-            alt="edit"
-            width={60}
-            height={60}
-          />
-          Loading...
-        </div>
-      </div>
-    ),
-  }
-);
+//const DashboardCategory = dynamic(
+//  () => import("@/components/shared/dashboardCategory"),
+//  {
+//    ssr: false,
+//   loading: () => (
+//   <div className="flex items-center justify-center h-screen w-full bg-[#ebf2f7] bg-dotted-pattern bg-cover bg-fixed bg-center">
+//       <div className="flex gap-1 items-center justify-center mb-40">
+//         <img
+//           src="/assets/icons/loading.gif"
+//          alt="edit"
+//          width={60}
+//           height={60}
+//        />
+//       Loading...
+//     </div>
+//    </div>
+// ),
+// }
+//);
 const Storeads = async ({ params: { id }, searchParams }: SearchParamProps) => {
   const { sessionClaims } = auth();
   const userId = sessionClaims?.userId as string;
+  const userName = sessionClaims?.userName as string;
+  const userImage = sessionClaims?.userImage as string;
   const page = Number(searchParams?.page) || 1;
   const searchText = (searchParams?.query as string) || "";
   const sortby = (searchParams?.sortby as string) || "";
@@ -449,10 +452,13 @@ const Storeads = async ({ params: { id }, searchParams }: SearchParamProps) => {
           </div>
         </div>
       </div>
+
       <div className="mt-1 mb-20 lg:mb-0">
         <DashboardCategory
           //loading={false} // Initially false because this is SSR
           userId={userId}
+          userImage={userImage}
+          userName={userName}
           category={category}
           //data={Ads?.data}
           //totalPages={Ads?.totalPages}

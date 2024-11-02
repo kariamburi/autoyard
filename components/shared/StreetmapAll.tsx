@@ -42,9 +42,9 @@ const StreetmapAll = ({ data }: CardProps) => {
   return (
     <MapContainer
       center={[parseFloat(latitude), parseFloat(longitude)]}
-      zoom={7}
+      zoom={6}
       scrollWheelZoom={false}
-      className="map h-[500px] w-full border rounded-lg z-0"
+      className="map h-[600px] w-full border rounded-lg z-0"
     >
       <TileLayer
         // attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
@@ -58,7 +58,7 @@ const StreetmapAll = ({ data }: CardProps) => {
               <Image
                 src="/assets/icons/mypin.png"
                 alt=""
-                className="w-12 h-12 object-cover"
+                className="w-12 h-12 rounded-lg object-cover"
                 width={50}
                 height={50}
               />

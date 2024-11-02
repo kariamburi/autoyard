@@ -4,7 +4,7 @@ import LocationOnIcon from "@mui/icons-material/LocationOn";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import Searchmain from "./Searchmain";
-
+import { motion } from "framer-motion";
 export default function Header() {
   const router = useRouter();
   const [search, setSearch] = useState<string>();
@@ -17,9 +17,12 @@ export default function Header() {
 
   return (
     <div className="flex max-w-6xl mx-auto">
-      {/* Right Side */}
-      {/* Middle */}
-      <div className="lg:mb-10 mx-auto md:my-auto py-2 lg:py-10 md:py-0 w-[90%] md:w-[40%] text-center">
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0, duration: 1, ease: "easeInOut" }}
+        className="lg:mb-0 mx-auto md:my-auto py-2 lg:py-0 md:py-0 w-[90%] md:w-[40%] text-center"
+      >
         <div className="">
           <div className="mb-5 text-white">
             Find all in{" "}
@@ -28,10 +31,8 @@ export default function Header() {
             </span>
           </div>
         </div>
-
         <Searchmain />
-      </div>
-      {/* Left Side */}
+      </motion.div>
     </div>
   );
 }

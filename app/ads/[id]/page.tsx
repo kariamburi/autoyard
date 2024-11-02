@@ -75,7 +75,7 @@ const AdDetails = async ({
       <div className="max-w-6xl mx-auto mt-[40px] lg:mt-[70px]">
         <div className="text-sm p-0 hidden lg:inline">
           <div className="flex">
-            <div className="bg-white p-1 rounded-full mr-2">
+            <div className="bg-white p-1 border rounded-full mr-2">
               <Link className="hover:text-green-700 no-underline" href={`/`}>
                 <div className="flex cursor-pointer items-center">
                   <svg
@@ -95,7 +95,7 @@ const AdDetails = async ({
                 </div>
               </Link>
             </div>
-            <div className="bg-white p-1 rounded-full mr-2">
+            <div className="bg-white p-1 border rounded-full mr-2">
               <div className="flex items-center">
                 {ad && (
                   <Link
@@ -122,7 +122,7 @@ const AdDetails = async ({
                 )}
               </div>
             </div>
-            <div className="bg-white p-1 rounded-full">
+            <div className="bg-white p-1 border rounded-full">
               <div className="flex items-center">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -170,7 +170,7 @@ const AdDetails = async ({
             <Footersub />
           </div>
         </footer>
-        <div className="fixed bottom-0 left-0 right-0 bg-[#F2FFF2] lg:bg-transparent h-auto md:h-24 z-10 p-3 shadow-md flex flex-col md:flex-row justify-between items-center">
+        <div className="fixed bottom-0 left-0 right-0 bg-emerald-50 lg:bg-transparent h-auto md:h-24 z-10 p-3 shadow-md flex flex-col md:flex-row justify-between items-center">
           <Contact
             ad={ad}
             userId={userId || ""}

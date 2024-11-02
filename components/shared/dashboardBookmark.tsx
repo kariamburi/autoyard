@@ -11,6 +11,8 @@ import BookmarkIcon from "@mui/icons-material/Bookmark";
 
 type CollectionProps = {
   userId: string;
+  userName: string;
+  userImage: string;
   // data: IAd[];
   user: CreateUserParams;
   emptyTitle: string;
@@ -24,6 +26,8 @@ type CollectionProps = {
 
 const DashboardBookmark = ({
   userId,
+  userName,
+  userImage,
   // data,
   user,
   emptyTitle,
@@ -58,6 +62,8 @@ CollectionProps) => {
                 urlParamName="adsPage"
                 //totalPages={totalPages}
                 userId={userId}
+                userImage={userImage}
+                userName={userName}
                 isAdCreator={false}
                 isVertical={isVertical}
               />

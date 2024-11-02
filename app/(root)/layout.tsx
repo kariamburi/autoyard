@@ -11,7 +11,18 @@ import BottomNavigation from "@/components/shared/BottomNavigation";
 import Navbarhome from "@/components/shared/navbarhome";
 import ClientFCMHandler from "@/components/shared/ClientFCMHandler";
 import Head from "next/head";
-
+import dynamic from "next/dynamic";
+import SkeletonSearch from "@/components/shared/SkeletonSearch";
+//const Navbarhome = dynamic(() => import("@/components/shared/navbarhome"), {
+// ssr: false,
+// loading: () => (
+//   <div className="items-center justify-center w-full">
+//     <div className="w-full grid grid-cols-3 md:grid-cols-3 lg:grid-cols-7 m-1 gap-1 items-center justify-center">
+//       <SkeletonSearch />
+//     </div>
+//   </div>
+//  ),
+//});
 export default async function RootLayout({
   children,
 }: {
@@ -71,7 +82,7 @@ export default async function RootLayout({
         </div>
         <main className="flex-1">{children}</main>
         <Toaster />
-        <div className="mt-5 w-full hidden lg:inline">
+        {/*  <div className="mt-5 w-full hidden lg:inline">
           <Image
             src="/footer-png-8.png"
             alt=""
@@ -80,7 +91,7 @@ export default async function RootLayout({
             width={800}
             height={50}
           />
-        </div>
+        </div>*/}
         <footer className="bg-white">
           <div className="hidden lg:inline">
             <Footer />

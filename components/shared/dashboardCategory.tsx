@@ -53,6 +53,7 @@ import SortOutlinedIcon from "@mui/icons-material/SortOutlined";
 import SubCategoryFilterSearch from "./SubCategoryFilterSearch";
 import SidebarSearchmobile from "./SidebarSearchmobile";
 import CloseIcon from "@mui/icons-material/Close";
+import CollectionSearch from "./CollectionSearch";
 import {
   Dialog,
   DialogContent,
@@ -61,20 +62,23 @@ import {
   DialogTrigger,
 } from "../ui/dialog";
 import { ScrollArea } from "../ui/scroll-area";
-const CollectionSearch = dynamic(() => import("./CollectionSearch"), {
-  ssr: false,
-  loading: () => (
-    <div>
-      <div className="w-full mt-10 h-full flex flex-col items-center justify-center">
-        <Image
-          src="/assets/icons/loading2.gif"
-          alt="loading"
-          width={40}
-          height={40}
-          unoptimized
-        />
-      </div>
-      {/* <div className="w-full h-full flex flex-col items-center justify-center">
+import SkeletonSidebar from "./SkeletonSidebar";
+import { motion } from "framer-motion";
+//const CollectionSearch = dynamic(() => import("./CollectionSearch"), {
+//ssr: false,
+//loading: () => (
+//  <div>
+//    <div className="w-full mt-10 h-full flex flex-col items-center justify-center">
+//      <Image
+//         src="/assets/icons/loading2.gif"
+//          alt="loading"
+//          width={40}
+//          height={40}
+//         unoptimized
+//       />
+//     </div>
+{
+  /* <div className="w-full h-full flex flex-col items-center justify-center">
       <div className="flex flex-wrap mt-10 gap-1 justify-center">
         <Skeleton
           variant="rectangular"
@@ -97,22 +101,17 @@ const CollectionSearch = dynamic(() => import("./CollectionSearch"), {
       </div>
         
     </div>
-    */}
-    </div>
-  ),
-});
+    */
+}
+//   </div>
+// ),
+//});
 const SidebarSearch = dynamic(() => import("./SidebarSearch"), {
   ssr: false,
   loading: () => (
     <div>
       <div className="w-[280px] mt-10 h-full flex flex-col items-center justify-center">
-        <Image
-          src="/assets/icons/loading2.gif"
-          alt="loading"
-          width={40}
-          height={40}
-          unoptimized
-        />
+        <SkeletonSidebar />
       </div>
       {/*  <div className="m-1 space-y-0 lg:flex lg:space-x-5">
       <div className="flex flex-wrap mt-10 gap-1 justify-center">
@@ -129,6 +128,8 @@ const SidebarSearch = dynamic(() => import("./SidebarSearch"), {
 type CollectionProps = {
   loading: boolean;
   userId: string;
+  userImage: string;
+  userName: string;
   category: string;
   categoryList?: ICategory;
   subcategory: string;
@@ -211,6 +212,8 @@ type CollectionProps = {
 const DashboardCategory = ({
   Type,
   userId,
+  userImage,
+  userName,
   // data,
   //page,
   //totalPages = 0,
@@ -434,6 +437,12 @@ CollectionProps) => {
     }
     setShowPopup(!showPopup);
   };
+  const fadeIn = {
+    hidden: { opacity: 0, y: 20 },
+    visible: { opacity: 1, y: 0 },
+  };
+
+  // const hoverEffect = { scale: 1.1 };
   return (
     <>
       <div className="max-w-6xl mx-auto flex mt-3 p-1">
@@ -517,9 +526,15 @@ CollectionProps) => {
           </div>
           <div className="rounded-lg max-w-8xl mx-auto justify-center">
             <div className="rounded-lg w-full">
-              <div className="font-bold hidden lg:inline text-lg text-emerald-950 text-center sm:text-left p-2">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.5, duration: 1, ease: "easeInOut" }}
+                className="font-bold hidden lg:inline text-lg text-emerald-950 text-center sm:text-left p-2"
+              >
                 {subcategory ? <> {subcategory}</> : "All"}
-              </div>
+              </motion.div>
+
               <div className="lg:hidden">
                 <section className="flex justify-between items-center gap-1 bg-white p-1 bg-white bg-dotted-pattern bg-cover bg-center py-0 md:py-0 rounded-sm">
                   <div className="flex w-full p-1">
@@ -725,9 +740,15 @@ CollectionProps) => {
               </Dialog>*/}
               </div>
             </div>
-            <div className="flex items-center m-2 gap-1 justify-between">
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0, duration: 1, ease: "easeInOut" }}
+              className="flex items-center m-2 gap-1 justify-between"
+            >
               <Searchmain />
-            </div>
+            </motion.div>
             <section className="my-0">
               {/* This is a comment inside a JSX expression   
 
@@ -782,7 +803,13 @@ CollectionProps) => {
                 </AccordionItem>
               </Accordion>*/}
 
-              <div className="hidden lg:inline">
+              <motion.div
+                initial="hidden"
+                animate="visible"
+                variants={fadeIn}
+                // whileHover={hoverEffect}
+                className="hidden lg:inline"
+              >
                 <div className="w-full bg-white flex flex-col rounded-lg p-2">
                   <div className="flex items-center gap-1 m-1 justify-end">
                     <button
@@ -912,76 +939,45 @@ CollectionProps) => {
                     </>
                   )}
                 </div>
-              </div>
+              </motion.div>
 
-              <div className="flex w-full justify-between">
-                <div className="flex gap-1 flex-wrap justify-start items-center mb-4 ">
+              <motion.div
+                initial={{ opacity: 0, y: -20 }} // Initial state: transparent and above its position
+                animate={{ opacity: 1, y: 0 }} // Final state: fully opaque and in position
+                transition={{ delay: 0.5, duration: 0.5 }} // Delay before starting motion
+                className="flex w-full mt-1 justify-between"
+              >
+                <div className="flex gap-1 flex-wrap justify-center md:justify-start items-center mb-4 md:mb-0">
                   <div
-                    className={`cursor-pointer ${
+                    className={` bg-white rounded-sm border p-1 cursor-pointer ${
                       activeButton === 0 ? "text-[#30AF5B]" : "text-gray-400"
                     }`}
                     onClick={() => handleButtonClick(0)}
                   >
-                    <TooltipProvider>
-                      <Tooltip>
-                        <TooltipTrigger asChild>
-                          <ViewModuleIcon />
-                        </TooltipTrigger>
-                        <TooltipContent>
-                          <p>Grid layout</p>
-                        </TooltipContent>
-                      </Tooltip>
-                    </TooltipProvider>
+                    <ViewModuleIcon />
                   </div>
                   <div
-                    className={`cursor-pointer ${
+                    className={`bg-white rounded-sm border p-1 cursor-pointer ${
                       activeButton === 1 ? "text-[#30AF5B]" : "text-gray-400"
                     }`}
                     onClick={() => handleButtonClick(1)}
                   >
-                    <TooltipProvider>
-                      <Tooltip>
-                        <TooltipTrigger asChild>
-                          <ViewListIcon />
-                        </TooltipTrigger>
-                        <TooltipContent>
-                          <p>List layout</p>
-                        </TooltipContent>
-                      </Tooltip>
-                    </TooltipProvider>
-                  </div>
-                  <div
-                    className={`cursor-pointer ${
-                      activeButton === 2 ? "text-[#30AF5B]" : "text-gray-400"
-                    }`}
-                    onClick={() => handleButtonClick(2)}
-                  >
-                    <TooltipProvider>
-                      <Tooltip>
-                        <TooltipTrigger asChild>
-                          <ShareLocationOutlinedIcon />
-                        </TooltipTrigger>
-                        <TooltipContent>
-                          <p>View on Map</p>
-                        </TooltipContent>
-                      </Tooltip>
-                    </TooltipProvider>
+                    <ViewListIcon />
                   </div>
                 </div>
-                <div className="rounded-lg p-1 z-5 flex items-center">
+                <div className="rounded-full bg-white border p-1 flex items-center">
                   <div className="text-[#30AF5B]">
                     <SwapVertIcon />
                   </div>
                   <Select onValueChange={handleSortChange}>
-                    <SelectTrigger className="w-[180px]">
+                    <SelectTrigger className="w-[180px] rounded-full border-0 mb-1">
                       <SelectValue placeholder="Sort By" />
                     </SelectTrigger>
-                    <SelectContent className="z-20">
+                    <SelectContent>
                       <SelectGroup>
                         <SelectItem value="recommeded">
                           Recommended first
                         </SelectItem>
-                        <SelectItem value="nearby">NearBy first</SelectItem>
                         <SelectItem value="new">Newest first</SelectItem>
                         <SelectItem value="lowest">
                           Lowest price first
@@ -993,7 +989,8 @@ CollectionProps) => {
                     </SelectContent>
                   </Select>
                 </div>
-              </div>
+              </motion.div>
+
               <CollectionSearch
                 //  data={adsData}
                 emptyTitle="No ads have been created yet"
@@ -1003,6 +1000,8 @@ CollectionProps) => {
                 Type={Type}
                 urlParamName="adsPage"
                 userId={userId}
+                userImage={userImage}
+                userName={userName}
                 activeButton={activeButton}
                 searchText={searchText}
                 sortby={sortby}

@@ -5,6 +5,8 @@ import VerticalCard from "./VerticalCard";
 import HorizontalCard from "./HorizontalCard";
 import { getAdByUser } from "@/lib/actions/ad.actions";
 import Image from "next/image";
+import SkeletonCard from "./SkeletonCard";
+import { motion } from "framer-motion";
 type CollectionProps = {
   userId: string;
   sortby: string;
@@ -12,8 +14,8 @@ type CollectionProps = {
   emptyTitle: string;
   emptyStateSubtext: string;
   limit: number;
-  //page: number | string;
-  //totalPages?: number;
+  userImage: string;
+  userName: string;
   urlParamName?: string;
   isAdCreator: boolean;
   isVertical: boolean;
@@ -26,7 +28,8 @@ const CollectionMyads = ({
   emptyTitle,
   emptyStateSubtext,
   sortby,
-  //totalPages = 0,
+  userImage,
+  userName,
   collectionType,
   urlParamName,
   isAdCreator,
@@ -84,6 +87,14 @@ const CollectionMyads = ({
 
     if (node) observer.current.observe(node);
   };
+  const animationVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: (i: any) => ({
+      opacity: 1,
+      y: 0,
+      transition: { delay: i * 0.05 },
+    }),
+  };
 
   return (
     <>
@@ -94,29 +105,42 @@ const CollectionMyads = ({
               {data.map((ad: any, index: number) => {
                 if (data.length === index + 1) {
                   return (
-                    <div
-                      ref={lastAdRef}
+                    <motion.div
                       key={ad._id}
+                      ref={lastAdRef}
                       className="flex justify-center"
+                      variants={animationVariants}
+                      initial="hidden"
+                      animate="visible"
+                      custom={index}
                     >
-                      {/* Render Ad */}
                       <VerticalCard
                         ad={ad}
                         userId={userId}
                         isAdCreator={isAdCreator}
+                        userImage={userImage}
+                        userName={userName}
                       />
-                    </div>
+                    </motion.div>
                   );
                 } else {
                   return (
-                    <div key={ad._id} className="flex justify-center">
-                      {/* Render Ad */}
+                    <motion.div
+                      key={ad._id}
+                      className="flex justify-center"
+                      variants={animationVariants}
+                      initial="hidden"
+                      animate="visible"
+                      custom={index}
+                    >
                       <VerticalCard
                         ad={ad}
                         userId={userId}
                         isAdCreator={isAdCreator}
+                        userImage={userImage}
+                        userName={userName}
                       />
-                    </div>
+                    </motion.div>
                   );
                 }
               })}
@@ -128,29 +152,42 @@ const CollectionMyads = ({
               {data.map((ad: any, index: number) => {
                 if (data.length === index + 1) {
                   return (
-                    <div
-                      ref={lastAdRef}
+                    <motion.div
                       key={ad._id}
+                      ref={lastAdRef}
                       className="flex justify-center"
+                      variants={animationVariants}
+                      initial="hidden"
+                      animate="visible"
+                      custom={index}
                     >
-                      {/* Render Ad */}
                       <HorizontalCard
                         ad={ad}
                         userId={userId}
                         isAdCreator={isAdCreator}
+                        userImage={userImage}
+                        userName={userName}
                       />
-                    </div>
+                    </motion.div>
                   );
                 } else {
                   return (
-                    <div key={ad._id} className="flex justify-center">
-                      {/* Render Ad */}
+                    <motion.div
+                      key={ad._id}
+                      className="flex justify-center"
+                      variants={animationVariants}
+                      initial="hidden"
+                      animate="visible"
+                      custom={index}
+                    >
                       <HorizontalCard
                         ad={ad}
                         userId={userId}
                         isAdCreator={isAdCreator}
+                        userImage={userImage}
+                        userName={userName}
                       />
-                    </div>
+                    </motion.div>
                   );
                 }
               })}
@@ -171,14 +208,10 @@ const CollectionMyads = ({
       )}
       {loading && (
         <div>
-          <div className="w-full mt-10 h-full flex flex-col items-center justify-center">
-            <Image
-              src="/assets/icons/loading2.gif"
-              alt="loading"
-              width={40}
-              height={40}
-              unoptimized
-            />
+          <div className="mt-2 grid w-full grid-cols-2 gap-1 sm:grid-cols-2 lg:grid-cols-3 lg:gap-3">
+            <SkeletonCard />
+            <SkeletonCard />
+            <SkeletonCard />
           </div>
         </div>
       )}

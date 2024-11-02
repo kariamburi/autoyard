@@ -18,6 +18,7 @@ import React from "react";
 import { UpdateUserParams } from "@/types";
 import Reviews from "./Reviews";
 import { ScrollArea } from "@/components/ui/scroll-area";
+import ReviewsMyAds from "./ReviewsMyAds";
 
 type sidebarProps = {
   displayName: string;
@@ -36,7 +37,7 @@ interface Review {
   recipientUid: string;
   starClicked: boolean[];
 }
-const ReviewsBox = ({
+const ReviewsBoxMyAds = ({
   uid,
   photoURL,
   displayName,
@@ -99,21 +100,23 @@ const ReviewsBox = ({
       {messages.length > 0 ? (
         <>
           {" "}
-          <ScrollArea className="h-screen grid grid-cols-2 lg:grid-cols-2 bg-white rounded-md border p-4">
-            {messages
-              .slice()
-              .reverse()
-              .map((message: any) => (
-                <Reviews
-                  key={message.id}
-                  message={message}
-                  displayName={displayName}
-                  uid={uid}
-                  recipientUid={recipientUid}
-                  photoURL={photoURL}
-                  recipient={recipient}
-                />
-              ))}
+          <ScrollArea className="h-[400px] w-full bg-white p-4">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-2">
+              {messages
+                .slice()
+                .reverse()
+                .map((message: any) => (
+                  <ReviewsMyAds
+                    key={message.id}
+                    message={message}
+                    displayName={displayName}
+                    uid={uid}
+                    recipientUid={recipientUid}
+                    photoURL={photoURL}
+                    recipient={recipient}
+                  />
+                ))}
+            </div>
           </ScrollArea>
         </>
       ) : (
@@ -126,4 +129,4 @@ const ReviewsBox = ({
   );
 };
 
-export default ReviewsBox;
+export default ReviewsBoxMyAds;
