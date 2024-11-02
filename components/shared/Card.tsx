@@ -224,14 +224,14 @@ const Card = ({
     <div
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
-      className="cursor-pointer group relative flex min-h-[400px] w-full max-w-[400px] flex-col overflow-hidden rounded-xl bg-white shadow-md transition-all hover:shadow-lg md:min-h-[300px]"
+      className="cursor-pointer group relative flex h-[320px] lg:h-[430px] w-full max-w-[400px] flex-col overflow-hidden rounded-xl bg-white shadow-md transition-all hover:shadow-lg md:min-h-[300px]"
     >
       <Slider {...sliderSettings}>
         {ad.imageUrls.map((url, index) => (
           <div
             key={index}
             onClick={() => router.push(`/ads/${ad._id}`)}
-            className="cursor-pointer w-full h-[300px] flex justify-center items-center overflow-hidden"
+            className="cursor-pointer w-full h-[200px] lg:h-[300px] flex justify-center items-center overflow-hidden"
           >
             <Image
               src={url}
@@ -286,7 +286,7 @@ const Card = ({
       )}
 
       <div className="flex min-h-[80px] p-2 flex-col">
-        <div className="w-full mt-[-20px] flex flex-col justify-center absolute top-1/2 left-1/2 transform -translate-x-1/2 p-1 rounded-full">
+        <div className="w-full mt-[-40px] lg:mt-[-20px] flex flex-col justify-center absolute top-1/2 left-1/2 transform -translate-x-1/2 p-1 rounded-full">
           {/*     <div className="gap-1 cursor-pointer bg-[#000000] bg-opacity-70 text-[10px] lg:text-xs text-white flex rounded-lg p-1 shadow-sm transition-all">
             <LocalSeeOutlinedIcon sx={{ fontSize: 16, cursor: "pointer" }} />
             {ad.imageUrls.length}
@@ -294,7 +294,7 @@ const Card = ({
 */}
           <SignedIn>
             <div
-              className="w-8 h-8 p-1 mb-1 shadow-lg flex items-center justify-center rounded-full bg-white text-black tooltip tooltip-bottom opacity-80 hover:opacity-100 hover:cursor-pointer"
+              className="w-7 h-7 lg:w-8 lg:h-8 p-1 mb-1 shadow-lg flex items-center justify-center rounded-full bg-white text-black tooltip tooltip-bottom opacity-80 hover:opacity-100 hover:cursor-pointer"
               data-tip="Bookmark"
               onClick={() => handle(ad._id)}
             >
@@ -314,7 +314,7 @@ const Card = ({
           <SignedOut>
             <Link href="/sign-in">
               <div
-                className="w-8 h-8 p-1 mb-1 shadow-lg flex items-center justify-center rounded-full bg-white text-black tooltip tooltip-bottom opacity-80 hover:opacity-100 hover:cursor-pointer"
+                className="w-7 h-7 lg:w-8 lg:h-8 p-1 mb-1 shadow-lg flex items-center justify-center rounded-full bg-white text-black tooltip tooltip-bottom opacity-80 hover:opacity-100 hover:cursor-pointer"
                 data-tip="Bookmark"
               >
                 <TooltipProvider>
@@ -342,7 +342,7 @@ const Card = ({
           )}*/}
           <SignedIn>
             <div
-              className="w-8 h-8 p-1 mb-1 shadow-lg flex items-center justify-center rounded-full bg-white text-black tooltip tooltip-bottom opacity-80 hover:opacity-100 hover:cursor-pointer"
+              className="w-7 h-7 lg:w-8 lg:h-8 p-1 mb-1 shadow-lg flex items-center justify-center rounded-full bg-white text-black tooltip tooltip-bottom opacity-80 hover:opacity-100 hover:cursor-pointer"
               data-tip="Share"
               onClick={handleOpenPopup}
               // onClick={() => handle(ad._id)}
@@ -363,7 +363,7 @@ const Card = ({
           <SignedOut>
             <Link href="/sign-in">
               <div
-                className="w-8 h-8 p-1 mb-1 shadow-lg flex items-center justify-center rounded-full bg-white text-black tooltip tooltip-bottom opacity-80 hover:opacity-100 hover:cursor-pointer"
+                className="w-7 h-7 lg:w-8 lg:h-8 p-1 mb-1 shadow-lg flex items-center justify-center rounded-full bg-white text-black tooltip tooltip-bottom opacity-80 hover:opacity-100 hover:cursor-pointer"
                 data-tip="Share"
               >
                 <TooltipProvider>
@@ -380,7 +380,7 @@ const Card = ({
             </Link>
           </SignedOut>
         </div>
-        <div className="w-full flex justify-end  absolute top-2/3 left-1/2 transform -translate-x-1/2 p-1 rounded-full">
+        <div className="w-full mt-[-30px] lg:mt-[0px] flex justify-end  absolute top-2/3 left-1/2 transform -translate-x-1/2 p-1 rounded-full">
           <ProfileFolder
             onClick={handleOpenPopupProfile}
             profileImage={ad.organizer.photo ?? "/avator.png"}

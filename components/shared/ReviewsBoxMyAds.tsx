@@ -100,7 +100,7 @@ const ReviewsBoxMyAds = ({
       {messages.length > 0 ? (
         <>
           {" "}
-          <ScrollArea className="h-[400px] w-full bg-white p-4">
+          <div className="w-full bg-white p-4">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-2">
               {messages
                 .slice()
@@ -117,7 +117,7 @@ const ReviewsBoxMyAds = ({
                   />
                 ))}
             </div>
-          </ScrollArea>
+          </div>
         </>
       ) : (
         <div className="p-2 flex-center wrapper min-h-[200px] w-full flex-col gap-3 rounded-[14px] bg-grey-50 py-28 text-center">

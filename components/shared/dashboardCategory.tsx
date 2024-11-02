@@ -536,7 +536,7 @@ CollectionProps) => {
               </motion.div>
 
               <div className="lg:hidden">
-                <section className="flex justify-between items-center gap-1 bg-white p-1 bg-white bg-dotted-pattern bg-cover bg-center py-0 md:py-0 rounded-sm">
+                <section className="flex mt-5 justify-between items-center gap-1 bg-white p-1 bg-white bg-dotted-pattern bg-cover bg-center py-0 md:py-0 rounded-sm">
                   <div className="flex w-full p-1">
                     <SubCategoryFilterSearch
                       category={category}
@@ -945,7 +945,7 @@ CollectionProps) => {
                 initial={{ opacity: 0, y: -20 }} // Initial state: transparent and above its position
                 animate={{ opacity: 1, y: 0 }} // Final state: fully opaque and in position
                 transition={{ delay: 0.5, duration: 0.5 }} // Delay before starting motion
-                className="flex w-full mt-1 justify-between"
+                className="flex w-full mt-2 items-center mb-2 justify-between"
               >
                 <div className="flex gap-1 flex-wrap justify-center md:justify-start items-center mb-4 md:mb-0">
                   <div
@@ -996,7 +996,7 @@ CollectionProps) => {
                 emptyTitle="No ads have been created yet"
                 emptyStateSubtext="Go create some now"
                 // collectionType="Ads_Organized"
-                limit={20}
+                limit={9}
                 Type={Type}
                 urlParamName="adsPage"
                 userId={userId}

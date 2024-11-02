@@ -261,7 +261,7 @@ CollectionProps) => {
                   initial={{ opacity: 0, y: -20 }} // Initial state: transparent and above its position
                   animate={{ opacity: 1, y: 0 }} // Final state: fully opaque and in position
                   transition={{ delay: 0.5, duration: 0.5 }} // Delay before starting motion
-                  className="flex w-full justify-between"
+                  className="flex w-full justify-between mt-2 items-center mb-2"
                 >
                   <div className="flex gap-1 flex-wrap justify-center md:justify-start items-center mb-4 md:mb-0">
                     <div
@@ -312,7 +312,7 @@ CollectionProps) => {
                   emptyTitle="No ads have been created yet"
                   emptyStateSubtext="Go create some now"
                   collectionType="Ads_Organized"
-                  limit={20}
+                  limit={9}
                   sortby={sortby}
                   urlParamName="adsPage"
                   userImage={userImage}

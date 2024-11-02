@@ -7,6 +7,7 @@ import { getAdByUser } from "@/lib/actions/ad.actions";
 import Image from "next/image";
 import SkeletonCard from "./SkeletonCard";
 import { motion } from "framer-motion";
+import SkeletonCardMobile from "./SkeletonCardMobile";
 type CollectionProps = {
   userId: string;
   sortby: string;
@@ -208,10 +209,18 @@ const CollectionMyads = ({
       )}
       {loading && (
         <div>
-          <div className="mt-2 grid w-full grid-cols-2 gap-1 sm:grid-cols-2 lg:grid-cols-3 lg:gap-3">
-            <SkeletonCard />
-            <SkeletonCard />
-            <SkeletonCard />
+          <div className="hidden lg:inline mt-2 grid w-full grid-cols-2 gap-1 sm:grid-cols-2 lg:grid-cols-4 lg:gap-3">
+            <div className="mt-2 grid w-full grid-cols-2 gap-1 sm:grid-cols-2 lg:grid-cols-3 lg:gap-3">
+              <SkeletonCard />
+              <SkeletonCard />
+              <SkeletonCard />
+            </div>
+          </div>
+          <div className="lg:hidden mt-2 grid w-full grid-cols-2 gap-1 sm:grid-cols-2 lg:grid-cols-3 lg:gap-3">
+            <SkeletonCardMobile />
+            <SkeletonCardMobile />
+            <SkeletonCardMobile />
+            <SkeletonCardMobile />
           </div>
         </div>
       )}

@@ -248,14 +248,14 @@ const VerticalCard = ({
     <div
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
-      className="group relative flex min-h-[300px] w-full max-w-[400px] flex-col overflow-hidden rounded-xl bg-white shadow-md transition-all hover:shadow-lg md:min-h-[300px]"
+      className="group relative flex h-[320px] lg:h-[430px] w-full flex-col overflow-hidden rounded-xl bg-white shadow-md transition-all hover:shadow-lg md:min-h-[300px]"
     >
       <Slider {...sliderSettings}>
         {ad.imageUrls.map((url, index) => (
           <div
             key={index}
             onClick={() => router.push(`/ads/${ad._id}`)}
-            className="cursor-pointer w-full h-[300px] flex justify-center items-center overflow-hidden"
+            className="cursor-pointer w-full h-[200px] lg:h-[300px] flex justify-center items-center overflow-hidden"
           >
             <Image
               src={url}
@@ -304,12 +304,12 @@ const VerticalCard = ({
         </div>
       )}
       <div className="flex min-h-[80px] flex-col p-1">
-        <div className="w-full mt-[-20px] flex flex-col absolute top-1/2 left-1/2 transform -translate-x-1/2 p-1 rounded-full">
+        <div className="w-full mt-[-40px] lg:mt-[-20px] flex flex-col absolute top-1/2 left-1/2 transform -translate-x-1/2 p-1 rounded-full">
           {!isAdCreator && !isbookmark && (
             <>
               <SignedIn>
                 <div
-                  className="w-8 h-8 p-1 mb-1 shadow-[0px_4px_20px_rgba(0,0,0,0.3)] flex items-center justify-center rounded-full bg-white text-black tooltip tooltip-bottom opacity-80 hover:opacity-100 hover:cursor-pointer"
+                  className="w-7 h-7 lg:w-8 lg:h-8 p-1 mb-1 shadow-[0px_4px_20px_rgba(0,0,0,0.3)] flex items-center justify-center rounded-full bg-white text-black tooltip tooltip-bottom opacity-80 hover:opacity-100 hover:cursor-pointer"
                   data-tip="Bookmark"
                   onClick={() => handle(ad._id)}
                 >
@@ -329,7 +329,7 @@ const VerticalCard = ({
               <SignedOut>
                 <Link href="/sign-in">
                   <div
-                    className="w-8 h-8 p-1 mb-1 shadow-[0px_4px_20px_rgba(0,0,0,0.3)] flex items-center justify-center rounded-full bg-white text-black tooltip tooltip-bottom opacity-80 hover:opacity-100 hover:cursor-pointer"
+                    className="w-7 h-7 lg:w-8 lg:h-8 p-1 mb-1 shadow-[0px_4px_20px_rgba(0,0,0,0.3)] flex items-center justify-center rounded-full bg-white text-black tooltip tooltip-bottom opacity-80 hover:opacity-100 hover:cursor-pointer"
                     data-tip="Bookmark"
                   >
                     <TooltipProvider>
@@ -358,7 +358,7 @@ const VerticalCard = ({
           )}*/}
           <SignedIn>
             <div
-              className="w-8 h-8 p-1 mb-1 shadow-lg flex items-center justify-center rounded-full bg-white text-black tooltip tooltip-bottom opacity-80 hover:opacity-100 hover:cursor-pointer"
+              className="w-7 h-7 lg:w-8 lg:h-8 p-1 mb-1 shadow-lg flex items-center justify-center rounded-full bg-white text-black tooltip tooltip-bottom opacity-80 hover:opacity-100 hover:cursor-pointer"
               data-tip="Share"
               onClick={handleOpenPopup}
               // onClick={() => handle(ad._id)}
@@ -379,7 +379,7 @@ const VerticalCard = ({
           <SignedOut>
             <Link href="/sign-in">
               <div
-                className="w-8 h-8 p-1 mb-1 shadow-lg flex items-center justify-center rounded-full bg-white text-black tooltip tooltip-bottom opacity-80 hover:opacity-100 hover:cursor-pointer"
+                className="w-7 h-7 lg:w-8 lg:h-8 p-1 mb-1 shadow-lg flex items-center justify-center rounded-full bg-white text-black tooltip tooltip-bottom opacity-80 hover:opacity-100 hover:cursor-pointer"
                 data-tip="Share"
               >
                 <TooltipProvider>
@@ -398,7 +398,7 @@ const VerticalCard = ({
         </div>
 
         {!isAdCreator && (
-          <div className="w-full flex justify-end  absolute top-2/3 left-1/2 transform -translate-x-1/2 p-1 rounded-full">
+          <div className="w-full mt-[-30px] lg:mt-[0px] flex justify-end  absolute top-2/3 left-1/2 transform -translate-x-1/2 p-1 rounded-full">
             <ProfileFolder
               onClick={handleOpenPopupProfile}
               profileImage={ad.organizer.photo ?? "/avator.png"}
@@ -410,7 +410,7 @@ const VerticalCard = ({
         {isbookmark && (
           <div className="w-full flex absolute top-2/3 left-1/2 transform -translate-x-1/2 p-1 rounded-full">
             <div
-              className="w-8 h-8 p-1 mt-[-20px] shadow-lg flex items-center justify-center rounded-full bg-red-100 text-emerald-500 tooltip tooltip-bottom hover:text-[#2BBF4E] hover:cursor-pointer"
+              className="w-7 h-7 lg:w-8 lg:h-8 p-1 mt-[-20px] shadow-lg flex items-center justify-center rounded-full bg-red-100 text-emerald-500 tooltip tooltip-bottom hover:text-[#2BBF4E] hover:cursor-pointer"
               data-tip="Bookmark"
               onClick={() => handledeletebk(ad._id)}
             >

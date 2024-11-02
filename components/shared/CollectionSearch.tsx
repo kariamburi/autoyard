@@ -11,6 +11,7 @@ import SkeletonCard from "./SkeletonCard";
 import { motion } from "framer-motion";
 import ViewListIcon from "@mui/icons-material/ViewList";
 import ShareLocationOutlinedIcon from "@mui/icons-material/ShareLocationOutlined";
+import SkeletonCardMobile from "./SkeletonCardMobile";
 type CollectionProps = {
   userId: string;
   userName: string;
@@ -433,10 +434,18 @@ const CollectionSearch = ({
       )}
       {loading && (
         <div>
-          <div className="mt-2 grid w-full grid-cols-2 gap-1 sm:grid-cols-2 lg:grid-cols-3 lg:gap-3">
-            <SkeletonCard />
-            <SkeletonCard />
-            <SkeletonCard />
+          <div className="hidden lg:inline mt-2 grid w-full grid-cols-2 gap-1 sm:grid-cols-2 lg:grid-cols-4 lg:gap-3">
+            <div className="mt-2 grid w-full grid-cols-2 gap-1 sm:grid-cols-2 lg:grid-cols-3 lg:gap-3">
+              <SkeletonCard />
+              <SkeletonCard />
+              <SkeletonCard />
+            </div>
+          </div>
+          <div className="lg:hidden mt-2 grid w-full grid-cols-2 gap-1 sm:grid-cols-2 lg:grid-cols-3 lg:gap-3">
+            <SkeletonCardMobile />
+            <SkeletonCardMobile />
+            <SkeletonCardMobile />
+            <SkeletonCardMobile />
           </div>
         </div>
       )}
@@ -445,7 +454,7 @@ const CollectionSearch = ({
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.3, duration: 0.5 }}
-          className="fixed bottom-0 left-0 right-0 z-10 p-3 flex flex-col justify-center items-center"
+          className="fixed bottom-20 lg:bottom-0 lg:right-0 lg:left-0 z-10 p-3 flex flex-col lg:justify-center lg:items-center"
         >
           <button
             onClick={togglePopup}
@@ -456,14 +465,15 @@ const CollectionSearch = ({
                 <div>
                   <ViewListIcon sx={{ fontSize: 18 }} />
                 </div>
-                <div className="hidden lg:inline">Show List</div>
+                <div className="">Show List</div>
               </>
             ) : (
               <>
                 <div>
+                  {" "}
                   <ShareLocationOutlinedIcon sx={{ fontSize: 18 }} />
                 </div>
-                <div className="hidden lg:inline">Show Map</div>
+                <div className="">Show Map</div>
               </>
             )}
           </button>

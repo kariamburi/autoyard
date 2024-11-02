@@ -23,7 +23,7 @@ const ProfileFolder: React.FC<ProfileFolderProps> = ({
         rotate: -10,
         transition: { duration: 0.3, ease: "easeInOut" },
       }}
-      className="relative flex items-center justify-center w-12 h-12 overflow-hidden bg-gray-100 border rounded-lg shadow-lg cursor-pointer"
+      className="relative flex items-center justify-center  w-8 h-8 lg:w-12 lg:h-12 overflow-hidden bg-gray-100 border rounded-lg shadow-lg cursor-pointer"
     >
       {/* Folder Backdrop */}
       <div className="absolute inset-0 w-full h-full bg-gray-200 rounded-lg"></div>
@@ -33,7 +33,7 @@ const ProfileFolder: React.FC<ProfileFolderProps> = ({
         initial={{ opacity: 1, scale: 1 }}
         whileHover={{ opacity: 1, scale: 1.1 }}
         transition={{ duration: 0.3 }}
-        className="absolute overflow-hidden w-8 h-8 rounded-lg"
+        className="absolute overflow-hidden w-6 h-6 lg:w-8 lg:h-8 rounded-lg"
       >
         <Image
           src={profileImage}
