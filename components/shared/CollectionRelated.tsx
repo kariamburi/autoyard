@@ -128,6 +128,8 @@ const CollectionRelated = ({
                       hasOrderLink={hasOrderLink}
                       hidePrice={hidePrice}
                       userId={userId}
+                      userImage={userImage}
+                      userName={userName}
                     />
                   </div>
                 );
@@ -140,6 +142,8 @@ const CollectionRelated = ({
                       hasOrderLink={hasOrderLink}
                       hidePrice={hidePrice}
                       userId={userId}
+                      userImage={userImage}
+                      userName={userName}
                     />
                   </div>
                 );
