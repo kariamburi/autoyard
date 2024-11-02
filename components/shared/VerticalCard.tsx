@@ -204,7 +204,7 @@ const VerticalCard = ({
     ),
     customPaging: (index: number) => (
       <div
-        className={`w-2 h-2 rounded-full ${
+        className={`w-2 h-1 rounded-full ${
           index === activeIndex ? "bg-white" : "bg-white opacity-50"
         }`}
       ></div>
