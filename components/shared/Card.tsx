@@ -167,7 +167,7 @@ const Card = ({
     prevArrow: ismobile ? <PrevArrow /> : isHovered ? <PrevArrow /> : undefined,
     beforeChange: (current: any, next: any) => setActiveIndex(next),
     appendDots: (dots: any) => (
-      <div style={{ bottom: "10px", width: "100%", overflow: "hidden" }}>
+      <div style={{ bottom: "0", width: "100%", overflow: "hidden" }}>
         <div
           className="flex items-center justify-center w-full"
           style={{
@@ -175,7 +175,8 @@ const Card = ({
             transition: "transform 0.5s ease",
           }}
         >
-          <ul className="flex flex-row gap-0">{dots}</ul>
+          <ul className="flex flex-row">{dots}</ul>
+          {/* Reduced gap between dots */}
         </div>
       </div>
     ),
@@ -424,17 +425,17 @@ const Card = ({
         </div>
         <div className="flex justify-between w-full gap-1 p-1">
           {ad.vehiclecondition && (
-            <div className="flex gap-2 text-[10px] lg:text-xs bg-[#ebf2f7] rounded-lg p-1 justify-center border">
+            <div className="flex text-[8px] lg:text-xs bg-[#ebf2f7] rounded-lg p-1 justify-center border">
               {ad.vehiclecondition}
             </div>
           )}
           {ad.vehicleTransmissions && (
-            <div className="flex gap-2 text-[10px] lg:text-xs bg-[#ebf2f7] rounded-lg p-1 justify-center border">
+            <div className="flex text-[8px] lg:text-xs bg-[#ebf2f7] rounded-lg p-1 justify-center border">
               {ad.vehicleTransmissions}
             </div>
           )}
           {ad.vehicleEngineSizesCC && (
-            <div className="flex gap-2 text-[10px] lg:text-xs bg-[#ebf2f7] rounded-lg p-1 justify-center border">
+            <div className="flex text-[8px] lg:text-xs bg-[#ebf2f7] rounded-lg p-1 justify-center border">
               {ad.vehicleEngineSizesCC}
             </div>
           )}

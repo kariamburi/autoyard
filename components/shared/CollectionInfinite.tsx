@@ -299,7 +299,7 @@ const CollectionInfinite = ({
               initial={{ opacity: 0, y: -20 }} // Initial state: transparent and above its position
               animate={{ opacity: 1, y: 0 }} // Final state: fully opaque and in position
               transition={{ delay: 0.3, duration: 0.5 }} // Delay before starting motion
-              className="bg-white rounded-xl p-1"
+              className="bg-white rounded-xl p-3"
             >
               <StreetmapAll data={data} />
             </motion.div>
@@ -332,6 +332,14 @@ const CollectionInfinite = ({
         <>
           <div className="hidden lg:inline mt-2 grid w-full grid-cols-2 gap-1 sm:grid-cols-2 lg:grid-cols-4 lg:gap-3">
             <div className="mt-2 grid w-full grid-cols-2 gap-1 sm:grid-cols-2 lg:grid-cols-4 lg:gap-3">
+              <SkeletonCard />
+              <SkeletonCard />
+              <SkeletonCard />
+              <SkeletonCard />
+              <SkeletonCard />
+              <SkeletonCard />
+              <SkeletonCard />
+              <SkeletonCard />
               <SkeletonCard />
               <SkeletonCard />
               <SkeletonCard />

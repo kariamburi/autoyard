@@ -414,7 +414,7 @@ const CollectionSearch = ({
               initial={{ opacity: 0, y: -20 }} // Initial state: transparent and above its position
               animate={{ opacity: 1, y: 0 }} // Final state: fully opaque and in position
               transition={{ delay: 0.3, duration: 0.5 }} // Delay before starting motion
-              className="bg-white rounded-xl p-1"
+              className="bg-white rounded-xl p-3"
             >
               <StreetmapAll data={data} />
             </motion.div>
