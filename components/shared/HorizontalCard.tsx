@@ -244,13 +244,13 @@ const HorizontalCard = ({
         onMouseLeave={() => setIsHovered(false)}
         className="flex w-full mb-2 rounded-lg bg-white hover:cursor-pointer shadow"
       >
-        <div className="relative w-[180px] lg:w-[250px] h-[200px]">
+        <div className="relative w-[180px] lg:w-[250px] h-[210px]">
           <Slider {...sliderSettings}>
             {ad.imageUrls.map((url, index) => (
               <div
                 key={index}
                 onClick={() => router.push(`/ads/${ad._id}`)}
-                className="cursor-pointer w-[180px] lg:w-[250px] h-[200px] flex justify-center items-center overflow-hidden rounded-l-xl"
+                className="cursor-pointer w-[180px] lg:w-[250px] h-[210px] flex justify-center items-center overflow-hidden rounded-l-xl"
               >
                 <Image
                   src={url}
