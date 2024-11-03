@@ -349,7 +349,7 @@ const HorizontalCard = ({
             {ad?.description && truncateTitle(ad?.description, 100)}
           </div>
           <div className="text-[12px] lg:hidden">
-            {ad?.description && truncateTitle(ad?.description, 50)}
+            {ad?.description && truncateTitle(ad?.description, 35)}
           </div>
 
           {ad.calcDistance && (
@@ -357,9 +357,13 @@ const HorizontalCard = ({
               {Math.round(ad.calcDistance / 100) / 10} KM Away
             </div>
           )}
-          <div className="text-gray-500 text-[10px] lg:text-xs">
+          <div className="flex text-gray-500 text-[10px] lg:text-xs">
             <LocationOnIcon sx={{ fontSize: 16 }} />
-            {ad.address}
+
+            <div className="hidden lg:inline">{ad.address}</div>
+            <div className="lg:hidden">
+              {ad?.title && truncateTitle(ad?.address, 40)}
+            </div>
           </div>
           {isAdCreator ? (
             <div className="flex justify-between items-center w-full">

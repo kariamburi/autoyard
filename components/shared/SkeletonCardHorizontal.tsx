@@ -74,13 +74,6 @@ const SkeletonCardHorizontal = () => (
               height: "30px", // equivalent to `h-6`
             }}
           />
-          <Skeleton
-            variant="text"
-            style={{
-              width: "50px", // equivalent to `w-4/5`
-              height: "30px", // equivalent to `h-6`
-            }}
-          />
         </div>
       </div>
     </div>
