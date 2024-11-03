@@ -338,7 +338,10 @@ const HorizontalCard = ({
             href={`/ads/${ad._id}`}
             className="text-emerald-950 font-bold text-sm lg:text-basefont-bold line-clamp-2 hover:no-underline"
           >
-            {ad.title}
+            <div className="hidden lg:inline">{ad.title}</div>
+            <div className="lg:hidden">
+              {ad?.title && truncateTitle(ad?.title, 30)}
+            </div>
           </Link>
           <div className="text-[12px] lg:text-sm"></div>
 
@@ -406,14 +409,34 @@ const HorizontalCard = ({
                 </div>
               )}
             </div>
-            <div className="flex gap-1 mt-1">
-              {!isAdCreator && !isbookmark && (
-                <div className="">
-                  <SignedIn>
+          </div>
+          <div className="flex gap-3 mt-1">
+            {!isAdCreator && !isbookmark && (
+              <div className="">
+                <SignedIn>
+                  <div
+                    className="w-8 h-8 p-1 shadow-[0px_4px_20px_rgba(0,0,0,0.3)] flex items-center justify-center rounded-full bg-white text-black tooltip tooltip-bottom hover:text-[#2BBF4E] hover:cursor-pointer"
+                    data-tip="Bookmark"
+                    onClick={() => handle(ad._id)}
+                  >
+                    <TooltipProvider>
+                      <Tooltip>
+                        <TooltipTrigger asChild>
+                          <BookmarkIcon sx={{ fontSize: 16 }} />
+                        </TooltipTrigger>
+                        <TooltipContent side="left">
+                          <p className="text-sm"> Save Ad</p>
+                        </TooltipContent>
+                      </Tooltip>
+                    </TooltipProvider>
+                  </div>
+                </SignedIn>
+
+                <SignedOut>
+                  <Link href="/sign-in">
                     <div
                       className="w-8 h-8 p-1 shadow-[0px_4px_20px_rgba(0,0,0,0.3)] flex items-center justify-center rounded-full bg-white text-black tooltip tooltip-bottom hover:text-[#2BBF4E] hover:cursor-pointer"
                       data-tip="Bookmark"
-                      onClick={() => handle(ad._id)}
                     >
                       <TooltipProvider>
                         <Tooltip>
@@ -426,36 +449,36 @@ const HorizontalCard = ({
                         </Tooltip>
                       </TooltipProvider>
                     </div>
-                  </SignedIn>
+                  </Link>
+                </SignedOut>
+              </div>
+            )}
 
-                  <SignedOut>
-                    <Link href="/sign-in">
-                      <div
-                        className="w-8 h-8 p-1 shadow-[0px_4px_20px_rgba(0,0,0,0.3)] flex items-center justify-center rounded-full bg-white text-black tooltip tooltip-bottom hover:text-[#2BBF4E] hover:cursor-pointer"
-                        data-tip="Bookmark"
-                      >
-                        <TooltipProvider>
-                          <Tooltip>
-                            <TooltipTrigger asChild>
-                              <BookmarkIcon sx={{ fontSize: 16 }} />
-                            </TooltipTrigger>
-                            <TooltipContent side="left">
-                              <p className="text-sm"> Save Ad</p>
-                            </TooltipContent>
-                          </Tooltip>
-                        </TooltipProvider>
-                      </div>
-                    </Link>
-                  </SignedOut>
-                </div>
-              )}
+            <SignedIn>
+              <div
+                className="w-8 h-8 p-1 mb-1 shadow-[0px_4px_20px_rgba(0,0,0,0.3)] flex items-center justify-center rounded-full bg-white text-black tooltip tooltip-bottom opacity-80 hover:opacity-100 hover:cursor-pointer"
+                data-tip="Share"
+                onClick={handleOpenPopup}
+                // onClick={() => handle(ad._id)}
+              >
+                <TooltipProvider>
+                  <Tooltip>
+                    <TooltipTrigger asChild>
+                      <ReplyOutlinedIcon sx={{ fontSize: 16 }} />
+                    </TooltipTrigger>
+                    <TooltipContent side="right">
+                      <p className="text-sm"> Share Ad</p>
+                    </TooltipContent>
+                  </Tooltip>
+                </TooltipProvider>
+              </div>
+            </SignedIn>
 
-              <SignedIn>
+            <SignedOut>
+              <Link href="/sign-in">
                 <div
                   className="w-8 h-8 p-1 mb-1 shadow-[0px_4px_20px_rgba(0,0,0,0.3)] flex items-center justify-center rounded-full bg-white text-black tooltip tooltip-bottom opacity-80 hover:opacity-100 hover:cursor-pointer"
                   data-tip="Share"
-                  onClick={handleOpenPopup}
-                  // onClick={() => handle(ad._id)}
                 >
                   <TooltipProvider>
                     <Tooltip>
@@ -468,28 +491,8 @@ const HorizontalCard = ({
                     </Tooltip>
                   </TooltipProvider>
                 </div>
-              </SignedIn>
-
-              <SignedOut>
-                <Link href="/sign-in">
-                  <div
-                    className="w-8 h-8 p-1 mb-1 shadow-[0px_4px_20px_rgba(0,0,0,0.3)] flex items-center justify-center rounded-full bg-white text-black tooltip tooltip-bottom opacity-80 hover:opacity-100 hover:cursor-pointer"
-                    data-tip="Share"
-                  >
-                    <TooltipProvider>
-                      <Tooltip>
-                        <TooltipTrigger asChild>
-                          <ReplyOutlinedIcon sx={{ fontSize: 16 }} />
-                        </TooltipTrigger>
-                        <TooltipContent side="right">
-                          <p className="text-sm"> Share Ad</p>
-                        </TooltipContent>
-                      </Tooltip>
-                    </TooltipProvider>
-                  </div>
-                </Link>
-              </SignedOut>
-            </div>
+              </Link>
+            </SignedOut>
           </div>
         </div>
         {isOpen && (
