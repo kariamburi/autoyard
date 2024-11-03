@@ -6,6 +6,7 @@ import HorizontalCard from "./HorizontalCard";
 import { getallBookmarkByuserId } from "@/lib/actions/bookmark.actions";
 import Image from "next/image";
 import SkeletonCard from "./SkeletonCard";
+import SkeletonCardMobile from "./SkeletonCardMobile";
 type CollectionProps = {
   userId: string;
   userName: string;
