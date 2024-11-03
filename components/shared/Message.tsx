@@ -7,7 +7,6 @@ import { format, isToday, isYesterday } from "date-fns";
 import Image from "next/image";
 import { useState } from "react";
 import CircularProgress from "@mui/material/CircularProgress";
-import { motion } from "framer-motion";
 interface MessageProps {
   message: {
     uid: string;
@@ -61,12 +60,7 @@ const Message = ({
     }
   } catch {}
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ delay: 0, duration: 1, ease: "easeInOut" }}
-      className=""
-    >
+    <div className="">
       <div className="chatbox p-4">
         <div
           className={`flex items-start mb-4 ${
@@ -128,7 +122,7 @@ const Message = ({
           </div>
         </div>
       </div>
-    </motion.div>
+    </div>
   );
 };
 
