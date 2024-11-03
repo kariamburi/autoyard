@@ -194,7 +194,20 @@ CollectionProps) => {
       alert("Geolocation is not supported by this browser. ");
     }
   }
+  const [limit, setlimit] = useState(9);
+  useEffect(() => {
+    const userAgent = navigator.userAgent || navigator.vendor;
+    // Check if accessing from Android custom tab with your app user-agent
+    //const isAutoyardApp = userAgent.includes("AutoyardApp");
 
+    // Check if accessing from mobile (iOS/Android)
+    const isMobile = /android|iphone|ipad|ipod/i.test(userAgent);
+
+    // Check if the referrer is available in the document
+    if (isMobile) {
+      setlimit(8);
+    }
+  }, []);
   return (
     <>
       <div className="max-w-6xl mx-auto flex flex-col mt-3 p-1">
@@ -312,7 +325,7 @@ CollectionProps) => {
                   emptyTitle="No ads have been created yet"
                   emptyStateSubtext="Go create some now"
                   collectionType="Ads_Organized"
-                  limit={9}
+                  limit={limit}
                   sortby={sortby}
                   urlParamName="adsPage"
                   userImage={userImage}

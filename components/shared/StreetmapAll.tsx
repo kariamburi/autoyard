@@ -42,7 +42,7 @@ const StreetmapAll = ({ data }: CardProps) => {
   return (
     <MapContainer
       center={[parseFloat(latitude), parseFloat(longitude)]}
-      zoom={6}
+      zoom={5}
       scrollWheelZoom={false}
       className="map h-[400px] lg:h-[600px] w-full border rounded-lg z-0"
     >

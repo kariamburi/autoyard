@@ -290,6 +290,8 @@ const DashboardCategory = ({
 CollectionProps) => {
   const [activeButton, setActiveButton] = useState(0);
   const [activerange, setactiverange] = useState(20);
+  const [limit, setlimit] = useState(9);
+
   const handleButtonClick = (index: number) => {
     setActiveButton(index);
   };
@@ -384,19 +386,19 @@ CollectionProps) => {
     }
   }
 
-  // const [loadin, setLoading] = useState(loading);
-  // const [adsData, setAdsData] = useState(data);
+  useEffect(() => {
+    const userAgent = navigator.userAgent || navigator.vendor;
+    // Check if accessing from Android custom tab with your app user-agent
+    //const isAutoyardApp = userAgent.includes("AutoyardApp");
 
-  //useEffect(() => {
-  // Simulate loading state
-  //   setLoading(true);
-  //   setTimeout(() => {
-  //     setLoading(false);
-  //    setAdsData(data);
-  //  }, 1000);
+    // Check if accessing from mobile (iOS/Android)
+    const isMobile = /android|iphone|ipad|ipod/i.test(userAgent);
 
-  // Simulated delay
-  // }, [data]);
+    // Check if the referrer is available in the document
+    if (isMobile) {
+      setlimit(8);
+    }
+  }, []);
   const handleClear = () => {
     let newUrl = "";
     setShowPopup(false);
@@ -996,7 +998,7 @@ CollectionProps) => {
                 emptyTitle="No ads have been created yet"
                 emptyStateSubtext="Go create some now"
                 // collectionType="Ads_Organized"
-                limit={9}
+                limit={limit}
                 Type={Type}
                 urlParamName="adsPage"
                 userId={userId}

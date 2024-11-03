@@ -167,7 +167,7 @@ const Card = ({
     prevArrow: ismobile ? <PrevArrow /> : isHovered ? <PrevArrow /> : undefined,
     beforeChange: (current: any, next: any) => setActiveIndex(next),
     appendDots: (dots: any) => (
-      <div style={{ bottom: "0", width: "100%", overflow: "hidden" }}>
+      <div style={{ bottom: "10px", width: "100%", overflow: "hidden" }}>
         <div
           className="flex items-center justify-center w-full"
           style={{
@@ -273,7 +273,7 @@ const Card = ({
           </div>
         )}
       {isAdCreator && !hidePrice && (
-        <div className="absolute right-2 top-10 flex flex-col gap-4 rounded-xl bg-white p-3 shadow-sm transition-all">
+        <div className="absolute right-2 top-1 lg:top-10 flex flex-col gap-4 rounded-xl bg-white p-3 shadow-sm transition-all">
           <Link href={`/ads/${ad._id}/update`}>
             <Image
               src="/assets/icons/edit.svg"
@@ -287,7 +287,7 @@ const Card = ({
       )}
 
       <div className="flex min-h-[80px] p-2 flex-col">
-        <div className="w-full mt-[-40px] lg:mt-[-20px] flex flex-col justify-center absolute top-1/2 left-1/2 transform -translate-x-1/2 p-1 rounded-full">
+        <div className="w-full mt-[-40px] lg:mt-[-20px] flex justify-between absolute top-1/2 left-1/2 transform -translate-x-1/2 p-1 rounded-full">
           {/*     <div className="gap-1 cursor-pointer bg-[#000000] bg-opacity-70 text-[10px] lg:text-xs text-white flex rounded-lg p-1 shadow-sm transition-all">
             <LocalSeeOutlinedIcon sx={{ fontSize: 16, cursor: "pointer" }} />
             {ad.imageUrls.length}

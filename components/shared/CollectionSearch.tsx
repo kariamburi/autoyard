@@ -12,6 +12,7 @@ import { motion } from "framer-motion";
 import ViewListIcon from "@mui/icons-material/ViewList";
 import ShareLocationOutlinedIcon from "@mui/icons-material/ShareLocationOutlined";
 import SkeletonCardMobile from "./SkeletonCardMobile";
+import SkeletonCardHorizontal from "./SkeletonCardHorizontal";
 type CollectionProps = {
   userId: string;
   userName: string;
@@ -434,22 +435,34 @@ const CollectionSearch = ({
       )}
       {loading && (
         <div>
-          <div className="hidden lg:inline mt-2 grid w-full grid-cols-2 gap-1 sm:grid-cols-2 lg:grid-cols-4 lg:gap-3">
-            <div className="mt-2 grid w-full grid-cols-2 gap-1 sm:grid-cols-2 lg:grid-cols-3 lg:gap-3">
-              <SkeletonCard />
-              <SkeletonCard />
-              <SkeletonCard />
-              <SkeletonCard />
-              <SkeletonCard />
-              <SkeletonCard />
-            </div>
-          </div>
-          <div className="lg:hidden mt-2 grid w-full grid-cols-2 gap-1 sm:grid-cols-2 lg:grid-cols-3 lg:gap-3">
-            <SkeletonCardMobile />
-            <SkeletonCardMobile />
-            <SkeletonCardMobile />
-            <SkeletonCardMobile />
-          </div>
+          {activeButton === 0 ? (
+            <>
+              <div className="hidden lg:inline mt-2 grid w-full grid-cols-2 gap-1 sm:grid-cols-2 lg:grid-cols-4 lg:gap-3">
+                <div className="mt-2 grid w-full grid-cols-2 gap-1 sm:grid-cols-2 lg:grid-cols-3 lg:gap-3">
+                  <SkeletonCard />
+                  <SkeletonCard />
+                  <SkeletonCard />
+                  <SkeletonCard />
+                  <SkeletonCard />
+                  <SkeletonCard />
+                </div>
+              </div>
+              <div className="lg:hidden mt-2 grid w-full grid-cols-2 gap-1 sm:grid-cols-2 lg:grid-cols-3 lg:gap-3">
+                <SkeletonCardMobile />
+                <SkeletonCardMobile />
+                <SkeletonCardMobile />
+                <SkeletonCardMobile />
+              </div>
+            </>
+          ) : (
+            <>
+              <SkeletonCardHorizontal />
+              <SkeletonCardHorizontal />
+              <SkeletonCardHorizontal />
+              <SkeletonCardHorizontal />
+              <SkeletonCardHorizontal />
+            </>
+          )}
         </div>
       )}
       {isButtonVisible && data.length > 0 && (

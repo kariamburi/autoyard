@@ -244,13 +244,13 @@ const HorizontalCard = ({
         onMouseLeave={() => setIsHovered(false)}
         className="flex w-full mb-2 rounded-lg bg-white hover:cursor-pointer shadow"
       >
-        <div className="relative w-[200px] lg:w-[250px] h-[200px]">
+        <div className="relative w-[180px] lg:w-[250px] h-[200px]">
           <Slider {...sliderSettings}>
             {ad.imageUrls.map((url, index) => (
               <div
                 key={index}
                 onClick={() => router.push(`/ads/${ad._id}`)}
-                className="cursor-pointer w-[200px] lg:w-[250px] h-[200px] flex justify-center items-center overflow-hidden rounded-l-xl"
+                className="cursor-pointer w-[180px] lg:w-[250px] h-[200px] flex justify-center items-center overflow-hidden rounded-l-xl"
               >
                 <Image
                   src={url}
@@ -323,7 +323,7 @@ const HorizontalCard = ({
             </div>
           )}
           {!isAdCreator && (
-            <div className="w-full flex justify-end  mt-[-20px] absolute top-2/3 left-1/2 transform -translate-x-1/2 p-1 rounded-full">
+            <div className="w-full flex justify-end  mt-[-10px] absolute top-2/3 left-1/2 transform -translate-x-1/2 p-1 rounded-full">
               <ProfileFolder
                 onClick={handleOpenPopupProfile}
                 profileImage={ad.organizer.photo ?? "/avator.png"}
