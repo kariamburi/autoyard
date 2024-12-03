@@ -1,5 +1,5 @@
 "use client";
-import { motion } from "framer-motion";
+
 import { useRouter, useSearchParams } from "next/navigation";
 import { formUrlQuerymultiple, removeKeysFromQuery } from "@/lib/utils";
 import AddCircleOutlineOutlinedIcon from "@mui/icons-material/AddCircleOutlineOutlined";
@@ -49,24 +49,13 @@ export default function MenuSubmobile({ categoryList }: MobileProps) {
     (category) => category.name === "Vehicle"
   );
 
-  // Define animations
-  const fadeIn = {
-    hidden: { opacity: 0, y: 20 },
-    visible: { opacity: 1, y: 0 },
-  };
-
-  const hoverEffect = { scale: 1.1 };
-
   return (
     <div className="mx-auto mt-10">
       <div className="grid grid-cols-3 md:grid-cols-3 lg:grid-cols-7 m-1 gap-1">
         <SignedIn>
-          <motion.div
-            initial="hidden"
-            animate="visible"
-            variants={fadeIn}
-            whileHover={hoverEffect}
-            className="hidden lg:inline h-[100px] bg-emerald-500 shadow-xl text-white flex flex-col items-center justify-center cursor-pointer rounded-xl p-1 border-0 border-emerald-300 hover:bg-emerald-600"
+          <div
+            style={{ animation: "fadeIn 0.5s ease-out forwards", opacity: 0 }}
+            className="hidden lg:inline h-[100px] bg-emerald-500 shadow-xl text-white flex flex-col items-center justify-center cursor-pointer rounded-xl p-1 border-0 border-emerald-300 hover:bg-emerald-600 transform hover:scale-105"
             onClick={() => router.push("/ads/create")}
           >
             <div className="flex flex-col items-center text-center justify-center">
@@ -75,16 +64,13 @@ export default function MenuSubmobile({ categoryList }: MobileProps) {
               </div>
               <h2 className="text-lg font-bold">SELL</h2>
             </div>
-          </motion.div>
+          </div>
         </SignedIn>
 
         <SignedOut>
-          <motion.div
-            initial="hidden"
-            animate="visible"
-            variants={fadeIn}
-            whileHover={hoverEffect}
-            className="hidden lg:inline h-[100px] shadow-xl bg-emerald-500 text-white flex flex-col items-center justify-center cursor-pointer rounded-xl p-1 border-0 border-emerald-300 hover:bg-emerald-600"
+          <div
+            style={{ animation: "fadeIn 0.5s ease-out forwards", opacity: 0 }}
+            className="hidden lg:inline h-[100px] shadow-xl bg-emerald-500 text-white flex flex-col items-center justify-center cursor-pointer rounded-xl p-1 border-0 border-emerald-300 hover:bg-emerald-600 transform hover:scale-105"
             onClick={() => router.push("/sign-in")}
           >
             <div className="flex flex-col items-center text-center justify-center">
@@ -93,19 +79,18 @@ export default function MenuSubmobile({ categoryList }: MobileProps) {
               </div>
               <h2 className="text-lg font-bold">SELL</h2>
             </div>
-          </motion.div>
+          </div>
         </SignedOut>
 
         {vehicleCategory?.subcategory.map((sub, index) => (
-          <motion.div
+          <div
             key={sub.title}
-            initial="hidden"
-            animate="visible"
-            variants={fadeIn}
-            transition={{ delay: index * 0.1 }}
-            whileHover={hoverEffect}
+            style={{
+              animation: `fadeInUp 0.5s ease-out ${index * 0.1}s forwards`,
+              opacity: 0,
+            }}
             onClick={() => handleCategory(sub.title)}
-            className="h-[100px] bg-white flex flex-col items-center justify-center cursor-pointer rounded-xl p-1 border-0 border-emerald-300 hover:bg-emerald-100"
+            className="h-[100px] bg-white flex flex-col items-center justify-center cursor-pointer rounded-xl p-1 border-0 border-emerald-300 hover:bg-emerald-100 transform hover:scale-105"
           >
             <div className="flex flex-col items-center text-center justify-center">
               <div className="rounded-full bg-white p-2">
@@ -119,9 +104,30 @@ export default function MenuSubmobile({ categoryList }: MobileProps) {
               </div>
               <h2 className="text-xs">{sub.title}</h2>
             </div>
-          </motion.div>
+          </div>
         ))}
       </div>
+
+      <style jsx>{`
+        @keyframes fadeIn {
+          from {
+            opacity: 0;
+          }
+          to {
+            opacity: 1;
+          }
+        }
+        @keyframes fadeInUp {
+          from {
+            opacity: 0;
+            transform: translateY(20px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+      `}</style>
     </div>
   );
 }

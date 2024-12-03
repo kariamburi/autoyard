@@ -67,7 +67,7 @@ import ChatButton from "./ChatButton ";
 import ShareAd from "./ShareAd";
 import { useToast } from "../ui/use-toast";
 import SellerProfileCard from "./SellerProfileCard";
-import { motion } from "framer-motion";
+//import { motion } from "framer-motion";
 type CardProps = {
   ad: IAd;
   userId: string;
@@ -321,9 +321,9 @@ export default function Ads({ ad, userId, userImage, userName }: CardProps) {
                   <CarouselItem key={index}>
                     <div className="relative">
                       {isLoading && (
-                        <div className="absolute inset-0 flex items-center justify-center bg-[#000000] bg-opacity-50">
+                        <div className="absolute inset-0 flex items-center justify-center bg-gray-100">
                           {/* Spinner or loading animation */}
-                          <CircularProgress sx={{ color: "white" }} />
+                          <CircularProgress sx={{ color: "black" }} />
                         </div>
                       )}
                       <Zoom>
@@ -438,10 +438,10 @@ export default function Ads({ ad, userId, userImage, userName }: CardProps) {
                       <span key={index} onClick={() => handleImageClick(index)}>
                         <div className="relative">
                           {isLoadingsmall && (
-                            <div className="absolute rounded-lg inset-0 flex items-center justify-center bg-[#000000] bg-opacity-50">
+                            <div className="absolute rounded-lg inset-0 flex items-center justify-center bg-gray-100">
                               {/* Spinner or loading animation */}
                               <CircularProgress
-                                sx={{ color: "white" }}
+                                sx={{ color: "black" }}
                                 size={30}
                               />
                             </div>
@@ -801,10 +801,11 @@ export default function Ads({ ad, userId, userImage, userName }: CardProps) {
 
         {/* Right panel */}
         <div className="lg:w-[30%] p-1 lg:p-0">
-          <motion.div
-            initial={{ opacity: 0, y: -20 }} // Initial state: transparent and above its position
-            animate={{ opacity: 1, y: 0 }} // Final state: fully opaque and in position
-            transition={{ delay: 0.3, duration: 0.5 }} // Delay before starting motion
+          <div
+            style={{
+              animation: `fadeIn 0.5s ease-out 0.3s forwards`,
+              opacity: 0, // Initial opacity before animation starts
+            }}
             className="hidden lg:inline"
           >
             <div className="bg-white border-t-8 border-emerald-700 p-5 text-l rounded-xl overflow-hidden flex flex-col items-center">
@@ -892,7 +893,7 @@ export default function Ads({ ad, userId, userImage, userName }: CardProps) {
                 )}
               </div>
             </span>
-          </motion.div>
+          </div>
 
           <div className="">
             <div>
@@ -971,6 +972,18 @@ export default function Ads({ ad, userId, userImage, userName }: CardProps) {
           </div>
  */}
         </div>
+        <style jsx>{`
+          @keyframes fadeIn {
+            from {
+              opacity: 0;
+              transform: translateY(-20px);
+            }
+            to {
+              opacity: 1;
+              transform: translateY(0);
+            }
+          }
+        `}</style>
       </div>
     </>
   );

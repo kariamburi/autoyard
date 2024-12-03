@@ -55,7 +55,7 @@ import Zoom from "react-medium-image-zoom";
 import "react-medium-image-zoom/dist/styles.css";
 import CircularProgress from "@mui/material/CircularProgress";
 import RatingsCard from "./RatingsCard";
-import { motion } from "framer-motion";
+//import { motion } from "framer-motion";
 type CollectionProps = {
   userId: string;
   loggedId: string;
@@ -114,10 +114,11 @@ const SellerProfile = ({ userId, loggedId, user }: CollectionProps) => {
     <div className="flex flex-col m-1 items-center min-w-[300px] lg:max-w-[350px]">
       <div className="flex flex-col items-center rounded-t-lg w-full p-1"></div>
 
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0, duration: 1, ease: "easeInOut" }}
+      <div
+        style={{
+          animation: `fadeInUp 1s ease-in-out 0s forwards`,
+          opacity: 0, // Initial opacity before animation starts
+        }}
         className="flex gap-1 bg-white justify-between items-center p-1 w-full shadow-[0px_4px_20px_rgba(0,0,0,0.3)] rounded-[20px]"
       >
         <div className="flex flex-col w-full items-center">
@@ -180,11 +181,12 @@ const SellerProfile = ({ userId, loggedId, user }: CollectionProps) => {
         <div className="flex flex-col">
           <RatingsCard recipientUid={user._id} />
         </div>
-      </motion.div>
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.5, duration: 1, ease: "easeInOut" }}
+      </div>
+      <div
+        style={{
+          animation: `fadeInUp 1s ease-in-out 0s forwards`,
+          opacity: 0, // Initial opacity before animation starts
+        }}
         className="flex flex-col mt-4 items-center bg-white rounded-xl w-full p-1"
       >
         <div className="divider"></div>
@@ -736,7 +738,19 @@ const SellerProfile = ({ userId, loggedId, user }: CollectionProps) => {
             </div>
           </>
         )}
-      </motion.div>
+      </div>
+      <style jsx>{`
+        @keyframes fadeInUp {
+          from {
+            opacity: 0;
+            transform: translateY(20px); /* Mimics the initial y: 20 */
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0); /* Moves to the final position */
+          }
+        }
+      `}</style>
     </div>
   );
 };

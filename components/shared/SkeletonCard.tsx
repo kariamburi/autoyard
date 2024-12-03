@@ -7,7 +7,7 @@ const SkeletonCard = () => (
       width: "100%",
       padding: "2px",
       borderRadius: "0.75rem", // equivalent to `rounded-xl`
-      boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)", // equivalent to `shadow-md`
+      //boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)", // equivalent to `shadow-md`
       backgroundColor: "white",
     }}
   >

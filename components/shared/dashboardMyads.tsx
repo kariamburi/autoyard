@@ -270,10 +270,11 @@ CollectionProps) => {
               </section>
 
               <section className=" my-2">
-                <motion.div
-                  initial={{ opacity: 0, y: -20 }} // Initial state: transparent and above its position
-                  animate={{ opacity: 1, y: 0 }} // Final state: fully opaque and in position
-                  transition={{ delay: 0.5, duration: 0.5 }} // Delay before starting motion
+                <div
+                  style={{
+                    animation: `fadeInUp 1s ease-in-out 0s forwards`,
+                    opacity: 0, // Initial opacity before animation starts
+                  }}
                   className="flex w-full justify-between mt-2 items-center mb-2"
                 >
                   <div className="flex gap-1 flex-wrap justify-center md:justify-start items-center mb-4 md:mb-0">
@@ -318,7 +319,7 @@ CollectionProps) => {
                       </SelectContent>
                     </Select>
                   </div>
-                </motion.div>
+                </div>
 
                 <CollectionMyads
                   // data={data}
@@ -359,6 +360,18 @@ CollectionProps) => {
             recipientUid={userId}
           />
         </div>
+        <style jsx>{`
+          @keyframes fadeInUp {
+            from {
+              opacity: 0;
+              transform: translateY(20px); /* Mimics the initial y: 20 */
+            }
+            to {
+              opacity: 1;
+              transform: translateY(0); /* Moves to the final position */
+            }
+          }
+        `}</style>
       </div>
     </>
   );

@@ -70,7 +70,7 @@ const RatingsCard = ({ recipientUid }: Ratingsprop) => {
     <div className="flex flex-col items-center justify-center h-full">
       <div
         onClick={() => router.push(`/reviews/${recipientUid}`)}
-        className="flex flex-col cursor-pointer hover:bg-gray-100 p-1 items-center border-b w-[130px]"
+        className="flex flex-col cursor-pointer hover:text-gray-700 p-1 items-center border-b w-[130px]"
       >
         <h1 className="mt-2 p-0 text-xl font-bold text-emerald-950">
           {messagesCount}
@@ -81,7 +81,7 @@ const RatingsCard = ({ recipientUid }: Ratingsprop) => {
 
       <div
         onClick={() => router.push(`/reviews/${recipientUid}`)}
-        className="flex cursor-pointer flex-col hover:bg-gray-100 p-1 items-center border-b w-[130px]"
+        className="flex cursor-pointer flex-col hover:text-gray-700 p-1 items-center border-b w-[130px]"
       >
         <h1 className="mt-2 p-0 text-xl font-bold text-emerald-950">
           {averangestar.toFixed(1)}

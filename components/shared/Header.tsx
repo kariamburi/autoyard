@@ -17,22 +17,35 @@ export default function Header() {
 
   return (
     <div className="flex max-w-6xl mx-auto">
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0, duration: 1, ease: "easeInOut" }}
+      <div
+        style={{
+          animation: `fadeInUp 1s ease-in-out 0s forwards`,
+          opacity: 0, // Initial opacity before animation starts
+        }}
         className="lg:mb-0 mx-auto md:my-auto py-2 lg:py-0 md:py-0 w-[90%] md:w-[40%] text-center"
       >
         <div className="">
           <div className="mb-5 text-white">
             Find all in{" "}
-            <span className="bg-black text-white p-1 rounded-full">
-              <LocationOnIcon /> Kenya
+            <span className="bg-black text-white py-1 px-2 rounded-full">
+              <LocationOnIcon sx={{ fontSize: 18 }} /> Kenya
             </span>
           </div>
         </div>
         <Searchmain />
-      </motion.div>
+      </div>
+      <style jsx>{`
+        @keyframes fadeInUp {
+          from {
+            opacity: 0;
+            transform: translateY(20px); /* Mimics the initial y: 20 */
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0); /* Moves to the final position */
+          }
+        }
+      `}</style>
     </div>
   );
 }

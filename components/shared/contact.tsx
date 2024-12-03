@@ -13,7 +13,7 @@ import SellerProfileMobile from "./SellerProfileMobile";
 import Verificationmobile from "./Verificationmobile";
 import Ratingsmobile from "./ratingsmobile";
 import { updatecalls, updatewhatsapp } from "@/lib/actions/ad.actions";
-import { motion } from "framer-motion";
+//import { motion } from "framer-motion";
 type chatProps = {
   userId: string;
   userName: string;
@@ -47,10 +47,11 @@ const Contact = ({ ad, userId, userName, userImage }: chatProps) => {
 
   const isAdCreator = userId === ad.organizer._id;
   return (
-    <motion.div
-      initial={{ opacity: 0, y: -20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ delay: 0.3, duration: 0.5 }}
+    <div
+      style={{
+        animation: `fadeIn 0.5s ease-out 0.3s forwards`,
+        opacity: 0, // Initial opacity before animation starts
+      }}
       className="w-full"
     >
       <div className="lg:hidden justify-between flex w-full gap-1">
@@ -73,7 +74,7 @@ const Contact = ({ ad, userId, userName, userImage }: chatProps) => {
         <div className="flex gap-1 items-center p-1 lg:mr-20">
           <SignedIn>
             <button
-              className="hover:bg-emerald-700 bg-[#000000] text-white text-sm mt-2 p-2 rounded-full shadow"
+              className="hover:bg-emerald-700 bg-[#000000] text-white gap-1 mt-2 p-2 rounded-xl shadow"
               onClick={handleShowPhoneClick}
             >
               <CallIcon sx={{ fontSize: 24 }} />
@@ -83,7 +84,7 @@ const Contact = ({ ad, userId, userName, userImage }: chatProps) => {
           </SignedIn>
           <SignedOut>
             <a href={`/sign-in`}>
-              <button className="hover:bg-emerald-700 bg-[#000000] text-white text-sm mt-2 p-2 rounded-full shadow">
+              <button className="hover:bg-emerald-700 bg-[#000000] text-white gap-1 mt-2 p-2 rounded-xl shadow">
                 <CallIcon sx={{ fontSize: 24 }} />
                 <div className="hidden lg:inline">Call</div>
               </button>
@@ -100,7 +101,7 @@ const Contact = ({ ad, userId, userName, userImage }: chatProps) => {
           </SignedIn>
           <SignedOut>
             <a href={`/sign-in`}>
-              <button className="flex gap-1 hover:bg-emerald-700 bg-[#000000] text-white text-xs mt-2 p-2 rounded-full shadow">
+              <button className="flex gap-1 hover:bg-emerald-700 bg-[#000000] text-white gap-1 mt-2 p-2 rounded-xl shadow">
                 <ChatBubbleOutlineOutlinedIcon sx={{ fontSize: 24 }} />
                 <div className="hidden lg:inline">Message</div>
               </button>
@@ -112,7 +113,7 @@ const Contact = ({ ad, userId, userName, userImage }: chatProps) => {
               <SignedIn>
                 <button
                   onClick={handlewhatsappClick}
-                  className="hover:bg-emerald-700 bg-[#000000] text-white text-xs mt-2 p-2 rounded-full shadow"
+                  className="hover:bg-emerald-700 bg-[#000000] text-white gap-1 mt-2 p-2 rounded-xl shadow"
                 >
                   <WhatsAppIcon sx={{ fontSize: 24 }} />
 
@@ -121,7 +122,7 @@ const Contact = ({ ad, userId, userName, userImage }: chatProps) => {
               </SignedIn>
               <SignedOut>
                 <a href={`/sign-in`}>
-                  <button className="hover:bg-emerald-700 bg-[#000000] text-white text-xs mt-2 p-2 rounded-full shadow">
+                  <button className="hover:bg-emerald-700 bg-[#000000] text-white gap-1 mt-2 p-2 rounded-xl shadow">
                     <WhatsAppIcon sx={{ fontSize: 24 }} />
 
                     <div className="hidden lg:inline">WhatsApp</div>
@@ -132,7 +133,19 @@ const Contact = ({ ad, userId, userName, userImage }: chatProps) => {
           )}
         </div>
       </div>
-    </motion.div>
+      <style jsx>{`
+        @keyframes fadeIn {
+          from {
+            opacity: 0;
+            transform: translateY(-20px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+      `}</style>
+    </div>
   );
 };
 

@@ -90,7 +90,7 @@ export default function Navbar({ userstatus, userId }: NavProps) {
       <div className="hidden lg:inline">
         <div className="flex items-center gap-2">
           <div
-            className="w-8 h-8 flex items-center justify-center opacity-80 hover:opacity-100 rounded-full bg-white  tooltip tooltip-bottom hover:cursor-pointer"
+            className="w-8 h-8 flex items-center justify-center hover:text-gray-700 rounded-full bg-white  tooltip tooltip-bottom hover:cursor-pointer"
             data-tip="Messages"
             onClick={() => router.push(`/bookmark/`)}
           >
@@ -107,7 +107,7 @@ export default function Navbar({ userstatus, userId }: NavProps) {
           </div>
 
           <div
-            className="w-8 h-8 flex items-center justify-center opacity-80 hover:opacity-100 rounded-full bg-white tooltip tooltip-bottom hover:cursor-pointer"
+            className="w-8 h-8 flex items-center justify-center hover:text-gray-700 rounded-full bg-white tooltip tooltip-bottom hover:cursor-pointer"
             data-tip="Messages"
             onClick={() => router.push(`/chat/`)}
           >
@@ -135,7 +135,7 @@ export default function Navbar({ userstatus, userId }: NavProps) {
           </div>
 
           <div
-            className="w-8 h-8 flex items-center justify-center opacity-80 hover:opacity-100 rounded-full bg-white tooltip tooltip-bottom hover:cursor-pointer"
+            className="w-8 h-8 flex items-center justify-center hover:text-gray-700 rounded-full bg-white tooltip tooltip-bottom hover:cursor-pointer"
             data-tip="Messages"
             onClick={() => router.push(`/plan/`)}
           >
@@ -154,7 +154,7 @@ export default function Navbar({ userstatus, userId }: NavProps) {
             <SignedIn>
               <Link href="/ads/create">
                 <button
-                  className={`w-[100px] text-sm bg-gradient-to-r from-black to-black shadow-md hover:bg-[#30AF5B] text-white p-1 rounded-full`}
+                  className={`w-[100px] text-sm bg-gradient-to-r from-black to-black shadow-md hover:bg-[#30AF5B] text-white p-1 rounded-xl`}
                 >
                   <AddCircleOutlineOutlinedIcon /> SELL
                 </button>
@@ -164,7 +164,7 @@ export default function Navbar({ userstatus, userId }: NavProps) {
             <SignedOut>
               <Link href="/sign-in">
                 <button
-                  className={`w-[100px] bg-gradient-to-r from-black to-blackhover:bg-[#30AF5B] text-white p-1 rounded-full`}
+                  className={`w-[100px] bg-gradient-to-r from-black to-black hover:bg-[#30AF5B] text-white p-1 rounded-xl`}
                 >
                   <AddCircleOutlineOutlinedIcon /> SELL
                 </button>

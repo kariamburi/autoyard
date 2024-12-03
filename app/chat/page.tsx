@@ -55,7 +55,7 @@ const pagechat = async () => {
       </div>
       <div className="w-full lg:max-w-6xl lg:mx-auto h-full flex mt-[50px] lg:mt-20 mb-0 p-1">
         <div className="hidden lg:inline mr-5">
-          <div className="bg-white w-full rounded-lg p-1">
+          <div className="w-full p-1">
             <SellerProfile
               user={user}
               loggedId={senderId}

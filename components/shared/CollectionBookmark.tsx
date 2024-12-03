@@ -101,6 +101,7 @@ const CollectionBookmark = ({
                       {/* Render Ad */}
                       <VerticalCard
                         ad={ad.adId}
+                        index={index}
                         userId={userId}
                         isAdCreator={isAdCreator}
                         userImage={userImage}
@@ -114,6 +115,7 @@ const CollectionBookmark = ({
                       {/* Render Ad */}
                       <VerticalCard
                         ad={ad.adId}
+                        index={index}
                         userId={userId}
                         isAdCreator={isAdCreator}
                         userImage={userImage}
@@ -139,6 +141,7 @@ const CollectionBookmark = ({
                       {/* Render Ad */}
                       <HorizontalCard
                         ad={ad}
+                        index={index}
                         userId={userId}
                         isAdCreator={isAdCreator}
                         userImage={userImage}
@@ -152,6 +155,7 @@ const CollectionBookmark = ({
                       {/* Render Ad */}
                       <HorizontalCard
                         ad={ad}
+                        index={index}
                         userId={userId}
                         isAdCreator={isAdCreator}
                         userImage={userImage}

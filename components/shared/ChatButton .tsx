@@ -119,7 +119,7 @@ const ChatButton = ({ ad, userId, userName, userImage }: chatProps) => {
     <>
       <button
         onClick={() => setIsOpen(true)}
-        className="hover:bg-emerald-700 bg-[#000000] text-white text-sm mt-2 p-2 rounded-full shadow"
+        className="hover:bg-emerald-700 bg-[#000000] text-white gap-1 mt-2 p-2 rounded-xl shadow"
       >
         <ChatBubbleOutlineOutlinedIcon sx={{ fontSize: 24 }} />
         <div className="hidden lg:inline">Enquire</div>

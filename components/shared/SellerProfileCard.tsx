@@ -123,7 +123,7 @@ const SellerProfileCard = ({ ad, userId, userImage, userName }: chatProps) => {
   };
   return (
     <div className="flex p-2 items-center flex-col">
-      <div className="flex gap-1 bg-white justify-between items-center p-1 w-full shadow-[0px_4px_20px_rgba(0,0,0,0.3)] rounded-[20px]">
+      <div className="flex flex-col gap-1 bg-white justify-between items-center p-1 w-full shadow-[0px_4px_20px_rgba(0,0,0,0.3)] rounded-[20px]">
         <div className="flex flex-col w-full items-center">
           <div className="w-24 h-24 rounded-full bg-white relative">
             <Zoom>
@@ -185,14 +185,17 @@ const SellerProfileCard = ({ ad, userId, userImage, userName }: chatProps) => {
         <div className="flex flex-col">
           <RatingsCard recipientUid={ad.organizer._id} />
         </div>
+        <div>
+          <Link
+            href={`/shop/${ad.organizer._id}`}
+            className="no-underline w-full flex gap-1 items-center mt-3"
+          >
+            <LocalOfferOutlinedIcon sx={{ fontSize: 24 }} />
+            <p className="hover:underline">View Seller Profile</p>
+          </Link>
+        </div>
       </div>
-      <Link
-        href={`/shop/${ad.organizer._id}`}
-        className="no-underline w-full flex gap-1 items-center mt-3"
-      >
-        <LocalOfferOutlinedIcon sx={{ fontSize: 24 }} />
-        <p className="hover:underline">View Seller Profile</p>
-      </Link>
+
       {isAds && (
         <>
           <Link

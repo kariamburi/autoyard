@@ -1,5 +1,5 @@
 "use client";
-import { motion } from "framer-motion"; // Import framer-motion
+
 import { IAd } from "@/lib/database/models/ad.model";
 import { useState, useEffect, useRef } from "react";
 import Card from "./Card";
@@ -205,15 +205,6 @@ const CollectionInfinite = ({
     if (node) observer.current.observe(node);
   };
 
-  const animationVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: (i: any) => ({
-      opacity: 1,
-      y: 0,
-      transition: { delay: i * 0.05 },
-    }),
-  };
-
   const [isMap, setisMap] = useState(false);
   // Handler to toggle the popup
   const togglePopup = () => {
@@ -249,44 +240,35 @@ const CollectionInfinite = ({
 
                     if (data.length === index + 1) {
                       return (
-                        <motion.div
+                        <div
                           key={ad._id}
                           ref={lastAdRef}
                           className="flex justify-center"
-                          variants={animationVariants}
-                          initial="hidden"
-                          animate="visible"
-                          custom={index}
                         >
                           <Card
                             ad={ad}
+                            index={index}
                             hasOrderLink={hasOrderLink}
                             hidePrice={hidePrice}
                             userId={userId}
                             userImage={userImage}
                             userName={userName}
                           />
-                        </motion.div>
+                        </div>
                       );
                     } else {
                       return (
-                        <motion.div
-                          key={ad._id}
-                          className="flex justify-center"
-                          variants={animationVariants}
-                          initial="hidden"
-                          animate="visible"
-                          custom={index}
-                        >
+                        <div key={ad._id} className="flex justify-center">
                           <Card
                             ad={ad}
+                            index={index}
                             hasOrderLink={hasOrderLink}
                             hidePrice={hidePrice}
                             userId={userId}
                             userImage={userImage}
                             userName={userName}
                           />
-                        </motion.div>
+                        </div>
                       );
                     }
                   })}
@@ -295,14 +277,17 @@ const CollectionInfinite = ({
             </>
           )}
           {isMap && (
-            <motion.div
-              initial={{ opacity: 0, y: -20 }} // Initial state: transparent and above its position
-              animate={{ opacity: 1, y: 0 }} // Final state: fully opaque and in position
-              transition={{ delay: 0.3, duration: 0.5 }} // Delay before starting motion
-              className="bg-white rounded-xl p-3"
-            >
-              <StreetmapAll data={data} />
-            </motion.div>
+            <>
+              <div
+                style={{
+                  animation: `fadeIn 0.5s ease-out 0.3s forwards`,
+                  opacity: 0, // Initial opacity before animation starts
+                }}
+                className="bg-white rounded-xl p-3"
+              >
+                <StreetmapAll data={data} />
+              </div>
+            </>
           )}
         </div>
       ) : (
@@ -354,16 +339,17 @@ const CollectionInfinite = ({
           </div>
         </>
       )}
-      {isButtonVisible && data.length > 0 && (
-        <motion.div
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.3, duration: 0.5 }}
-          className="fixed bottom-20 lg:bottom-0 lg:right-0 lg:left-0 z-10 p-3 flex flex-col lg:justify-center lg:items-center"
+      {data.length > 0 && (
+        <div
+          style={{
+            animation: `fadeIn 0.5s ease-out 0.3s forwards`,
+            opacity: 0, // Initial opacity before animation starts
+          }}
+          className="fixed bottom-20 lg:bottom-0 lg:right-0 lg:left-0 z-10 p-1 flex flex-col lg:justify-center lg:items-center"
         >
           <button
             onClick={togglePopup}
-            className=" flex gap-1 items-center hover:bg-white hover:text-black bg-[#000000] gap-1 text-white text-sm p-3 rounded-full shadow"
+            className=" flex gap-1 items-center hover:bg-white hover:text-black bg-[#000000] gap-1 text-white text-xs p-2 rounded-full shadow"
           >
             {isMap ? (
               <>
@@ -382,8 +368,20 @@ const CollectionInfinite = ({
               </>
             )}
           </button>
-        </motion.div>
+        </div>
       )}
+      <style jsx>{`
+        @keyframes fadeIn {
+          from {
+            opacity: 0;
+            transform: translateY(-20px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+      `}</style>
     </div>
   );
 };

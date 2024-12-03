@@ -342,6 +342,7 @@ const CollectionSearch = ({
                           {/* Render Ad */}
                           <VerticalCard
                             ad={ad}
+                            index={index}
                             userId={userId}
                             isAdCreator={isAdCreator}
                             userImage={userImage}
@@ -355,6 +356,7 @@ const CollectionSearch = ({
                           {/* Render Ad */}
                           <VerticalCard
                             ad={ad}
+                            index={index}
                             userId={userId}
                             isAdCreator={isAdCreator}
                             userImage={userImage}
@@ -384,6 +386,7 @@ const CollectionSearch = ({
                           {/* Render Ad */}
                           <HorizontalCard
                             ad={ad}
+                            index={index}
                             userId={userId}
                             isAdCreator={isAdCreator}
                             userImage={userImage}
@@ -397,6 +400,7 @@ const CollectionSearch = ({
                           {/* Render Ad */}
                           <HorizontalCard
                             ad={ad}
+                            index={index}
                             userId={userId}
                             isAdCreator={isAdCreator}
                             userImage={userImage}

@@ -37,6 +37,7 @@ type CardProps = {
   isAdCreator?: boolean;
   userImage: string;
   userName: string;
+  index: number;
 };
 const NextArrow = (props: any) => {
   const { className, style, onClick } = props;
@@ -82,6 +83,7 @@ const VerticalCard = ({
   isAdCreator,
   userImage,
   userName,
+  index,
 }: CardProps) => {
   const pathname = usePathname();
   const isbookmark = pathname === "/bookmark";
@@ -246,6 +248,10 @@ const VerticalCard = ({
   // console.log(ad.imageUrls);
   return (
     <div
+      style={{
+        animation: `fadeIn 0.3s ease-out ${(index + 1) * 0.1}s forwards`,
+        opacity: 0,
+      }}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
       className="group relative flex h-[320px] lg:h-[430px] w-full flex-col overflow-hidden rounded-xl bg-white shadow-md transition-all hover:shadow-lg md:min-h-[300px]"
@@ -309,7 +315,7 @@ const VerticalCard = ({
             <>
               <SignedIn>
                 <div
-                  className="w-7 h-7 lg:w-8 lg:h-8 p-1 mb-1 shadow-[0px_4px_20px_rgba(0,0,0,0.3)] flex items-center justify-center rounded-full bg-white text-black tooltip tooltip-bottom opacity-80 hover:opacity-100 hover:cursor-pointer"
+                  className="w-8 h-8 p-1 mb-1 shadow-lg flex items-center justify-center rounded-full bg-white text-black tooltip tooltip-bottom hover:text-gray-700 hover:cursor-pointer"
                   data-tip="Bookmark"
                   onClick={() => handle(ad._id)}
                 >
@@ -329,7 +335,7 @@ const VerticalCard = ({
               <SignedOut>
                 <Link href="/sign-in">
                   <div
-                    className="w-7 h-7 lg:w-8 lg:h-8 p-1 mb-1 shadow-[0px_4px_20px_rgba(0,0,0,0.3)] flex items-center justify-center rounded-full bg-white text-black tooltip tooltip-bottom opacity-80 hover:opacity-100 hover:cursor-pointer"
+                    className="w-8 h-8 p-1 mb-1 shadow-lg flex items-center justify-center rounded-full bg-white text-black tooltip tooltip-bottom hover:text-gray-700 hover:cursor-pointer"
                     data-tip="Bookmark"
                   >
                     <TooltipProvider>
@@ -358,7 +364,7 @@ const VerticalCard = ({
           )}*/}
           <SignedIn>
             <div
-              className="w-7 h-7 lg:w-8 lg:h-8 p-1 mb-1 shadow-lg flex items-center justify-center rounded-full bg-white text-black tooltip tooltip-bottom opacity-80 hover:opacity-100 hover:cursor-pointer"
+              className="w-8 h-8 p-1 mb-1 shadow-lg flex items-center justify-center rounded-full bg-white text-black tooltip tooltip-bottom hover:text-gray-700 hover:cursor-pointer"
               data-tip="Share"
               onClick={handleOpenPopup}
               // onClick={() => handle(ad._id)}
@@ -379,7 +385,7 @@ const VerticalCard = ({
           <SignedOut>
             <Link href="/sign-in">
               <div
-                className="w-7 h-7 lg:w-8 lg:h-8 p-1 mb-1 shadow-lg flex items-center justify-center rounded-full bg-white text-black tooltip tooltip-bottom opacity-80 hover:opacity-100 hover:cursor-pointer"
+                className="w-8 h-8 p-1 mb-1 shadow-lg flex items-center justify-center rounded-full bg-white text-black tooltip tooltip-bottom hover:text-gray-700 hover:cursor-pointer"
                 data-tip="Share"
               >
                 <TooltipProvider>
@@ -589,6 +595,19 @@ const VerticalCard = ({
           </div>
         </div>
       )}
+      {/* Tailwind CSS Keyframes */}
+      <style jsx>{`
+        @keyframes fadeIn {
+          from {
+            opacity: 0;
+            transform: translateY(20px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+      `}</style>
     </div>
   );
 };

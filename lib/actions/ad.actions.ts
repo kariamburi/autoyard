@@ -611,7 +611,7 @@ export async function getRelatedAdByCategory({
 
     const Ads = await populateAd(AdQuery)
     const AdCount = await Ad.countDocuments(conditions)
-console.log(JSON.parse(JSON.stringify(Ads)))
+//console.log(JSON.parse(JSON.stringify(Ads)))
     return { data: JSON.parse(JSON.stringify(Ads)), totalPages: Math.ceil(AdCount / limit) }
   } catch (error) {
     handleError(error)

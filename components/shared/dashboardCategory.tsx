@@ -63,7 +63,7 @@ import {
 } from "../ui/dialog";
 import { ScrollArea } from "../ui/scroll-area";
 import SkeletonSidebar from "./SkeletonSidebar";
-import { motion } from "framer-motion";
+//import { motion } from "framer-motion";
 //const CollectionSearch = dynamic(() => import("./CollectionSearch"), {
 //ssr: false,
 //loading: () => (
@@ -528,14 +528,15 @@ CollectionProps) => {
           </div>
           <div className="rounded-lg max-w-8xl mx-auto justify-center">
             <div className="rounded-lg w-full">
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.5, duration: 1, ease: "easeInOut" }}
+              <div
+                style={{
+                  animation: `fadeInUp 1s ease-in-out 0s forwards`,
+                  opacity: 0, // Initial opacity before animation starts
+                }}
                 className="font-bold hidden lg:inline text-lg text-emerald-950 text-center sm:text-left p-2"
               >
                 {subcategory ? <> {subcategory}</> : "All"}
-              </motion.div>
+              </div>
 
               <div className="lg:hidden">
                 <section className="flex mt-5 justify-between items-center gap-1 bg-white p-1 bg-white bg-dotted-pattern bg-cover bg-center py-0 md:py-0 rounded-sm">
@@ -743,14 +744,15 @@ CollectionProps) => {
               </div>
             </div>
 
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0, duration: 1, ease: "easeInOut" }}
+            <div
+              style={{
+                animation: `fadeInUp 1s ease-in-out 0s forwards`,
+                opacity: 0, // Initial opacity before animation starts
+              }}
               className="flex items-center m-2 gap-1 justify-between"
             >
               <Searchmain />
-            </motion.div>
+            </div>
             <section className="my-0">
               {/* This is a comment inside a JSX expression   
 
@@ -805,11 +807,11 @@ CollectionProps) => {
                 </AccordionItem>
               </Accordion>*/}
 
-              <motion.div
-                initial="hidden"
-                animate="visible"
-                variants={fadeIn}
-                // whileHover={hoverEffect}
+              <div
+                style={{
+                  animation: `fadeInUp 1s ease-in-out 0s forwards`,
+                  opacity: 0, // Initial opacity before animation starts
+                }}
                 className="hidden lg:inline"
               >
                 <div className="w-full bg-white flex flex-col rounded-lg p-2">
@@ -941,12 +943,13 @@ CollectionProps) => {
                     </>
                   )}
                 </div>
-              </motion.div>
+              </div>
 
-              <motion.div
-                initial={{ opacity: 0, y: -20 }} // Initial state: transparent and above its position
-                animate={{ opacity: 1, y: 0 }} // Final state: fully opaque and in position
-                transition={{ delay: 0.5, duration: 0.5 }} // Delay before starting motion
+              <div
+                style={{
+                  animation: `fadeInUp 1s ease-in-out 0s forwards`,
+                  opacity: 0, // Initial opacity before animation starts
+                }}
                 className="flex w-full mt-2 items-center mb-2 justify-between"
               >
                 <div className="flex gap-1 flex-wrap justify-center md:justify-start items-center mb-4 md:mb-0">
@@ -991,7 +994,7 @@ CollectionProps) => {
                     </SelectContent>
                   </Select>
                 </div>
-              </motion.div>
+              </div>
 
               <CollectionSearch
                 //  data={adsData}
@@ -1047,6 +1050,18 @@ CollectionProps) => {
             </section>
           </div>
         </div>
+        <style jsx>{`
+          @keyframes fadeInUp {
+            from {
+              opacity: 0;
+              transform: translateY(20px); /* Mimics the initial y: 20 */
+            }
+            to {
+              opacity: 1;
+              transform: translateY(0); /* Moves to the final position */
+            }
+          }
+        `}</style>
       </div>
     </>
   );

@@ -126,6 +126,7 @@ const CollectionRelated = ({
                     {/* Render Ad */}
                     <Card
                       ad={ad}
+                      index={index}
                       hasOrderLink={hasOrderLink}
                       hidePrice={hidePrice}
                       userId={userId}
@@ -140,6 +141,7 @@ const CollectionRelated = ({
                     {/* Render Ad */}
                     <Card
                       ad={ad}
+                      index={index}
                       hasOrderLink={hasOrderLink}
                       hidePrice={hidePrice}
                       userId={userId}

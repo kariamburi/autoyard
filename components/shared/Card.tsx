@@ -39,6 +39,7 @@ type CardProps = {
   userId: string;
   userImage: string;
   userName: string;
+  index: number;
 };
 const NextArrow = (props: any) => {
   const { className, style, onClick } = props;
@@ -85,6 +86,7 @@ const Card = ({
   userId,
   userName,
   userImage,
+  index,
 }: CardProps) => {
   const pathname = usePathname();
   const router = useRouter();
@@ -223,6 +225,10 @@ const Card = ({
   };
   return (
     <div
+      style={{
+        animation: `fadeIn 0.3s ease-out ${(index + 1) * 0.1}s forwards`,
+        opacity: 0,
+      }}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
       className="cursor-pointer group relative flex h-[320px] lg:h-[430px] w-full max-w-[400px] flex-col overflow-hidden rounded-xl bg-white shadow-md transition-all hover:shadow-lg md:min-h-[300px]"
@@ -295,14 +301,14 @@ const Card = ({
 */}
           <SignedIn>
             <div
-              className="w-7 h-7 lg:w-8 lg:h-8 p-1 mb-1 shadow-lg flex items-center justify-center rounded-full bg-white text-black tooltip tooltip-bottom opacity-80 hover:opacity-100 hover:cursor-pointer"
+              className="w-8 h-8 p-1 mb-1 shadow-lg flex items-center justify-center rounded-full bg-white text-black tooltip tooltip-bottom hover:text-gray-700 hover:cursor-pointer"
               data-tip="Bookmark"
               onClick={() => handle(ad._id)}
             >
               <TooltipProvider>
                 <Tooltip>
                   <TooltipTrigger asChild>
-                    <BookmarkIcon sx={{ fontSize: 16 }} />
+                    <BookmarkIcon />
                   </TooltipTrigger>
                   <TooltipContent side="right">
                     <p className="text-sm"> Save Ad</p>
@@ -315,13 +321,13 @@ const Card = ({
           <SignedOut>
             <Link href="/sign-in">
               <div
-                className="w-7 h-7 lg:w-8 lg:h-8 p-1 mb-1 shadow-lg flex items-center justify-center rounded-full bg-white text-black tooltip tooltip-bottom opacity-80 hover:opacity-100 hover:cursor-pointer"
+                className="w-8 h-8 p-1 mb-1 shadow-lg flex items-center justify-center rounded-full bg-white text-black tooltip tooltip-bottom hover:text-gray-700 hover:cursor-pointer"
                 data-tip="Bookmark"
               >
                 <TooltipProvider>
                   <Tooltip>
                     <TooltipTrigger asChild>
-                      <BookmarkIcon sx={{ fontSize: 16 }} />
+                      <BookmarkIcon />
                     </TooltipTrigger>
                     <TooltipContent side="right">
                       <p className="text-sm"> Save Ad</p>
@@ -343,7 +349,7 @@ const Card = ({
           )}*/}
           <SignedIn>
             <div
-              className="w-7 h-7 lg:w-8 lg:h-8 p-1 mb-1 shadow-lg flex items-center justify-center rounded-full bg-white text-black tooltip tooltip-bottom opacity-80 hover:opacity-100 hover:cursor-pointer"
+              className="w-8 h-8 p-1 mb-1 shadow-lg flex items-center justify-center rounded-full bg-white text-black tooltip tooltip-bottom hover:text-gray-700 hover:cursor-pointer"
               data-tip="Share"
               onClick={handleOpenPopup}
               // onClick={() => handle(ad._id)}
@@ -351,7 +357,7 @@ const Card = ({
               <TooltipProvider>
                 <Tooltip>
                   <TooltipTrigger asChild>
-                    <ReplyOutlinedIcon sx={{ fontSize: 16 }} />
+                    <ReplyOutlinedIcon />
                   </TooltipTrigger>
                   <TooltipContent side="right">
                     <p className="text-sm"> Share Ad</p>
@@ -364,13 +370,13 @@ const Card = ({
           <SignedOut>
             <Link href="/sign-in">
               <div
-                className="w-7 h-7 lg:w-8 lg:h-8 p-1 mb-1 shadow-lg flex items-center justify-center rounded-full bg-white text-black tooltip tooltip-bottom opacity-80 hover:opacity-100 hover:cursor-pointer"
+                className="w-8 h-8 p-1 mb-1 shadow-lg flex items-center justify-center rounded-full bg-white text-black tooltip tooltip-bottom hover:text-gray-700 hover:cursor-pointer"
                 data-tip="Share"
               >
                 <TooltipProvider>
                   <Tooltip>
                     <TooltipTrigger asChild>
-                      <ReplyOutlinedIcon sx={{ fontSize: 16 }} />
+                      <ReplyOutlinedIcon />
                     </TooltipTrigger>
                     <TooltipContent side="right">
                       <p className="text-sm"> Share Ad</p>
@@ -525,6 +531,19 @@ const Card = ({
           </div>
         </div>
       )}
+      {/* Tailwind CSS Keyframes */}
+      <style jsx>{`
+        @keyframes fadeIn {
+          from {
+            opacity: 0;
+            transform: translateY(20px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+      `}</style>
     </div>
   );
 };

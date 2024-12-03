@@ -38,6 +38,7 @@ type CardProps = {
   isAdCreator?: boolean;
   userImage: string;
   userName: string;
+  index: number;
 };
 const NextArrow = (props: any) => {
   const { className, style, onClick } = props;
@@ -82,6 +83,7 @@ const HorizontalCard = ({
   isAdCreator,
   userImage,
   userName,
+  index,
 }: CardProps) => {
   const pathname = usePathname();
   const isbookmark = pathname === "/bookmark";
@@ -240,6 +242,10 @@ const HorizontalCard = ({
   return (
     <>
       <div
+        style={{
+          animation: `fadeIn 0.3s ease-out ${(index + 1) * 0.1}s forwards`,
+          opacity: 0,
+        }}
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
         className="flex w-full mb-2 rounded-lg bg-white hover:cursor-pointer shadow"
@@ -583,6 +589,19 @@ const HorizontalCard = ({
             </div>
           </div>
         )}
+        {/* Tailwind CSS Keyframes */}
+        <style jsx>{`
+          @keyframes fadeIn {
+            from {
+              opacity: 0;
+              transform: translateY(20px);
+            }
+            to {
+              opacity: 1;
+              transform: translateY(0);
+            }
+          }
+        `}</style>
       </div>
     </>
   );

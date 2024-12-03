@@ -10,12 +10,18 @@ import Link from "next/link";
 import { getAllAd } from "@/lib/actions/ad.actions";
 //import MenuSubmobile from "@/components/shared/MenuSubmobile";
 //import Collection from "@/components/shared/Collection";
-import { createUser } from "@/lib/actions/user.actions";
+import { createUser, getUserById } from "@/lib/actions/user.actions";
 import { getfcmTokenFromCookie } from "@/lib/actions/cookies";
 import CollectionInfinite from "@/components/shared/CollectionInfinite";
 import AppPopup from "@/components/shared/AppPopup ";
 import TrendingAds from "@/components/shared/TrendingAds ";
 import SkeletonMenu from "@/components/shared/SkeletonMenu";
+import Navbarhome from "@/components/shared/navbarhome";
+import { Toaster } from "@/components/ui/toaster";
+import Footer from "@/components/shared/Footer";
+import BottomNavigation from "@/components/shared/BottomNavigation";
+import Head from "next/head";
+import PageSkeleton from "@/components/shared/PageSkeleton";
 
 const MenuSubmobile = dynamic(
   () => import("@/components/shared/MenuSubmobile"),
@@ -148,104 +154,136 @@ export default async function Home({ searchParams }: SearchParamProps) {
   //   limit: 20,
   // });
 
+  let user: any = [];
+  if (userId) {
+    user = await getUserById(userId);
+  }
   if (!categoryList) {
-    return (
-      <div>
-        <div className="flex-center h-screen w-full bg-[#ebf2f7] bg-dotted-pattern bg-cover bg-fixed bg-center">
-          <div className="flex gap-1 items-center">
-            <Image
-              src="/assets/icons/loading.gif"
-              alt="edit"
-              width={60}
-              height={60}
-            />
-            Loading...
-          </div>
-        </div>
-      </div>
-    );
+    return <PageSkeleton />;
   }
 
   return (
     <main>
-      <div className="max-w-6xl mx-auto flex mt-0">
-        <div className="flex-1 w-full">
-          <div className="mt-[190px] sm:mt-0 w-full">
-            <MenuSubmobile categoryList={categoryList} />
+      <div className="min-h-screen">
+        <Head>
+          <title>AutoYard | Buy and Sell Vehicles in Kenya</title>
+          <meta
+            name="description"
+            content="AutoYard.co.ke is Kenya's leading online vehicle marketplace. Buy or sell cars, motorbikes, buses, pickups, heavy-duty machinery, and more with ease."
+          />
+          <meta
+            property="og:title"
+            content="AutoYard | Buy and Sell Vehicles in Kenya"
+          />
+          <meta
+            property="og:description"
+            content="Welcome to AutoYard.co.ke, the trusted platform for buying and selling vehicles across Kenya. Find your perfect ride or sell your vehicle today!"
+          />
+          <meta property="og:image" content="/assets/images/logo.png" />
+          <meta property="og:url" content="https://autoyard.co.ke" />
+          <meta property="og:type" content="website" />
+          <meta
+            name="keywords"
+            content="AutoYard, buy vehicles, sell vehicles, cars, motorbikes, buses, machinery, Kenya"
+          />
+          <meta name="author" content="AutoYard" />
+          <link rel="canonical" href="https://autoyard.co.ke" />
+        </Head>
+
+        <div className="w-full h-full">
+          <div className="sm:hidden fixed top-0 z-10 w-full">
+            {user ? (
+              <Navbarhome userstatus={user.status} userId={userId} />
+            ) : (
+              <Navbarhome userstatus="User" userId="" />
+            )}
           </div>
-          <div className="p-2 mt-2 mb-20 lg:mb-0">
-            <div className="flex w-full items-center justify-between gap-5 p-2 md:flex-row">
-              <TrendingAds />
-              {/*  <div>
-                <SignedIn>
-                  <Link href="/ads/create">
-                    <button
-                      className={`w-[150px] bg-gradient-to-b from-[#4DCE7A] to-[#30AF5B] hover:bg-[#30AF5B] text-white p-2 rounded-full`}
-                    >
-                      <AddCircleOutlineOutlinedIcon /> SELL
-                    </button>
-                  </Link>
-                </SignedIn>
+          <div className="hidden sm:inline">
+            <div className="w-full">
+              {user ? (
+                <Navbarhome userstatus={user.status} userId={userId} />
+              ) : (
+                <Navbarhome userstatus="User" userId="" />
+              )}
+            </div>{" "}
+          </div>
+          <div className="max-w-6xl mx-auto flex mt-0">
+            <div className="flex-1 w-full">
+              <div className="mt-[190px] sm:mt-0 w-full">
+                <MenuSubmobile categoryList={categoryList} />
               </div>
-              <div>
-                <SignedOut>
-                  <Link href="/sign-in">
-                    <button
-                      className={`w-[150px] bg-gradient-to-b from-[#4DCE7A] to-[#30AF5B] hover:bg-[#30AF5B] text-white p-2 rounded-lg`}
-                    >
-                      <AddCircleOutlineOutlinedIcon /> SELL
-                    </button>
-                  </Link>
-                </SignedOut>
-              </div> */}
+              <div className="p-2 mt-2 mb-20 lg:mb-0">
+                <div className="flex w-full items-center justify-between gap-5 p-2 md:flex-row">
+                  <TrendingAds />
+                </div>
+                <CollectionInfinite
+                  emptyTitle="No Ads Found"
+                  emptyStateSubtext="Come back later"
+                  collectionType="All_Ads"
+                  limit={8}
+                  userId={userId}
+                  userName={userName}
+                  userImage={userImage}
+                  searchText={searchText}
+                  sortby={sortby}
+                  category={category}
+                  subcategory={subcategory}
+                  make={make}
+                  vehiclemodel={vehiclemodel}
+                  yearfrom={yearfrom}
+                  yearto={yearto}
+                  vehiclecolor={vehiclecolor}
+                  vehiclecondition={vehiclecondition}
+                  vehicleTransmissions={vehicleTransmissions}
+                  longitude={longitude}
+                  latitude={latitude}
+                  region={region}
+                  membership={membership}
+                  vehicleFuelTypes={vehicleFuelTypes}
+                  vehicleEngineSizesCC={vehicleEngineSizesCC}
+                  vehicleexchangeposible={vehicleexchangeposible}
+                  vehicleBodyTypes={vehicleBodyTypes}
+                  vehicleregistered={vehicleregistered}
+                  vehicleSeats={vehicleSeats}
+                  vehiclesecordCondition={vehiclesecordCondition}
+                  vehicleyear={vehicleyear}
+                  Price={Price}
+                  bedrooms={bedrooms}
+                  bathrooms={bathrooms}
+                  furnishing={furnishing}
+                  amenities={amenities}
+                  toilets={toilets}
+                  parking={parking}
+                  status={status}
+                  area={area}
+                  landuse={landuse}
+                  propertysecurity={propertysecurity}
+                  floors={floors}
+                  estatename={estatename}
+                  houseclass={houseclass}
+                />
+              </div>
             </div>
-            <CollectionInfinite
-              emptyTitle="No Ads Found"
-              emptyStateSubtext="Come back later"
-              collectionType="All_Ads"
-              limit={8}
-              userId={userId}
-              userName={userName}
-              userImage={userImage}
-              searchText={searchText}
-              sortby={sortby}
-              category={category}
-              subcategory={subcategory}
-              make={make}
-              vehiclemodel={vehiclemodel}
-              yearfrom={yearfrom}
-              yearto={yearto}
-              vehiclecolor={vehiclecolor}
-              vehiclecondition={vehiclecondition}
-              vehicleTransmissions={vehicleTransmissions}
-              longitude={longitude}
-              latitude={latitude}
-              region={region}
-              membership={membership}
-              vehicleFuelTypes={vehicleFuelTypes}
-              vehicleEngineSizesCC={vehicleEngineSizesCC}
-              vehicleexchangeposible={vehicleexchangeposible}
-              vehicleBodyTypes={vehicleBodyTypes}
-              vehicleregistered={vehicleregistered}
-              vehicleSeats={vehicleSeats}
-              vehiclesecordCondition={vehiclesecordCondition}
-              vehicleyear={vehicleyear}
-              Price={Price}
-              bedrooms={bedrooms}
-              bathrooms={bathrooms}
-              furnishing={furnishing}
-              amenities={amenities}
-              toilets={toilets}
-              parking={parking}
-              status={status}
-              area={area}
-              landuse={landuse}
-              propertysecurity={propertysecurity}
-              floors={floors}
-              estatename={estatename}
-              houseclass={houseclass}
-            />
           </div>
+          <Toaster />
+          {/*  <div className="mt-5 w-full hidden lg:inline">
+          <Image
+            src="/footer-png-8.png"
+            alt=""
+            className="mx-auto"
+            layout="responsive" // Makes the image responsive
+            width={800}
+            height={50}
+          />
+        </div>*/}
+          <footer className="bg-white">
+            <div className="hidden lg:inline">
+              <Footer />
+            </div>
+            <div className="lg:hidden">
+              <BottomNavigation userId={userId} />
+            </div>
+          </footer>
         </div>
       </div>
     </main>
