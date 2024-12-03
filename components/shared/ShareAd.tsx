@@ -59,7 +59,7 @@ const ShareAd: React.FC<shareProps> = ({ ad }) => {
         <meta name="twitter:image" content={ad.imageUrls[0]} />
         <meta name="twitter:url" content={shareUrl} />
       </Head>
-      <div className="flex gap-1 w-full p-1">
+      <div className="flex gap-5 w-full p-1">
         <FacebookShareButton
           url={shareUrl}
           title={shareTitle}

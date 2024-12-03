@@ -42,9 +42,9 @@ const StreetmapAll = ({ data }: CardProps) => {
   return (
     <MapContainer
       center={[parseFloat(latitude), parseFloat(longitude)]}
-      zoom={5}
+      zoom={6}
       scrollWheelZoom={false}
-      className="map h-[400px] lg:h-[600px] w-full border rounded-lg z-0"
+      className="map h-[100vh] w-full border rounded-lg z-0"
     >
       <TileLayer
         // attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'

@@ -283,7 +283,7 @@ const CollectionInfinite = ({
                   animation: `fadeIn 0.5s ease-out 0.3s forwards`,
                   opacity: 0, // Initial opacity before animation starts
                 }}
-                className="bg-white rounded-xl p-3"
+                className="bg-white rounded-xl p-1 border"
               >
                 <StreetmapAll data={data} />
               </div>
