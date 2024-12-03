@@ -9,6 +9,7 @@ import PhotoCameraFrontIcon from "@mui/icons-material/PhotoCameraFront";
 import YouTubeIcon from "@mui/icons-material/YouTube";
 import VerifiedUserOutlinedIcon from "@mui/icons-material/VerifiedUserOutlined";
 import BookmarkIcon from "@mui/icons-material/Bookmark";
+import CircularProgress from "@mui/material/CircularProgress";
 import LocalSeeOutlinedIcon from "@mui/icons-material/LocalSeeOutlined";
 import {
   Tooltip,
@@ -238,6 +239,7 @@ const HorizontalCard = ({
       // You can also show a modal or a tooltip with the URL or instructions here.
     }
   };
+  const [isLoadingsmall, setIsLoadingsmall] = useState(true);
   // console.log(ad.imageUrls);
   return (
     <>
@@ -258,13 +260,26 @@ const HorizontalCard = ({
                 onClick={() => router.push(`/ads/${ad._id}`)}
                 className="cursor-pointer w-[180px] lg:w-[250px] h-[210px] flex justify-center items-center overflow-hidden rounded-l-xl"
               >
-                <Image
-                  src={url}
-                  alt={`Ad image ${index + 1}`}
-                  width={400}
-                  height={400}
-                  className="rounded-l-xl object-cover w-full h-full"
-                />
+                <div className="relative w-full h-full">
+                  {isLoadingsmall && (
+                    <div className="absolute rounded-lg inset-0 flex items-center justify-center bg-[#000000] bg-opacity-50">
+                      {/* Spinner or loading animation */}
+                      <CircularProgress sx={{ color: "white" }} size={30} />
+                    </div>
+                  )}
+
+                  <Image
+                    src={url}
+                    alt={`Image ${index + 1}`}
+                    width={400} // Adjust width to match the `w-36` Tailwind class
+                    height={400} // Adjust height to match the `h-24` Tailwind class
+                    className={`rounded-l-xl object-cover w-full h-full ${
+                      isLoadingsmall ? "opacity-0" : "opacity-100"
+                    } transition-opacity duration-300`}
+                    onLoadingComplete={() => setIsLoadingsmall(false)}
+                    placeholder="empty" // Optional: you can use "empty" if you want a placeholder before loading
+                  />
+                </div>
               </div>
             ))}
           </Slider>

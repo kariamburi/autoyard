@@ -321,9 +321,9 @@ export default function Ads({ ad, userId, userImage, userName }: CardProps) {
                   <CarouselItem key={index}>
                     <div className="relative">
                       {isLoading && (
-                        <div className="absolute inset-0 flex items-center justify-center bg-gray-100">
+                        <div className="absolute inset-0 flex items-center justify-center bg-[#000000] bg-opacity-50">
                           {/* Spinner or loading animation */}
-                          <CircularProgress sx={{ color: "black" }} />
+                          <CircularProgress sx={{ color: "white" }} />
                         </div>
                       )}
                       <Zoom>
@@ -438,10 +438,10 @@ export default function Ads({ ad, userId, userImage, userName }: CardProps) {
                       <span key={index} onClick={() => handleImageClick(index)}>
                         <div className="relative">
                           {isLoadingsmall && (
-                            <div className="absolute rounded-lg inset-0 flex items-center justify-center bg-gray-100">
+                            <div className="absolute rounded-lg inset-0 flex items-center justify-center bg-[#000000] bg-opacity-50">
                               {/* Spinner or loading animation */}
                               <CircularProgress
-                                sx={{ color: "black" }}
+                                sx={{ color: "white" }}
                                 size={30}
                               />
                             </div>
